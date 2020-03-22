@@ -26,10 +26,10 @@ const Styles = StyleSheet.create({
         fontSize:16,
         color:Colors.paragraphTextColor
     },
-    phoneVerificationSpacer:{
+    Spacer300:{
         paddingTop:300,
     },
-    smsVerificationSpacer:{
+    Spacer100:{
         paddingTop:100,
     },
     leftButtonContainer:{
@@ -45,6 +45,12 @@ const Styles = StyleSheet.create({
         height: 44,
         overflow: 'hidden',
         borderRadius:40,    
+    },
+    buttonsContainer:{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding:20
     }
     
     

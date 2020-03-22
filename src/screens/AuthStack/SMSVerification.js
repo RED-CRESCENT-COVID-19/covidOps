@@ -24,9 +24,9 @@ export default class SMSVerification extends Component {
                         onSubmitEditing={this.onSubmit}
                 />
                 </View>
-                <View style ={Styles.smsVerificationSpacer}/>
+                <View style ={Styles.Spacer100}/>
                 <Text style= {{alignSelf:'center'}}>{Strings.Labels.DIDNOTRECIVECODE}</Text>
-                <View style ={Styles.smsVerificationSpacer}/>
+                <View style ={Styles.Spacer100}/>
                 <View style = {Styles.rightButtonContainer}>
                         <RaisedTextButton 
                         title= {Strings.ButtonTitles.VERIFY} 

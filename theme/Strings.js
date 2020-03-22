@@ -15,16 +15,19 @@ const Strings = {
             HOME:'MS-XXXXX-XX'
     },
     ButtonTitles:{
-        CONTINUE:'Continue',
-        VERIFY:'Verify',
-        ALLOW:'Allow',
-        BACK:'Back',
-        NEXT:'Next',
-        YES:'Yes',
-        NO:'No',
-        ADDHOUSEHOLD :'Add Household',
-        HOUSEHOLDHISTORY :'Household History',
-        ADDMEMEBERS :'Add Memebers',
+            CONTINUE:'Continue',
+            VERIFY:'Verify',
+            ALLOW:'Allow',
+            BACK:'Back',
+            NEXT:'Next',
+            YES:'Yes',
+            NO:'No',
+            ADDHOUSEHOLD :'Add Household',
+            HOUSEHOLDHISTORY :'Household History',
+            ADDMEMEBERS :'Add Memebers',
+            RESEND:'Resend',
+            DONE:'DONE',
+            CANCEL:'CANCEL'
     },
     Paragarphs:{
             PHONEVERIFICATION:"We need to verify your device via SMS code. A text message will be sent to your phone number. Please enter your phone number to continue:",
@@ -40,9 +43,42 @@ const Strings = {
             PRECAUTIONS:"Please recommend the member to practice the following precautions"
     },
     Labels:{
-        PHONENUMBER:'Phone number',
-        VERIFICATIONCODE:'Verification Code',
-        DIDNOTRECIVECODE:'Didn’t recieve code?'
+            PHONENUMBER:'Phone number',
+            VERIFICATIONCODE:'Verification Code',
+            DIDNOTRECIVECODE:'Didn’t recieve code?',
+            HOUSEHOLDNUMBER:'House-hold number',
+            HOUSEHOLDSCANNED:'Households scanned',
+            PEOPLESCANNED:'People scanned',
+            SCANNINGSUMMARY:'SCANNING SUMMARY',
+            CNICNUMBER:'CNIC NUMBER',
+            PHONENUMBER:'PHONE NUMBER',
+            AGE:'AGE',
+            GENDER:'GENDER',
+            GENDEROTIONPS:{
+                MALE:'MALE',
+                FEMALE:'FEMALE',
+                OTHER:'OTHER'
+            },
+            TEMPERATUREREADING:'TEMPERATURE READING',
+            SYMPTOM:'SYMPTOM',
+            SYMPTOMLIST:{
+                FEVER:'Fever',
+                DRYCOUGH:'Dry Cough',
+                SPUTUMPRODUCTION:'Sputum production',
+                BLOODINCOUGH:'Blood in cough',
+                FATIGUE:'Fatigue',
+                HEADACHE:'Headache',
+                BODYPAIN:'Body pain',
+                SORETHROAT:'Sore throat',
+                NASALCONGESTION:'Nasal congestion',
+                SHORTNESSOFBREATH:'Shortness of breath',
+                REDNESSOFEYES:'Redness of eyes',
+                DIARRHEA:'Diarrhea',
+                OTHERSYMPTOMS:'OTHER SYMPTOMS'
+
+            }
+
+
     }
 };
 

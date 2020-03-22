@@ -14,7 +14,24 @@ export default class Response extends Component {
         return (
             <View style = {Styles.container}>
             <Heading headerText = {Strings.headings.RESPONSE}/>
-              <Text style = {Styles.topParagraph}>{Strings.Paragarphs.RESPONSE}</Text> 
+              <Text style = {Styles.topParagraph}>{Strings.Paragarphs.RESPONSE}</Text>
+              <CardView Styles={Styles.Spacer300}/>
+              <CardView Styles={Styles.Spacer100}/>
+                <View style = {Styles.buttonsContainer}>                      
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.NO} 
+                        color = {Colors.secondaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}/>     
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.YES} 
+                        color = {Colors.primaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}/>      
+                        
+                    </View>
             </View>
         )
     }

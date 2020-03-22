@@ -18,7 +18,7 @@ import {
 } from '../screens/MainScreens'
 const MainNavigation = () => {
     return (
-        <MainStack.Navigator initialRouteName="Response">
+        <MainStack.Navigator initialRouteName="Home">
             
             <MainStack.Screen name="Advisory" component={Advisory} options={{headerShown: false}}/>
             <MainStack.Screen name="HealthScan" component={HealthScan} options={{headerShown: false}}/>

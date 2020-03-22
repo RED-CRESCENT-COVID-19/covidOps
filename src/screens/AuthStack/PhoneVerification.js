@@ -32,7 +32,7 @@ export default class PhoneVerification extends Component {
                         onSubmitEditing={this.onSubmit}
                 />
                 </View>
-                <CardView Styles ={Styles.phoneVerificationSpacer}/> 
+                <CardView Styles ={Styles.Spacer300}/> 
                 <View style = {Styles.rightButtonContainer}>
                         <RaisedTextButton 
                         title= {Strings.ButtonTitles.CONTINUE} 

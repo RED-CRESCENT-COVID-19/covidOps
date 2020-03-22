@@ -14,7 +14,17 @@ export default class LocationData extends Component {
         return (
             <View style = {Styles.container}>
             <Heading headerText = {Strings.headings.LOCATIONDATA}/>
-              <Text style = {Styles.topParagraph}>{Strings.Paragarphs.LOCATIONDATA}</Text> 
+              <Text style = {Styles.topParagraph}>{Strings.Paragarphs.LOCATIONDATA}</Text>
+              <CardView Styles ={Styles.Spacer300}/> 
+              <CardView Styles ={Styles.Spacer100}/> 
+                <View style = {Styles.rightButtonContainer}>
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.ALLOW} 
+                        color = {Colors.primaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}/>     
+                    </View>    
             </View>
         )
     }

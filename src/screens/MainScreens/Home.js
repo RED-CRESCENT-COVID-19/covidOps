@@ -15,6 +15,24 @@ export default class Home extends Component {
             <View style = {Styles.container}>
             <Heading headerText = {Strings.headings.HOME}/>
               <Text style = {Styles.topParagraph}>{Strings.Paragarphs.HOME}</Text> 
+              <CardView Styles={Styles.Spacer300}/>
+              <CardView Styles={Styles.Spacer100}/>
+               
+                    <View style = {Styles.buttonsContainer}>                      
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.CANCEL} 
+                        color = {Colors.secondaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}/>     
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.DONE} 
+                        color = {Colors.primaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}/>      
+                        
+                    </View>
             </View>
         )
     }
