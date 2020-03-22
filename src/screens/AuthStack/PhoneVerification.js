@@ -11,4 +11,6 @@ export default class PhoneVerification extends Component {
     }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+})

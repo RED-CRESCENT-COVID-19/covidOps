@@ -1,3 +1,5 @@
 import Colors from './Colors'
-import FontSize from './FontSize'
+import Styles from './Styles'
 import Strings from './Strings'
+
+export {Colors,Styles,Strings}
