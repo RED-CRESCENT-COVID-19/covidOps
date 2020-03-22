@@ -7,9 +7,8 @@ import MainNavigation from './MainNavigation'
 const AppNavigator = () => {
     return (
         <NavigationContainer>
-            <AuthNavigation/>
-        </NavigationContainer>
-       
+            <MainNavigation/>
+        </NavigationContainer>  
     )
 }
 

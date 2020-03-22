@@ -12,6 +12,7 @@ const Strings = {
             SYMPTOMS :'Symptoms',
             ADVISORY :'Advisory',
             PRECAUTIONS :'Precautions',
+            HOME:'MS-XXXXX-XX'
     },
     ButtonTitles:{
         CONTINUE:'Continue',
@@ -34,6 +35,9 @@ const Strings = {
             RESPONSE:"Have you been able to contact a member of the household?",
             MEMEBERS:"No members added yet",
             SYMPTOMS:"Please check all or any symptoms the members is experiencing",
+            ADVISORY:"Please recommend the member to visit the nearest center or contact the helpline",
+            HOME: "No memebers added yet",
+            PRECAUTIONS:"Please recommend the member to practice the following precautions"
     },
     Labels:{
         PHONENUMBER:'Phone number',
