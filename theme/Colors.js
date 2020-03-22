@@ -1,11 +1,9 @@
 const Colors = {
     primaryColor:'#CC0000',
     secondaryColor:'#880000',
-    paragraphTextColor:rgba(0, 0, 0, 0.6),
-    buttonFontPrimary: '',
-    buttonFontSecondary: '',
-    
-    
+    paragraphTextColor:'#666666',
+    buttonTextColor:'#ffffff'    
+
 };
 
 export default Colors;

@@ -34,6 +34,11 @@ const Strings = {
             RESPONSE:"Have you been able to contact a member of the household?",
             MEMEBERS:"No members added yet",
             SYMPTOMS:"Please check all or any symptoms the members is experiencing",
+    },
+    Labels:{
+        PHONENUMBER:'Phone number',
+        VERIFICATIONCODE:'Verification Code',
+        DIDNOTRECIVECODE:'Didn’t recieve code?'
     }
 };
 
