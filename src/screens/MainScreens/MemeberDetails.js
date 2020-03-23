@@ -10,7 +10,14 @@ import CardView from "../../components/CardView";
 import { Strings, Styles, Colors } from "../../../theme";
 
 export default class MemeberDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isButtonActive: false
+    };
+  }
   render() {
+    const { isButtonActive } = this.state;
     return (
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.MEMEBERDETAILS} />
@@ -41,8 +48,10 @@ export default class MemeberDetails extends Component {
         <View style={Styles.genderButtonsContainer}>
           <TextButton
             title={Strings.Labels.GENDEROPTIONS.MALE}
-            color={true ? Colors.primaryColor : Colors.transparent}
-            titleColor={true ? Colors.buttonTextColor : Colors.primaryColor}
+            color={!isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              !isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
             shadeBorderRadius={1.5}
             style={[
               Styles.smallGenderButton
@@ -51,8 +60,10 @@ export default class MemeberDetails extends Component {
           />
           <TextButton
             title={Strings.Labels.GENDEROPTIONS.FEMALE}
-            olor={false ? Colors.primaryColor : Colors.transparent}
-            titleColor={false ? Colors.buttonTextColor : Colors.primaryColor}
+            olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
             shadeBorderRadius={1.5}
             style={[
               Styles.smallGenderButton
@@ -61,8 +72,10 @@ export default class MemeberDetails extends Component {
           />
           <TextButton
             title={Strings.Labels.GENDEROPTIONS.OTHER}
-            olor={false ? Colors.primaryColor : Colors.transparent}
-            titleColor={false ? Colors.buttonTextColor : Colors.primaryColor}
+            olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
             shadeBorderRadius={1.5}
             style={[
               Styles.smallGenderButton
