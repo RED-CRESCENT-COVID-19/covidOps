@@ -16,12 +16,19 @@ export default class MemeberDetails extends Component {
       isButtonActive: false
     };
   }
+  fieldRef = React.createRef();
   onChangeText(e) {
     console.log("e is: ", e);
   }
   onNextButton() {
     this.props.navigation.navigate("Temperature");
   }
+
+  onSubmit = () => {
+    let { current: field } = this.fieldRef;
+
+    console.log(field.value());
+  };
   render() {
     const { isButtonActive } = this.state;
     return (
