@@ -1,7 +1,4 @@
-import PhoneVerification from './PhoneVerification'
-import SMSVerification from './SMSVerification'
+import PhoneVerification from "./PhoneVerification";
+import SMSVerification from "./SMSVerification";
 
-export {
-    PhoneVerification,
-    SMSVerification
-}
+export { PhoneVerification, SMSVerification };

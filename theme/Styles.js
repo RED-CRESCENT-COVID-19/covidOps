@@ -1,5 +1,5 @@
-import { StyleSheet} from 'react-native'
-import Colors from './Colors'
+import { StyleSheet } from "react-native";
+import Colors from "./Colors";
 
 const Styles = StyleSheet.create({
     container:{
@@ -72,9 +72,13 @@ const Styles = StyleSheet.create({
         height:44,
         overflow: 'hidden',
         borderRadius:40,
-    }
-    
-    
-})
+    },    
+  Spacer200: {
+    paddingTop: 200
+  },
+  Spacer250: {
+    paddingTop: 250
+  }
+});
 
-export default Styles
+export default Styles;
