@@ -78,8 +78,8 @@ const Styles = StyleSheet.create({
   },
   containerHeader: {
     paddingTop: 95,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 32,
+    paddingRight: 32
   },
   textHeader: {
     fontSize: 34,
@@ -99,10 +99,17 @@ const Styles = StyleSheet.create({
   },
   topParagraph: {
     paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 36,
+    paddingRight: 36,
     fontSize: 16,
     color: Colors.paragraphTextColor
+  },
+  genderText: {
+    paddingTop: 20,
+    paddingLeft: 36,
+    paddingRight: 36,
+    fontSize: 16,
+    color: Colors.primaryColor
   },
   Spacer100: {
     paddingTop: 100
@@ -129,6 +136,21 @@ const Styles = StyleSheet.create({
     height: 44,
     overflow: "hidden",
     borderRadius: 40
+  },
+  smallGenderButton: {
+    width: 106,
+    height: 36,
+    overflow: "hidden",
+    borderRadius: 40
+  },
+  genderButtonsContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 35,
+    paddingRight: 35
   },
   buttonsContainer: {
     flex: 1,
