@@ -61,7 +61,7 @@ const Strings = {
     PHONENUMBER: "PHONE NUMBER",
     AGE: "AGE",
     GENDER: "GENDER",
-    GENDEROTIONPS: {
+    GENDEROPTIONS: {
       MALE: "MALE",
       FEMALE: "FEMALE",
       OTHER: "OTHER"
