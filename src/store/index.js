@@ -8,7 +8,7 @@ import createSagaMiddleware from "redux-saga";
 import thunkMiddleware from "redux-thunk";
 import logger from "redux-logger";
 
-import createReducer from "./reducers";
+import createReducer from "../reducers";
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;

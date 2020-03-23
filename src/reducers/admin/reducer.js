@@ -19,7 +19,7 @@ const initialState = {
   errorMessage: ""
 };
 
-const verificationCodeReducer = (state = initialState, { type, payload }) => {
+const adminReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_FIRST_CODE:
       console.log("payload of ADD_FIRST_CODE is: ", payload);
@@ -50,4 +50,4 @@ const verificationCodeReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default verificationCodeReducer;
+export default adminReducer;
