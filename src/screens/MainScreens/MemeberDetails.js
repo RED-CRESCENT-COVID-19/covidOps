@@ -37,7 +37,8 @@ export default class MemeberDetails extends Component {
             onSubmitEditing={this.onSubmit}
           />
         </View>
-        <CardView Styles={Styles.Spacer300} />
+        <Text style={Styles.topParagraph}>{Strings.Labels.GENDER}</Text>
+        <CardView Styles={Styles.Spacer100} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={Strings.ButtonTitles.BACK}
