@@ -16,6 +16,9 @@ export default class MemeberDetails extends Component {
       isButtonActive: false
     };
   }
+  onChangeText(e) {
+    console.log("e is: ", e);
+  }
   render() {
     const { isButtonActive } = this.state;
     return (
@@ -27,6 +30,7 @@ export default class MemeberDetails extends Component {
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
           />
           <TextField
@@ -34,6 +38,7 @@ export default class MemeberDetails extends Component {
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
           />
           <TextField
@@ -41,6 +46,7 @@ export default class MemeberDetails extends Component {
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
           />
         </View>
