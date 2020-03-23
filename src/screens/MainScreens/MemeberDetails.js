@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 import { OutlinedTextField, TextField } from "react-native-material-textfield";
-import { RaisedTextButton } from "react-native-material-buttons";
+import { TextButton, RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
@@ -37,7 +37,30 @@ export default class MemeberDetails extends Component {
             onSubmitEditing={this.onSubmit}
           />
         </View>
-        <Text style={Styles.topParagraph}>{Strings.Labels.GENDER}</Text>
+        <Text style={Styles.genderText}>{Strings.Labels.GENDER}</Text>
+        <View style={Styles.genderButtonsContainer}>
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.MALE}
+            color={Colors.secondaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallGenderButton}
+          />
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.FEMALE}
+            color={Colors.primaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallGenderButton}
+          />
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.OTHER}
+            color={Colors.primaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallGenderButton}
+          />
+        </View>
         <CardView Styles={Styles.Spacer100} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
@@ -63,7 +86,7 @@ export default class MemeberDetails extends Component {
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 36,
+    paddingRight: 36
   }
 });
