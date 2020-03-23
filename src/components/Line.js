@@ -1,12 +1,8 @@
-import React from 'react'
-import { View } from 'react-native'
+import React from "react";
+import { View } from "react-native";
 
+const Line = props => {
+  return <View style={props.styles} />;
+};
 
-const Line = (props) => {
-
-    return (
-        <View style={props.styles} />
-    )
-}
-
-export default Line
+export default Line;

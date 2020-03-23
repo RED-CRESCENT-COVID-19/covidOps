@@ -1,11 +1,8 @@
-import React from 'react'
-import { View} from 'react-native'
+import React from "react";
+import { View } from "react-native";
 
-const CardView = (props) => {
-    return (
-        <View style = {props.Styles}>         
-        </View>
-    )
-}
+const CardView = props => {
+  return <View style={props.Styles}></View>;
+};
 
-export default CardView
+export default CardView;
