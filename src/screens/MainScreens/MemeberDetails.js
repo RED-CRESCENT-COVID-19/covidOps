@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
+import { OutlinedTextField, TextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
 import Heading from "../../components/Heading";
@@ -15,21 +15,21 @@ export default class MemeberDetails extends Component {
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.MEMEBERDETAILS} />
         <View style={screenStyles.textInput}>
-          <OutlinedTextField
+          <TextField
             label={Strings.Labels.CNICNUMBER}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
           />
-          <OutlinedTextField
+          <TextField
             label={Strings.Labels.PHONENUMBER}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
           />
-          <OutlinedTextField
+          <TextField
             label={Strings.Labels.AGE}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
