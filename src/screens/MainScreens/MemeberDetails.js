@@ -39,13 +39,6 @@ export default class MemeberDetails extends Component {
         </View>
         <Text style={Styles.genderText}>{Strings.Labels.GENDER}</Text>
         <View style={Styles.genderButtonsContainer}>
-          {/* <TextButton
-            title={Strings.Labels.GENDEROPTIONS.MALE}
-            color={Colors.secondaryColor}
-            titleColor={Colors.buttonTextColor}
-            shadeBorderRadius={1.5}
-            style={Styles.smallGenderButton}
-          /> */}
           <TextButton
             title={Strings.Labels.GENDEROPTIONS.MALE}
             color={true ? Colors.primaryColor : Colors.transparent}
