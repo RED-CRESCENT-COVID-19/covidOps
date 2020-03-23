@@ -141,7 +141,14 @@ const Styles = StyleSheet.create({
     width: 106,
     height: 36,
     overflow: "hidden",
-    borderRadius: 40
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: Colors.primaryColor
+  },
+  smallGenderButtonActive: {
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: Colors.primaryColor
   },
   genderButtonsContainer: {
     flex: 1,
