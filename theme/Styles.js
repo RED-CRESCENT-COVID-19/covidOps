@@ -33,11 +33,17 @@ const Styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.paragraphTextColor
   },
-  Spacer300: {
-    paddingTop: 300
-  },
   Spacer100: {
     paddingTop: 100
+  },
+  Spacer200: {
+    paddingTop: 200
+  },
+  Spacer250: {
+    paddingTop: 250
+  },
+  Spacer300: {
+    paddingTop: 300
   },
   leftButtonContainer: {
     paddingRight: 220,
