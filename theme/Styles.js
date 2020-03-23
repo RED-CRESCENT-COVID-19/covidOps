@@ -39,6 +39,9 @@ const Styles = StyleSheet.create({
     Spacer100:{
         paddingTop:100,
     },
+    Spacer50:{
+        paddingTop:50,
+    },
     leftButtonContainer:{
         paddingRight:220,
         paddingLeft:20
@@ -58,6 +61,17 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding:20
+    },
+    largebuttonsContainer:{
+        padding:10, 
+        paddingLeft:20,
+        paddingRight:20
+    },
+    largeButton:{
+        width:320,
+        height:44,
+        overflow: 'hidden',
+        borderRadius:40,
     }
     
     
