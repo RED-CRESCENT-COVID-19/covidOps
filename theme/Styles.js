@@ -19,6 +19,13 @@ const Styles = StyleSheet.create({
         backgroundColor: Colors.primaryColor,
         alignSelf: 'stretch'
     },
+    lineDivider:{
+        height:1,
+        backgroundColor: Colors.dividerColor,
+        alignSelf: 'stretch',
+        paddingLeft:20,
+        paddingRight:20
+    },
     topParagraph:{
         paddingTop:20,
         paddingLeft:20,

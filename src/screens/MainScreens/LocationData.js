@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 
-import {OutlinedTextField} from 'react-native-material-textfield'
 import {RaisedTextButton} from 'react-native-material-buttons'
 //Custom Components
 import Heading from '../../components/Heading'
@@ -10,6 +9,9 @@ import CardView from '../../components/CardView'
 import {Strings, Styles,Colors} from '../../../theme'
 
 export default class LocationData extends Component {
+    handleContinue = () => {
+        this.props.navigation.navigate('HouseholdNumber')
+    }
     render() {
         return (
             <View style = {Styles.container}>
@@ -23,7 +25,10 @@ export default class LocationData extends Component {
                         color = {Colors.primaryColor} 
                         titleColor = {Colors.buttonTextColor} 
                         shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>     
+                        style={Styles.smallButton}
+                        onPress={this.handleContinue} 
+                        />
+                            
                     </View>    
             </View>
         )

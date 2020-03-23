@@ -7,7 +7,7 @@ import MainNavigation from './MainNavigation'
 const AppNavigator = () => {
     return (
         <NavigationContainer>
-            <MainNavigation/>
+            { false ? <AuthNavigation/> : <MainNavigation/> }
         </NavigationContainer>  
     )
 }

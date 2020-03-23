@@ -9,6 +9,9 @@ import CardView from '../../components/CardView'
 import {Strings, Styles,Colors} from '../../../theme'
 
 export default class HouseholdNumber extends Component {
+    handleContinue = () => {
+        this.props.navigation.navigate('Response')
+    }
     render() {
         return (
             <View style = {Styles.container}>
@@ -20,6 +23,7 @@ export default class HouseholdNumber extends Component {
                         tintColor = {Colors.primaryColor}
                         formatText={this.formatText}
                         onSubmitEditing={this.onSubmit}
+                        
                 />
                 </View>
                 <CardView Styles={Styles.Spacer300}/>
@@ -35,8 +39,9 @@ export default class HouseholdNumber extends Component {
                         color = {Colors.primaryColor} 
                         titleColor = {Colors.buttonTextColor} 
                         shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>      
-                        
+                        style={Styles.smallButton}
+                        onPress={this.handleContinue} 
+                        />      
                     </View>
             </View>
         )

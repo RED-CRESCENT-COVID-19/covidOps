@@ -8,7 +8,7 @@ const AuthStack = createStackNavigator();
 
 const AuthNavigation = () => {
     return (
-        <AuthStack.Navigator initialRouteName="SMSVerify">
+        <AuthStack.Navigator initialRouteName="PhoneVerify">
         <AuthStack.Screen name="PhoneVerify" component={PhoneVerification} options={{headerShown: false}} />
         <AuthStack.Screen name="SMSVerify" component={SMSVerification} options={{headerShown: false}}/>
         </AuthStack.Navigator>

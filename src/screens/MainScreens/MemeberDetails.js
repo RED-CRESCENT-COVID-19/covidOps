@@ -9,15 +9,36 @@ import CardView from '../../components/CardView'
 //Theme 
 import {Strings, Styles,Colors} from '../../../theme'
 
-export default class Temperature extends Component {
+export default class MemeberDetails extends Component {
     render() {
         return (
             <View style = {Styles.container}>
-            <Heading headerText = {Strings.headings.TEMPERATURE}/>
-            <Text style = {Styles.topParagraph}>{Strings.Paragarphs.TEMPERATURE}</Text> 
+            <Heading headerText = {Strings.headings.MEMEBERDETAILS}/>
+            <View style = {screenStyles.textInput}>
+                <OutlinedTextField
+                        label= {Strings.Labels.CNICNUMBER}
+                        keyboardType='phone-pad'
+                        tintColor = {Colors.primaryColor}
+                        formatText={this.formatText}
+                        onSubmitEditing={this.onSubmit}
+                />
+                <OutlinedTextField
+                        label= {Strings.Labels.PHONENUMBER}
+                        keyboardType='phone-pad'
+                        tintColor = {Colors.primaryColor}
+                        formatText={this.formatText}
+                        onSubmitEditing={this.onSubmit}
+                />
+                <OutlinedTextField
+                        label= {Strings.Labels.AGE}
+                        keyboardType='phone-pad'
+                        tintColor = {Colors.primaryColor}
+                        formatText={this.formatText}
+                        onSubmitEditing={this.onSubmit}
+                />
+                </View>
               <CardView Styles={Styles.Spacer300}/>
-              
-              <View style = {Styles.buttonsContainer}>                      
+                    <View style = {Styles.buttonsContainer}>                      
                         <RaisedTextButton 
                         title= {Strings.ButtonTitles.BACK } 
                         color = {Colors.secondaryColor} 
@@ -44,3 +65,4 @@ const screenStyles = StyleSheet.create({
         paddingRight:20
     }    
 })
+

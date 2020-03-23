@@ -5,11 +5,15 @@ import {OutlinedTextField} from 'react-native-material-textfield'
 import {RaisedTextButton} from 'react-native-material-buttons'
 //Custom Components
 import Heading from '../../components/Heading'
-import CardView from '../../components/CardView'
+
 //Theme 
 import {Strings, Styles,Colors} from '../../../theme'
 
 export default class SMSVerification extends Component {
+
+    handleContinue = () => {
+        this.props.navigation.navigate('LocationData')
+    }
     render() {
         return (
             <View style = {Styles.container}>
@@ -33,8 +37,10 @@ export default class SMSVerification extends Component {
                         color = {Colors.primaryColor} 
                         titleColor = {Colors.buttonTextColor} 
                         shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>     
-                    </View> 
+                        style={Styles.smallButton}
+                        onPress={this.handleContinue}
+                        />     
+                </View> 
             </View>
         )
     }

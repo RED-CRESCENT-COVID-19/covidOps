@@ -10,6 +10,9 @@ import CardView from '../../components/CardView'
 import {Strings, Styles,Colors} from '../../../theme'
 
 export default class Home extends Component {
+    handleDone = () => {
+        this.props.navigation.navigate('Advisory')
+    }
     render() {
         return (
             <View style = {Styles.container}>
@@ -30,7 +33,9 @@ export default class Home extends Component {
                         color = {Colors.primaryColor} 
                         titleColor = {Colors.buttonTextColor} 
                         shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>      
+                        style={Styles.smallButton}
+                        onPress={this.handleDone} 
+                        />      
                         
                     </View>
             </View>

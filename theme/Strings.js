@@ -38,9 +38,10 @@ const Strings = {
             RESPONSE:"Have you been able to contact a member of the household?",
             MEMEBERS:"No members added yet",
             SYMPTOMS:"Please check all or any symptoms the members is experiencing",
-            ADVISORY:"Please recommend the member to visit the nearest center or contact the helpline",
+            ADVISORY:"Please recommend the household to contact via helpine, whatsapp or website and not visit the hospital immedidately",
             HOME: "No memebers added yet",
-            PRECAUTIONS:"Please recommend the member to practice the following precautions"
+            PRECAUTIONS:"Please recommend the member to practice the following precautions",
+            TEMPERATURE:"Please note the temperature of the household member"
     },
     Labels:{
             PHONENUMBER:'Phone number',

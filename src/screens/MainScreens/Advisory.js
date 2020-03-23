@@ -15,6 +15,23 @@ export default class Advisory extends Component {
             <View style = {Styles.container}>
             <Heading headerText = {Strings.headings.ADVISORY}/>
               <Text style = {Styles.topParagraph}>{Strings.Paragarphs.ADVISORY}</Text> 
+              <View style = {Styles.buttonsContainer}>                      
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.CANCEL} 
+                        color = {Colors.secondaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}/>     
+                        <RaisedTextButton 
+                        title= {Strings.ButtonTitles.DONE} 
+                        color = {Colors.primaryColor} 
+                        titleColor = {Colors.buttonTextColor} 
+                        shadeBorderRadius = {1.5} 
+                        style={Styles.smallButton}
+                        onPress={this.handleDone} 
+                        />      
+                        
+                    </View>
             </View>
         )
     }

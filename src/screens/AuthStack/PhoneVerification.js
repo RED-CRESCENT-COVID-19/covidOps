@@ -12,9 +12,16 @@ import {Strings, Styles,Colors} from '../../../theme'
 
 export default class PhoneVerification extends Component {
     
+    constructor(props) {
+        super(props);
+        this.state = {};
+      }
     onSubmit = () => {
-    
+        // () => navigation.navigate('SMSVerify')
     };
+    handleContinue = () => {
+        this.props.navigation.navigate('SMSVerify')
+    }
     formatText = (text) => {
     return text.replace(/[^+\d]/g, '');
     };
@@ -39,7 +46,9 @@ export default class PhoneVerification extends Component {
                         color = {Colors.primaryColor} 
                         titleColor = {Colors.buttonTextColor} 
                         shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>     
+                        style={Styles.smallButton}
+                        onPress={this.handleContinue}
+                        />     
                     </View>     
             </View>
         )

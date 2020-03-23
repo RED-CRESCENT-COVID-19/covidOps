@@ -8,6 +8,7 @@ import Precautions from         './Precautions'
 import Response from            './Response'
 import Symptoms from            './Symptoms'
 import Temperature from            './Temperature'
+import MemeberDetails from          './MemeberDetails'
 
 export {
     Advisory,
@@ -19,5 +20,6 @@ export {
     Precautions,
     Response,
     Symptoms,
-    Temperature
+    Temperature,
+    MemeberDetails
 }
