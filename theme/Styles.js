@@ -74,11 +74,6 @@ const Styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.primaryColor
   },
-  smallGenderButtonActive: {
-    borderRadius: 40,
-    borderWidth: 2,
-    borderColor: Colors.primaryColor
-  },
   genderButtonsContainer: {
     flex: 1,
     flexDirection: "row",
