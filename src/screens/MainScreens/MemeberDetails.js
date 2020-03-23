@@ -1,68 +1,131 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import React, { Component } from "react";
+import { Text, StyleSheet, View } from "react-native";
 
-import {OutlinedTextField} from 'react-native-material-textfield'
-import {RaisedTextButton} from 'react-native-material-buttons'
+import { OutlinedTextField, TextField } from "react-native-material-textfield";
+import { TextButton, RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
-import Heading from '../../components/Heading'
-import CardView from '../../components/CardView'
-//Theme 
-import {Strings, Styles,Colors} from '../../../theme'
+import Heading from "../../components/Heading";
+import CardView from "../../components/CardView";
+//Theme
+import { Strings, Styles, Colors } from "../../../theme";
 
 export default class MemeberDetails extends Component {
-    render() {
-        return (
-            <View style = {Styles.container}>
-            <Heading headerText = {Strings.headings.MEMEBERDETAILS}/>
-            <View style = {screenStyles.textInput}>
-                <OutlinedTextField
-                        label= {Strings.Labels.CNICNUMBER}
-                        keyboardType='phone-pad'
-                        tintColor = {Colors.primaryColor}
-                        formatText={this.formatText}
-                        onSubmitEditing={this.onSubmit}
-                />
-                <OutlinedTextField
-                        label= {Strings.Labels.PHONENUMBER}
-                        keyboardType='phone-pad'
-                        tintColor = {Colors.primaryColor}
-                        formatText={this.formatText}
-                        onSubmitEditing={this.onSubmit}
-                />
-                <OutlinedTextField
-                        label= {Strings.Labels.AGE}
-                        keyboardType='phone-pad'
-                        tintColor = {Colors.primaryColor}
-                        formatText={this.formatText}
-                        onSubmitEditing={this.onSubmit}
-                />
-                </View>
-              <CardView Styles={Styles.Spacer300}/>
-                    <View style = {Styles.buttonsContainer}>                      
-                        <RaisedTextButton 
-                        title= {Strings.ButtonTitles.BACK } 
-                        color = {Colors.secondaryColor} 
-                        titleColor = {Colors.buttonTextColor} 
-                        shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>     
-                        <RaisedTextButton 
-                        title= {Strings.ButtonTitles.NEXT} 
-                        color = {Colors.primaryColor} 
-                        titleColor = {Colors.buttonTextColor} 
-                        shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>      
-                        
-                    </View>
-            </View>
-        )
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isButtonActive: false
+    };
+  }
+  fieldRef = React.createRef();
+  onChangeText(e) {
+    console.log("e is: ", e);
+  }
+  onNextButton() {
+    this.props.navigation.navigate("Temperature");
+  }
+
+  onSubmit = () => {
+    let { current: field } = this.fieldRef;
+
+    console.log(field.value());
+  };
+  render() {
+    const { isButtonActive } = this.state;
+    return (
+      <View style={Styles.container}>
+        <Heading headerText={Strings.headings.MEMEBERDETAILS} />
+        <View style={screenStyles.textInput}>
+          <TextField
+            label={Strings.Labels.CNICNUMBER}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
+            onSubmitEditing={this.onSubmit}
+          />
+          <TextField
+            label={Strings.Labels.PHONENUMBER}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
+            onSubmitEditing={this.onSubmit}
+          />
+          <TextField
+            label={Strings.Labels.AGE}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
+            onSubmitEditing={this.onSubmit}
+          />
+        </View>
+        <Text style={Styles.genderText}>{Strings.Labels.GENDER}</Text>
+        <View style={Styles.genderButtonsContainer}>
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.MALE}
+            color={!isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              !isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
+            shadeBorderRadius={1.5}
+            style={[
+              Styles.smallGenderButton
+              // true && Styles.smallGenderButtonActive
+            ]}
+          />
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.FEMALE}
+            olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
+            shadeBorderRadius={1.5}
+            style={[
+              Styles.smallGenderButton
+              // true && Styles.smallGenderButtonActive
+            ]}
+          />
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.OTHER}
+            olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
+            shadeBorderRadius={1.5}
+            style={[
+              Styles.smallGenderButton
+              // true && Styles.smallGenderButtonActive
+            ]}
+          />
+        </View>
+        <CardView Styles={Styles.Spacer100} />
+        <View style={Styles.buttonsContainer}>
+          <RaisedTextButton
+            title={Strings.ButtonTitles.BACK}
+            color={Colors.secondaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+          />
+          <RaisedTextButton
+            title={Strings.ButtonTitles.NEXT}
+            color={Colors.primaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.onNextButton()}
+          />
+        </View>
+      </View>
+    );
+  }
 }
 
 const screenStyles = StyleSheet.create({
-    textInput:{
-        paddingTop:20,
-        paddingLeft:20,
-        paddingRight:20
-    }    
-})
-
+  textInput: {
+    paddingTop: 20,
+    paddingLeft: 36,
+    paddingRight: 36
+  }
+});

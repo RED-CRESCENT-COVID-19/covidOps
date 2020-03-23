@@ -1,47 +1,46 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import React, { Component } from "react";
+import { Text, StyleSheet, View } from "react-native";
 
-import {OutlinedTextField} from 'react-native-material-textfield'
-import {RaisedTextButton} from 'react-native-material-buttons'
+import { OutlinedTextField } from "react-native-material-textfield";
+import { RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
-import Heading from '../../components/Heading'
-import CardView from '../../components/CardView'
-//Theme 
-import {Strings, Styles,Colors} from '../../../theme'
+import Heading from "../../components/Heading";
+import CardView from "../../components/CardView";
+//Theme
+import { Strings, Styles, Colors } from "../../../theme";
 
 export default class Home extends Component {
-    handleDone = () => {
-        this.props.navigation.navigate('Advisory')
-    }
-    render() {
-        return (
-            <View style = {Styles.container}>
-            <Heading headerText = {Strings.headings.HOME}/>
-              <Text style = {Styles.topParagraph}>{Strings.Paragarphs.HOME}</Text> 
-              <CardView Styles={Styles.Spacer300}/>
-              <CardView Styles={Styles.Spacer100}/>
-               
-                    <View style = {Styles.buttonsContainer}>                      
-                        <RaisedTextButton 
-                        title= {Strings.ButtonTitles.CANCEL} 
-                        color = {Colors.secondaryColor} 
-                        titleColor = {Colors.buttonTextColor} 
-                        shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}/>     
-                        <RaisedTextButton 
-                        title= {Strings.ButtonTitles.DONE} 
-                        color = {Colors.primaryColor} 
-                        titleColor = {Colors.buttonTextColor} 
-                        shadeBorderRadius = {1.5} 
-                        style={Styles.smallButton}
-                        onPress={this.handleDone} 
-                        />      
-                        
-                    </View>
-            </View>
-        )
-    }
+  handleDone = () => {
+    this.props.navigation.navigate("Advisory");
+  };
+  render() {
+    return (
+      <View style={Styles.container}>
+        <Heading headerText={Strings.headings.HOME} />
+        <Text style={Styles.topParagraph}>{Strings.Paragarphs.HOME}</Text>
+        <CardView Styles={Styles.Spacer300} />
+        <CardView Styles={Styles.Spacer100} />
+
+        <View style={Styles.buttonsContainer}>
+          <RaisedTextButton
+            title={Strings.ButtonTitles.CANCEL}
+            color={Colors.secondaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+          />
+          <RaisedTextButton
+            title={Strings.ButtonTitles.DONE}
+            color={Colors.primaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={this.handleDone}
+          />
+        </View>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({})
-
+const styles = StyleSheet.create({});
