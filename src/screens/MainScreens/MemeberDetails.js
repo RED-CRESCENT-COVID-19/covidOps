@@ -19,6 +19,9 @@ export default class MemeberDetails extends Component {
   onChangeText(e) {
     console.log("e is: ", e);
   }
+  onNextButton() {
+    this.props.navigation.navigate("Temperature");
+  }
   render() {
     const { isButtonActive } = this.state;
     return (
@@ -104,6 +107,7 @@ export default class MemeberDetails extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={() => this.onNextButton()}
           />
         </View>
       </View>
