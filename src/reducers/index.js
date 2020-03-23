@@ -3,9 +3,8 @@
  */
 
 import { combineReducers } from "redux";
-import { connectRouter } from "connected-react-router";
 
-// import history from "utils/history";
+// Import Reducers
 import adminReducer from "./admin/reducer";
 
 // Import languages proivder here
