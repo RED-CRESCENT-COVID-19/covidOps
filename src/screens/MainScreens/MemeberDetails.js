@@ -39,26 +39,42 @@ export default class MemeberDetails extends Component {
         </View>
         <Text style={Styles.genderText}>{Strings.Labels.GENDER}</Text>
         <View style={Styles.genderButtonsContainer}>
-          <TextButton
+          {/* <TextButton
             title={Strings.Labels.GENDEROPTIONS.MALE}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallGenderButton}
+          /> */}
+          <TextButton
+            title={Strings.Labels.GENDEROPTIONS.MALE}
+            color={true ? Colors.primaryColor : Colors.transparent}
+            titleColor={true ? Colors.buttonTextColor : Colors.primaryColor}
+            shadeBorderRadius={1.5}
+            style={[
+              Styles.smallGenderButton
+              // true && Styles.smallGenderButtonActive
+            ]}
           />
           <TextButton
             title={Strings.Labels.GENDEROPTIONS.FEMALE}
-            color={Colors.primaryColor}
-            titleColor={Colors.buttonTextColor}
+            olor={false ? Colors.primaryColor : Colors.transparent}
+            titleColor={false ? Colors.buttonTextColor : Colors.primaryColor}
             shadeBorderRadius={1.5}
-            style={Styles.smallGenderButton}
+            style={[
+              Styles.smallGenderButton
+              // true && Styles.smallGenderButtonActive
+            ]}
           />
           <TextButton
             title={Strings.Labels.GENDEROPTIONS.OTHER}
-            color={Colors.primaryColor}
-            titleColor={Colors.buttonTextColor}
+            olor={false ? Colors.primaryColor : Colors.transparent}
+            titleColor={false ? Colors.buttonTextColor : Colors.primaryColor}
             shadeBorderRadius={1.5}
-            style={Styles.smallGenderButton}
+            style={[
+              Styles.smallGenderButton
+              // true && Styles.smallGenderButtonActive
+            ]}
           />
         </View>
         <CardView Styles={Styles.Spacer100} />
