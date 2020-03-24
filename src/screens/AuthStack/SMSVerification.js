@@ -53,16 +53,20 @@ export default class SMSVerification extends Component {
         <Text style={{ alignSelf: "center" }}>
           {Strings.Labels.DIDNOTRECIVECODE}
         </Text>
-        <View style={Styles.Spacer50} />
-
         {/* Timer */}
         <CountDown
-          // until={300} for five minutes
-          until={10} // for 10 sec for verification the code
+          until={300} // for five minutes
+          // until={10} // for 10 sec for verification the code
+          digitStyle={{
+            backgroundColor: Colors.transparent
+          }}
+          digitTxtStyle={{ color: Colors.primaryColor }}
           onFinish={() => this.onTimerFinish()}
           onPress={() => alert("hello, why are you doing this? :p")}
           timeToShow={["M", "S"]}
-          // timeLabels={{ m: null, s: null }}
+          showSeparator
+          separatorStyle={{ color: Colors.primaryColor }}
+          timeLabels={{ m: null, s: null }}
           size={15}
         />
         {/* Spacer */}
