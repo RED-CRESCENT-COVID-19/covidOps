@@ -52,6 +52,7 @@ const Strings = {
   Labels: {
     PHONENUMBER: "Phone number",
     VERIFICATIONCODE: "Verification Code",
+    VERIFICATION_CODE_EAMPLE: "e.g 0123456789",
     DIDNOTRECIVECODE: "Didn’t recieve code?",
     HOUSEHOLDNUMBER: "House-hold number",
     HOUSEHOLDSCANNED: "Households scanned",

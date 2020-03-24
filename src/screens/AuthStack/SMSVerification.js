@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Alert } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+import CountDown from "react-native-countdown-component";
 //Custom Components
 import Heading from "../../components/Heading";
 
@@ -13,6 +14,21 @@ export default class SMSVerification extends Component {
   handleContinue = () => {
     this.props.navigation.navigate("LocationData");
   };
+  onTimerFinish() {
+    Alert.alert(
+      `Time is finish to verify the code!`,
+      "Keep your app up to date to enjoy the latest features",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
+  }
   render() {
     return (
       <View style={Styles.container}>
@@ -24,15 +40,31 @@ export default class SMSVerification extends Component {
           <OutlinedTextField
             label={Strings.Labels.VERIFICATIONCODE}
             keyboardType="phone-pad"
+            // activeLineWidth={20}
+            placeholder={Strings.Labels.VERIFICATION_CODE_EAMPLE}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
           />
         </View>
-        <View style={Styles.Spacer100} />
+        <View style={Styles.Spacer50} />
+        {/* Did not reciev code  */}
         <Text style={{ alignSelf: "center" }}>
           {Strings.Labels.DIDNOTRECIVECODE}
         </Text>
+        <View style={Styles.Spacer50} />
+        {/* Timer */}
+        {/* <Timer time={200} /> */}
+        <CountDown
+          // until={300} for five minutes
+          until={10} // for 10 sec for verification the code
+          onFinish={() => this.onTimerFinish()}
+          onPress={() => alert("hello, why are you doing this? :p")}
+          timeToShow={["M", "S"]}
+          // timeLabels={{ m: null, s: null }}
+          size={15}
+        />
+        {/* Spacer */}
         <View style={Styles.Spacer100} />
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
@@ -52,7 +84,7 @@ export default class SMSVerification extends Component {
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 35,
+    paddingRight: 35
   }
 });
