@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
+import I18n from "react-native-i18n";
 
 import { OutlinedTextField, TextField } from "react-native-material-textfield";
 import { TextButton, RaisedTextButton } from "react-native-material-buttons";
