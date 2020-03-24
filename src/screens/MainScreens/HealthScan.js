@@ -9,7 +9,7 @@ import CardView from "../../components/CardView";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 export default class HealthScan extends Component {
-<<<<<<< HEAD
+
     render() {
         return (
             <View style = {Styles.container}>
@@ -38,16 +38,7 @@ export default class HealthScan extends Component {
             </View>
         )
     }
-=======
-  render() {
-    return (
-      <View style={Styles.container}>
-        <Heading headerText={Strings.headings.HEALTHSCAN} />
-        <Text style={Styles.topParagraph}>{Strings.Paragarphs.HEALTHSCAN}</Text>
-      </View>
-    );
-  }
->>>>>>> checkout the dev branch
+
 }
 
 const styles = StyleSheet.create({});
