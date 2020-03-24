@@ -11,6 +11,9 @@ import CheckBox from "../../components/CheckBox";
 import { Strings, Styles, Colors } from "../../../theme";
 
 export default class Symptoms extends Component {
+  onNextButton() {
+    this.props.navigation.navigate("Temperature");
+  }
   render() {
     return (
       <View style={Styles.container}>
@@ -35,6 +38,24 @@ export default class Symptoms extends Component {
           value={Strings.Symptom.value}
           checked={true}
         />
+        <CardView Styles={Styles.Spacer100} />
+        <View style={Styles.buttonsContainer}>
+          <RaisedTextButton
+            title={Strings.ButtonTitles.BACK}
+            color={Colors.secondaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+          />
+          <RaisedTextButton
+            title={Strings.ButtonTitles.NEXT}
+            color={Colors.primaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.onNextButton()}
+          />
+        </View>
       </View>
     );
   }
