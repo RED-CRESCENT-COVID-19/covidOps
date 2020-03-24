@@ -20,7 +20,7 @@ const Styles = StyleSheet.create({
     alignSelf: "stretch"
   },
   lineDivider: {
-    height: 1,
+    height: 2,
     backgroundColor: Colors.dividerColor,
     alignSelf: "stretch",
     paddingLeft: 20,
@@ -159,6 +159,35 @@ const Styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 20
+  },
+  checkBoxContainer: {
+    paddingTop: 10,
+    paddingLeft: 35,
+    paddingRight: 35
+  },
+  checkBoxHeader: {
+    fontSize: 14,
+    // paddingBottom: 15,
+    textTransform: "uppercase",
+    color: Colors.primaryColor
+  },
+  checkBoxTitle: {
+    fontSize: 20,
+    paddingTop: 10,
+    height: 50,
+    width: 300,
+    color: Colors.paragraphTextColor
+  },
+  symptomsContainer: {
+    flexDirection: "row"
+  },
+  checkBoxStyle: {
+    // paddingTop: 0,
+    // width: 10,
+    // height: 10,
+    color: "red"
+    // backgroundColor: "red"
+    // paddingLeft: 30
   }
 });
 

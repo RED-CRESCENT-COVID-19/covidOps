@@ -83,6 +83,12 @@ const Strings = {
       DIARRHEA: "Diarrhea",
       OTHERSYMPTOMS: "OTHER SYMPTOMS"
     }
+  },
+  Symptom: {
+    symptomName: "Fever",
+    symptomNumber: "Symptom 1",
+    symptomValue: "fever",
+    symptomLable: "fever"
   }
 };
 
