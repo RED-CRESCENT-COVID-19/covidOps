@@ -7,12 +7,9 @@ import Line from "./Line";
 
 import { Styles, Colors } from "../../theme";
 class InfoList extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = {
-  //   //   isChecked: false || props.checked
-  //   // };
-  // }
+  constructor(props) {
+    super(props);
+  }
   onEdit() {
     this.props.navigation.navigate("MemberDetails");
   }
