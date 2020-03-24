@@ -30,27 +30,26 @@ class InfoList extends Component {
   }
   render() {
     const { cnic, name } = this.props.data;
-    // const { isChecked } = this.state;
 
     return (
       <View style={Styles.InfoListContainer}>
         <Text style={Styles.InfoListHeader}>{name}</Text>
         <View style={Styles.memberContainer}>
           <Text style={Styles.InfoListTitle}>{cnic}</Text>
+          {/* edit button */}
           <Button
             flat
             text=""
             onPress={() => this.onEdit()}
             icon={<Icon name="pencil" size={20} color={Colors.primaryColor} />}
           />
+          {/* delete button */}
           <Button
             flat
             text=""
             onPress={() => this.onDelete(cnic)}
             icon={<Icon name="trash" size={20} color={Colors.primaryColor} />}
           />
-
-          {/* <Icon name="trash" size={20} color={Colors.primaryColor} padding={5} /> */}
         </View>
         <Line styles={Styles.lineDivider} />
       </View>

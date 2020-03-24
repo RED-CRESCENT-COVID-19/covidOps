@@ -48,13 +48,14 @@ export default class SMSVerification extends Component {
           />
         </View>
         <View style={Styles.Spacer50} />
+
         {/* Did not reciev code  */}
         <Text style={{ alignSelf: "center" }}>
           {Strings.Labels.DIDNOTRECIVECODE}
         </Text>
         <View style={Styles.Spacer50} />
+
         {/* Timer */}
-        {/* <Timer time={200} /> */}
         <CountDown
           // until={300} for five minutes
           until={10} // for 10 sec for verification the code
