@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Button } from "react-native-material-ui";
 
@@ -15,6 +15,21 @@ class InfoList extends Component {
   // }
   onEdit() {
     this.props.navigation.navigate("MemberDetails");
+  }
+  onDelete(id) {
+    Alert.alert(
+      `Are you sure you want to delete this ${id}`,
+      "Keep your app up to date to enjoy the latest features",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
   }
   render() {
     const { cnic, name } = this.props.data;
@@ -34,6 +49,7 @@ class InfoList extends Component {
           <Button
             flat
             text=""
+            onPress={() => this.onDelete(cnic)}
             icon={<Icon name="trash" size={20} color={Colors.primaryColor} />}
           />
 
