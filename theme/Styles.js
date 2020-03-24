@@ -182,12 +182,34 @@ const Styles = StyleSheet.create({
     flexDirection: "row"
   },
   checkBoxStyle: {
-    // paddingTop: 0,
-    // width: 10,
-    // height: 10,
-    color: "red"
-    // backgroundColor: "red"
-    // paddingLeft: 30
+    color: Colors.primaryColor
+  },
+  InfoListContainer: {
+    paddingTop: 10,
+    paddingLeft: 35,
+    paddingRight: 35
+  },
+  InfoListHeader: {
+    fontSize: 14,
+    // paddingBottom: 15,
+    textTransform: "uppercase",
+    color: Colors.primaryColor
+  },
+  InfoListTitle: {
+    fontSize: 20,
+    paddingTop: 10,
+    height: 50,
+    width: 240,
+    color: Colors.paragraphTextColor
+  },
+  memberContainer: {
+    flexDirection: "row"
+  },
+  InfoListStyle: {
+    color: Colors.primaryColor
+  },
+  ScrollViewStyle: {
+    height: 100
   }
 });
 

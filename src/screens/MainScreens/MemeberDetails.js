@@ -24,6 +24,9 @@ export default class MemeberDetails extends Component {
   onNextButton() {
     this.props.navigation.navigate("Temperature");
   }
+  onBackButton() {
+    this.props.navigation.navigate("Home");
+  }
 
   onSubmit = () => {
     let { current: field } = this.fieldRef;
@@ -104,6 +107,7 @@ export default class MemeberDetails extends Component {
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={Strings.ButtonTitles.BACK}
+            onPress={() => this.onBackButton()}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
