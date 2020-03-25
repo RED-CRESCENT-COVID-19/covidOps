@@ -51,7 +51,7 @@ export default class SMSVerification extends Component {
 
         {/* Did not reciev code  */}
         <Text style={screenStyles.didNotReceivedCode}>
-          {"ﺎﺠﯿﮭﺑ ڈﻮﮐ ﯽﻘﯾﺪﺼﺗ ﺮﭘ ﺮﺒﻤﻧ نﻮﻓ ﮯﮑﭘآ ﮯﻧ ﻢﮨ"}
+          {Strings.Labels.DIDNOTRECIVECODE}
         </Text>
         {/* Timer */}
         <CountDown
@@ -93,8 +93,6 @@ const screenStyles = StyleSheet.create({
     paddingRight: 35
   },
   didNotReceivedCode: {
-    fontFamily: "noto-nastaliq",
-    alignSelf: "center",
-    writingDirection: "rtl"
+    alignSelf: "center"
   }
 });
