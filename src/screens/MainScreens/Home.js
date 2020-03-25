@@ -1,14 +1,50 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, ScrollView, Dimensions } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
+import InfoList from "../../components/InfoList";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
+// Height and Width of Current Device Screen
+const { height, width } = Dimensions.get("window");
+
+const DATA = [
+  {
+    name: "Rizwan",
+    cnic: "4352345245",
+    id: "435224434565"
+  },
+  {
+    name: "Zaheer",
+    cnic: "4352256745",
+    id: "43522ds45"
+  },
+  {
+    name: "Ahmed",
+    cnic: "435wer2245",
+    id: "435223424522"
+  },
+  {
+    name: "faysal",
+    cnic: "4352342245",
+    id: "435223424542"
+  },
+  {
+    name: "fazlo",
+    cnic: "4352342245",
+    id: "435223424512"
+  },
+  {
+    name: "adfadf",
+    cnic: "435224234325",
+    id: "4352223445"
+  }
+];
 export default class Home extends Component {
   handleDone = () => {
     this.props.navigation.navigate("Advisory");
@@ -17,9 +53,16 @@ export default class Home extends Component {
     return (
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.HOME} />
-        <Text style={Styles.topParagraph}>{Strings.Paragarphs.HOME}</Text>
-        <CardView Styles={Styles.Spacer300} />
-        <CardView Styles={Styles.Spacer100} />
+        {DATA.length === 0 && (
+          <Text style={Styles.topParagraph}>{Strings.Paragarphs.HOME}</Text>
+        )}
+        <CardView Styles={Styles.Spacer50} />
+
+        <ScrollView style={{ height: height - 350 }}>
+          {DATA.map(d => (
+            <InfoList data={d} key={d.id} {...this.props} />
+          ))}
+        </ScrollView>
 
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton

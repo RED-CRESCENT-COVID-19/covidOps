@@ -1,12 +1,12 @@
-const Strings = {
+export default {
   headings: {
-    SMSVERIFICATION: "SMS Verification",
+    SMSVERIFICATION: "ﻞﯿﺼﻔﺗ یداﺮﻓا",
     LOCATIONDATA: "Location Data",
     HEALTHSCAN: "Health Scan",
     HOUSEHOLDNUMBER: "Household Number",
     HOUSEHOLDHISTORY: "Household History",
     RESPONSE: "Response",
-    MEMEBERDETAILS: "Member Details",
+    MEMEBERDETAILS: "ﻞﯿﺼﻔﺗ یداﺮﻓا",
     TEMPERATURE: "Temperature",
     SYMPTOMS: "Symptoms",
     ADVISORY: "Advisory",
@@ -47,31 +47,11 @@ const Strings = {
     HOME: "No memebers added yet",
     PRECAUTIONS:
       "Please recommend the member to practice the following precautions",
-    TEMPERATURE: "Please note the temperature of the household member",
-    INFORMATIONCARE: {
-      TTITLE: "Information Care",
-      GENERAL: "What do you know about Coronavirus disease CoVID-19?",
-      HANDWASH: "The correct way of washing your hands"
-    },
-    Advisory: {
-      HELPLINE: {
-        TITLE: "COVID-19 HELPLINE",
-        PHONE: "1030"
-      },
-      WEBSITE: {
-        TITLE: "dedicated website",
-        URL: "http://www.covid.gov.pk/"
-      },
-      MESSAGE: {
-        TITLE: "Who whatsapp info",
-        PHONE: "Message 'hi' to +41798931892"
-      }
-    }
+    TEMPERATURE: "Please note the temperature of the household member"
   },
   Labels: {
     PHONENUMBER: "Phone number",
     VERIFICATIONCODE: "Verification Code",
-    VERIFICATION_CODE_EAMPLE: "e.g 0123456789",
     DIDNOTRECIVECODE: "Didn’t recieve code?",
     HOUSEHOLDNUMBER: "House-hold number",
     HOUSEHOLDSCANNED: "Households scanned",
@@ -101,16 +81,7 @@ const Strings = {
       SHORTNESSOFBREATH: "Shortness of breath",
       REDNESSOFEYES: "Redness of eyes",
       DIARRHEA: "Diarrhea",
-      OTHERSYMPTOMS: "OTHER SYMPTOMS",
-      OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
+      OTHERSYMPTOMS: "OTHER SYMPTOMS"
     }
-  },
-  Symptom: {
-    symptomName: "Fever",
-    symptomNumber: "Symptom 1",
-    symptomValue: "fever",
-    symptomLable: "fever"
   }
 };
-
-export default Strings;
