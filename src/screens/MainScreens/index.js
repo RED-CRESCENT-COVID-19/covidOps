@@ -10,6 +10,7 @@ import Symptoms from "./Symptoms";
 import Temperature from "./Temperature";
 import MemeberDetails from "./MemeberDetails";
 import Information from "./Information";
+import HandWash from "./HandWash";
 
 export {
   Advisory,
@@ -23,5 +24,6 @@ export {
   Symptoms,
   Temperature,
   MemeberDetails,
-  Information
+  Information,
+  HandWash
 };

@@ -50,7 +50,8 @@ const Strings = {
     TEMPERATURE: "Please note the temperature of the household member",
     INFORMATIONCARE: {
       TTITLE: "Information Care",
-      GENERAL: "What do you know about Coronavirus disease CoVID-19?"
+      GENERAL: "What do you know about Coronavirus disease CoVID-19?",
+      HANDWASH: "The correct way of washing your hands"
     }
   },
   Labels: {

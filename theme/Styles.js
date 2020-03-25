@@ -42,6 +42,9 @@ const Styles = StyleSheet.create({
   Spacer50: {
     paddingTop: 50
   },
+  Spacer20: {
+    paddingTop: 20
+  },
   leftButtonContainer: {
     paddingRight: 220,
     paddingLeft: 20
