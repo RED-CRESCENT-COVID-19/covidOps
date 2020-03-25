@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -10,6 +10,51 @@ import CheckBox from "../../components/CheckBox";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
+const SYMPTOMS_LIST = [
+  {
+    symptomNumber: "علامت ",
+    symptomName: "بخار",
+    value: "fever",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: "چھینکنے",
+    value: "dry cough",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: "کھانسنے",
+    value: "dry cough",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: "سانس لینے میں دقت",
+    value: "Shortness of breath",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: "تھکاوٹ",
+    value: "body pain",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: "نزلہ",
+    value: "flu",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: "تھکاوٹ",
+    value: "diarrhea",
+    isChecked: false
+  }
+];
+
 export default class Symptoms extends Component {
   onNextButton() {
     this.props.navigation.navigate("Temperature");
@@ -19,26 +64,18 @@ export default class Symptoms extends Component {
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.SYMPTOMS} />
         <Text style={Styles.topParagraph}>{Strings.Paragarphs.SYMPTOMS}</Text>
-        <CardView Styles={Styles.Spacer50} />
-        <CheckBox
-          symptomNumber={Strings.Symptom.symptomNumber}
-          symptomName={Strings.Symptom.symptomName}
-          value={Strings.Symptom.value}
-          checked={true}
-        />
-        <CheckBox
-          symptomNumber={Strings.Symptom.symptomNumber}
-          symptomName={Strings.Symptom.symptomName}
-          value={Strings.Symptom.value}
-          checked={true}
-        />
-        <CheckBox
-          symptomNumber={Strings.Symptom.symptomNumber}
-          symptomName={Strings.Symptom.symptomName}
-          value={Strings.Symptom.value}
-          checked={true}
-        />
-        <CardView Styles={Styles.Spacer100} />
+
+        {/* Symptoms list view */}
+        <ScrollView style={Styles.ScrollView}>
+          {SYMPTOMS_LIST.map((d, i) => (
+            <CheckBox
+              symptomNumber={`${d.symptomNumber} ${i + 1}`}
+              symptomName={d.symptomName}
+              value={d.value}
+              checked={d.isChecked}
+            />
+          ))}
+        </ScrollView>
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={Strings.ButtonTitles.BACK}

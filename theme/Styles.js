@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import Colors from "./Colors";
-
+const { height, width } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
     flex: 1
@@ -32,6 +32,9 @@ const Styles = StyleSheet.create({
     paddingRight: 20,
     fontSize: 16,
     color: Colors.paragraphTextColor
+  },
+  ScrollView: {
+    height: height - 350
   },
   Spacer300: {
     paddingTop: 300

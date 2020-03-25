@@ -16,8 +16,6 @@ import CardView from "../../components/CardView";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
-const { height, width } = Dimensions.get("window");
-
 const QUESTIONS_LIST = [
   {
     Question: Strings.Paragarphs.INFORMATIONCARE.GENERAL,
@@ -161,7 +159,7 @@ export default class Information extends Component {
         <Text style={Styles.topQuestion}>
           {QUESTIONS_LIST[activeQuestion].Question}
         </Text>
-        <ScrollView style={{ height: height - 350 }}>
+        <ScrollView style={Styles.ScrollView}>
           <Text style={Styles.answer}>
             {QUESTIONS_LIST[activeQuestion].Answer}
           </Text>
