@@ -7,6 +7,7 @@ import LocationData from "./LocationData";
 import Precautions from "./Precautions";
 import Response from "./Response";
 import Symptoms from "./Symptoms";
+import OtherSymptoms from "./OtherSymptoms";
 import Temperature from "./Temperature";
 import MemeberDetails from "./MemeberDetails";
 import Information from "./Information";
@@ -25,5 +26,6 @@ export {
   Temperature,
   MemeberDetails,
   Information,
-  HandWash
+  HandWash,
+  OtherSymptoms
 };

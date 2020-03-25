@@ -101,7 +101,8 @@ const Strings = {
       SHORTNESSOFBREATH: "Shortness of breath",
       REDNESSOFEYES: "Redness of eyes",
       DIARRHEA: "Diarrhea",
-      OTHERSYMPTOMS: "OTHER SYMPTOMS"
+      OTHERSYMPTOMS: "OTHER SYMPTOMS",
+      OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
     }
   },
   Symptom: {
