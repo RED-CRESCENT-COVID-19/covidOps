@@ -210,6 +210,23 @@ const Styles = StyleSheet.create({
   },
   ScrollViewStyle: {
     height: 100
+  },
+  topQuestion: {
+    paddingTop: 20,
+    paddingLeft: 35,
+    paddingRight: 35,
+    fontSize: 16,
+    lineHeight: 24,
+    color: Colors.primaryColor
+  },
+  answer: {
+    paddingTop: 20,
+    paddingLeft: 35,
+    paddingRight: 35,
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: "left",
+    color: Colors.paragraphTextColor
   }
 });
 

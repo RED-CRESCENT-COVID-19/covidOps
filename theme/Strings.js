@@ -48,8 +48,9 @@ const Strings = {
     PRECAUTIONS:
       "Please recommend the member to practice the following precautions",
     TEMPERATURE: "Please note the temperature of the household member",
-    INFORMATIONCARE:{
-      GENERAL:""
+    INFORMATIONCARE: {
+      TTITLE: "Information Care",
+      GENERAL: "What do you know about Coronavirus disease CoVID-19?"
     }
   },
   Labels: {
