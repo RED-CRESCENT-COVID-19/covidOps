@@ -36,13 +36,7 @@ export default class HandWash extends Component {
         <View style={Styles.Spacer20} />
         <View style={screenStyles.imageView}>
           <Image
-            style={{
-              // width: width - 60,
-              width: 285,
-              height: "100%",
-              backgroundPosition: "center",
-              backgroundColor: Colors.primaryColor
-            }}
+            style={screenStyles.handWashImage}
             source={{
               uri:
                 "https://s3-alpha-sig.figma.com/img/a9c7/d81c/8852662f777ccd2a7a1c165e0f5e00bc?Expires=1586131200&Signature=bnnjuryfP54VY6U-U1ahCOTpM05e~pqixBgzb5fhAsWUtdeWTfOArQpgOnAJS6YvH7aKh2dloWOuL5RsBnUOv5AcgMDbxNxr6k8kehBPpd9Pzjbuskh~R3vm5FwRUPbgSZxbN8Kk1-bqecgwTT5eoVFdpojH640sdO9Nc3tEaw53mvabkNPB6uZ2vF2sHQO8Ez~yaeNBrIma9VHaZ9Ws~~pr992~5ZpjZohy4AIogJeEQ3VfspILhUyroxy1hPzNIF-JECvoN09tOUBhD2Ms0b-yuWsu1kNeWZUnnVJp7c7ucC4-LxHjaTqKaF2GYZUWY7quXK6~aziu8ZH~4PWNvw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
@@ -79,5 +73,10 @@ const screenStyles = StyleSheet.create({
     height: height - 280,
     alignItems: "center",
     alignContent: "center"
+  },
+  handWashImage: {
+    width: 285,
+    height: "100%",
+    backgroundColor: Colors.primaryColor
   }
 });
