@@ -50,8 +50,8 @@ export default class SMSVerification extends Component {
         <View style={Styles.Spacer50} />
 
         {/* Did not reciev code  */}
-        <Text style={{ alignSelf: "center" }}>
-          {Strings.Labels.DIDNOTRECIVECODE}
+        <Text style={screenStyles.didNotReceivedCode}>
+          {"ﺎﺠﯿﮭﺑ ڈﻮﮐ ﯽﻘﯾﺪﺼﺗ ﺮﭘ ﺮﺒﻤﻧ نﻮﻓ ﮯﮑﭘآ ﮯﻧ ﻢﮨ"}
         </Text>
         {/* Timer */}
         <CountDown
@@ -91,5 +91,10 @@ const screenStyles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 35,
     paddingRight: 35
+  },
+  didNotReceivedCode: {
+    fontFamily: "noto-nastaliq",
+    alignSelf: "center",
+    writingDirection: "rtl"
   }
 });
