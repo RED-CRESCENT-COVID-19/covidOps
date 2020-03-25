@@ -1,6 +1,5 @@
 import React from "react";
 import { Provider } from "react-redux";
-import I18n from "./src/plugins/I18n";
 import * as Font from "expo-font";
 
 import configureStore from "./src/store";
@@ -12,7 +11,6 @@ const store = configureStore(
   //history
 );
 
-const deviceLocale = I18n.locale;
 class App extends React.Component {
   componentDidMount() {
     Font.loadAsync({
