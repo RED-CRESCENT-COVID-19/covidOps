@@ -6,6 +6,7 @@ import { RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
 import Heading from "../../components/Heading";
 import TextA from "../../components/TextA";
+import CardView from "../../components/CardView";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
@@ -18,7 +19,7 @@ export default class OtherSymptoms extends Component {
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.SYMPTOMS} />
         <Text style={Styles.topParagraph}>{Strings.Paragarphs.SYMPTOMS}</Text>
-
+        <CardView Styles={Styles.Spacer50} />
         {/* Other Symptoms text area */}
 
         <View style={screenStyles.textInput}>
@@ -33,6 +34,7 @@ export default class OtherSymptoms extends Component {
             onSubmitEditing={this.onSubmit}
           />
         </View>
+        <CardView Styles={Styles.Spacer100} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={Strings.ButtonTitles.BACK}
