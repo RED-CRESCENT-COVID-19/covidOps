@@ -52,6 +52,20 @@ const Strings = {
       TTITLE: "Information Care",
       GENERAL: "What do you know about Coronavirus disease CoVID-19?",
       HANDWASH: "The correct way of washing your hands"
+    },
+    Advisory: {
+      HELPLINE: {
+        TITLE: "COVID-19 HELPLINE",
+        PHONE: "1030"
+      },
+      WEBSITE: {
+        TITLE: "dedicated website",
+        URL: "http://www.covid.gov.pk/"
+      },
+      MESSAGE: {
+        TITLE: "Who whatsapp info",
+        PHONE: "Message 'hi' to +41798931892"
+      }
     }
   },
   Labels: {

@@ -163,6 +163,27 @@ const Styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 20
   },
+
+  infoItemContainer: {
+    paddingTop: 10,
+    paddingLeft: 35,
+    paddingRight: 35
+  },
+  infoItemHeader: {
+    fontSize: 14,
+    textTransform: "uppercase",
+    color: Colors.primaryColor
+  },
+  infoItemTitle: {
+    fontSize: 20,
+    paddingTop: 10,
+    height: 50,
+    width: 300,
+    color: Colors.paragraphTextColor
+  },
+  infoContainer: {
+    flexDirection: "row"
+  },
   checkBoxContainer: {
     paddingTop: 10,
     paddingLeft: 35,
@@ -170,7 +191,6 @@ const Styles = StyleSheet.create({
   },
   checkBoxHeader: {
     fontSize: 14,
-    // paddingBottom: 15,
     textTransform: "uppercase",
     color: Colors.primaryColor
   },
