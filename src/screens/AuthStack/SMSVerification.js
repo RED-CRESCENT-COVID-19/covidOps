@@ -12,7 +12,8 @@ import { Strings, Styles, Colors } from "../../../theme";
 
 export default class SMSVerification extends Component {
   handleContinue = () => {
-    this.props.navigation.navigate("LocationData");
+    //store Aysc value isAuthenticated == true
+    // this.props.navigation.navigate("LocationData");
   };
   onTimerFinish() {
     Alert.alert(

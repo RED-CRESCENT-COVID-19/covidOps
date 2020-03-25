@@ -9,6 +9,7 @@ import Response from "./Response";
 import Symptoms from "./Symptoms";
 import Temperature from "./Temperature";
 import MemeberDetails from "./MemeberDetails";
+import Information from "./Information";
 
 export {
   Advisory,
@@ -21,5 +22,6 @@ export {
   Response,
   Symptoms,
   Temperature,
-  MemeberDetails
+  MemeberDetails,
+  Information
 };

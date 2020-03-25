@@ -47,7 +47,10 @@ const Strings = {
     HOME: "No memebers added yet",
     PRECAUTIONS:
       "Please recommend the member to practice the following precautions",
-    TEMPERATURE: "Please note the temperature of the household member"
+    TEMPERATURE: "Please note the temperature of the household member",
+    INFORMATIONCARE:{
+      GENERAL:""
+    }
   },
   Labels: {
     PHONENUMBER: "Phone number",
