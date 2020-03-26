@@ -58,7 +58,7 @@ export default class Home extends Component {
         )}
         <CardView Styles={Styles.Spacer50} />
 
-        <ScrollView style={{ height: height - 350 }}>
+        <ScrollView style={Styles.ScrollView}>
           {DATA.map(d => (
             <InfoList data={d} key={d.id} {...this.props} />
           ))}
