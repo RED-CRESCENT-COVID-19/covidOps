@@ -3,6 +3,10 @@ import { Text, StyleSheet, View, ScrollView, Dimensions } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
@@ -52,9 +56,9 @@ export default class Home extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.HOME} />
+        <Heading headerText={I18n.t(`headings.HOME`)} />
         {DATA.length === 0 && (
-          <Text style={Styles.topParagraph}>{Strings.Paragarphs.HOME}</Text>
+          <Text style={Styles.topParagraph}>{I18n.t(`Paragarphs.HOME`)}</Text>
         )}
         <CardView Styles={Styles.Spacer50} />
 
@@ -66,14 +70,14 @@ export default class Home extends Component {
 
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.CANCEL}
+            title={I18n.t(`ButtonTitles.CANCEL`)}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
           />
           <RaisedTextButton
-            title={Strings.ButtonTitles.DONE}
+            title={I18n.t(`ButtonTitles.DONE`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
