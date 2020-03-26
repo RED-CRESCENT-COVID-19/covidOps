@@ -16,7 +16,7 @@ const Strings = {
   },
   ButtonTitles: {
     CONTINUE: "آگے",
-    VERIFY: "Verify",
+    VERIFY: "تصدیق",
     ALLOW: "Allow",
     BACK: "Back",
     NEXT: "Next",
@@ -33,7 +33,7 @@ const Strings = {
     PHONEVERIFICATION:
       "ہمیں آپ کے فون کی تصدیق براۓ ایس۔ ایم۔  ایس درکار ہے۔ آپکے فون پر ایک ایس ۔ایم ۔ایس بھیجا جاۓ گا۔ براۓ مہربانی اپنا فون  نمبر درج کیجیے۔",
     SMSVERIFICATION:
-      "A text message with a verification code has been sent to your number. Please enter the verification code to continue:",
+      "ہم نے آپکے فون نمبر پر تصدیقی کوڈ بھیجا ہے۔ براۓ مہربانی تصدیقی کوڈ درج کریں",
     LOCATIONDATA:
       "We require your GPS data to accurately identify households. Please click “Allow” when asked for location permissions.",
     HEALTHSCAN:
@@ -71,9 +71,9 @@ const Strings = {
   },
   Labels: {
     PHONENUMBER: "فون نمبر",
-    VERIFICATIONCODE: "Verification Code",
+    VERIFICATIONCODE: "تصدیقی کوڈ",
     VERIFICATION_CODE_EAMPLE: "e.g 0123456789",
-    DIDNOTRECIVECODE: "Didn’t recieve code?",
+    DIDNOTRECIVECODE: "ایس ۔ایم ۔ایس کوڈ نہیں ملا؟",
     HOUSEHOLDNUMBER: "House hold number",
     HOUSEHOLDSCANNED: "HOUSEHOLD SCANNED",
     PEOPLESCANNED: "PEOPLE SCANNED",
