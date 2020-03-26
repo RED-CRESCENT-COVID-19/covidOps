@@ -5,7 +5,7 @@
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -18,9 +18,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "pk.org.prcs.muhafiz",
+      "buildNumber": "1.0.1"
     },
-    "description": "",
+    "android": {
+      "package": "pk.org.prcs.muhafiz",
+      "versionCode": 1
+    },
+    "description": "PRC Covid App for data Collection",
     "githubUrl": "https://github.com/RED-CRESCENT-COVID-19/covidOps"
   }
 }
