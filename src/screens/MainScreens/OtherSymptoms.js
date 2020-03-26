@@ -34,7 +34,7 @@ export default class OtherSymptoms extends Component {
             onSubmitEditing={this.onSubmit}
           />
         </View>
-        <CardView Styles={Styles.Spacer100} />
+        <CardView Styles={Styles.Spacer50} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={Strings.ButtonTitles.BACK}

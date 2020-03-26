@@ -14,8 +14,7 @@ export default class Advisory extends Component {
   };
   handleDone = () => {
     this.props.navigation.navigate("HealthScan");
-    
-  }
+  };
   render() {
     return (
       <View style={Styles.container}>
@@ -36,7 +35,7 @@ export default class Advisory extends Component {
           title={Strings.Paragarphs.Advisory.MESSAGE.TITLE}
           info={Strings.Paragarphs.Advisory.MESSAGE.PHONE}
         />
-        <View style={Styles.Spacer100} />
+        <View style={Styles.Spacer50} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={Strings.ButtonTitles.CANCEL}
