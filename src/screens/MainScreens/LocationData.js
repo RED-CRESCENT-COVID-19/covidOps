@@ -11,16 +11,17 @@ import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
-
+const WRITING_STYLE = I18n.locale;
 export default class LocationData extends Component {
   handleContinue = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.LOCATIONDATA`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.LOCATIONDATA`)}
         </Text>
         <CardView Styles={Styles.Spacer300} />

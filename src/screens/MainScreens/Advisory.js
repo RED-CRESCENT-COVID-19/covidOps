@@ -12,6 +12,7 @@ import InfoItem from "../../components/InfoItem";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
+const WRITING_STYLE = I18n.locale;
 export default class Advisory extends Component {
   handleCancel = () => {
     this.props.navigation.goBack();
@@ -20,10 +21,13 @@ export default class Advisory extends Component {
     this.props.navigation.navigate("HealthScan");
   };
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.ADVISORY`)} />
-        <Text style={Styles.topParagraph}>{I18n.t(`Paragarphs.ADVISORY`)}</Text>
+        <Text style={[Styles.topParagraph, style]}>
+          {I18n.t(`Paragarphs.ADVISORY`)}
+        </Text>
         <View style={Styles.Spacer20} />
 
         {/* Info item */}

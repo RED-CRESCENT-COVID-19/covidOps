@@ -29,7 +29,7 @@ export default class HealthScan extends Component {
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HEALTHSCAN`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.HEALTHSCAN`)}
           {/* {I18n.t(`Paragarphs.HEALTHSCAN`)} */}
         </Text>

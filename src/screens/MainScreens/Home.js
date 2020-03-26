@@ -16,6 +16,7 @@ import { Strings, Styles, Colors } from "../../../theme";
 
 // Height and Width of Current Device Screen
 const { height, width } = Dimensions.get("window");
+const WRITING_STYLE = I18n.locale;
 
 const DATA = [
   {
@@ -54,11 +55,14 @@ export default class Home extends Component {
     this.props.navigation.navigate("Advisory");
   };
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOME`)} />
         {DATA.length === 0 && (
-          <Text style={Styles.topParagraph}>{I18n.t(`Paragarphs.HOME`)}</Text>
+          <Text style={[Styles.topParagraph, style]}>
+            {I18n.t(`Paragarphs.HOME`)}
+          </Text>
         )}
         <CardView Styles={Styles.Spacer50} />
 

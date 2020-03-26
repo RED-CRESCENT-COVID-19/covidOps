@@ -14,6 +14,7 @@ import Heading from "../../components/Heading";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
+const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
   handleContinue = () => {
     //store Aysc value isAuthenticated == true
@@ -35,10 +36,11 @@ export default class SMSVerification extends Component {
     );
   }
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SMSVERIFICATION`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.SMSVERIFICATION`)}
         </Text>
         <View style={Styles.Spacer50} />

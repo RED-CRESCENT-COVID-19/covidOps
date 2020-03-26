@@ -3,7 +3,6 @@ import { Text, StyleSheet, View, Alert } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
-import CountDown from "react-native-countdown-component";
 
 // plugins
 import I18n from "../../plugins/I18n";
@@ -12,7 +11,9 @@ import I18n from "../../plugins/I18n";
 import Heading from "../../components/Heading";
 
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
+
+const WRITING_STYLE = I18n.locale;
 
 export default class SMSService extends Component {
   handleContinue = () => {
@@ -35,10 +36,11 @@ export default class SMSService extends Component {
     );
   }
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SMSSERVICE`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.SMSVERIFICATION`)}
         </Text>
         <View style={Styles.Spacer50} />

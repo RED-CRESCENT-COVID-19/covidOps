@@ -12,6 +12,8 @@ import { Heading, CheckBox, CardView } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
+const WRITING_STYLE = I18n.locale;
+
 const SYMPTOMS_LIST = [
   {
     symptomNumber: "علامت ",
@@ -66,10 +68,13 @@ export default class Symptoms extends Component {
   };
 
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SYMPTOMS`)} />
-        <Text style={Styles.topParagraph}>{I18n.t(`Paragarphs.SYMPTOMS`)}</Text>
+        <Text style={[Styles.topParagraph, style]}>
+          {I18n.t(`Paragarphs.SYMPTOMS`)}
+        </Text>
 
         <CardView Styles={Styles.Spacer50} />
 

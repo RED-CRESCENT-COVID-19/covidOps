@@ -13,6 +13,7 @@ import CardView from "../../components/CardView";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
+const WRITING_STYLE = I18n.locale;
 export default class PhoneVerification extends Component {
   constructor(props) {
     super(props);
@@ -28,10 +29,11 @@ export default class PhoneVerification extends Component {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SMSVERIFICATION`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.PHONEVERIFICATION`)}
         </Text>
         <CardView Styles={Styles.Spacer50} />

@@ -11,8 +11,9 @@ import I18n from "../../plugins/I18n";
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
+const WRITING_STYLE = I18n.locale;
 export default class Temperature extends Component {
   handleBack = () => {
     this.props.navigation.goBack();
@@ -22,10 +23,11 @@ export default class Temperature extends Component {
     this.props.navigation.navigate("Symptoms");
   };
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.TEMPERATURE`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.TEMPERATURE`)}
         </Text>
         <View style={screenStyles.textInput}>

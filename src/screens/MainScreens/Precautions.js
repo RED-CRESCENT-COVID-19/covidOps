@@ -14,7 +14,7 @@ import { Heading, CardView } from "../../components";
 import { Styles, Colors } from "../../../theme";
 
 const QUESTIONS_LIST = I18n.t(`QUESTIONS_LIST.Precautions`);
-
+const WRITING_STYLE = I18n.locale;
 export default class Precautions extends Component {
   constructor(props) {
     super(props);
@@ -43,11 +43,11 @@ export default class Precautions extends Component {
     const { activeQuestion } = this.state;
     console.log("activeQuestion state is: ", activeQuestion);
     console.log("QUESTIONS_LIST.length is: ", QUESTIONS_LIST.length);
-
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.PRECAUTIONS`)} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.PRECAUTIONS`)}
         </Text>
         {/* <CardView Styles={Styles.Spacer50} /> */}

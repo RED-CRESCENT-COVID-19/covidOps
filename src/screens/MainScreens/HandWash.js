@@ -10,6 +10,10 @@ import {
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
@@ -18,6 +22,7 @@ import { Strings, Styles, Colors } from "../../../theme";
 
 const { height, width } = Dimensions.get("window");
 
+const WRITING_STYLE = I18n.locale;
 export default class HandWash extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +32,11 @@ export default class HandWash extends Component {
   onBackButton() {}
 
   render() {
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={Strings.Paragarphs.INFORMATIONCARE.TTITLE} />
-        <Text style={Styles.topParagraph}>
+        <Text style={[Styles.topParagraph, style]}>
           {Strings.Paragarphs.INFORMATIONCARE.HANDWASH}
         </Text>
         <View style={Styles.Spacer20} />
