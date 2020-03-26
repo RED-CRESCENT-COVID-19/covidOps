@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
-import { OutlinedTextField, TextField } from "react-native-material-textfield";
+import { TextField } from "react-native-material-textfield";
 import { TextButton, RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading, CardView } from "../../components";
+
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 export default class MemeberDetails extends Component {
   constructor(props) {
@@ -36,10 +40,10 @@ export default class MemeberDetails extends Component {
     const { isButtonActive } = this.state;
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.MEMEBERDETAILS} />
+        <Heading headerText={I18n.t(`headings.MEMEBERDETAILS`)} />
         <View style={screenStyles.textInput}>
           <TextField
-            label={Strings.Labels.CNICNUMBER}
+            label={I18n.t(`Labels.CNICNUMBER`)}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
@@ -47,7 +51,7 @@ export default class MemeberDetails extends Component {
             onSubmitEditing={this.onSubmit}
           />
           <TextField
-            label={Strings.Labels.PHONENUMBER}
+            label={I18n.t(`Labels.PHONENUMBER`)}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
@@ -55,7 +59,7 @@ export default class MemeberDetails extends Component {
             onSubmitEditing={this.onSubmit}
           />
           <TextField
-            label={Strings.Labels.AGE}
+            label={I18n.t(`Labels.AGE`)}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
@@ -63,10 +67,10 @@ export default class MemeberDetails extends Component {
             onSubmitEditing={this.onSubmit}
           />
         </View>
-        <Text style={Styles.genderText}>{Strings.Labels.GENDER}</Text>
+        <Text style={Styles.genderText}>{I18n.t(`Labels.GENDER`)}</Text>
         <View style={Styles.genderButtonsContainer}>
           <TextButton
-            title={Strings.Labels.GENDEROPTIONS.MALE}
+            title={I18n.t(`Labels.GENDEROPTIONS.MALE`)}
             color={!isButtonActive ? Colors.primaryColor : Colors.transparent}
             titleColor={
               !isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
@@ -78,7 +82,7 @@ export default class MemeberDetails extends Component {
             ]}
           />
           <TextButton
-            title={Strings.Labels.GENDEROPTIONS.FEMALE}
+            title={I18n.t(`Labels.GENDEROPTIONS.FEMALE`)}
             olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
             titleColor={
               isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
@@ -90,7 +94,7 @@ export default class MemeberDetails extends Component {
             ]}
           />
           <TextButton
-            title={Strings.Labels.GENDEROPTIONS.OTHER}
+            title={I18n.t(`Labels.GENDEROPTIONS.OTHER`)}
             olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
             titleColor={
               isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
@@ -105,7 +109,7 @@ export default class MemeberDetails extends Component {
         <CardView Styles={Styles.Spacer100} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.BACK}
+            title={I18n.t(`ButtonTitles.BACK`)}
             onPress={() => this.onBackButton()}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
@@ -113,7 +117,7 @@ export default class MemeberDetails extends Component {
             style={Styles.smallButton}
           />
           <RaisedTextButton
-            title={Strings.ButtonTitles.NEXT}
+            title={I18n.t(`ButtonTitles.NEXT`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}

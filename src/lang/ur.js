@@ -6,7 +6,7 @@ export default {
     HOUSEHOLDNUMBER: "Household Number",
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
     RESPONSE: "Response",
-    MEMEBERDETAILS: "Member Details",
+    MEMEBERDETAILS: "افرادی تفصیل",
     TEMPERATURE: "درجہ حرارت",
     SYMPTOMS: "بیماری کی علامات",
     ADVISORY: "اہم معالومات",
@@ -77,14 +77,14 @@ export default {
     HOUSEHOLDSCANNED: "گھرانوں کو اسکین کیا گیا",
     PEOPLESCANNED: "افراد کو اسکین کیا گیا",
     SCANNINGSUMMARY: "اسکیننگ کا خلاصہ",
-    CNICNUMBER: "CNIC NUMBER",
+    CNICNUMBER: "شناختی کارڈ نمبر",
     PHONENUMBER: "فون نمبر",
     AGE: "عمر",
     GENDER: "جنس",
     GENDEROPTIONS: {
-      MALE: "MALE",
-      FEMALE: "FEMALE",
-      OTHER: "OTHER"
+      MALE: "مرد",
+      FEMALE: "عورت",
+      OTHER: "-"
     },
     TEMPERATUREREADING: "درجہ حرارت",
     SYMPTOM: "SYMPTOM",
