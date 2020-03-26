@@ -11,7 +11,8 @@ export default {
     SYMPTOMS: "Symptoms",
     ADVISORY: "Advisory",
     PRECAUTIONS: "Precautions",
-    HOME: "MS-XXXXX-XX"
+    HOME: "MS-XXXXX-XX",
+    SMSSERVICE: "SMS Notifications"
   },
   ButtonTitles: {
     CONTINUE: "Continue",
@@ -29,6 +30,8 @@ export default {
     CANCEL: "CANCEL"
   },
   Paragarphs: {
+    SMSSERVICE:
+      "Do you want to recieve infocare SMS on your mobile number? Please enter your mobile phone number",
     PHONEVERIFICATION:
       "We need to verify your device via SMS code. A text message will be sent to your phone number. Please enter your phone number to continue:",
     SMSVERIFICATION:

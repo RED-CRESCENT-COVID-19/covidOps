@@ -11,7 +11,8 @@ export default {
     SYMPTOMS: "بیماری کی علامات",
     ADVISORY: "اہم معالومات",
     PRECAUTIONS: "احتیاطی تدابیر",
-    HOME: "MS-XXXXX-XX"
+    HOME: "MS-XXXXX-XX",
+    SMSSERVICE: "ایس۔ایم۔ایس سروس"
   },
   ButtonTitles: {
     CONTINUE: "آگے",
@@ -29,6 +30,8 @@ export default {
     CANCEL: "CANCEL"
   },
   Paragarphs: {
+    SMSSERVICE:
+      "کیا آپ احتیاطی تدابیربذریعہ ایس۔ایم۔ایس  منگوانا چاہتے ہیں؟ براۓ مہربانی اپنا فون  نمبر درج کیجیے۔",
     PHONEVERIFICATION:
       "ہمیں آپ کے فون کی تصدیق براۓ ایس۔ ایم۔  ایس درکار ہے۔ آپکے فون پر ایک ایس ۔ایم ۔ایس بھیجا جاۓ گا۔ براۓ مہربانی اپنا فون  نمبر درج کیجیے۔",
     SMSVERIFICATION:

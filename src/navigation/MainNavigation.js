@@ -17,11 +17,12 @@ import {
   Temperature,
   MemeberDetails,
   Information,
-  OtherSymptoms
+  OtherSymptoms,
+  SMSService
 } from "../screens/MainScreens";
 const MainNavigation = () => {
   return (
-    <MainStack.Navigator initialRouteName="HealthScan">
+    <MainStack.Navigator initialRouteName="SMSService">
       <MainStack.Screen
         name="Advisory"
         component={Advisory}
@@ -85,6 +86,11 @@ const MainNavigation = () => {
       <MainStack.Screen
         name="Information"
         component={Information}
+        options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="SMSService"
+        component={SMSService}
         options={{ headerShown: false }}
       />
     </MainStack.Navigator>

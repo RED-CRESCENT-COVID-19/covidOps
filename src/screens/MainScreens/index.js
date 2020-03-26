@@ -12,6 +12,7 @@ import Temperature from "./Temperature";
 import MemeberDetails from "./MemeberDetails";
 import Information from "./Information";
 import HandWash from "./HandWash";
+import SMSService from "./SMSService";
 
 export {
   Advisory,
@@ -27,5 +28,6 @@ export {
   MemeberDetails,
   Information,
   HandWash,
-  OtherSymptoms
+  OtherSymptoms,
+  SMSService
 };
