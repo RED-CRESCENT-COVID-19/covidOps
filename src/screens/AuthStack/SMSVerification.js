@@ -4,6 +4,10 @@ import { Text, StyleSheet, View, Alert } from "react-native";
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import CountDown from "react-native-countdown-component";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
 import Heading from "../../components/Heading";
 
@@ -33,17 +37,17 @@ export default class SMSVerification extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.SMSVERIFICATION} />
+        <Heading headerText={I18n.t(`headings.SMSVERIFICATION`)} />
         <Text style={Styles.topParagraph}>
-          {Strings.Paragarphs.SMSVERIFICATION}
+          {I18n.t(`Paragarphs.SMSVERIFICATION`)}
         </Text>
         <View style={Styles.Spacer50} />
         <View style={screenStyles.textInput}>
           <OutlinedTextField
-            label={Strings.Labels.VERIFICATIONCODE}
+            label={I18n.t(`Labels.VERIFICATIONCODE`)}
             keyboardType="phone-pad"
             // activeLineWidth={20}
-            placeholder={Strings.Labels.VERIFICATION_CODE_EAMPLE}
+            placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
@@ -53,7 +57,7 @@ export default class SMSVerification extends Component {
 
         {/* Did not reciev code  */}
         <Text style={screenStyles.didNotReceivedCode}>
-          {Strings.Labels.DIDNOTRECIVECODE}
+          {I18n.t(`Labels.DIDNOTRECIVECODE`)}
         </Text>
         {/* Timer */}
         <CountDown
@@ -75,7 +79,7 @@ export default class SMSVerification extends Component {
         <View style={Styles.Spacer100} />
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.VERIFY}
+            title={I18n.t(`ButtonTitles.VERIFY`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
