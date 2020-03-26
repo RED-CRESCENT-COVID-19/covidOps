@@ -10,7 +10,7 @@ export default {
     TEMPERATURE: "Temperature",
     SYMPTOMS: "Symptoms",
     ADVISORY: "اہم معالومات",
-    PRECAUTIONS: "Precautions",
+    PRECAUTIONS: "احتیاطی تدابیر",
     HOME: "MS-XXXXX-XX"
   },
   ButtonTitles: {
@@ -45,8 +45,7 @@ export default {
     ADVISORY:
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
     HOME: "No memebers added yet",
-    PRECAUTIONS:
-      "Please recommend the member to practice the following precautions",
+    PRECAUTIONS: "آپ کرونا وائرس کی بیماری کے بارے میں",
     TEMPERATURE: "Please note the temperature of the household member",
     INFORMATIONCARE: {
       TTITLE: "Information Care",
