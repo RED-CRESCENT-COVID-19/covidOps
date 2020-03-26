@@ -37,6 +37,7 @@ export default class SMSVerification extends Component {
         <Text style={Styles.topParagraph}>
           {Strings.Paragarphs.SMSVERIFICATION}
         </Text>
+        <View style={Styles.Spacer50} />
         <View style={screenStyles.textInput}>
           <OutlinedTextField
             label={Strings.Labels.VERIFICATIONCODE}

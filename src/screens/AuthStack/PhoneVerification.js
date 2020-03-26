@@ -58,7 +58,7 @@ export default class PhoneVerification extends Component {
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 35,
+    paddingRight: 35
   }
 });
