@@ -6,13 +6,14 @@ const Styles = StyleSheet.create({
     flex: 1
   },
   containerHeader: {
-    paddingTop: 95,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingTop: 70,
+    paddingLeft: 32,
+    paddingRight: 32
   },
   textHeader: {
     fontSize: 34,
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
+    paddingTop: 24
   },
   lineHeader: {
     height: 2,
@@ -82,15 +83,15 @@ const Styles = StyleSheet.create({
   Spacer200: {
     paddingTop: 200
   },
-  containerHeader: {
-    paddingTop: 95,
-    paddingLeft: 32,
-    paddingRight: 32
-  },
-  textHeader: {
-    fontSize: 34,
-    color: Colors.primaryColor
-  },
+  // containerHeader: {
+  //   paddingTop: 95,
+  //   paddingLeft: 32,
+  //   paddingRight: 32
+  // },
+  // textHeader: {
+  //   fontSize: 34,
+  //   color: Colors.primaryColor
+  // },
   lineHeader: {
     height: 2,
     backgroundColor: Colors.primaryColor,
