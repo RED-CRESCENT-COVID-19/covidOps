@@ -1,26 +1,28 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Checkbox } from "react-native-material-ui";
+// plugins
+import I18n from "../plugins/I18n";
 
 import Line from "./Line";
 
 import { Styles } from "../../theme";
+
+// Writing style of the App
+const WRITING_STYLE = I18n.locale;
+
 class InfoItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isChecked: false || props.checked
-    };
-  }
   render() {
     const { title, info } = this.props;
-    // const { isChecked } = this.state;
-
+    const screenStyle =
+      WRITING_STYLE === "ur"
+        ? { alignItems: "flex-end", writingDirection: "rtl" }
+        : {};
     return (
-      <View style={Styles.infoItemContainer}>
-        <Text style={Styles.infoItemHeader}>{title}</Text>
+      <View style={[Styles.infoItemContainer, screenStyle]}>
+        <Text style={[Styles.infoItemHeader, screenStyle]}>{title}</Text>
         <View style={Styles.infoContainer}>
-          <Text style={Styles.infoItemTitle}>{info}</Text>
+          <Text style={[Styles.infoItemTitle, screenStyle]}>{info}</Text>
         </View>
         <Line styles={Styles.lineDivider} />
       </View>

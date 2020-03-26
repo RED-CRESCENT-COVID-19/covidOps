@@ -189,7 +189,8 @@ const Styles = StyleSheet.create({
   infoItemContainer: {
     paddingTop: 10,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
+    textAlign: "right"
   },
   infoItemHeader: {
     fontSize: 14,
@@ -204,7 +205,8 @@ const Styles = StyleSheet.create({
     color: Colors.paragraphTextColor
   },
   infoContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingRight: 0
   },
   checkBoxContainer: {
     paddingTop: 10,

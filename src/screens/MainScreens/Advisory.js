@@ -10,7 +10,7 @@ import I18n from "../../plugins/I18n";
 import Heading from "../../components/Heading";
 import InfoItem from "../../components/InfoItem";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 export default class Advisory extends Component {
   handleCancel = () => {
