@@ -39,6 +39,9 @@ const Styles = StyleSheet.create({
     writingDirection: "rtl",
     color: Colors.paragraphTextColor
   },
+  rtlWritingStyle: {
+    writingDirection: "rtl"
+  },
   ScrollView: {
     height: height - 350,
     marginBottom: 100

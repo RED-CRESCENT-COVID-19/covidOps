@@ -1,9 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Colors } from "../../theme";
+import { Colors, Styles } from "../../theme";
+
+// Writing style of the App
+const WRITING_STYLE = "rtl";
+
 const CalculationLabel = props => {
+  const style =
+    WRITING_STYLE === "rtl"
+      ? { writingDirection: Styles.rtlWritingStyle, alignSelf: "flex-end" }
+      : {};
   return (
-    <View style={screenStyles.labelContainer}>
+    <View style={[screenStyles.labelContainer, style]}>
       <Text style={screenStyles.primaryText}>{props.value}</Text>
       <Text style={screenStyles.secondaryText}>{props.secondaryText}</Text>
     </View>
@@ -16,8 +24,8 @@ const screenStyles = StyleSheet.create({
   primaryText: {
     color: Colors.primaryColor,
     paddingLeft: 35,
-    fontSize: 30,
-    writingDirection: "rtl"
+    fontSize: 30
+    // writingDirection: "rtl"
   },
   secondaryText: {
     paddingTop: 8,
@@ -28,8 +36,6 @@ const screenStyles = StyleSheet.create({
   labelContainer: {
     flexDirection: "row",
     paddingTop: 10,
-    paddingRight: 20,
-    alignSelf: "flex-end",
-    writingDirection: "rtl"
+    paddingRight: 20
   }
 });
