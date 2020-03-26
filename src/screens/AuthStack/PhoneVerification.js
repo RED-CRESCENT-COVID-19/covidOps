@@ -35,6 +35,7 @@ export default class PhoneVerification extends Component {
           <OutlinedTextField
             label={Strings.Labels.PHONENUMBER}
             keyboardType="phone-pad"
+            placeholder={Strings.Labels.VERIFICATION_CODE_EAMPLE}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}

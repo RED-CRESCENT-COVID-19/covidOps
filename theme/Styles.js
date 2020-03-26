@@ -8,12 +8,16 @@ const Styles = StyleSheet.create({
   containerHeader: {
     paddingTop: 70,
     paddingLeft: 32,
-    paddingRight: 32
+    paddingRight: 32,
+    fontFamily: "noto-nastaliq",
+    writingDirection: "rtl"
   },
   textHeader: {
     fontSize: 34,
     color: Colors.primaryColor,
-    paddingTop: 24
+    paddingTop: 24,
+    // fontFamily: "noto-nastaliq",
+    writingDirection: "rtl"
   },
   lineHeader: {
     height: 2,
@@ -32,6 +36,7 @@ const Styles = StyleSheet.create({
     paddingLeft: 36,
     paddingRight: 36,
     fontSize: 16,
+    writingDirection: "rtl",
     color: Colors.paragraphTextColor
   },
   ScrollView: {
