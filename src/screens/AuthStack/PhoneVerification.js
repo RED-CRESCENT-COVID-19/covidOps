@@ -30,6 +30,7 @@ export default class PhoneVerification extends Component {
         <Text style={Styles.topParagraph}>
           {Strings.Paragarphs.PHONEVERIFICATION}
         </Text>
+        <CardView Styles={Styles.Spacer50} />
         <View style={screenStyles.textInput}>
           <OutlinedTextField
             label={Strings.Labels.PHONENUMBER}
