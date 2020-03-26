@@ -7,7 +7,7 @@ export default {
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
     RESPONSE: "Response",
     MEMEBERDETAILS: "Member Details",
-    TEMPERATURE: "Temperature",
+    TEMPERATURE: "درجہ حرارت",
     SYMPTOMS: "بیماری کی علامات",
     ADVISORY: "اہم معالومات",
     PRECAUTIONS: "احتیاطی تدابیر",
@@ -46,7 +46,8 @@ export default {
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
     HOME: "No memebers added yet",
     PRECAUTIONS: "آپ کرونا وائرس کی بیماری کے بارے میں",
-    TEMPERATURE: "Please note the temperature of the household member",
+    TEMPERATURE:
+      "براۓ مہربانی غیر لمسی تھرمامیٹر سے درجہ حرارت لیجیے۔ غیر لمسی تھرمامیٹر نا ہونے کی صورت میں روائتی تھرمامیٹر کے استعمال سے گریز کریں۔",
     INFORMATIONCARE: {
       TTITLE: "Information Care",
       GENERAL: "What do you know about Coronavirus disease CoVID-19?",
@@ -85,7 +86,7 @@ export default {
       FEMALE: "FEMALE",
       OTHER: "OTHER"
     },
-    TEMPERATUREREADING: "TEMPERATURE READING",
+    TEMPERATUREREADING: "درجہ حرارت",
     SYMPTOM: "SYMPTOM",
     SYMPTOMLIST: {
       FEVER: "Fever",
