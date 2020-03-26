@@ -56,7 +56,9 @@ const Styles = StyleSheet.create({
   },
   rightButtonContainer: {
     paddingLeft: 220,
-    paddingRight: 20
+    paddingRight: 20,
+    position: "absolute",
+    bottom: "10%"
   },
   smallButton: {
     width: 140,
