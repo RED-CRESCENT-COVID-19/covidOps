@@ -2,21 +2,25 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 //Custom Components
-import {CardView,ExtendedButton,Heading,CalculationLabel} from "../../components";
+import {
+  CardView,
+  ExtendedButton,
+  Heading,
+  CalculationLabel
+} from "../../components";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
-
 export default class HealthScan extends Component {
-   handleAddHouseHold = () => {
+  handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
   handleHouseHoldHistory = () => {
     this.props.navigation.navigate("HouseholdHistory");
   };
   render() {
-    const homeIcon = require('../../../assets/images/home.png')
-    const historyIcon = require('../../../assets/images/history.png')
+    const homeIcon = require("../../../assets/images/home.png");
+    const historyIcon = require("../../../assets/images/history.png");
     return (
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.HEALTHSCAN} />
@@ -24,7 +28,7 @@ export default class HealthScan extends Component {
         <CardView Styles={Styles.Spacer50} />
         <View style={Styles.largebuttonsContainer}>
           <ExtendedButton
-            IconSource = {homeIcon}
+            IconSource={homeIcon}
             title={Strings.ButtonTitles.ADDHOUSEHOLD}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
@@ -35,7 +39,7 @@ export default class HealthScan extends Component {
         </View>
         <View style={Styles.largebuttonsContainer}>
           <ExtendedButton
-            IconSource = {historyIcon}
+            IconSource={historyIcon}
             title={Strings.ButtonTitles.HOUSEHOLDHISTORY}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
@@ -44,17 +48,18 @@ export default class HealthScan extends Component {
             onPress={this.handleHouseHoldHistory}
           />
         </View>
-        <Text style={screenStyles.titleLabel}>{Strings.Labels.SCANNINGSUMMARY}</Text>
-       
+        <Text style={screenStyles.titleLabel}>
+          {Strings.Labels.SCANNINGSUMMARY}
+        </Text>
+
         <CalculationLabel
-          value = {15}
-          secondaryText = {Strings.Labels.HOUSEHOLDSCANNED}
+          value={15}
+          secondaryText={Strings.Labels.HOUSEHOLDSCANNED}
         />
         <CalculationLabel
-          value = {20}
-          secondaryText = {Strings.Labels.PEOPLESCANNED}
+          value={73}
+          secondaryText={Strings.Labels.PEOPLESCANNED}
         />
-        
       </View>
     );
   }
@@ -62,15 +67,15 @@ export default class HealthScan extends Component {
 
 const screenStyles = StyleSheet.create({
   titleLabel: {
-    fontSize:16,
-    padding:20,
-    color:Colors.paragraphTextColor
+    fontSize: 16,
+    padding: 20,
+    paddingLeft: 35,
+    color: Colors.paragraphTextColor
   },
-  
-  Number: {
-    fontSize:16,
-    padding:20,
-    color:Colors.paragraphTextColor
-  }
 
+  Number: {
+    fontSize: 16,
+    padding: 20,
+    color: Colors.paragraphTextColor
+  }
 });

@@ -70,14 +70,14 @@ const Styles = StyleSheet.create({
   },
   largebuttonsContainer: {
     padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 35,
+    paddingRight: 35
   },
   largeButton: {
     width: 320,
     height: 44,
     overflow: "hidden",
-    borderRadius: 40,
+    borderRadius: 40
   },
   Spacer200: {
     paddingTop: 200
