@@ -2,12 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Colors, Styles } from "../../theme";
 
+// plugins
+import I18n from "../plugins/I18n";
+
 // Writing style of the App
-const WRITING_STYLE = "rtl";
+const WRITING_STYLE = I18n.locale;
 
 const CalculationLabel = props => {
   const style =
-    WRITING_STYLE === "rtl"
+    WRITING_STYLE === "ur"
       ? { writingDirection: Styles.rtlWritingStyle, alignSelf: "flex-end" }
       : {};
   return (

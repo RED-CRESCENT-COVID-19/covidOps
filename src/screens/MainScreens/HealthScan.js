@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
+
+// plugins
 import I18n from "../../plugins/I18n";
 
 //Custom Components
