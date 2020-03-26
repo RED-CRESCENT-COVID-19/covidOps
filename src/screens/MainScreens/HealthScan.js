@@ -70,7 +70,8 @@ const screenStyles = StyleSheet.create({
     fontSize: 16,
     padding: 20,
     paddingLeft: 35,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
+    writingDirection: "rtl"
   },
 
   Number: {

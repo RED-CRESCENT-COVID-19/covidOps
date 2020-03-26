@@ -16,15 +16,20 @@ const screenStyles = StyleSheet.create({
   primaryText: {
     color: Colors.primaryColor,
     paddingLeft: 35,
-    fontSize: 30
+    fontSize: 30,
+    writingDirection: "rtl"
   },
   secondaryText: {
     paddingTop: 8,
     paddingLeft: 20,
-    fontWeight: "500"
+    fontWeight: "500",
+    writingDirection: "rtl"
   },
   labelContainer: {
     flexDirection: "row",
-    paddingTop: 10
+    paddingTop: 10,
+    paddingRight: 20,
+    alignSelf: "flex-end",
+    writingDirection: "rtl"
   }
 });
