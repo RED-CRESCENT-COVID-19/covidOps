@@ -14,6 +14,7 @@ import {
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
+const WRITING_STYLE = I18n.locale;
 export default class HealthScan extends Component {
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
@@ -24,6 +25,7 @@ export default class HealthScan extends Component {
   render() {
     const homeIcon = require("../../../assets/images/home.png");
     const historyIcon = require("../../../assets/images/history.png");
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HEALTHSCAN`)} />
@@ -54,7 +56,7 @@ export default class HealthScan extends Component {
             onPress={this.handleHouseHoldHistory}
           />
         </View>
-        <Text style={screenStyles.titleLabel}>
+        <Text style={[screenStyles.titleLabel, style]}>
           {I18n.t(`Labels.SCANNINGSUMMARY`)}
         </Text>
 
@@ -76,8 +78,7 @@ const screenStyles = StyleSheet.create({
     fontSize: 16,
     padding: 20,
     paddingLeft: 35,
-    color: Colors.paragraphTextColor,
-    writingDirection: "rtl"
+    color: Colors.paragraphTextColor
   },
 
   Number: {
