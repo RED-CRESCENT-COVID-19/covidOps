@@ -42,6 +42,9 @@ export default {
       "You can add new households or edit/remove them by going into the house-hold history",
     HOUSEHOLDNUMBER:
       "Please enter the census household identification number to continue",
+    HOUSEHOLDNUMBERADDRESS: "Home Address",
+    HOUSEHOLDNUMBERQUESTION:
+      " Have you been able to contact a member of the household?",
     RESPONSE: "Have you been able to contact a member of the household?",
     MEMEBERS: "No members added yet",
     SYMPTOMS: "Please check all or any symptoms the members is experiencing",
