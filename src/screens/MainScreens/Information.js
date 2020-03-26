@@ -108,22 +108,7 @@ export default class Information extends Component {
     if (activeQuestion < QUESTIONS_LIST.length - 1)
       this.setState({ activeQuestion: activeQuestion + 1 });
     else {
-      Alert.alert(
-        `End of Array!`,
-        "Keep your app up to date to enjoy the latest features",
-        [
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
-          },
-          {
-            text: "OK",
-            onPress: () => console.log("OK Pressed")
-          }
-        ],
-        { cancelable: false }
-      );
+      this.props.navigation.navigate("Advisory");
     }
   }
   onBackButton() {
@@ -131,22 +116,7 @@ export default class Information extends Component {
     if (activeQuestion > 0)
       this.setState({ activeQuestion: activeQuestion - 1 });
     else {
-      Alert.alert(
-        `Start of Array!`,
-        "Keep your app up to date to enjoy the latest features",
-        [
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
-          },
-          {
-            text: "OK",
-            onPress: () => console.log("OK Pressed")
-          }
-        ],
-        { cancelable: false }
-      );
+      this.props.navigation.goBack(); 
     }
   }
   render() {

@@ -56,9 +56,13 @@ const SYMPTOMS_LIST = [
 ];
 
 export default class Symptoms extends Component {
-  onNextButton() {
-    this.props.navigation.navigate("Temperature");
+  handleNext() {
+    this.props.navigation.navigate("Information");
   }
+  handleBack = () => {
+    this.props.navigation.goBack();
+  };
+
   render() {
     return (
       <View style={Styles.container}>
@@ -83,6 +87,7 @@ export default class Symptoms extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={() => this.handleBack()}
           />
           <RaisedTextButton
             title={Strings.ButtonTitles.NEXT}
@@ -90,7 +95,7 @@ export default class Symptoms extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
-            onPress={() => this.onNextButton()}
+            onPress={() => this.handleNext()}
           />
         </View>
       </View>

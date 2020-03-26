@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
+import { TextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
 import Heading from "../../components/Heading";
@@ -10,6 +10,14 @@ import CardView from "../../components/CardView";
 import { Strings, Styles, Colors } from "../../../theme";
 
 export default class Temperature extends Component {
+  
+  handleBack = () => {
+    this.props.navigation.goBack();
+  };
+
+  handleNext = () => {
+    this.props.navigation.navigate("Symptoms");
+  };
   render() {
     return (
       <View style={Styles.container}>
@@ -17,6 +25,16 @@ export default class Temperature extends Component {
         <Text style={Styles.topParagraph}>
           {Strings.Paragarphs.TEMPERATURE}
         </Text>
+        <View style={screenStyles.textInput}>
+          <TextField
+            label={Strings.Labels.TEMPERATUREREADING}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
+            onSubmitEditing={this.onSubmit}
+          /> 
+        </View>
         <CardView Styles={Styles.Spacer300} />
 
         <View style={Styles.buttonsContainer}>
@@ -26,6 +44,7 @@ export default class Temperature extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={this.handleBack}
           />
           <RaisedTextButton
             title={Strings.ButtonTitles.NEXT}
@@ -33,6 +52,7 @@ export default class Temperature extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={this.handleNext}
           />
         </View>
       </View>
