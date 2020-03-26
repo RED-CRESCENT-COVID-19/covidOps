@@ -3,11 +3,15 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 export default class PhoneVerification extends Component {
   constructor(props) {
@@ -26,16 +30,16 @@ export default class PhoneVerification extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.SMSVERIFICATION} />
+        <Heading headerText={I18n.t(`headings.SMSVERIFICATION`)} />
         <Text style={Styles.topParagraph}>
-          {Strings.Paragarphs.PHONEVERIFICATION}
+          {I18n.t(`Paragarphs.PHONEVERIFICATION`)}
         </Text>
         <CardView Styles={Styles.Spacer50} />
         <View style={screenStyles.textInput}>
           <OutlinedTextField
-            label={Strings.Labels.PHONENUMBER}
+            label={I18n.t(`Labels.PHONENUMBER`)}
             keyboardType="phone-pad"
-            placeholder={Strings.Labels.VERIFICATION_CODE_EAMPLE}
+            placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
@@ -44,7 +48,7 @@ export default class PhoneVerification extends Component {
         <CardView Styles={Styles.Spacer300} />
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.CONTINUE}
+            title={I18n.t(`ButtonTitles.CONTINUE`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
