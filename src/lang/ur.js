@@ -8,7 +8,7 @@ export default {
     RESPONSE: "Response",
     MEMEBERDETAILS: "Member Details",
     TEMPERATURE: "Temperature",
-    SYMPTOMS: "Symptoms",
+    SYMPTOMS: "بیماری کی علامات",
     ADVISORY: "اہم معالومات",
     PRECAUTIONS: "احتیاطی تدابیر",
     HOME: "MS-XXXXX-XX"
@@ -41,7 +41,7 @@ export default {
       "Please enter the census household identification number to continue",
     RESPONSE: "Have you been able to contact a member of the household?",
     MEMEBERS: "No members added yet",
-    SYMPTOMS: "Please check all or any symptoms the members is experiencing",
+    SYMPTOMS: "براۓ مہربانی درج ذیل علامات کی  تفصیل لیجیے",
     ADVISORY:
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
     HOME: "No memebers added yet",

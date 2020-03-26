@@ -3,10 +3,13 @@ import { Text, StyleSheet, View, ScrollView } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
-import CheckBox from "../../components/CheckBox";
+import { Heading, CheckBox, CardView } from "../../components";
+
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
@@ -66,8 +69,10 @@ export default class Symptoms extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.SYMPTOMS} />
-        <Text style={Styles.topParagraph}>{Strings.Paragarphs.SYMPTOMS}</Text>
+        <Heading headerText={I18n.t(`headings.SYMPTOMS`)} />
+        <Text style={Styles.topParagraph}>{I18n.t(`Paragarphs.SYMPTOMS`)}</Text>
+
+        <CardView Styles={Styles.Spacer50} />
 
         {/* Symptoms list view */}
         <ScrollView style={Styles.ScrollView}>
@@ -82,7 +87,7 @@ export default class Symptoms extends Component {
         </ScrollView>
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.BACK}
+            title={I18n.t(`ButtonTitles.BACK`)}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
@@ -90,7 +95,7 @@ export default class Symptoms extends Component {
             onPress={() => this.handleBack()}
           />
           <RaisedTextButton
-            title={Strings.ButtonTitles.NEXT}
+            title={I18n.t(`ButtonTitles.NEXT`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
