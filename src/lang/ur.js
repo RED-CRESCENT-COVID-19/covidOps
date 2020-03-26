@@ -49,7 +49,7 @@ export default {
     TEMPERATURE:
       "براۓ مہربانی غیر لمسی تھرمامیٹر سے درجہ حرارت لیجیے۔ غیر لمسی تھرمامیٹر نا ہونے کی صورت میں روائتی تھرمامیٹر کے استعمال سے گریز کریں۔",
     INFORMATIONCARE: {
-      TTITLE: "Information Care",
+      TTITLE: "احتیاطی تدابیر  کا طریقہ",
       GENERAL: "What do you know about Coronavirus disease CoVID-19?",
       HANDWASH: "The correct way of washing your hands"
     },

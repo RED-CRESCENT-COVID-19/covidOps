@@ -1,98 +1,132 @@
 import React, { Component } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  ScrollView,
-  Dimensions,
-  Alert
-} from "react-native";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading } from "../../components/";
+
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
 const QUESTIONS_LIST = [
   {
-    Question: Strings.Paragarphs.INFORMATIONCARE.GENERAL,
-    Answer: `COVID-19 is the infectious disease caused by the most recently discovered coronavirus.
- 
-The most common symptoms of COVID-19 are fever, tiredness, and dry cough. Some patients may have aches and pains, nasal congestion, runny nose, sore throat or diarrhea.
-
-Some people become infected but don’t develop any symptoms and don't feel unwell. 
- 
-Around 1 out of every 6 people who gets COVID-19 becomes seriously ill and older people, and those with underlying medical problems like high blood pressure, heart problems or diabetes, are more likely to develop serious illness Think children or young adults.
-
-Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.
- 
-Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.
- 
-Avoid touching eyes, nose and mouth.
+    Question:
+      "کیا آپ نے پچھلے ایک مہینے میں کسی  ایسی  جگہ پر سفر کیا ہے جہاں پر کرونا  وائرس کی بیماری  پھیلی ہوئی ہے؟",
+    Answer: `need to add .
 
 `
   },
   {
-    Question: `What would you like to know about Coronavirus disease CoVID-19?`,
-    Answer: `Wash your hands properly (how you were taught by the health service volunteer)
- 
-Avoid touching eyes, nose and mouth.
- 
-Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue
-
-when you cough or sneeze. Then dispose of the used tissue immediately.
-
-Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing. Avoid unnecessarily going out into public places. 
- 
-Separate the elderly from children but keep in touch virtually.
-
-The best way to fight the Corona virus illness (CoVid-19) is to protect yourself and be supportive to others. Assisting others in their time of need can benefit the person receiving support as well as the helper. 
-
-Amplify positive and hopeful stories and positive images of local people who have experienced COVID-19 e.g. Stories of people who have recovered or who have supported a loved one and are willing to share their experience. 
-
-Stay in online contact with family and friends.
-
-Minimize watching, reading or listening to news that causes you to feel anxious or distressed; Seek information updates at specific times during the day, once or twice. 
-
-Explain the disease and how to do to deal with CoVid-19, in simple terms to children and the elderly, 
-
-`
+    Question:
+      "کیا آپ نے پچھلے ایک مہینے میں کسی  ایسی  جگہ پر سفر کیا ہے جہاں پر کرونا  وائرس کی بیماری  پھیلی ہوئی ہے؟",
+    Answer: ``
   },
   {
-    Question: `What have you understood?`,
-    Answer: "4352345245"
+    Question: `کیا آپ کی کسی ایسے انسان سے ملاقات  ہوئی ہے جس کو کرونا وائرس کی  بیماری ہو؟`,
+    Answer: ``
   },
   {
-    Question: `Do you have any questions?`,
-    Answer: "4352345245"
+    Question: `آپ کرونا وائرس کی بیماری کے بارے میں ؟ ﮟﯿﮨ ﮯﺘﻧﺎﺟ ﺎﯿﮐ `,
+    Answer: `ہم آپ کو یہ بتاناچاہتے ہیں کہ یہ چھینکنے
+    ،کھانسنے اورہاتھ لگانے سے پھیلتی ہے
+
+     اس سے بخار ،کھانسی ،سانس لینے میں 
+    دقت ،تھکاوٹ ،نزلہ ،گلہ اور پیٹ دونوں
+    خراب ہوسکتے ہیں
+
+    کئی لوگوں میں اس بیماری کی کوئی علامت
+    نہیں ہوتی۔ مگر چھ میں سے ایک انسان میں
+    بیماری شدت اختیار کرسکتی ہے
+    بچوں اور جوانوں کی نسبت بیمار لوگوں ،
+    شوگر ،بلڈ پریشر،دل کی تکلیف والوں کے
+    لئے یہ بیماری خطرناک ہے
+
+    اس سے بچنے کا سب سے بہترین طریقہ
+     ٹھیک سے ہاتھ دھونا ہے   
+
+    `
   },
   {
-    Question: `General information about Coronavirus`,
-    Answer: `Covid-19 is a viral infection spread from person to person. Do not stigmatise people who have 
+    Question: `آپ کرونا وائرس کی بیماری کے بارے میں کیاجاننا چاہتے ہیں ؟`,
+    Answer: `ہم آپ کو یہ بتانا چاہتے ہیں کہ گھر سے  نکلتے ہوئے اورگھر واپس آکر پہلے ہاتھ  دھوئیں )30 تک گنتی کے ساتھ ( اور دن  میں کم سے کم پانچ دفعہ ہاتھ دھوئیں
+      
+      کہنی میں چھنکیں اور کھانسیں
 
-Only wear a mask if you are ill with COVID-19 symptoms (especially coughing) or looking after someone who may have COVID-19. 
+      چہرے کوہاتھ مت لگائیں
+      
+      صرف ضروری کام کےلئے گھر سے نکلیں
+      اور دوسروں سے کم سے کم تین فٹ کا  
+      فاصلہ رکھیں
+       
+       بچوں اوربڑوں کو ایک دوسرے سے علیحدہ
+      رکھیں تاہم ایک دوسرے سے رابطہ نہ
+      توڑیں
+
+      کرونا کی بیماری سے بچنے کا طریقہ
+      احتیاط، اپنا خیال اوردوسروں کا احساس
+      ہے 
+
+      اپنے پیاروں سے رابطے میں رہیں امید
+      اورصحت کا پیغام پھیلائیں
+
+      کرونا کے بارے میں خبریں دن میں صرف
+      ایک مرتبہ دیکھیں
+
+     بچوں اور بڑوں کو آسان الفاظ میں بیماری
+     کے بارے میں بتائیں
+
+     احتیاطی تدابیرکو ذہن میں رکھتے ہوئے
+     روز مرہ زندگی کو برقرار رکھنے کی
+     کوشش کریں اورروز ورزش کریں
+      
+      `
+  },
+  {
+    Question: `آپ کو میری بات سے کیا سمجھ آیا ہے ؟`,
+    Answer: ``
+  },
+  {
+    Question: `آپ کے ذہن میں مزید کوئی سوال ہیں ؟`,
+    Answer: ``
+  },
+  {
+    Question: `بیماری کے بارے میں دیگر معلومات`,
+    Answer: `یہ بیماری ہے عذاب یا سزا نہیں ہے۔
+    بیماری تیزی سے پھیلتی ہے مگر تقریباََ  اسی فیصدلوگ ہسپتال جائے بغیر ہی ٹھیک  ہوجاتے ہیں۔
+
+    بیماری کی علامت آنے میں دوسے چودہ  دن لگ سکتے ہیں
+
+    گھر سے نکلتے ہوئے اور گھر واپس آنے  کے ساتھ ہی پہلے ہاتھ دھوئیں
+
+    صرف بیمار لوگ اور جو لوگ بیمارلوگوں  کا خیال کررہے ہیں ان کو ماسک استعمال  کرنا چاہیئے۔
+    ایک ماسک صرف ایک دفعہ استعمال  کیا جاسکتا ہے
+
+    ایک دفع میں ایک سے زیادہ ماسک پہننے  کاکوئی فائدہ نہیں ہے
+
+    فی الحال کرونا کاکوئی حفاظتی ٹیکہ یا دوائی نہیں ہے،اینٹی بائیوٹک کھانے سے  اس کا علاج نہیں ہوسکتا ۔جانوروں سے یہ
+    بیماری نہیں پھیلتی مگر ان کا ہاتھ لگاکر
+    بتائے ہوئے طریقے سے ہاتھ دھوئیں۔
+    بتائے ہوئے طریقے سے ہاتھ دھوئیں۔
+
+    سگریٹ نوشی اور نشے سے آپ کی کورونا
+    سے لڑنے کی طاقت ختم ہوسکتی ہے بڑھ 
+    نہیں سکتی ۔
+    
+    کورونا کا وائرس  کچھ گھنٹوں سے کچھ
+    دنوں تک چیزوں پر رہ سکتاہے ۔ان کو
+    صاف کرنے کےلئے عام گھریلوجراثیم
+    کش سپرے سے صاف کریں اور سیکھے
+    ہوئے طریقے  سے ہاتھ دھو لیں ۔
+
+    اگر آپ کو کسی بھی قسم کی کھانسی
+     ،زکام یا بخارہے تو دوسرے لوگوں سے
+     ملنے سے گریز کریں 
  
-Disposable face masks can only be used once.
-
-Most estimates of the incubation period for COVID-19 range from 1-14 days
-
-Stay home if you feel unwell. 
-
-Studies suggest that coronaviruses (including preliminary information on the COVID-19 virus) may persist on surfaces for a few hours or up to several days. If you think a surface may be infected, clean it with simple disinfectant to kill the virus and protect yourself and others. Clean your hands with an
-
-alcohol-based hand rub or wash them with soap and water. Avoid touching your eyes, mouth, or nose.
-
-Possible animal sources of COVID-19 have not yet been confirmed. 
-
-To protect yourself, such as when visiting live animal markets, avoid direct contact with animals and surfaces in contact with animals. Ensure good food safety practices at all times. 
-
-To date, there is no vaccine and no specific antiviral medicine to prevent or treat COVID-2019. Antibiotics should not be used as a means of prevention or treatment of COVID-19. 
- 
-If you have a fever, cough and difficulty breathing, seek medical attention and call in advance TO THE HELPLINE.
-`
+    `
   }
 ];
 export default class Information extends Component {
@@ -116,7 +150,7 @@ export default class Information extends Component {
     if (activeQuestion > 0)
       this.setState({ activeQuestion: activeQuestion - 1 });
     else {
-      this.props.navigation.goBack(); 
+      this.props.navigation.goBack();
     }
   }
   render() {
@@ -125,7 +159,7 @@ export default class Information extends Component {
     console.log("QUESTIONS_LIST.length is: ", QUESTIONS_LIST.length);
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.Paragarphs.INFORMATIONCARE.TTITLE} />
+        <Heading headerText={I18n.t(`Paragarphs.INFORMATIONCARE.TTITLE`)} />
         <Text style={Styles.topQuestion}>
           {QUESTIONS_LIST[activeQuestion].Question}
         </Text>
@@ -136,7 +170,7 @@ export default class Information extends Component {
         </ScrollView>
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.BACK}
+            title={I18n.t(`ButtonTitles.BACK`)}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
@@ -144,7 +178,7 @@ export default class Information extends Component {
             onPress={() => this.onBackButton()}
           />
           <RaisedTextButton
-            title={Strings.ButtonTitles.NEXT}
+            title={I18n.t(`ButtonTitles.NEXT`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}

@@ -264,6 +264,7 @@ const Styles = StyleSheet.create({
     paddingRight: 35,
     fontSize: 16,
     lineHeight: 24,
+    textAlign: "right", // right for urdu use left for english
     color: Colors.primaryColor
   },
   answer: {
@@ -272,7 +273,7 @@ const Styles = StyleSheet.create({
     paddingRight: 35,
     fontSize: 16,
     lineHeight: 24,
-    textAlign: "left",
+    textAlign: "right", // right for urdu use left for english
     color: Colors.paragraphTextColor
   }
 });
