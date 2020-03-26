@@ -26,16 +26,16 @@ export default class HealthScan extends Component {
     const historyIcon = require("../../../assets/images/history.png");
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.HEALTHSCAN} />
+        <Heading headerText={I18n.t(`headings.HEALTHSCAN`)} />
         <Text style={Styles.topParagraph}>
           {I18n.t(`Paragarphs.HEALTHSCAN`)}
-          {/* {Strings.Paragarphs.HEALTHSCAN} */}
+          {/* {I18n.t(`Paragarphs.HEALTHSCAN`)} */}
         </Text>
         <CardView Styles={Styles.Spacer50} />
         <View style={Styles.largebuttonsContainer}>
           <ExtendedButton
             IconSource={homeIcon}
-            title={Strings.ButtonTitles.ADDHOUSEHOLD}
+            title={I18n.t(`ButtonTitles.ADDHOUSEHOLD`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             style={Styles.largeButton}
@@ -46,7 +46,7 @@ export default class HealthScan extends Component {
         <View style={Styles.largebuttonsContainer}>
           <ExtendedButton
             IconSource={historyIcon}
-            title={Strings.ButtonTitles.HOUSEHOLDHISTORY}
+            title={I18n.t(`ButtonTitles.HOUSEHOLDHISTORY`)}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
@@ -55,16 +55,16 @@ export default class HealthScan extends Component {
           />
         </View>
         <Text style={screenStyles.titleLabel}>
-          {Strings.Labels.SCANNINGSUMMARY}
+          {I18n.t(`Labels.SCANNINGSUMMARY`)}
         </Text>
 
         <CalculationLabel
           value={15}
-          secondaryText={Strings.Labels.HOUSEHOLDSCANNED}
+          secondaryText={I18n.t(`Labels.HOUSEHOLDSCANNED`)}
         />
         <CalculationLabel
           value={73}
-          secondaryText={Strings.Labels.PEOPLESCANNED}
+          secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
       </View>
     );
