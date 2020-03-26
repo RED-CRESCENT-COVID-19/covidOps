@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
@@ -15,15 +19,15 @@ export default class LocationData extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.LOCATIONDATA} />
+        <Heading headerText={I18n.t(`headings.LOCATIONDATA`)} />
         <Text style={Styles.topParagraph}>
-          {Strings.Paragarphs.LOCATIONDATA}
+          {I18n.t(`Paragarphs.LOCATIONDATA`)}
         </Text>
         <CardView Styles={Styles.Spacer300} />
         <CardView Styles={Styles.Spacer100} />
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.ALLOW}
+            title={I18n.t(`ButtonTitles.ALLOW`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}

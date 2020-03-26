@@ -1,7 +1,7 @@
 export default {
   headings: {
     SMSVERIFICATION: "فون کی تصدیق",
-    LOCATIONDATA: "Location Data",
+    LOCATIONDATA: "لوکیشن کی اجاذت",
     HEALTHSCAN: "صحت رپورٹ",
     HOUSEHOLDNUMBER: "Household Number",
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
@@ -16,7 +16,7 @@ export default {
   ButtonTitles: {
     CONTINUE: "آگے",
     VERIFY: "تصدیق",
-    ALLOW: "Allow",
+    ALLOW: "اجازت",
     BACK: "Back",
     NEXT: "Next",
     YES: "Yes",
@@ -34,7 +34,7 @@ export default {
     SMSVERIFICATION:
       "ہم نے آپکے فون نمبر پر تصدیقی کوڈ بھیجا ہے۔ براۓ مہربانی تصدیقی کوڈ درج کریں",
     LOCATIONDATA:
-      "We require your GPS data to accurately identify households. Please click “Allow” when asked for location permissions.",
+      "ہم جی پی ایس کی ذریعے یہ دیکھنا چاہتے  ہیں کہ آپ کہاں  ہیں. برائے مہربانی ہمیں اس کی اجازت دیں",
     HEALTHSCAN:
       "ہاں آپ گھرانے کے افراد اور ان کے بارے میں معلومات ڈال سکتے ہیں. پہلے ڈالی ہوئی معلومات کو تبدیل بھی کیا جا سکتا ہے",
     HOUSEHOLDNUMBER:
