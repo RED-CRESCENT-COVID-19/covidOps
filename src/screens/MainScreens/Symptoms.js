@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, ScrollView } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins
@@ -11,7 +10,7 @@ import I18n from "../../plugins/I18n";
 import { Heading, CheckBox, CardView } from "../../components";
 
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 const SYMPTOMS_LIST = [
   {
@@ -107,5 +106,3 @@ export default class Symptoms extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({});
