@@ -18,7 +18,7 @@ const WRITING_STYLE = I18n.locale;
 export default class SMSService extends Component {
   handleContinue = () => {
     //store Aysc value isAuthenticated == true
-    // this.props.navigation.navigate("LocationData");
+    this.props.navigation.navigate("HealthScan");
   };
   onTimerFinish() {
     Alert.alert(

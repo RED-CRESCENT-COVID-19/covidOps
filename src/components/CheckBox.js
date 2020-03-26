@@ -22,9 +22,9 @@ class CheckBox extends Component {
         <View style={Styles.symptomsContainer}>
           <Text style={Styles.checkBoxTitle}>{symptomName}</Text>
           <Checkbox
-            // label={label}
+            label={""}
             value={value}
-            checked={!isChecked}
+            checked={isChecked}
             uncheckedIcon={"check-box-outline-blank"}
             onCheck={() => {
               this.setState({ isChecked: !isChecked });

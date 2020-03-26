@@ -13,11 +13,14 @@ import MemeberDetails from "./MemeberDetails";
 import Information from "./Information";
 import HandWash from "./HandWash";
 import SMSService from "./SMSService";
+import HouseHoldDetails from "./HouseHoldDetails";
+import ConfirmEntry from "./ConfirmEntry";
 
 export {
   Advisory,
   HealthScan,
   Home,
+  HouseHoldDetails,
   HouseholdHistory,
   HouseholdNumber,
   LocationData,
@@ -29,5 +32,6 @@ export {
   Information,
   HandWash,
   OtherSymptoms,
-  SMSService
+  SMSService,
+  ConfirmEntry
 };

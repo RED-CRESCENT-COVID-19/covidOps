@@ -61,7 +61,7 @@ const SYMPTOMS_LIST = [
 
 export default class Symptoms extends Component {
   handleNext() {
-    this.props.navigation.navigate("Information");
+    this.props.navigation.navigate("OtherSymptoms");
   }
   handleBack = () => {
     this.props.navigation.goBack();
@@ -79,16 +79,19 @@ export default class Symptoms extends Component {
         <CardView Styles={Styles.Spacer50} />
 
         {/* Symptoms list view */}
-        <ScrollView style={Styles.ScrollView}>
-          {SYMPTOMS_LIST.map((d, i) => (
-            <CheckBox
-              symptomNumber={`${d.symptomNumber} ${i + 1}`}
-              symptomName={d.symptomName}
-              value={d.value}
-              checked={d.isChecked}
-            />
-          ))}
-        </ScrollView>
+        {SYMPTOMS_LIST.length > 0 && (
+          <ScrollView style={Styles.ScrollView}>
+            {SYMPTOMS_LIST.map((d, i) => (
+              <CheckBox
+                key={`${d.symptomNumber} ${i + 1}`}
+                symptomNumber={`${d.symptomNumber} ${i + 1}`}
+                symptomName={d.symptomName}
+                value={d.value}
+                checked={d.isChecked}
+              />
+            ))}
+          </ScrollView>
+        )}
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.BACK`)}

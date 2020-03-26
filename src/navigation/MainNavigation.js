@@ -18,11 +18,14 @@ import {
   MemeberDetails,
   Information,
   OtherSymptoms,
-  SMSService
+  SMSService,
+  HouseHoldDetails,
+  ConfirmEntry,
+  HandWash
 } from "../screens/MainScreens";
 const MainNavigation = () => {
   return (
-    <MainStack.Navigator initialRouteName="SMSService">
+    <MainStack.Navigator initialRouteName="HealthScan">
       <MainStack.Screen
         name="Advisory"
         component={Advisory}
@@ -36,6 +39,11 @@ const MainNavigation = () => {
       <MainStack.Screen
         name="Home"
         component={Home}
+        options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="HouseHoldDetails"
+        component={HouseHoldDetails}
         options={{ headerShown: false }}
       />
       <MainStack.Screen
@@ -91,6 +99,16 @@ const MainNavigation = () => {
       <MainStack.Screen
         name="SMSService"
         component={SMSService}
+        options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="ConfirmEntry"
+        component={ConfirmEntry}
+        options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="HandWash"
+        component={HandWash}
         options={{ headerShown: false }}
       />
     </MainStack.Navigator>

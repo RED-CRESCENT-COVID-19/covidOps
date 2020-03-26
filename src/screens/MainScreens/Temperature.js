@@ -20,7 +20,7 @@ export default class Temperature extends Component {
   };
 
   handleNext = () => {
-    this.props.navigation.navigate("Symptoms");
+    this.props.navigation.navigate("ConfirmEntry");
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
@@ -34,6 +34,7 @@ export default class Temperature extends Component {
           <TextField
             label={I18n.t(`Labels.TEMPERATUREREADING`)}
             keyboardType="phone-pad"
+            placeholder={"XX"}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onChangeText={e => this.onChangeText(e)}
@@ -68,7 +69,7 @@ export default class Temperature extends Component {
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 35,
+    paddingRight: 35
   }
 });

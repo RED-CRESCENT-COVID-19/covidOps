@@ -28,16 +28,18 @@ export default class HandWash extends Component {
     super(props);
   }
 
-  onNextButton() {}
+  onNextButton() {
+    this.props.navigation.navigate("SMSService");
+  }
   onBackButton() {}
 
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.Paragarphs.INFORMATIONCARE.TTITLE} />
+        <Heading headerText={I18n.t(`Paragarphs.INFORMATIONCARE.TTITLE`)} />
         <Text style={[Styles.topParagraph, style]}>
-          {Strings.Paragarphs.INFORMATIONCARE.HANDWASH}
+          {I18n.t(`Paragarphs.INFORMATIONCARE.HANDWASH`)}
         </Text>
         <View style={Styles.Spacer20} />
         <View style={screenStyles.imageView}>
@@ -51,7 +53,7 @@ export default class HandWash extends Component {
         </View>
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.BACK}
+            title={I18n.t(`ButtonTitles.BACK`)}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
@@ -59,7 +61,7 @@ export default class HandWash extends Component {
             onPress={() => this.onBackButton()}
           />
           <RaisedTextButton
-            title={Strings.ButtonTitles.NEXT}
+            title={I18n.t(`ButtonTitles.NEXT`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
@@ -81,8 +83,9 @@ const screenStyles = StyleSheet.create({
     alignContent: "center"
   },
   handWashImage: {
-    width: 285,
-    height: "100%",
-    backgroundColor: Colors.primaryColor
+    width: 350,
+    height: 500,
+    resizeMode: "cover",
+    backgroundColor: Colors.transparent
   }
 });

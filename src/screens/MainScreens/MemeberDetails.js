@@ -25,10 +25,10 @@ export default class MemeberDetails extends Component {
     console.log("e is: ", e);
   }
   onNextButton() {
-    this.props.navigation.navigate("Temperature");
+    this.props.navigation.navigate("Symptoms");
   }
   onBackButton() {
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("HouseHoldDetails");
   }
 
   onSubmit = () => {

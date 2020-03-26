@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
+import { TextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins
@@ -8,42 +9,40 @@ import I18n from "../../plugins/I18n";
 
 //Custom Components
 import Heading from "../../components/Heading";
-import InfoItem from "../../components/InfoItem";
+import CardView from "../../components/CardView";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
-export default class Advisory extends Component {
-  handleCancel = () => {
+export default class ConfirmEntry extends Component {
+  handleBack = () => {
     this.props.navigation.goBack();
   };
-  handleDone = () => {
-    this.props.navigation.navigate("HandWash");
+
+  handleNext = () => {
+    this.props.navigation.navigate("HouseHoldDetails");
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
-        <Heading headerText={I18n.t(`headings.ADVISORY`)} />
+        <Heading headerText={I18n.t(`headings.CONFIRMENTERY`)} />
         <Text style={[Styles.topParagraph, style]}>
-          {I18n.t(`Paragarphs.ADVISORY`)}
+          {I18n.t(`Paragarphs.CONFIRMENTERY`)}
         </Text>
-        <View style={Styles.Spacer20} />
+        <View style={screenStyles.textInput}>
+          <TextField
+            label={I18n.t(`Labels.CONFIRMENTERY.LABEL`)}
+            keyboardType="phone-pad"
+            placeholder={I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            onChangeText={e => this.onChangeText(e)}
+            onSubmitEditing={this.onSubmit}
+          />
+        </View>
+        <CardView Styles={Styles.Spacer300} />
 
-        {/* Info item */}
-        <InfoItem
-          title={I18n.t(`Paragarphs.Advisory.HELPLINE.TITLE`)}
-          info={I18n.t(`Paragarphs.Advisory.HELPLINE.PHONE`)}
-        />
-        <InfoItem
-          title={I18n.t(`Paragarphs.Advisory.WEBSITE.TITLE`)}
-          info={I18n.t(`Paragarphs.Advisory.WEBSITE.URL`)}
-        />
-        <InfoItem
-          title={I18n.t(`Paragarphs.Advisory.MESSAGE.TITLE`)}
-          info={I18n.t(`Paragarphs.Advisory.MESSAGE.PHONE`)}
-        />
-        <View style={Styles.Spacer50} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.BACK`)}
@@ -51,15 +50,15 @@ export default class Advisory extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
-            onPress={this.handleCancel}
+            onPress={this.handleBack}
           />
           <RaisedTextButton
-            title={I18n.t(`ButtonTitles.NEXT`)}
+            title={I18n.t(`ButtonTitles.YES`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
-            onPress={this.handleDone}
+            onPress={this.handleNext}
           />
         </View>
       </View>
@@ -70,7 +69,7 @@ export default class Advisory extends Component {
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20
+    paddingLeft: 35,
+    paddingRight: 35
   }
 });

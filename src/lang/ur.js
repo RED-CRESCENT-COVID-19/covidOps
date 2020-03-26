@@ -12,7 +12,9 @@ export default {
     ADVISORY: "اہم معالومات",
     PRECAUTIONS: "احتیاطی تدابیر",
     HOME: "MS-XXXXX-XX",
-    SMSSERVICE: "ایس۔ایم۔ایس سروس"
+    HOMEHOLD: "گھرانے کی تفصیل",
+    SMSSERVICE: "ایس۔ایم۔ایس سروس",
+    CONFIRMENTERY: "اندراج کی تصدیق"
   },
   ButtonTitles: {
     CONTINUE: "آگے",
@@ -23,6 +25,7 @@ export default {
     YES: "ہاں",
     NO: "نہیں",
     ADDHOUSEHOLD: "نیا گھرانہ",
+    ADDNEWHOUSEHOLD: "نۓ فرد کا اندراج",
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
     ADDMEMEBERS: "Add Memebers",
     RESEND: "Resend",
@@ -46,6 +49,7 @@ export default {
     RESPONSE: "Have you been able to contact a member of the household?",
     MEMEBERS: "No members added yet",
     SYMPTOMS: "براۓ مہربانی درج ذیل علامات کی  تفصیل لیجیے",
+    CONFIRMENTERY: "آپ نے گھرانے کا اندراج کرلیا ہے",
     ADVISORY:
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
     HOME: "No memebers added yet",
@@ -64,7 +68,7 @@ export default {
       },
       WEBSITE: {
         TITLE: "ویب ساءیٹ",
-        URL: "http://www.covid.gov.pk/"
+        URL: "http://www.covid.gov.pk"
       },
       MESSAGE: {
         TITLE: "Who یو ۔این۔ واٹس ایپ نمبر",
@@ -83,6 +87,10 @@ export default {
     SCANNINGSUMMARY: "اسکیننگ کا خلاصہ",
     CNICNUMBER: "شناختی کارڈ نمبر",
     PHONENUMBER: "فون نمبر",
+    CONFIRMENTERY: {
+      LABEL: "18:00 - 22/03/2020",
+      EAMPLE: "گھرانہ 1"
+    },
     AGE: "عمر",
     GENDER: "جنس",
     GENDEROPTIONS: {

@@ -83,8 +83,9 @@ const Styles = StyleSheet.create({
   },
   largebuttonsContainer: {
     padding: 10,
-    paddingLeft: 35,
-    paddingRight: 35
+    paddingLeft: 45,
+    paddingRight: 45,
+    alignContent: "center"
   },
   largeButton: {
     width: 320,

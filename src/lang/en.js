@@ -12,7 +12,9 @@ export default {
     ADVISORY: "Advisory",
     PRECAUTIONS: "Precautions",
     HOME: "MS-XXXXX-XX",
-    SMSSERVICE: "SMS Notifications"
+    HOMEHOLD: "Household Details",
+    SMSSERVICE: "SMS Notifications",
+    CONFIRMENTERY: "Confirm Entry"
   },
   ButtonTitles: {
     CONTINUE: "Continue",
@@ -23,6 +25,7 @@ export default {
     YES: "Yes",
     NO: "No",
     ADDHOUSEHOLD: "Add Household",
+    ADDNEWHOUSEHOLD: "Add Member",
     HOUSEHOLDHISTORY: "Household History",
     ADDMEMEBERS: "Add Memebers",
     RESEND: "Resend",
@@ -38,6 +41,8 @@ export default {
       "A text message with a verification code has been sent to your number. Please enter the verification code to continue:",
     LOCATIONDATA:
       "We require your GPS data to accurately identify households. Please click “Allow” when asked for location permissions.",
+    CONFIRMENTERY:
+      "You have successfully entered the details of the following household:",
     HEALTHSCAN:
       "You can add new households or edit/remove them by going into the house-hold history",
     HOUSEHOLDNUMBER:
@@ -66,7 +71,7 @@ export default {
       },
       WEBSITE: {
         TITLE: "dedicated website",
-        URL: "http://www.covid.gov.pk/"
+        URL: "http://www.covid.gov.pk"
       },
       MESSAGE: {
         TITLE: "Who whatsapp info",
@@ -85,6 +90,10 @@ export default {
     SCANNINGSUMMARY: "SCANNING SUMMARY",
     CNICNUMBER: "CNIC NUMBER",
     PHONENUMBER: "PHONE NUMBER",
+    CONFIRMENTERY: {
+      LABEL: "18:00 - 22/03/2020",
+      EAMPLE: "MS-XXXXX-XX"
+    },
     AGE: "AGE",
     GENDER: "GENDER",
     GENDEROPTIONS: {
