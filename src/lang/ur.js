@@ -9,7 +9,7 @@ export default {
     MEMEBERDETAILS: "Member Details",
     TEMPERATURE: "Temperature",
     SYMPTOMS: "Symptoms",
-    ADVISORY: "Advisory",
+    ADVISORY: "اہم معالومات",
     PRECAUTIONS: "Precautions",
     HOME: "MS-XXXXX-XX"
   },
@@ -43,7 +43,7 @@ export default {
     MEMEBERS: "No members added yet",
     SYMPTOMS: "Please check all or any symptoms the members is experiencing",
     ADVISORY:
-      "Please recommend the household to contact via helpine, whatsapp or website and not visit the hospital immedidately",
+      "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
     HOME: "No memebers added yet",
     PRECAUTIONS:
       "Please recommend the member to practice the following precautions",
@@ -55,16 +55,16 @@ export default {
     },
     Advisory: {
       HELPLINE: {
-        TITLE: "COVID-19 HELPLINE",
+        TITLE: "حکومتی کورونا وائرس ہیلپ لاءین",
         PHONE: "1030"
       },
       WEBSITE: {
-        TITLE: "dedicated website",
+        TITLE: "ویب ساءیٹ",
         URL: "http://www.covid.gov.pk/"
       },
       MESSAGE: {
-        TITLE: "Who whatsapp info",
-        PHONE: "Message 'hi' to +41798931892"
+        TITLE: "Who یو ۔این۔ واٹس ایپ نمبر",
+        PHONE: "892 931 798 14+  پے 'hi' میسج کریں۔"
       }
     }
   },

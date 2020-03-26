@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
 //Custom Components
 import Heading from "../../components/Heading";
 import InfoItem from "../../components/InfoItem";
@@ -18,27 +22,27 @@ export default class Advisory extends Component {
   render() {
     return (
       <View style={Styles.container}>
-        <Heading headerText={Strings.headings.ADVISORY} />
-        <Text style={Styles.topParagraph}>{Strings.Paragarphs.ADVISORY}</Text>
+        <Heading headerText={I18n.t(`headings.ADVISORY`)} />
+        <Text style={Styles.topParagraph}>{I18n.t(`Paragarphs.ADVISORY`)}</Text>
         <View style={Styles.Spacer20} />
 
         {/* Info item */}
         <InfoItem
-          title={Strings.Paragarphs.Advisory.HELPLINE.TITLE}
-          info={Strings.Paragarphs.Advisory.HELPLINE.PHONE}
+          title={I18n.t(`Paragarphs.Advisory.HELPLINE.TITLE`)}
+          info={I18n.t(`Paragarphs.Advisory.HELPLINE.PHONE`)}
         />
         <InfoItem
-          title={Strings.Paragarphs.Advisory.WEBSITE.TITLE}
-          info={Strings.Paragarphs.Advisory.WEBSITE.URL}
+          title={I18n.t(`Paragarphs.Advisory.WEBSITE.TITLE`)}
+          info={I18n.t(`Paragarphs.Advisory.WEBSITE.URL`)}
         />
         <InfoItem
-          title={Strings.Paragarphs.Advisory.MESSAGE.TITLE}
-          info={Strings.Paragarphs.Advisory.MESSAGE.PHONE}
+          title={I18n.t(`Paragarphs.Advisory.MESSAGE.TITLE`)}
+          info={I18n.t(`Paragarphs.Advisory.MESSAGE.PHONE`)}
         />
         <View style={Styles.Spacer50} />
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
-            title={Strings.ButtonTitles.CANCEL}
+            title={I18n.t(`ButtonTitles.CANCEL`)}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
@@ -46,7 +50,7 @@ export default class Advisory extends Component {
             onPress={this.handleCancel}
           />
           <RaisedTextButton
-            title={Strings.ButtonTitles.DONE}
+            title={I18n.t(`ButtonTitles.DONE`)}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
