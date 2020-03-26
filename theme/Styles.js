@@ -77,7 +77,7 @@ const Styles = StyleSheet.create({
     width: 320,
     height: 44,
     overflow: "hidden",
-    borderRadius: 40
+    borderRadius: 40,
   },
   Spacer200: {
     paddingTop: 200

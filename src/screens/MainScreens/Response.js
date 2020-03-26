@@ -13,6 +13,9 @@ export default class Response extends Component {
   handleContinue = () => {
     this.props.navigation.navigate("Home");
   };
+  handleNo = () => {
+    this.props.navigation.goBack();
+  }
   render() {
     return (
       <View style={Styles.container}>
@@ -27,6 +30,7 @@ export default class Response extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={this.handleNo}
           />
           <RaisedTextButton
             title={Strings.ButtonTitles.YES}

@@ -12,6 +12,9 @@ export default class HouseholdNumber extends Component {
   handleContinue = () => {
     this.props.navigation.navigate("Response");
   };
+  handleBack = () => {
+    this.props.navigation.goBack();
+  };
   render() {
     return (
       <View style={Styles.container}>
@@ -35,6 +38,7 @@ export default class HouseholdNumber extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={this.handleBack}
           />
           <RaisedTextButton
             title={Strings.ButtonTitles.NEXT}

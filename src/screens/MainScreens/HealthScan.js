@@ -1,42 +1,76 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
-import { RaisedTextButton } from "react-native-material-buttons";
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import {CardView,ExtendedButton,Heading,CalculationLabel} from "../../components";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
+
+
 export default class HealthScan extends Component {
+   handleAddHouseHold = () => {
+    this.props.navigation.navigate("HouseholdNumber");
+  };
+  handleHouseHoldHistory = () => {
+    this.props.navigation.navigate("HouseholdHistory");
+  };
   render() {
+    const homeIcon = require('../../../assets/images/home.png')
+    const historyIcon = require('../../../assets/images/history.png')
     return (
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.HEALTHSCAN} />
         <Text style={Styles.topParagraph}>{Strings.Paragarphs.HEALTHSCAN}</Text>
         <CardView Styles={Styles.Spacer50} />
         <View style={Styles.largebuttonsContainer}>
-          <RaisedTextButton
+          <ExtendedButton
+            IconSource = {homeIcon}
             title={Strings.ButtonTitles.ADDHOUSEHOLD}
             color={Colors.primaryColor}
             titleColor={Colors.buttonTextColor}
-            shadeBorderRadius={1.5}
             style={Styles.largeButton}
+            shadeBorderRadius={1.5}
+            onPress={this.handleAddHouseHold}
           />
         </View>
         <View style={Styles.largebuttonsContainer}>
-          <RaisedTextButton
+          <ExtendedButton
+            IconSource = {historyIcon}
             title={Strings.ButtonTitles.HOUSEHOLDHISTORY}
             color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.largeButton}
-            onPress={this.handleDone}
+            onPress={this.handleHouseHoldHistory}
           />
         </View>
+        <Text style={screenStyles.titleLabel}>{Strings.Labels.SCANNINGSUMMARY}</Text>
+       
+        <CalculationLabel
+          value = {15}
+          secondaryText = {Strings.Labels.HOUSEHOLDSCANNED}
+        />
+        <CalculationLabel
+          value = {20}
+          secondaryText = {Strings.Labels.PEOPLESCANNED}
+        />
+        
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({});
+const screenStyles = StyleSheet.create({
+  titleLabel: {
+    fontSize:16,
+    padding:20,
+    color:Colors.paragraphTextColor
+  },
+  
+  Number: {
+    fontSize:16,
+    padding:20,
+    color:Colors.paragraphTextColor
+  }
+
+});

@@ -9,6 +9,13 @@ import InfoItem from "../../components/InfoItem";
 import { Strings, Styles, Colors } from "../../../theme";
 
 export default class Advisory extends Component {
+  handleCancel = () => {
+    this.props.navigation.goBack();
+  };
+  handleDone = () => {
+    this.props.navigation.navigate("HealthScan");
+    
+  }
   render() {
     return (
       <View style={Styles.container}>
@@ -37,6 +44,7 @@ export default class Advisory extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={this.handleCancel}
           />
           <RaisedTextButton
             title={Strings.ButtonTitles.DONE}
