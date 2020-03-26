@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
+import I18n from "../../plugins/I18n";
 
 //Custom Components
 import {
@@ -24,7 +25,10 @@ export default class HealthScan extends Component {
     return (
       <View style={Styles.container}>
         <Heading headerText={Strings.headings.HEALTHSCAN} />
-        <Text style={Styles.topParagraph}>{Strings.Paragarphs.HEALTHSCAN}</Text>
+        <Text style={Styles.topParagraph}>
+          {I18n.t(`Paragarphs.HEALTHSCAN`)}
+          {/* {Strings.Paragarphs.HEALTHSCAN} */}
+        </Text>
         <CardView Styles={Styles.Spacer50} />
         <View style={Styles.largebuttonsContainer}>
           <ExtendedButton

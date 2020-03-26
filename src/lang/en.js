@@ -47,15 +47,35 @@ export default {
     HOME: "No memebers added yet",
     PRECAUTIONS:
       "Please recommend the member to practice the following precautions",
-    TEMPERATURE: "Please note the temperature of the household member"
+    TEMPERATURE: "Please note the temperature of the household member",
+    INFORMATIONCARE: {
+      TTITLE: "Information Care",
+      GENERAL: "What do you know about Coronavirus disease CoVID-19?",
+      HANDWASH: "The correct way of washing your hands"
+    },
+    Advisory: {
+      HELPLINE: {
+        TITLE: "COVID-19 HELPLINE",
+        PHONE: "1030"
+      },
+      WEBSITE: {
+        TITLE: "dedicated website",
+        URL: "http://www.covid.gov.pk/"
+      },
+      MESSAGE: {
+        TITLE: "Who whatsapp info",
+        PHONE: "Message 'hi' to +41798931892"
+      }
+    }
   },
   Labels: {
     PHONENUMBER: "Phone number",
     VERIFICATIONCODE: "Verification Code",
+    VERIFICATION_CODE_EAMPLE: "e.g 0123456789",
     DIDNOTRECIVECODE: "Didn’t recieve code?",
-    HOUSEHOLDNUMBER: "House-hold number",
-    HOUSEHOLDSCANNED: "Households scanned",
-    PEOPLESCANNED: "People scanned",
+    HOUSEHOLDNUMBER: "House hold number",
+    HOUSEHOLDSCANNED: "HOUSEHOLD SCANNED",
+    PEOPLESCANNED: "PEOPLE SCANNED",
     SCANNINGSUMMARY: "SCANNING SUMMARY",
     CNICNUMBER: "CNIC NUMBER",
     PHONENUMBER: "PHONE NUMBER",
@@ -81,7 +101,14 @@ export default {
       SHORTNESSOFBREATH: "Shortness of breath",
       REDNESSOFEYES: "Redness of eyes",
       DIARRHEA: "Diarrhea",
-      OTHERSYMPTOMS: "OTHER SYMPTOMS"
+      OTHERSYMPTOMS: "OTHER SYMPTOMS",
+      OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
     }
+  },
+  Symptom: {
+    symptomName: "Fever",
+    symptomNumber: "Symptom 1",
+    symptomValue: "fever",
+    symptomLable: "fever"
   }
 };
