@@ -17,8 +17,8 @@ export default {
     CONTINUE: "آگے",
     VERIFY: "تصدیق",
     ALLOW: "اجازت",
-    BACK: "Back",
-    NEXT: "Next",
+    BACK: "پیچھے",
+    NEXT: "آگے",
     YES: "Yes",
     NO: "No",
     ADDHOUSEHOLD: "نیا گھرانہ",
@@ -100,8 +100,8 @@ export default {
       SHORTNESSOFBREATH: "Shortness of breath",
       REDNESSOFEYES: "Redness of eyes",
       DIARRHEA: "Diarrhea",
-      OTHERSYMPTOMS: "OTHER SYMPTOMS",
-      OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
+      OTHERSYMPTOMS: "اس کے علاوہ بیماری کی کوئی علامات",
+      OTHERSYMPTOMSEAMPLE: "e.g جیسے دل کی کمزوری"
     }
   },
   Symptom: {
