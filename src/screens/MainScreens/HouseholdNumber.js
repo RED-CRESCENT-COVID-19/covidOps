@@ -15,7 +15,7 @@ import { Strings, Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
 export default class HouseholdNumber extends Component {
   handleContinue = () => {
-    this.props.navigation.navigate("Response");
+    this.props.navigation.navigate("HouseHoldDetails");
   };
   handleBack = () => {
     this.props.navigation.goBack();

@@ -20,7 +20,7 @@ export default class ConfirmEntry extends Component {
   };
 
   handleNext = () => {
-    this.props.navigation.navigate("HouseHoldDetails");
+    this.props.navigation.navigate("HealthScan");
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};

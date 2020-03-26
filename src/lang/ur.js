@@ -29,8 +29,8 @@ export default {
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
     ADDMEMEBERS: "Add Memebers",
     RESEND: "Resend",
-    DONE: "DONE",
-    CANCEL: "CANCEL"
+    DONE: "مکمل",
+    CANCEL: "منسوخ"
   },
   Paragarphs: {
     SMSSERVICE:
