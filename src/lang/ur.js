@@ -132,14 +132,12 @@ export default {
       },
 
       {
-        Question:
-          "Have you travelled to a coronavirus infected area in the past month?",
+        Question: `کیا آپ نے پچھلے ایک مہینے میں کسی  ایسی  جگہ پر سفر کیا ہے جہاں پر کرونا  وائرس کی بیماری  پھیلی ہوئی ہے؟`,
         Answer: ``
       },
 
       {
-        Question:
-          "Have you contacted anyone that might have the coronavirus infection?",
+        Question: `کیا آپ کی کسی ایسے انسان سے ملاقات  ہوئی ہے جس کو کرونا وائرس کی  بیماری ہو؟`,
         Answer: ``
       }
     ],
