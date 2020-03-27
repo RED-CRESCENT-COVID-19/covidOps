@@ -34,7 +34,9 @@ export default class SMSVerification extends Component {
       .then((response) => {
         if(response.status == 200) {
           console.log(response.data.auth_token);
-          // this.props.navigation.navigate("LocationData");
+          // this.props.navigation.navigate("HealthScan");
+          //TODO:: save token in async storage
+          //TODO:: redirect to health scan screen
           // this.props.navigation.navigate("SMSVerify", {phone: phone});
         } else {
           var message = ''

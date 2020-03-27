@@ -14,8 +14,16 @@ import {
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
+import Http from '../../services/HttpService';
+
+
 const WRITING_STYLE = I18n.locale;
 export default class HealthScan extends Component {
+
+  // componentDidMount() {
+
+  // }
+
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
