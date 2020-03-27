@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Keyboard } from "react-native";
+
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -14,12 +15,26 @@ import { Strings, Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class HouseholdNumber extends Component {
+  fieldRef = React.createRef();
   handleContinue = () => {
     this.props.navigation.navigate("HouseHoldDetails");
   };
   handleBack = () => {
     this.props.navigation.goBack();
   };
+
+  onBlur() {
+    console.log("onBlur");
+    Keyboard.dismiss();
+  }
+
+  onSubmit = () => {
+    let { current: field } = this.fieldRef;
+    Keyboard.dismiss();
+    this.setState({ temperature: field.value() });
+    console.log("field.value()", field.value());
+  };
+
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
@@ -39,8 +54,11 @@ export default class HouseholdNumber extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             multiline
+            returnKeyType={"done"}
             inputContainerStyle={screenStyles.inputContainerStyle}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
+            ref={this.fieldRef}
           />
         </View>
         <Text style={screenStyles.textInput}>

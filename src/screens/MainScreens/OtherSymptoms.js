@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, StyleSheet, View, ScrollView, Keyboard } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -17,14 +17,22 @@ export default class OtherSymptoms extends Component {
   onNextButton() {
     this.props.navigation.navigate("Temperature");
   }
+  onSubmit() {
+    Keyboard.dismiss();
+  }
+  onBlur() {
+    console.log("onBlur");
+    Keyboard.dismiss();
+  }
+
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SYMPTOMS`)} />
-        <Text style={[Styles.topParagraph, style]}>
+        {/* <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.SYMPTOMS`)}
-        </Text>
+        </Text> */}
         <CardView Styles={Styles.Spacer50} />
         {/* Other Symptoms text area */}
 
@@ -32,12 +40,14 @@ export default class OtherSymptoms extends Component {
           <OutlinedTextField
             label={I18n.t(`Labels.SYMPTOMLIST.OTHERSYMPTOMS`)}
             // activeLineWidth={20}
-            placeholder={I18n.t(`Labels.SYMPTOMLIST.OTHERSYMPTOMSEAMPLE`)}
+            placeholder={" "}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             multiline
+            returnKeyType={"done"}
             inputContainerStyle={screenStyles.inputContainerStyle}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
           />
         </View>
         <CardView Styles={Styles.Spacer50} />
