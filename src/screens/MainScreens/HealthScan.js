@@ -25,9 +25,27 @@ export default class HealthScan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: true
+      isAuthenticated: true,
+      persons: 0,
+      houses: 0
     };
   }
+
+  componentDidMount() {
+    Http.get('stats', {}, { headers: { 'access-token': 'S7XbtXPs3OLsilIUsjskqMJZzSh820Vx3qTJpwP5sc6p1crvv2WqbnljRoopdCh2wI8NJpCTTErVQM1xovp9MimSnCzjMQJY94rF/8HbxsAP2FnlFHu+XA0zfP3qP0Ir/OnaSBkeMcG9iHnTzNzVFE3CBQFLRnyfb2ZD+N63/QM=' } })
+      .then((response) => {
+        if(response.status == 200) {
+          this.setState({
+            persons: response.data.person_count,
+            houses: response.data.house_count,
+          })
+        } else {
+          //TODO:: Redirect Back to login screen
+        }
+      }).catch(err => {}) 
+  }
+
+
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
@@ -39,7 +57,12 @@ export default class HealthScan extends Component {
     I18n.locale = "en";
   }
   onHandleChange() {
-    console.log("onHandleChange");
+    Http.delete('auth/logout', {}, { headers: { 'access-token': 'S7XbtXPs3OLsilIUsjskqMJZzSh820Vx3qTJpwP5sc6p1crvv2WqbnljRoopdCh2wI8NJpCTTErVQM1xovp9MimSnCzjMQJY94rF/8HbxsAP2FnlFHu+XA0zfP3qP0Ir/OnaSBkeMcG9iHnTzNzVFE3CBQFLRnyfb2ZD+N63/QM=' } })
+      .then((response) => {
+        console.log(response.status);
+        //TODO:: Redirect back to login, clear token  
+      }).catch(err => {}) 
+
     this.setState({
       isAuthenticated: !this.state.isAuthenticated
     });
@@ -84,11 +107,11 @@ export default class HealthScan extends Component {
         </Text>
 
         <CalculationLabel
-          value={15}
+          value={this.state.persons}
           secondaryText={I18n.t(`Labels.HOUSEHOLDSCANNED`)}
         />
         <CalculationLabel
-          value={73}
+          value={this.state.houses}
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
         <View style={Styles.changeLanguagebuttonsContainer}>
