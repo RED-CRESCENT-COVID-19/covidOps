@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, AsyncStorage } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -31,8 +31,9 @@ export default class HealthScan extends Component {
     };
   }
 
-  componentDidMount() {
-    Http.get('stats', {}, { headers: { 'access-token': 'S7XbtXPs3OLsilIUsjskqMJZzSh820Vx3qTJpwP5sc6p1crvv2WqbnljRoopdCh2wI8NJpCTTErVQM1xovp9MimSnCzjMQJY94rF/8HbxsAP2FnlFHu+XA0zfP3qP0Ir/OnaSBkeMcG9iHnTzNzVFE3CBQFLRnyfb2ZD+N63/QM=' } })
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem('AuthToken') 
+    Http.get('stats', {}, { headers: { 'access-token': token } })
       .then((response) => {
         if(response.status == 200) {
           this.setState({
@@ -56,10 +57,11 @@ export default class HealthScan extends Component {
     console.log("onchange I18n.locale is: ", I18n.locale);
     I18n.locale = "en";
   }
-  onHandleChange() {
-    Http.delete('auth/logout', {}, { headers: { 'access-token': 'S7XbtXPs3OLsilIUsjskqMJZzSh820Vx3qTJpwP5sc6p1crvv2WqbnljRoopdCh2wI8NJpCTTErVQM1xovp9MimSnCzjMQJY94rF/8HbxsAP2FnlFHu+XA0zfP3qP0Ir/OnaSBkeMcG9iHnTzNzVFE3CBQFLRnyfb2ZD+N63/QM=' } })
+  async onHandleChange() {
+    const token = await AsyncStorage.getItem('AuthToken') 
+    Http.delete('auth/logout', {}, { headers: { 'access-token': token } })
       .then((response) => {
-        console.log(response.status);
+        this.props.setAuth(false);
         //TODO:: Redirect back to login, clear token  
       }).catch(err => {}) 
 
@@ -115,7 +117,7 @@ export default class HealthScan extends Component {
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
         <View style={Styles.changeLanguagebuttonsContainer}>
-          {isAuthenticated && (
+          
             <RaisedTextButton
               title={I18n.t(`ButtonTitles.LOGOUT`)}
               color={Colors.buttonTextColor}
@@ -124,7 +126,7 @@ export default class HealthScan extends Component {
               style={Styles.smallButton}
               onPress={() => this.onHandleChange()}
             />
-          )}
+          
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.TRANSLATION`)}
             color={Colors.secondaryColor}

@@ -14,8 +14,7 @@ class AppNavigator extends Component {
     this.setAuth = this.setAuth.bind(this);
   }
   navigationRender = async () => {
-    const token = await AsyncStorage.setItem('AuthToken') 
-    // const token = await AsyncStorage.removeItem('AuthToken') 
+    const token = await AsyncStorage.getItem('AuthToken') 
     if(token){
       this.setState({isAuthenticated:true})
     }

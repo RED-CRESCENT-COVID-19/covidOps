@@ -7,7 +7,6 @@ import { PhoneVerification, SMSVerification } from "../screens/AuthStack";
 const AuthStack = createStackNavigator();
 
 const AuthNavigation = (prop) => {
-  console.log(prop);
   return (
     
     <AuthStack.Navigator initialRouteName="PhoneVerify">
