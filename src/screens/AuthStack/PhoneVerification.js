@@ -74,6 +74,7 @@ export default class PhoneVerification extends Component {
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
             onChangeText={phone => this.setState({phone: phone})}
+            maxLength={11}
             ref={this.phoneFieldRef}
           />
         </View>

@@ -34,6 +34,7 @@ export default class SMSVerification extends Component {
       .then((response) => {
         if(response.status == 200) {
           console.log(response.data.auth_token);
+          // this.props.navigation.navigate("LocationData");
           // this.props.navigation.navigate("SMSVerify", {phone: phone});
         } else {
           var message = ''
@@ -90,6 +91,7 @@ export default class SMSVerification extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onChangeText={pin => this.setState({pin: pin})}
+            maxLength={11}
             onSubmitEditing={this.onSubmit}
           />
         </View>
