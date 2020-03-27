@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Keyboard } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
 import { TextButton, RaisedTextButton } from "react-native-material-buttons";
@@ -17,7 +17,11 @@ export default class MemeberDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isButtonActive: false
+      isButtonActive: false,
+      selectedGenderType: "m",
+      cnic: "",
+      phone: "",
+      age: ""
     };
   }
   fieldRef = React.createRef();
@@ -31,13 +35,41 @@ export default class MemeberDetails extends Component {
     this.props.navigation.navigate("HouseHoldDetails");
   }
 
+  onChangeCNIC(val) {
+    this.setState({ cnic: val });
+  }
+  onChangePhone(val) {
+    this.setState({ phone: val });
+  }
+  onChangeAge(val) {
+    this.setState({ age: val });
+  }
+  genderButtonClick(type) {
+    const { selectedGenderType, isButtonActive } = this.state;
+    console.log("selectedGenderType is: ", selectedGenderType);
+    console.log("type is: ", type);
+    if (type !== selectedGenderType) {
+      this.setState({
+        selectedGenderType: type,
+        isButtonActive: !isButtonActive
+      });
+    }
+  }
   onSubmit = () => {
     let { current: field } = this.fieldRef;
+    this.setState({ temperature: field.value() });
+    console.log("field.value()", field.value());
+  };
 
-    console.log(field.value());
+  onBlur() {
+    console.log("onBlur");
+    Keyboard.dismiss();
+  }
+  formatText = text => {
+    return text.replace(/[^+\d]/g, "");
   };
   render() {
-    const { isButtonActive } = this.state;
+    const { selectedGenderType } = this.state;
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.MEMEBERDETAILS`)} />
@@ -47,63 +79,91 @@ export default class MemeberDetails extends Component {
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            returnKeyType={"done"}
+            onChangeText={e => this.onChangeCNIC(e)}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
           />
           <TextField
             label={I18n.t(`Labels.PHONENUMBER`)}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            onChangeText={e => this.onChangePhone(e)}
+            returnKeyType={"done"}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
           />
           <TextField
             label={I18n.t(`Labels.AGE`)}
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            returnKeyType={"done"}
+            ref={this.fieldRef}
+            onChangeText={e => this.onChangeAge(e)}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
           />
         </View>
         <Text style={Styles.genderText}>{I18n.t(`Labels.GENDER`)}</Text>
         <View style={Styles.genderButtonsContainer}>
           <TextButton
             title={I18n.t(`Labels.GENDEROPTIONS.MALE`)}
-            color={!isButtonActive ? Colors.primaryColor : Colors.transparent}
+            color={
+              selectedGenderType === "m"
+                ? Colors.primaryColor
+                : Colors.transparent
+            }
             titleColor={
-              !isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+              selectedGenderType === "m"
+                ? Colors.buttonTextColor
+                : Colors.primaryColor
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallGenderButton
-              // true && Styles.smallGenderButtonActive
+              Styles.smallGenderButton,
+              selectedGenderType === "m" && Styles.smallGenderButtonActive
             ]}
+            onPress={e => this.genderButtonClick("m")}
           />
           <TextButton
             title={I18n.t(`Labels.GENDEROPTIONS.FEMALE`)}
-            olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            color={
+              selectedGenderType === "f"
+                ? Colors.primaryColor
+                : Colors.transparent
+            }
             titleColor={
-              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+              selectedGenderType === "f"
+                ? Colors.buttonTextColor
+                : Colors.primaryColor
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallGenderButton
-              // true && Styles.smallGenderButtonActive
+              Styles.smallGenderButton,
+              selectedGenderType === "f" && Styles.smallGenderButtonActive
             ]}
+            onPress={e => this.genderButtonClick("f")}
           />
           <TextButton
             title={I18n.t(`Labels.GENDEROPTIONS.OTHER`)}
-            olor={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            color={
+              selectedGenderType === "o"
+                ? Colors.primaryColor
+                : Colors.transparent
+            }
             titleColor={
-              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+              selectedGenderType === "o"
+                ? Colors.buttonTextColor
+                : Colors.primaryColor
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallGenderButton
-              // true && Styles.smallGenderButtonActive
+              Styles.smallGenderButton,
+              selectedGenderType === "o" && Styles.smallGenderButtonActive
             ]}
+            onPress={e => this.genderButtonClick("o")}
           />
         </View>
         <CardView Styles={Styles.Spacer100} />
