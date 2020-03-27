@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Keyboard } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
-import { RaisedTextButton } from "react-native-material-buttons";
+import { RaisedTextButton, TextButton } from "react-native-material-buttons";
 
 // plugins
 import I18n from "../../plugins/I18n";
@@ -15,6 +15,16 @@ import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class Temperature extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      temperature: "",
+      isButtonActive: false,
+      selectedTemperatureButton: "c"
+    };
+  }
+  fieldRef = React.createRef();
+
   handleBack = () => {
     this.props.navigation.goBack();
   };
@@ -22,8 +32,37 @@ export default class Temperature extends Component {
   handleNext = () => {
     this.props.navigation.navigate("ConfirmEntry");
   };
+  onChangeText(e) {
+    console.log("temperature is: ", e);
+    this.setState({ temperature: e });
+  }
+  onBlur() {
+    console.log("onBlur");
+    Keyboard.dismiss();
+  }
+  formatText = text => {
+    return text.replace(/[^+\d]/g, "");
+  };
+  onSubmit = () => {
+    let { current: field } = this.fieldRef;
+    this.setState({ temperature: field.value() });
+    console.log("field.value()", field.value());
+  };
+
+  temperatureButtonClick(type) {
+    const { selectedTemperatureButton, isButtonActive } = this.state;
+    console.log("selectedTemperatureButton is: ", selectedTemperatureButton);
+    console.log("type is: ", type);
+    if (type !== selectedTemperatureButton) {
+      this.setState({
+        selectedTemperatureButton: type,
+        isButtonActive: !isButtonActive
+      });
+    }
+  }
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+    const { isButtonActive } = this.state;
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.TEMPERATURE`)} />
@@ -33,12 +72,43 @@ export default class Temperature extends Component {
         <View style={screenStyles.textInput}>
           <TextField
             label={I18n.t(`Labels.TEMPERATUREREADING`)}
-            keyboardType="phone-pad"
+            keyboardType="numeric"
             placeholder={"XX"}
+            returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onChangeText={e => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
+            ref={this.fieldRef}
+          />
+        </View>
+        <View style={Styles.temperatureButtonsContainer}>
+          <TextButton
+            title={I18n.t(`Labels.TEMPERATURE.CELSIUS`)}
+            color={!isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              !isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
+            shadeBorderRadius={1.5}
+            style={[
+              Styles.smallTemperatureButton
+              // true && Styles.smallGenderButtonActive
+            ]}
+            onPress={e => this.temperatureButtonClick("c")}
+          />
+          <TextButton
+            title={I18n.t(`Labels.TEMPERATURE.FAHRENHEIT`)}
+            color={isButtonActive ? Colors.primaryColor : Colors.transparent}
+            titleColor={
+              isButtonActive ? Colors.buttonTextColor : Colors.primaryColor
+            }
+            shadeBorderRadius={1.5}
+            style={[
+              Styles.smallTemperatureButton
+              // true && Styles.smallGenderButtonActive
+            ]}
+            onPress={e => this.temperatureButtonClick("f")}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />

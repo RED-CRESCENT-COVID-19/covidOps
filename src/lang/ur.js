@@ -99,6 +99,10 @@ export default {
       OTHER: "-"
     },
     TEMPERATUREREADING: "درجہ حرارت",
+    TEMPERATURE: {
+      CELSIUS: "°C",
+      FAHRENHEIT: "°F"
+    },
     SYMPTOM: "SYMPTOM",
     SYMPTOMLIST: {
       FEVER: "Fever",
