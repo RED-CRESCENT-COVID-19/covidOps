@@ -1,21 +1,17 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView, Dimensions } from "react-native";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
-import InfoList from "../../components/InfoList";
-//Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { InfoList, Heading, CardView } from "../../components";
 
-// Height and Width of Current Device Screen
-const { height, width } = Dimensions.get("window");
+//Theme
+import { Styles, Colors } from "../../../theme";
+
 const WRITING_STYLE = I18n.locale;
 
 const DATA = [
