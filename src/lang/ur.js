@@ -10,7 +10,7 @@ export default {
     TEMPERATURE: "درجہ حرارت",
     SYMPTOMS: "بیماری کی علامات",
     ADVISORY: "اہم معالومات",
-    PRECAUTIONS: "احتیاطی تدابیر",
+    PRECAUTIONS: "احتیاطی تدابیر  کا طریقہ",
     HOME: "MS-XXXXX-XX",
     HOMEHOLD: "گھرانے کی تفصیل",
     SMSSERVICE: "ایس۔ایم۔ایس سروس",
@@ -57,9 +57,9 @@ export default {
     TEMPERATURE:
       "براۓ مہربانی غیر لمسی تھرمامیٹر سے درجہ حرارت لیجیے۔ غیر لمسی تھرمامیٹر نا ہونے کی صورت میں روائتی تھرمامیٹر کے استعمال سے گریز کریں۔",
     INFORMATIONCARE: {
-      TTITLE: "احتیاطی تدابیر  کا طریقہ",
+      TTITLE: "احتیاطی تدابیر",
       GENERAL: "What do you know about Coronavirus disease CoVID-19?",
-      HANDWASH: "The correct way of washing your hands"
+      HANDWASH: `ہاتھ دھونے کا  درست طریقہ`
     },
     Advisory: {
       HELPLINE: {
@@ -128,21 +128,21 @@ export default {
     symptomLable: "fever"
   },
   QUESTIONS_LIST: {
-    Precautions: [
+    PrecautionsInit: [
       {
-        Question: "",
-        Answer: `Greet people from a distance
-
-    Don’t shake hands or hug people
-
-    Ask questions before giving out any information
-
-    Only give out scientific information provided in the infocare section
-
-    Let people express their feelings and concerns
-`
+        Answer: `دور سے لوگوں کو سلام کریں،`,
+        Question: ` ہاتھ مت ملائیں نہ لوگوں کو گلے لگائیں`
       },
-
+      {
+        Answer: `معلومات فراہم کرنے سے پہلے سوال پوچھیں`,
+        Question: `صرف ذیل میں دی گئی سائنسی معلومات سے سوالات کے جوابات دیں`
+      },
+      {
+        Answer: `لوگوں کو اپنے خدشات کا اظہار کرنے کا موقع دیں`,
+        Question: ``
+      }
+    ],
+    Precautions: [
       {
         Question: `کیا آپ نے پچھلے ایک مہینے میں کسی  ایسی  جگہ پر سفر کیا ہے جہاں پر کرونا  وائرس کی بیماری  پھیلی ہوئی ہے؟`,
         Answer: ``
@@ -155,7 +155,7 @@ export default {
     ],
     Information: [
       {
-        Question: `آپ کرونا وائرس کی بیماری کے بارے میں ؟ ﮟﯿﮨ ﮯﺘﻧﺎﺟ ﺎﯿﮐ `,
+        Question: `آپ کرونا وائرس کی بیماری کے بارے میں  کیا جانتے ہیں ؟`,
         Answer: `ہم آپ کو یہ بتاناچاہتے ہیں کہ یہ چھینکنے
 ،کھانسنے اورہاتھ لگانے سے پھیلتی ہے
 

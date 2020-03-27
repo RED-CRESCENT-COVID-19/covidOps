@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Alert } from "react-native";
+import { Text, StyleSheet, View, Alert, Keyboard } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -20,6 +20,13 @@ export default class SMSService extends Component {
     //store Aysc value isAuthenticated == true
     this.props.navigation.navigate("ConfirmEntry");
   };
+  onSubmit() {
+    Keyboard.dismiss();
+  }
+  onBlur() {
+    console.log("onBlur");
+    Keyboard.dismiss();
+  }
   onTimerFinish() {
     Alert.alert(
       `Time is finish to verify the code!`,
@@ -35,6 +42,9 @@ export default class SMSService extends Component {
       { cancelable: false }
     );
   }
+  formatText = text => {
+    return text.replace(/[^+\d]/g, "");
+  };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
@@ -50,9 +60,11 @@ export default class SMSService extends Component {
             keyboardType="phone-pad"
             // activeLineWidth={20}
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
+            returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
           />
         </View>
         <View style={Styles.Spacer50} />

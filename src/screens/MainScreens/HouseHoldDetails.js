@@ -56,7 +56,7 @@ export default class HouseHoldDetails extends Component {
     this.props.navigation.navigate("MemberDetails");
   };
   handleDone = () => {
-    this.props.navigation.navigate("Precautions");
+    this.props.navigation.navigate("PrecautionsInit");
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};

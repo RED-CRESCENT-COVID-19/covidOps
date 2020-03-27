@@ -131,21 +131,21 @@ export default {
     symptomLable: "fever"
   },
   QUESTIONS_LIST: {
-    Precautions: [
+    PrecautionsInit: [
       {
-        Question: "",
-        Answer: `Greet people from a distance
-
-    Don’t shake hands or hug people
-
-    Ask questions before giving out any information
-
-    Only give out scientific information provided in the infocare section
-
-    Let people express their feelings and concerns
-`
+        Answer: `Greet people from a distance`,
+        Question: `Don’t shake hands or hug people`
       },
-
+      {
+        Answer: `Ask questions before giving out any information`,
+        Question: `Only give out scientific information provided in the infocare section`
+      },
+      {
+        Answer: `Let people express their feelings and concerns`,
+        Question: ``
+      }
+    ],
+    Precautions: [
       {
         Question:
           "Have you travelled to a coronavirus infected area in the past month?",

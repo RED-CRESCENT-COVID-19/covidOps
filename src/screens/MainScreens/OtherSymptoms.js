@@ -30,9 +30,7 @@ export default class OtherSymptoms extends Component {
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SYMPTOMS`)} />
-        {/* <Text style={[Styles.topParagraph, style]}>
-          {I18n.t(`Paragarphs.SYMPTOMS`)}
-        </Text> */}
+
         <CardView Styles={Styles.Spacer50} />
         {/* Other Symptoms text area */}
 
