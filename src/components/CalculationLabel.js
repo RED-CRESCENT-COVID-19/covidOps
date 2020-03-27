@@ -31,14 +31,14 @@ const screenStyles = StyleSheet.create({
     // writingDirection: "rtl"
   },
   secondaryText: {
-    paddingTop: 8,
+    paddingTop: 6,
     paddingLeft: 20,
     fontWeight: "500",
     writingDirection: "rtl"
   },
   labelContainer: {
     flexDirection: "row",
-    paddingTop: 10,
+    paddingTop: 8,
     paddingRight: 20
   }
 });

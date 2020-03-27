@@ -95,8 +95,8 @@ export default class HealthScan extends Component {
           {isAuthenticated && (
             <RaisedTextButton
               title={I18n.t(`ButtonTitles.LOGOUT`)}
-              color={Colors.secondaryColor}
-              titleColor={Colors.buttonTextColor}
+              color={Colors.buttonTextColor}
+              titleColor={Colors.secondaryColor}
               shadeBorderRadius={1.5}
               style={Styles.smallButton}
               onPress={() => this.onHandleChange()}
@@ -104,7 +104,7 @@ export default class HealthScan extends Component {
           )}
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.TRANSLATION`)}
-            color={Colors.primaryColor}
+            color={Colors.secondaryColor}
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
