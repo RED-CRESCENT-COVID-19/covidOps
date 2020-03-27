@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
-
+import { connect } from 'react-redux'
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
+import VerifyPhoneActions from '../../reducers/verifyReducer'
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -14,17 +15,19 @@ import CardView from "../../components/CardView";
 import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
-export default class PhoneVerification extends Component {
+ class PhoneVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
+  phoneFieldRef = React.createRef();
   onSubmit = () => {
-    // () => navigation.navigate('SMSVerify')
+    let { current: field } = this.phoneFieldRef;
+    this.setState({'phone':field.value()})
+    this.props.verifyPhoneNumber(this.state.phone)
   };
-  handleContinue = () => {
-    this.props.navigation.navigate("SMSVerify");
-  };
+
   formatText = text => {
     return text.replace(/[^+\d]/g, "");
   };
@@ -45,6 +48,7 @@ export default class PhoneVerification extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
+            ref={this.phoneFieldRef}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />
@@ -55,7 +59,7 @@ export default class PhoneVerification extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
-            onPress={this.handleContinue}
+            onPress={this.onSubmit}
           />
         </View>
       </View>
@@ -70,3 +74,17 @@ const screenStyles = StyleSheet.create({
     paddingRight: 35
   }
 });
+
+const mapStateToProps = (state) => {
+  return {
+    getCodeSuccess: state.getCodeSuccess
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    verifyPhoneNumber: (phone) => dispatch(VerifyPhoneActions.getCodeRequest(phone)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PhoneVerification) 

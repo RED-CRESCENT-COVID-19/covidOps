@@ -22,13 +22,14 @@ export default function App() {
     }),
     [locale]
   );
-
+    
   useEffect(() => {
     console.log("useEffect lang: is: ", I18n.locale);
     Font.loadAsync({
       "noto-nastaliq": require("./assets/fonts/NotoNastaliqUrdu-Regular.ttf")
     });
   });
+ 
   return (
     <LocalizationContext.Provider value={localizationContext}>
       <Provider store={store}>

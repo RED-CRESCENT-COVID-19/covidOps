@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects'
+import { takeEvery } from 'redux-saga/effects'
 import authenticationApi from '../services/authenticationApi'
 
 /* ------------- Types ------------- */
@@ -9,10 +9,12 @@ import { verifyPhoneNumber } from './phoneVerifySaga'
 
 /* ------------- API ------------- */
 const verifyPhoneApi = authenticationApi.verifyPhone()
+const verifyCodeApi = authenticationApi.verifyCode()
 
 /* ------------- Connect Types To Sagas ------------- */
 export default function* root() {
+    console.log('Taking every')
     yield [
-        takeLatest(VerifyPhoneTypes.GET_CODE_REQUEST, verifyPhoneNumber, verifyPhoneApi),
+        takeEvery(VerifyPhoneTypes.GET_CODE_REQUEST, verifyPhoneNumber, verifyPhoneApi),
     ]
 }
