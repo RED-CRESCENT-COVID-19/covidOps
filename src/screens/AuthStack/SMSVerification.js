@@ -11,12 +11,49 @@ import I18n from "../../plugins/I18n";
 //Custom Components
 import Heading from "../../components/Heading";
 
+// Service
+import Http from '../../services/HttpService';
+
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { pin: ''};
+  }
+
   handleContinue = () => {
+    const { params } = this.props.route;
+
+    var phone = params.phone
+    var pin = this.state.pin;
+
+    Http.post('auth/pin-validation', { phone: phone, pin: pin })
+      .then((response) => {
+        if(response.status == 200) {
+          console.log(response.data.auth_token);
+          // this.props.navigation.navigate("SMSVerify", {phone: phone});
+        } else {
+          var message = ''
+          if(response.status == 400) {
+            message = response.data.details.errors.pin[0]
+          } else {
+            message = response.data.message
+          }
+          Alert.alert(
+            'Info',
+            message, [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+        }
+        // console.log(response);
+      }).catch((err) => {
+        console.log(err);
+      });
     //store Aysc value isAuthenticated == true
     // this.props.navigation.navigate("LocationData");
   };
@@ -52,6 +89,7 @@ export default class SMSVerification extends Component {
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
+            onChangeText={pin => this.setState({pin: pin})}
             onSubmitEditing={this.onSubmit}
           />
         </View>

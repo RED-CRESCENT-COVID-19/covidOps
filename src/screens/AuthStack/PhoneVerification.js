@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -11,16 +11,44 @@ import I18n from "../../plugins/I18n";
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
 //Theme
+
+// Service
+import Http from '../../services/HttpService';
+
 import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class PhoneVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { phone: ''};
   }
+
   onSubmit = () => {
-    // () => navigation.navigate('SMSVerify')
+  
+    var phone = this.state.phone;
+    Http.post('auth/phone', { phone: phone })
+      .then((response) => {
+        if(response.status == 204) {
+          this.props.navigation.navigate("SMSVerify", {phone: phone});
+        } else {
+          var message = ''
+          if(response.status == 400) {
+            message = response.data.details.errors.phone[0]
+          } else {
+            message = response.data.message
+          }
+          Alert.alert(
+            'Info',
+            message, [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
   };
   handleContinue = () => {
     this.props.navigation.navigate("SMSVerify");
@@ -45,6 +73,8 @@ export default class PhoneVerification extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
+            onChangeText={phone => this.setState({phone: phone})}
+            ref={this.phoneFieldRef}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />
@@ -55,7 +85,7 @@ export default class PhoneVerification extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
-            onPress={this.handleContinue}
+            onPress={this.onSubmit}
           />
         </View>
       </View>

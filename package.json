@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "apisauce": "^1.1.1",
     "babel-preset-expo": "~8.0.0"
   },
   "private": true

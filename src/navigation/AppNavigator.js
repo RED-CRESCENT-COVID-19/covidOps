@@ -7,7 +7,7 @@ import MainNavigation from "./MainNavigation";
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      {false ? <AuthNavigation /> : <MainNavigation />}
+      {true ? <AuthNavigation /> : <MainNavigation />}
     </NavigationContainer>
   );
 };
