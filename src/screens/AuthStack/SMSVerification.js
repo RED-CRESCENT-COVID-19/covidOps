@@ -28,6 +28,7 @@ export default class SMSVerification extends Component {
 
   handleContinue = () => {
     const { params } = this.props.route;
+    console.log(this.props, 'l')
 
     var phone = params.phone
     var pin = this.state.pin;
@@ -37,7 +38,8 @@ export default class SMSVerification extends Component {
         if(response.status == 200) {
            (async (token) => await AsyncStorage.setItem('AuthToken',token) )(response.data.auth_token);
           //  const {setAuth} = React.useContext(MyContext)
-           console.log(this.context(false))
+          //  console.log(this.context(false))
+          this.props.setAuth(true);
         } else {
           var message = ''
           if(response.status == 400) {

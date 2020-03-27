@@ -10,6 +10,8 @@ class AppNavigator extends Component {
   constructor(props) {
     super(props);
     this.state = { isAuthenticated: false};
+
+    this.setAuth = this.setAuth.bind(this);
   }
   navigationRender = async () => {
     const token = await AsyncStorage.setItem('AuthToken') 
@@ -26,12 +28,9 @@ class AppNavigator extends Component {
   }
   render() {
     return (
-      <MyContext.Provider value = {{setAuth:this.setAuth}}>
-      <NavigationContainer>
-      {this.state.isAuthenticated ? <MainNavigation />:<AuthNavigation/>}
-      </NavigationContainer>
-       </MyContext.Provider>
-     
+        <NavigationContainer >
+          {this.state.isAuthenticated ? <MainNavigation setAuth={this.setAuth} />: <AuthNavigation setAuth={this.setAuth}/>}
+        </NavigationContainer>
     )
   }
 }
