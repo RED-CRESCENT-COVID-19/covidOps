@@ -15,10 +15,10 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading } from "../../components";
+
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 const { height, width } = Dimensions.get("window");
 

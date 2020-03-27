@@ -21,7 +21,8 @@ import {
   SMSService,
   HouseHoldDetails,
   ConfirmEntry,
-  HandWash
+  HandWash,
+  PrecautionsInit
 } from "../screens/MainScreens";
 const MainNavigation = () => {
   return (
@@ -64,6 +65,11 @@ const MainNavigation = () => {
       <MainStack.Screen
         name="Precautions"
         component={Precautions}
+        options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="PrecautionsInit"
+        component={PrecautionsInit}
         options={{ headerShown: false }}
       />
       <MainStack.Screen

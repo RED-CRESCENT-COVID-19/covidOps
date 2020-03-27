@@ -30,7 +30,7 @@ export default class Temperature extends Component {
   };
 
   handleNext = () => {
-    this.props.navigation.navigate("ConfirmEntry");
+    this.props.navigation.navigate("HouseHoldDetails");
   };
   onChangeText(e) {
     console.log("temperature is: ", e);
