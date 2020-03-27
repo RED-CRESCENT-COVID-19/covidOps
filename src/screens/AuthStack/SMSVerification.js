@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Alert } from "react-native";
+import { Text, StyleSheet, View, Alert, AsyncStorage } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -24,6 +24,7 @@ export default class SMSVerification extends Component {
     this.state = { pin: ''};
   }
 
+
   handleContinue = () => {
     const { params } = this.props.route;
 
@@ -33,11 +34,7 @@ export default class SMSVerification extends Component {
     Http.post('auth/pin-validation', { phone: phone, pin: pin })
       .then((response) => {
         if(response.status == 200) {
-          console.log(response.data.auth_token);
-          // this.props.navigation.navigate("HealthScan");
-          //TODO:: save token in async storage
-          //TODO:: redirect to health scan screen
-          // this.props.navigation.navigate("SMSVerify", {phone: phone});
+           (async (token) => await AsyncStorage.setItem('AuthToken',token) )(response.data.auth_token);
         } else {
           var message = ''
           if(response.status == 400) {
