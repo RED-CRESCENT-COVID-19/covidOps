@@ -5,7 +5,7 @@ export default {
     HEALTHSCAN: "صحت رپورٹ",
     HOUSEHOLDNUMBER: "گھرانے کی شناخت",
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
-    RESPONSE: "Response",
+    RESPONSE: "جواب",
     MEMEBERDETAILS: "افرادی تفصیل",
     TEMPERATURE: "درجہ حرارت",
     SYMPTOMS: "بیماری کی علامات",
@@ -27,8 +27,8 @@ export default {
     ADDHOUSEHOLD: "نیا گھرانہ",
     ADDNEWHOUSEHOLD: "نۓ فرد کا اندراج",
     HOUSEHOLDHISTORY: "دیگر گھرانوں کی معلومات",
-    ADDMEMEBERS: "Add Memebers",
-    RESEND: "Resend",
+    ADDMEMEBERS: "نۓ فرد کا اندراج",
+    RESEND: "دوبارہ بھیجیں",
     DONE: "مکمل",
     CANCEL: "منسوخ",
     TRANSLATION: "ENGLISH",
@@ -48,19 +48,19 @@ export default {
     HOUSEHOLDNUMBER: "براۓ مہربانی اس گھرانے کا پتہ درج کریں",
     HOUSEHOLDNUMBERADDRESS: "گھرانے کا پتہ",
     HOUSEHOLDNUMBERQUESTION: " کیا آپ اس گھر میں کسی سے بات کرپاۓ؟",
-    RESPONSE: "Have you been able to contact a member of the household?",
-    MEMEBERS: "No members added yet",
+    RESPONSE: "کیا آپ گھر کے کسی ممبر سے رابطہ کرنے میں کامیاب رہے ہیں؟",
+    MEMEBERS: "ابھی تک کوئی ممبر شامل نہیں ہوا",
     SYMPTOMS: "براۓ مہربانی درج ذیل علامات کی  تفصیل لیجیے",
     CONFIRMENTERY: "آپ نے گھرانے کا اندراج کرلیا ہے",
     ADVISORY:
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
-    HOME: "No memebers added yet",
+    HOME: "ابھی تک کوئی ممبر شامل نہیں ہوا",
     PRECAUTIONS: "آپ کرونا وائرس کی بیماری کے بارے میں",
     TEMPERATURE:
       "براۓ مہربانی غیر لمسی تھرمامیٹر سے درجہ حرارت لیجیے۔ غیر لمسی تھرمامیٹر نا ہونے کی صورت میں روائتی تھرمامیٹر کے استعمال سے گریز کریں۔",
     INFORMATIONCARE: {
       TTITLE: "احتیاطی تدابیر",
-      GENERAL: "What do you know about Coronavirus disease CoVID-19?",
+      GENERAL: "آپ کورونا وائرس کوویڈ 19 کے بارے میں کیا جانتے ہیں؟",
       HANDWASH: `ہاتھ دھونے کا  درست طریقہ`
     },
     Advisory: {
@@ -83,7 +83,7 @@ export default {
     VERIFICATIONCODE: "تصدیقی کوڈ",
     VERIFICATION_CODE_EAMPLE: "e.g 0123456789",
     DIDNOTRECIVECODE: "ایس ۔ایم ۔ایس کوڈ نہیں ملا؟",
-    HOUSEHOLDNUMBER: "House hold number",
+    HOUSEHOLDNUMBER: "ہاؤس ہولڈ نمبر",
     HOUSEHOLDSCANNED: "گھرانوں کو اسکین کیا گیا",
     PEOPLESCANNED: "افراد کو اسکین کیا گیا",
     SCANNINGSUMMARY: "اسکیننگ کا خلاصہ",
@@ -105,29 +105,29 @@ export default {
       CELSIUS: "°C",
       FAHRENHEIT: "°F"
     },
-    SYMPTOM: "SYMPTOM",
+    SYMPTOM: "علامت",
     SYMPTOMLIST: {
-      FEVER: "Fever",
-      DRYCOUGH: "Dry Cough",
-      SPUTUMPRODUCTION: "Sputum production",
-      BLOODINCOUGH: "Blood in cough",
-      FATIGUE: "Fatigue",
-      HEADACHE: "Headache",
-      BODYPAIN: "Body pain",
-      SORETHROAT: "Sore throat",
-      NASALCONGESTION: "Nasal congestion",
-      SHORTNESSOFBREATH: "Shortness of breath",
-      REDNESSOFEYES: "Redness of eyes",
-      DIARRHEA: "Diarrhea",
+      FEVER: "بخار",
+      DRYCOUGH: "سوکھی کھانسی ",
+      SPUTUMPRODUCTION: "بلغم",
+      BLOODINCOUGH: "کھانسی کے ساتھ خون",
+      FATIGUE: "تھکاوٹ",
+      HEADACHE: " سر کا درد ",
+      BODYPAIN: "جسم میں درد ",
+      SORETHROAT: "گلا خراب",
+      NASALCONGESTION: "نزلہ",
+      SHORTNESSOFBREATH: " سانس لینے میں دقت",
+      REDNESSOFEYES: "پیچش",
+      DIARRHEA: " آنکھوں کی لالی",
       OTHERSYMPTOMS: "اس کے علاوہ بیماری کی کوئی علامات",
       OTHERSYMPTOMSEAMPLE: "e.g جیسے دل کی کمزوری"
     }
   },
   Symptom: {
-    symptomName: "Fever",
-    symptomNumber: "Symptom 1",
+    symptomName: "بخار",
+    symptomNumber: "علامت 1",
     symptomValue: "fever",
-    symptomLable: "fever"
+    symptomLable: "بخار"
   },
   QUESTIONS_LIST: {
     PrecautionsInit: [
