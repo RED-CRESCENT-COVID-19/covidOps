@@ -13,7 +13,7 @@ import { Heading, CardView } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
-export default class MemeberDetails extends Component {
+export default class MemberDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {

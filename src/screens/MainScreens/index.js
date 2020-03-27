@@ -9,7 +9,7 @@ import Response from "./Response";
 import Symptoms from "./Symptoms";
 import OtherSymptoms from "./OtherSymptoms";
 import Temperature from "./Temperature";
-import MemeberDetails from "./MemeberDetails";
+import MemberDetails from "./MemberDetails";
 import Information from "./Information";
 import HandWash from "./HandWash";
 import SMSService from "./SMSService";
@@ -28,7 +28,7 @@ export {
   Response,
   Symptoms,
   Temperature,
-  MemeberDetails,
+  MemberDetails,
   Information,
   HandWash,
   OtherSymptoms,

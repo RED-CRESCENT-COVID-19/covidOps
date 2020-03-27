@@ -15,7 +15,7 @@ import {
   Response,
   Symptoms,
   Temperature,
-  MemeberDetails,
+  MemberDetails,
   Information,
   OtherSymptoms,
   SMSService,
@@ -88,7 +88,7 @@ const MainNavigation = () => {
       />
       <MainStack.Screen
         name="MemberDetails"
-        component={MemeberDetails}
+        component={MemberDetails}
         options={{ headerShown: false }}
       />
       <MainStack.Screen
