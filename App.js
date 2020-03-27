@@ -4,14 +4,12 @@ import * as Font from "expo-font";
 import I18n from "./src/plugins/I18n";
 import * as Localization from "expo-localization";
 
-import configureStore from "./src/store";
+import createStore from './src/reducers'
 import AppNavigator from "./src/navigation/AppNavigator";
 
-const initialState = {};
-const store = configureStore(
-  initialState
-  //history
-);
+ 
+ const store = createStore()
+
 export const LocalizationContext = React.createContext();
 
 export default function App() {
