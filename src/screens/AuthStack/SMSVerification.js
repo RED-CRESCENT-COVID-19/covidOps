@@ -5,6 +5,7 @@ import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import CountDown from "react-native-countdown-component";
 
+import MyContext from '../../context/MyContext'
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -21,7 +22,7 @@ const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = { pin: ''};
+    this.state = { pin: '',hogiya:''};
   }
 
 
@@ -35,6 +36,8 @@ export default class SMSVerification extends Component {
       .then((response) => {
         if(response.status == 200) {
            (async (token) => await AsyncStorage.setItem('AuthToken',token) )(response.data.auth_token);
+          //  const {setAuth} = React.useContext(MyContext)
+           console.log(this.context(false))
         } else {
           var message = ''
           if(response.status == 400) {
