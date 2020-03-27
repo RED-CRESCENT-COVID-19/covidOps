@@ -16,8 +16,7 @@ import {
 //Theme
 import { Styles, Colors } from "../../../theme";
 
-import Http from '../../services/HttpService';
-
+import Http from "../../services/HttpService";
 
 const WRITING_STYLE = I18n.locale;
 
@@ -79,7 +78,7 @@ export default class HealthScan extends Component {
             onPress={this.handleHouseHoldHistory}
           />
         </View>
-        <Text style={[screenStyles.titleLabel, style]}>
+        <Text style={[screenStyles.titleLabel, style, { paddingRight: 35 }]}>
           {I18n.t(`Labels.SCANNINGSUMMARY`)}
         </Text>
 

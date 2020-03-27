@@ -11,7 +11,11 @@ const WRITING_STYLE = I18n.locale;
 const CalculationLabel = props => {
   const style =
     WRITING_STYLE === "ur"
-      ? { writingDirection: Styles.rtlWritingStyle, alignSelf: "flex-end" }
+      ? {
+          writingDirection: Styles.rtlWritingStyle,
+          alignSelf: "flex-end",
+          paddingRight: 35
+        }
       : {};
   return (
     <View style={[screenStyles.labelContainer, style]}>
@@ -28,7 +32,6 @@ const screenStyles = StyleSheet.create({
     color: Colors.primaryColor,
     paddingLeft: 35,
     fontSize: 30
-    // writingDirection: "rtl"
   },
   secondaryText: {
     paddingTop: 6,
