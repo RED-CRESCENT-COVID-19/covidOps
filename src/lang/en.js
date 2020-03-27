@@ -30,7 +30,9 @@ export default {
     ADDMEMEBERS: "Add Memebers",
     RESEND: "Resend",
     DONE: "DONE",
-    CANCEL: "CANCEL"
+    CANCEL: "CANCEL",
+    TRANSLATION: "اردو",
+    LOGOUT: "LOG OUT"
   },
   Paragarphs: {
     SMSSERVICE:

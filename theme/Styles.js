@@ -81,6 +81,16 @@ const Styles = StyleSheet.create({
     bottom: 20,
     width: "100%"
   },
+  changeLanguagebuttonsContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    padding: 20,
+    paddingTop: 40,
+    position: "relative",
+    bottom: 20,
+    width: "100%"
+  },
   largebuttonsContainer: {
     padding: 10,
     paddingLeft: 45,

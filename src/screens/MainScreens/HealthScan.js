@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
+import { RaisedTextButton } from "react-native-material-buttons";
+
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -12,26 +14,44 @@ import {
   CalculationLabel
 } from "../../components";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
+
 export default class HealthScan extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: true
+    };
+  }
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
   handleHouseHoldHistory = () => {
     this.props.navigation.navigate("HouseholdHistory");
   };
+  onChangeLanguage() {
+    console.log("onchange I18n.locale is: ", I18n.locale);
+    I18n.locale = "en";
+  }
+  onHandleChange() {
+    console.log("onHandleChange");
+    this.setState({
+      isAuthenticated: !this.state.isAuthenticated
+    });
+  }
   render() {
+    const { isAuthenticated } = this.state;
     const homeIcon = require("../../../assets/images/home.png");
     const historyIcon = require("../../../assets/images/history.png");
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HEALTHSCAN`)} />
         <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.HEALTHSCAN`)}
-          {/* {I18n.t(`Paragarphs.HEALTHSCAN`)} */}
         </Text>
         <CardView Styles={Styles.Spacer50} />
         <View style={Styles.largebuttonsContainer}>
@@ -68,6 +88,26 @@ export default class HealthScan extends Component {
           value={73}
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
+        <View style={Styles.changeLanguagebuttonsContainer}>
+          {isAuthenticated && (
+            <RaisedTextButton
+              title={I18n.t(`ButtonTitles.LOGOUT`)}
+              color={Colors.secondaryColor}
+              titleColor={Colors.buttonTextColor}
+              shadeBorderRadius={1.5}
+              style={Styles.smallButton}
+              onPress={() => this.onHandleChange()}
+            />
+          )}
+          <RaisedTextButton
+            title={I18n.t(`ButtonTitles.TRANSLATION`)}
+            color={Colors.primaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.onChangeLanguage()}
+          />
+        </View>
       </View>
     );
   }
