@@ -1,5 +1,4 @@
 import axios from 'axios'
-import configKeys from '../config'
 import {AsyncStorage} from 'react-native'
 import UUIDGenerator from 'react-native-uuid-generator';
 export function createHome(home){
