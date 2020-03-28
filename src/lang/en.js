@@ -156,13 +156,14 @@ export default {
     Precautions: [
       {
         Question:
-          "Have you travelled to a coronavirus infected area in the past month?",
+          "Have you contacted anyone that might have the coronavirus infection?",
         Answer: ``
-      },
-
+      }
+    ],
+    NewPrecautions: [
       {
         Question:
-          "Have you contacted anyone that might have the coronavirus infection?",
+          "Have you travelled to a coronavirus infected area in the past month?",
         Answer: ``
       }
     ],

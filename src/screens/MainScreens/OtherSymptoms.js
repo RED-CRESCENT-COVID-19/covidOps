@@ -17,6 +17,9 @@ export default class OtherSymptoms extends Component {
   onNextButton() {
     this.props.navigation.navigate("Temperature");
   }
+  onBackButtonClick() {
+    this.props.navigation.navigate("Symptoms");
+  }
   onSubmit() {
     Keyboard.dismiss();
   }
@@ -56,6 +59,7 @@ export default class OtherSymptoms extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={() => this.onBackButtonClick()}
           />
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.NEXT`)}

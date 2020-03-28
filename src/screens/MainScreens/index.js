@@ -6,6 +6,7 @@ import HouseholdNumber from "./HouseholdNumber";
 import LocationData from "./LocationData";
 import Precautions from "./Precautions";
 import PrecautionsInit from "./PrecautionsInit";
+import NewPrecautions from "./NewPrecautions";
 import Response from "./Response";
 import Symptoms from "./Symptoms";
 import OtherSymptoms from "./OtherSymptoms";
@@ -27,6 +28,7 @@ export {
   LocationData,
   Precautions,
   PrecautionsInit,
+  NewPrecautions,
   Response,
   Symptoms,
   Temperature,
