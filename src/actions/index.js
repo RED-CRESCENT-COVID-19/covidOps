@@ -23,7 +23,7 @@ export function createHome(memeber){
         return uuid
     });
     return (dispatch)=>{
-        retrun (axios.post('http://54.224.84.138:3000/v1/house',memeber)
+        retrun (axios.post('http://54.224.84.138:3000/v1/person',memeber)
             .then((response) => {
                 console.log(response)
             })
