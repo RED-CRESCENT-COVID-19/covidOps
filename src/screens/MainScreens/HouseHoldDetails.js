@@ -24,36 +24,36 @@ const { height, width } = Dimensions.get("window");
 const WRITING_STYLE = I18n.locale;
 
 const DATA = [
-  {
-    name: "Rizwan",
-    cnic: "4352345245",
-    id: "435224434565"
-  },
-  {
-    name: "Zaheer",
-    cnic: "4352256745",
-    id: "43522ds45"
-  },
-  {
-    name: "Ahmed",
-    cnic: "435wer2245",
-    id: "435223424522"
-  },
-  {
-    name: "faysal",
-    cnic: "4352342245",
-    id: "435223424542"
-  },
-  {
-    name: "fazlo",
-    cnic: "4352342245",
-    id: "435223424512"
-  },
-  {
-    name: "adfadf",
-    cnic: "435224234325",
-    id: "4352223445"
-  }
+  // {
+  //   name: "Rizwan",
+  //   cnic: "4352345245",
+  //   id: "435224434565"
+  // },
+  // {
+  //   name: "Zaheer",
+  //   cnic: "4352256745",
+  //   id: "43522ds45"
+  // },
+  // {
+  //   name: "Ahmed",
+  //   cnic: "435wer2245",
+  //   id: "435223424522"
+  // },
+  // {
+  //   name: "faysal",
+  //   cnic: "4352342245",
+  //   id: "435223424542"
+  // },
+  // {
+  //   name: "fazlo",
+  //   cnic: "4352342245",
+  //   id: "435223424512"
+  // },
+  // {
+  //   name: "adfadf",
+  //   cnic: "435224234325",
+  //   id: "4352223445"
+  // }
 ];
 
 const homeIcon = require("../../../assets/images/home.png");
