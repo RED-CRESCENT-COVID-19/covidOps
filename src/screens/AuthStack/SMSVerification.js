@@ -5,7 +5,7 @@ import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import CountDown from "react-native-countdown-component";
 
-import MyContext from '../../context/MyContext'
+import Loader from "../../components/Loader";
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -22,7 +22,7 @@ const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = { pin: '',hogiya:''};
+    this.state = { pin: '',hogiya:'', isLoading: false};
   }
 
 
@@ -33,8 +33,12 @@ export default class SMSVerification extends Component {
     var phone = params.phone
     var pin = this.state.pin;
 
+    this.setState({isLoading: true});
+
     Http.post('auth/pin-validation', { phone: phone, pin: pin })
       .then((response) => {
+        this.setState({isLoading: false});
+
         if(response.status == 200) {
            (async (token) => await AsyncStorage.setItem('AuthToken',token) )(response.data.auth_token);
           //  const {setAuth} = React.useContext(MyContext)
@@ -57,6 +61,8 @@ export default class SMSVerification extends Component {
         }
         // console.log(response);
       }).catch((err) => {
+        this.setState({isLoading: false});
+
         console.log(err);
       });
     //store Aysc value isAuthenticated == true
@@ -78,6 +84,14 @@ export default class SMSVerification extends Component {
     );
   }
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = ( <Loader/>);
+    } else {
+      loader = <View />;
+    }
+
+
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -133,6 +147,7 @@ export default class SMSVerification extends Component {
             onPress={this.handleContinue}
           />
         </View>
+        {loader}
       </View>
     );
   }
