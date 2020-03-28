@@ -24,7 +24,6 @@ export default class OtherSymptoms extends Component {
     Keyboard.dismiss();
   }
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
 
@@ -46,7 +45,7 @@ export default class OtherSymptoms extends Component {
             formatText={this.formatText}
             multiline
             returnKeyType={"done"}
-            inputContainerStyle={screenStyles.inputContainerStyle}
+            // inputContainerStyle={screenStyles.inputContainerStyle}
             onSubmitEditing={this.onSubmit}
             onBlur={() => this.onBlur()}
           />
@@ -80,9 +79,5 @@ const screenStyles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 35,
     paddingRight: 35
-  },
-  inputContainerStyle: {
-    height: 200,
-    paddingBottom: 160
   }
 });

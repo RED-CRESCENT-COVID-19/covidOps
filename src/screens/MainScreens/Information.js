@@ -40,8 +40,6 @@ export default class Information extends Component {
   }
   render() {
     const { activeQuestion } = this.state;
-    console.log("activeQuestion state is: ", activeQuestion);
-    console.log("QUESTIONS_LIST.length is: ", QUESTIONS_LIST.length);
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`Paragarphs.INFORMATIONCARE.TTITLE`)} />

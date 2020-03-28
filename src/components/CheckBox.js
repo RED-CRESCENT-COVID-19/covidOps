@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { Checkbox } from "react-native-material-ui";
 
 import Line from "./Line";
@@ -28,9 +28,7 @@ class CheckBox extends Component {
             uncheckedIcon={"check-box-outline-blank"}
             onCheck={() => {
               this.setState({ isChecked: !isChecked });
-              console.log("on check is calling!");
             }}
-            // size={10}
             style={{ icon: Styles.checkBoxStyle }}
           />
         </View>

@@ -8,8 +8,8 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading, CardView } from "../../components";
+
 import Loader from "../../components/Loader";
 //Theme
 
@@ -53,7 +53,19 @@ export default class PhoneVerification extends Component {
       .catch(err => {
         this.setState({ isLoading: false });
 
-        console.log(err);
+        Alert.alert(
+          `error!`,
+          `${err}`,
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ],
+          { cancelable: false }
+        );
       });
   };
   handleContinue = () => {

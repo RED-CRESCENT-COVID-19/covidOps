@@ -27,8 +27,6 @@ export default class SMSVerification extends Component {
 
   handleContinue = () => {
     const { params } = this.props.route;
-    console.log(this.props, "l");
-
     var phone = params.phone;
     var pin = this.state.pin;
 
@@ -43,7 +41,6 @@ export default class SMSVerification extends Component {
             response.data.auth_token
           );
           //  const {setAuth} = React.useContext(MyContext)
-          //  console.log(this.context(false))
           this.props.setAuth(true);
         } else {
           var message = "";
@@ -59,12 +56,23 @@ export default class SMSVerification extends Component {
             { cancelable: false }
           );
         }
-        // console.log(response);
       })
       .catch(err => {
         this.setState({ isLoading: false });
 
-        console.log(err);
+        Alert.alert(
+          "error!",
+          `${err}`,
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ],
+          { cancelable: false }
+        );
       });
     //store Aysc value isAuthenticated == true
     // this.props.navigation.navigate("LocationData");

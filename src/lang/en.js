@@ -14,7 +14,8 @@ export default {
     HOME: "MS-XXXXX-XX",
     HOMEHOLD: "Household Details",
     SMSSERVICE: "SMS Notifications",
-    CONFIRMENTERY: "Confirm Entry"
+    CONFIRMENTERY: "Confirm Entry",
+    NEWPRECAUTIONS: "Miscellaneous"
   },
   Alert: {
     HOUSEHOLDDETAIL: {
@@ -164,6 +165,10 @@ export default {
       {
         Question:
           "Have you travelled to a coronavirus infected area in the past month?",
+        Answer: ``
+      },
+      {
+        Question: `Have you been in contact with someone who has been diagnosed with COVID-19?`,
         Answer: ``
       }
     ],

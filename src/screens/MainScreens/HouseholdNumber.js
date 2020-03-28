@@ -24,7 +24,6 @@ export default class HouseholdNumber extends Component {
   };
 
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
 
@@ -32,7 +31,6 @@ export default class HouseholdNumber extends Component {
     let { current: field } = this.fieldRef;
     Keyboard.dismiss();
     this.setState({ temperature: field.value() });
-    console.log("field.value()", field.value());
   };
 
   render() {
@@ -46,22 +44,20 @@ export default class HouseholdNumber extends Component {
 
         <CardView Styles={Styles.Spacer50} />
 
-        <View style={screenStyles.textInput}>
-          <OutlinedTextField
-            label={I18n.t(`Paragarphs.HOUSEHOLDNUMBERADDRESS`)}
-            // activeLineWidth={20}
-            placeholder={" "}
-            tintColor={Colors.primaryColor}
-            formatText={this.formatText}
-            multiline
-            returnKeyType={"done"}
-            inputContainerStyle={screenStyles.inputContainerStyle}
-            onSubmitEditing={this.onSubmit}
-            onBlur={() => this.onBlur()}
-            ref={this.fieldRef}
-          />
-        </View>
-        <Text style={screenStyles.textInput}>
+        <OutlinedTextField
+          label={I18n.t(`Paragarphs.HOUSEHOLDNUMBERADDRESS`)}
+          placeholder={" "}
+          tintColor={Colors.primaryColor}
+          formatText={this.formatText}
+          multiline
+          returnKeyType={"done"}
+          inputContainerStyle={screenStyles.inputContainerStyle}
+          onSubmitEditing={this.onSubmit}
+          onBlur={() => this.onBlur()}
+          ref={this.fieldRef}
+        />
+
+        <Text style={screenStyles.centerText}>
           {I18n.t(`Paragarphs.HOUSEHOLDNUMBERQUESTION`)}
         </Text>
 
@@ -92,11 +88,15 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
+    paddingRight: 35
+  },
+  centerText: {
+    paddingTop: 20,
+    paddingLeft: 35,
     paddingRight: 35,
     textAlign: "center"
   },
   inputContainerStyle: {
-    height: 200,
-    paddingBottom: 160
+    margin: 35
   }
 });

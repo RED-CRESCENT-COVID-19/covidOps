@@ -24,7 +24,6 @@ export default class SMSService extends Component {
     Keyboard.dismiss();
   }
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
   onTimerFinish() {

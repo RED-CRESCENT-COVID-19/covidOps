@@ -46,8 +46,6 @@ export default class MemberDetails extends Component {
   }
   genderButtonClick(type) {
     const { selectedGenderType, isButtonActive } = this.state;
-    console.log("selectedGenderType is: ", selectedGenderType);
-    console.log("type is: ", type);
     if (type !== selectedGenderType) {
       this.setState({
         selectedGenderType: type,
@@ -58,11 +56,9 @@ export default class MemberDetails extends Component {
   onSubmit = () => {
     let { current: field } = this.fieldRef;
     this.setState({ temperature: field.value() });
-    console.log("field.value()", field.value());
   };
 
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
   formatText = text => {

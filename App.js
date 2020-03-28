@@ -29,7 +29,6 @@ export default function App() {
   );
 
   useEffect(() => {
-    console.log("useEffect lang: is: ", I18n.locale);
     Font.loadAsync({
       "noto-nastaliq": require("./assets/fonts/NotoNastaliqUrdu-Regular.ttf")
     });
