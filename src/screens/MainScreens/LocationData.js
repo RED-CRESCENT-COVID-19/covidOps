@@ -54,6 +54,19 @@ export default class LocationData extends Component {
       });
     } catch (error) {
       console.log("catch error is: ", error);
+      Alert.alert(
+        `${error}`,
+        "Please head over to setting & enable or disbale the location",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+      );
     }
   };
   handleContinue = () => {
@@ -66,8 +79,6 @@ export default class LocationData extends Component {
     } else if (this.state.location) {
       text = JSON.stringify(this.state.location);
     }
-
-    console.log("render location is: ", this.props.location);
 
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
 
