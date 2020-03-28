@@ -24,7 +24,6 @@ export default class OtherSymptoms extends Component {
     Keyboard.dismiss();
   }
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
 

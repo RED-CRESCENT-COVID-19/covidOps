@@ -24,7 +24,6 @@ export default class HouseholdNumber extends Component {
   };
 
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
 
@@ -32,7 +31,6 @@ export default class HouseholdNumber extends Component {
     let { current: field } = this.fieldRef;
     Keyboard.dismiss();
     this.setState({ temperature: field.value() });
-    console.log("field.value()", field.value());
   };
 
   render() {

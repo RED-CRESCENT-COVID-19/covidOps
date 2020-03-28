@@ -22,18 +22,14 @@ export function addFirstCode(payload) {
 }
 
 export function verificationCode(code) {
-  console.log("verifyCode is calling with code is: ", code);
   return function(dispatch) {
     dispatch(handleIsLoading(true));
     return HS.post("/verificationCode", { code: code })
       .then(res => {
-        console.log("verifyCode is response is: ", res);
-
         dispatch(handleIsLoading(false));
         dispatch(verifyCode(true));
       })
       .catch(e => {
-        console.log("verificationCode error is: ", e.response.data.message);
         dispatch(handleIsLoading(false));
         dispatch(
           handleError({ errorMessage: e.response.data.message, error: true })

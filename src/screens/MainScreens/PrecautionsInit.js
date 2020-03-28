@@ -31,8 +31,6 @@ export default class Precautions extends Component {
   }
   render() {
     const { activeQuestion } = this.state;
-    console.log("activeQuestion state is: ", activeQuestion);
-    console.log("QUESTIONS_LIST.length is: ", QUESTIONS_LIST.length);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>

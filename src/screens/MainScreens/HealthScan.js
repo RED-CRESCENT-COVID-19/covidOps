@@ -31,20 +31,20 @@ export default class HealthScan extends Component {
   }
 
   async componentDidMount() {
-    const token = await AsyncStorage.getItem('AuthToken') 
-    Http.get('stats', {}, { headers: { 'access-token': token } })
-      .then((response) => {
-        if(response.status == 200) {
+    const token = await AsyncStorage.getItem("AuthToken");
+    Http.get("stats", {}, { headers: { "access-token": token } })
+      .then(response => {
+        if (response.status == 200) {
           this.setState({
             persons: response.data.person_count,
-            houses: response.data.house_count,
-          })
+            houses: response.data.house_count
+          });
         } else {
           //TODO:: Redirect Back to login screen
         }
-      }).catch(err => {}) 
+      })
+      .catch(err => {});
   }
-
 
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
@@ -53,17 +53,17 @@ export default class HealthScan extends Component {
     this.props.navigation.navigate("HouseholdHistory");
   };
   onChangeLanguage() {
-    console.log("onchange I18n.locale is: ", I18n.locale);
     I18n.locale = "en";
   }
   async onHandleChange() {
-    const token = await AsyncStorage.getItem('AuthToken') 
-    await AsyncStorage.removeItem('AuthToken') 
-    Http.delete('auth/logout', {}, { headers: { 'access-token': token } })
-      .then((response) => {
+    const token = await AsyncStorage.getItem("AuthToken");
+    await AsyncStorage.removeItem("AuthToken");
+    Http.delete("auth/logout", {}, { headers: { "access-token": token } })
+      .then(response => {
         this.props.setAuth(false);
-        //TODO:: Redirect back to login, clear token  
-      }).catch(err => {}) 
+        //TODO:: Redirect back to login, clear token
+      })
+      .catch(err => {});
 
     this.setState({
       isAuthenticated: !this.state.isAuthenticated
@@ -117,16 +117,15 @@ export default class HealthScan extends Component {
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
         <View style={Styles.changeLanguagebuttonsContainer}>
-          
-            <RaisedTextButton
-              title={I18n.t(`ButtonTitles.LOGOUT`)}
-              color={Colors.buttonTextColor}
-              titleColor={Colors.secondaryColor}
-              shadeBorderRadius={1.5}
-              style={Styles.smallButton}
-              onPress={() => this.onHandleChange()}
-            />
-          
+          <RaisedTextButton
+            title={I18n.t(`ButtonTitles.LOGOUT`)}
+            color={Colors.buttonTextColor}
+            titleColor={Colors.secondaryColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.onHandleChange()}
+          />
+
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.TRANSLATION`)}
             color={Colors.secondaryColor}

@@ -33,11 +33,9 @@ export default class Temperature extends Component {
     this.props.navigation.navigate("NewPrecautions");
   };
   onChangeText(e) {
-    console.log("temperature is: ", e);
     this.setState({ temperature: e });
   }
   onBlur() {
-    console.log("onBlur");
     Keyboard.dismiss();
   }
   formatText = text => {
@@ -46,13 +44,10 @@ export default class Temperature extends Component {
   onSubmit = () => {
     let { current: field } = this.fieldRef;
     this.setState({ temperature: field.value() });
-    console.log("field.value()", field.value());
   };
 
   temperatureButtonClick(type) {
     const { selectedTemperatureButton, isButtonActive } = this.state;
-    console.log("selectedTemperatureButton is: ", selectedTemperatureButton);
-    console.log("type is: ", type);
     if (type !== selectedTemperatureButton) {
       this.setState({
         selectedTemperatureButton: type,
