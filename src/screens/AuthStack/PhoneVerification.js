@@ -10,6 +10,7 @@ import I18n from "../../plugins/I18n";
 //Custom Components
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
+import Loader from "../../components/Loader";
 //Theme
 
 // Service
@@ -21,14 +22,17 @@ const WRITING_STYLE = I18n.locale;
 export default class PhoneVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = { phone: "" };
+    this.state = { phone: "", loader: false };
   }
 
   onSubmit = () => {
     // this.props.navigation.navigate("SMSVerify", {phone: '03065555700'});
     var phone = this.state.phone;
+    this.setState({ isLoading: true });
     Http.post("auth/phone", { phone: phone })
       .then(response => {
+        this.setState({ isLoading: false });
+
         if (response.status == 204) {
           this.props.navigation.navigate("SMSVerify", { phone: phone });
         } else {
@@ -47,6 +51,8 @@ export default class PhoneVerification extends Component {
         }
       })
       .catch(err => {
+        this.setState({ isLoading: false });
+
         console.log(err);
       });
   };
@@ -57,6 +63,13 @@ export default class PhoneVerification extends Component {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -90,6 +103,7 @@ export default class PhoneVerification extends Component {
             onPress={this.onSubmit}
           />
         </View>
+        {loader}
       </View>
     );
   }

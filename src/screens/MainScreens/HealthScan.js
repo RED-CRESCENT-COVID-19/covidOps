@@ -58,6 +58,7 @@ export default class HealthScan extends Component {
   }
   async onHandleChange() {
     const token = await AsyncStorage.getItem('AuthToken') 
+    await AsyncStorage.removeItem('AuthToken') 
     Http.delete('auth/logout', {}, { headers: { 'access-token': token } })
       .then((response) => {
         this.props.setAuth(false);
