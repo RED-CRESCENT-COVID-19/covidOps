@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, AsyncStorage } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -24,9 +24,28 @@ export default class HealthScan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: true
+      isAuthenticated: true,
+      persons: 0,
+      houses: 0
     };
   }
+
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem('AuthToken') 
+    Http.get('stats', {}, { headers: { 'access-token': token } })
+      .then((response) => {
+        if(response.status == 200) {
+          this.setState({
+            persons: response.data.person_count,
+            houses: response.data.house_count,
+          })
+        } else {
+          //TODO:: Redirect Back to login screen
+        }
+      }).catch(err => {}) 
+  }
+
+
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
@@ -37,8 +56,14 @@ export default class HealthScan extends Component {
     console.log("onchange I18n.locale is: ", I18n.locale);
     I18n.locale = "en";
   }
-  onHandleChange() {
-    console.log("onHandleChange");
+  async onHandleChange() {
+    const token = await AsyncStorage.getItem('AuthToken') 
+    Http.delete('auth/logout', {}, { headers: { 'access-token': token } })
+      .then((response) => {
+        this.props.setAuth(false);
+        //TODO:: Redirect back to login, clear token  
+      }).catch(err => {}) 
+
     this.setState({
       isAuthenticated: !this.state.isAuthenticated
     });
@@ -83,15 +108,15 @@ export default class HealthScan extends Component {
         </Text>
 
         <CalculationLabel
-          value={15}
+          value={this.state.persons}
           secondaryText={I18n.t(`Labels.HOUSEHOLDSCANNED`)}
         />
         <CalculationLabel
-          value={73}
+          value={this.state.houses}
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
         <View style={Styles.changeLanguagebuttonsContainer}>
-          {isAuthenticated && (
+          
             <RaisedTextButton
               title={I18n.t(`ButtonTitles.LOGOUT`)}
               color={Colors.buttonTextColor}
@@ -100,7 +125,7 @@ export default class HealthScan extends Component {
               style={Styles.smallButton}
               onPress={() => this.onHandleChange()}
             />
-          )}
+          
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.TRANSLATION`)}
             color={Colors.secondaryColor}

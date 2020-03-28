@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Alert } from "react-native";
+import { Text, StyleSheet, View, Alert, AsyncStorage } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import CountDown from "react-native-countdown-component";
 
+import MyContext from '../../context/MyContext'
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -21,11 +22,13 @@ const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = { pin: ''};
+    this.state = { pin: '',hogiya:''};
   }
+
 
   handleContinue = () => {
     const { params } = this.props.route;
+    console.log(this.props, 'l')
 
     var phone = params.phone
     var pin = this.state.pin;
@@ -33,11 +36,10 @@ export default class SMSVerification extends Component {
     Http.post('auth/pin-validation', { phone: phone, pin: pin })
       .then((response) => {
         if(response.status == 200) {
-          console.log(response.data.auth_token);
-          // this.props.navigation.navigate("HealthScan");
-          //TODO:: save token in async storage
-          //TODO:: redirect to health scan screen
-          // this.props.navigation.navigate("SMSVerify", {phone: phone});
+           (async (token) => await AsyncStorage.setItem('AuthToken',token) )(response.data.auth_token);
+          //  const {setAuth} = React.useContext(MyContext)
+          //  console.log(this.context(false))
+          this.props.setAuth(true);
         } else {
           var message = ''
           if(response.status == 400) {
