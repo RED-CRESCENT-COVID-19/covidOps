@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -17,43 +17,73 @@ const WRITING_STYLE = I18n.locale;
 const SYMPTOMS_LIST = [
   {
     symptomNumber: "علامت ",
-    symptomName: "بخار",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FEVER`),
     value: "fever",
     isChecked: false
   },
   {
     symptomNumber: "علامت ",
-    symptomName: "چھینکنے",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DRYCOUGH`),
     value: "dry cough",
     isChecked: false
   },
   {
     symptomNumber: "علامت ",
-    symptomName: "کھانسنے",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SPUTUMPRODUCTION`),
     value: "dry cough",
     isChecked: false
   },
   {
     symptomNumber: "علامت ",
-    symptomName: "سانس لینے میں دقت",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.BLOODINCOUGH`),
     value: "Shortness of breath",
     isChecked: false
   },
   {
     symptomNumber: "علامت ",
-    symptomName: "تھکاوٹ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FATIGUE`),
     value: "body pain",
     isChecked: false
   },
   {
     symptomNumber: "علامت ",
-    symptomName: "نزلہ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
     value: "flu",
     isChecked: false
   },
   {
     symptomNumber: "علامت ",
-    symptomName: "تھکاوٹ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.BODYPAIN`),
+    value: "diarrhea",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SORETHROAT`),
+    value: "diarrhea",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.NASALCONGESTION`),
+    value: "diarrhea",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SHORTNESSOFBREATH`),
+    value: "diarrhea",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.REDNESSOFEYES`),
+    value: "diarrhea",
+    isChecked: false
+  },
+  {
+    symptomNumber: "علامت ",
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DIARRHEA`),
     value: "diarrhea",
     isChecked: false
   }
