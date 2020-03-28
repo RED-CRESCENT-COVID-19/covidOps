@@ -16,73 +16,73 @@ const WRITING_STYLE = I18n.locale;
 
 const SYMPTOMS_LIST = [
   {
-    symptomNumber: "علامت ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.FEVER`),
-    value: "fever",
+    value: "Fever",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.DRYCOUGH`),
-    value: "dry cough",
+    value: "Dry Cough",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.SPUTUMPRODUCTION`),
-    value: "dry cough",
+    value: "Sputum production",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.BLOODINCOUGH`),
+    value: "Blood in cough",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FATIGUE`),
+    value: "Fatigue",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
+    value: "Headache",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.BODYPAIN`),
+    value: "Body pain",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SORETHROAT`),
+    value: "Sore throat",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.NASALCONGESTION`),
+    value: "Nasal congestion",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SHORTNESSOFBREATH`),
     value: "Shortness of breath",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.FATIGUE`),
-    value: "body pain",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
-    value: "flu",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.BODYPAIN`),
-    value: "diarrhea",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.SORETHROAT`),
-    value: "diarrhea",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.NASALCONGESTION`),
-    value: "diarrhea",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.SHORTNESSOFBREATH`),
-    value: "diarrhea",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.REDNESSOFEYES`),
-    value: "diarrhea",
+    value: "Redness of eyes",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.DIARRHEA`),
     value: "diarrhea",
     isChecked: false
