@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, AsyncStorage } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -39,6 +39,7 @@ export default class LocationData extends Component {
   _getLocationAsync = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      await AsyncStorage.setItem("LocationStatus", status);
       if (status !== "granted") {
         this.setState({
           errorMessage: "Permission to access location was denied"
