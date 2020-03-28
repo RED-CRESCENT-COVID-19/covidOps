@@ -76,7 +76,6 @@ export default class LocationData extends Component {
         <Heading headerText={I18n.t(`headings.LOCATIONDATA`)} />
         <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.LOCATIONDATA`)}
-          lat: {this.state.lat} + lng: {this.state.lng}
         </Text>
         <CardView Styles={Styles.Spacer300} />
         <CardView Styles={Styles.Spacer100} />
