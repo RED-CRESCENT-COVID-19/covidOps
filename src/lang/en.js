@@ -16,6 +16,12 @@ export default {
     SMSSERVICE: "SMS Notifications",
     CONFIRMENTERY: "Confirm Entry"
   },
+  Alert: {
+    HOUSEHOLDDETAIL: {
+      TITLE: `Are you sure you want to delete this?`,
+      DETAIL: ""
+    }
+  },
   ButtonTitles: {
     CONTINUE: "Continue",
     VERIFY: "Verify",

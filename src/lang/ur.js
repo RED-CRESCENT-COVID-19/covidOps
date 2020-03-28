@@ -16,6 +16,12 @@ export default {
     SMSSERVICE: "ایس۔ایم۔ایس سروس",
     CONFIRMENTERY: "اندراج کی تصدیق"
   },
+  Alert: {
+    HOUSEHOLDDETAIL: {
+      TITLE: "کیا آپ واقعی اسے منسوخ کرنا چاہتے ہیں؟",
+      DETAIL: ""
+    }
+  },
   ButtonTitles: {
     CONTINUE: "آگے",
     VERIFY: "تصدیق",

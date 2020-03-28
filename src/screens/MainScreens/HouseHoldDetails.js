@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView, Dimensions } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  ScrollView,
+  Dimensions,
+  Alert
+} from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -58,6 +65,25 @@ export default class HouseHoldDetails extends Component {
   handleDone = () => {
     this.props.navigation.navigate("PrecautionsInit");
   };
+
+  onCancle = () => {
+    Alert.alert(
+      I18n.t(`Alert.HOUSEHOLDDETAIL.TITLE`),
+      I18n.t(`Alert.HOUSEHOLDDETAIL.DETAIL`),
+      [
+        {
+          text: I18n.t(`ButtonTitles.CANCEL`),
+          onPress: () => console.log("cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: I18n.t(`ButtonTitles.YES`),
+          onPress: () => this.props.navigation.navigate("HealthScan")
+        }
+      ],
+      { cancelable: false }
+    );
+  };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
@@ -93,6 +119,7 @@ export default class HouseHoldDetails extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={this.onCancle}
           />
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.DONE`)}
