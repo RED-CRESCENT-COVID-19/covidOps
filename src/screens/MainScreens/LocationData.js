@@ -11,10 +11,10 @@ import * as Permissions from "expo-permissions";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading, CardView } from "../../components";
+
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
 export default class LocationData extends Component {
   constructor(props) {
@@ -39,7 +39,6 @@ export default class LocationData extends Component {
   _getLocationAsync = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
-      console.log("status is: ", status);
       if (status !== "granted") {
         this.setState({
           errorMessage: "Permission to access location was denied"
@@ -47,13 +46,11 @@ export default class LocationData extends Component {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log("get location is: ", location);
       this.setState({
         lat: location.coords.latitude,
         lng: location.coords.longitude
       });
     } catch (error) {
-      console.log("catch error is: ", error);
       Alert.alert(
         `${error}`,
         "Please head over to setting & enable or disbale the location",
