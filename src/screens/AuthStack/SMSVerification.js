@@ -5,7 +5,7 @@ import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import CountDown from "react-native-countdown-component";
 
-import MyContext from '../../context/MyContext'
+import MyContext from "../../context/MyContext";
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -13,7 +13,7 @@ import I18n from "../../plugins/I18n";
 import Heading from "../../components/Heading";
 
 // Service
-import Http from '../../services/HttpService';
+import Http from "../../services/HttpService";
 
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
@@ -22,41 +22,42 @@ const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = { pin: '',hogiya:''};
+    this.state = { pin: "", hogiya: "" };
   }
-
 
   handleContinue = () => {
     const { params } = this.props.route;
-    console.log(this.props, 'l')
+    console.log(this.props, "l");
 
-    var phone = params.phone
+    var phone = params.phone;
     var pin = this.state.pin;
 
-    Http.post('auth/pin-validation', { phone: phone, pin: pin })
-      .then((response) => {
-        if(response.status == 200) {
-           (async (token) => await AsyncStorage.setItem('AuthToken',token) )(response.data.auth_token);
+    Http.post("auth/pin-validation", { phone: phone, pin: pin })
+      .then(response => {
+        if (response.status == 200) {
+          (async token => await AsyncStorage.setItem("AuthToken", token))(
+            response.data.auth_token
+          );
           //  const {setAuth} = React.useContext(MyContext)
           //  console.log(this.context(false))
           this.props.setAuth(true);
         } else {
-          var message = ''
-          if(response.status == 400) {
-            message = response.data.details.errors.pin[0]
+          var message = "";
+          if (response.status == 400) {
+            message = response.data.details.errors.pin[0];
           } else {
-            message = response.data.message
+            message = response.data.message;
           }
           Alert.alert(
-            'Info',
-            message, [
-              {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
+            "Info",
+            message,
+            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
             { cancelable: false }
-          )
+          );
         }
         // console.log(response);
-      }).catch((err) => {
+      })
+      .catch(err => {
         console.log(err);
       });
     //store Aysc value isAuthenticated == true
@@ -90,11 +91,12 @@ export default class SMSVerification extends Component {
           <OutlinedTextField
             label={I18n.t(`Labels.VERIFICATIONCODE`)}
             keyboardType="phone-pad"
+            returnKeyType={"done"}
             // activeLineWidth={20}
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={pin => this.setState({pin: pin})}
+            onChangeText={pin => this.setState({ pin: pin })}
             maxLength={11}
             onSubmitEditing={this.onSubmit}
           />

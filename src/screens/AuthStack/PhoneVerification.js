@@ -13,7 +13,7 @@ import CardView from "../../components/CardView";
 //Theme
 
 // Service
-import Http from '../../services/HttpService';
+import Http from "../../services/HttpService";
 
 import { Styles, Colors } from "../../../theme";
 
@@ -21,32 +21,32 @@ const WRITING_STYLE = I18n.locale;
 export default class PhoneVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = { phone: ''};
+    this.state = { phone: "" };
   }
 
   onSubmit = () => {
     // this.props.navigation.navigate("SMSVerify", {phone: '03065555700'});
     var phone = this.state.phone;
-    Http.post('auth/phone', { phone: phone })
-      .then((response) => {
-        if(response.status == 204) {
-          this.props.navigation.navigate("SMSVerify", {phone: phone});
+    Http.post("auth/phone", { phone: phone })
+      .then(response => {
+        if (response.status == 204) {
+          this.props.navigation.navigate("SMSVerify", { phone: phone });
         } else {
-          var message = ''
-          if(response.status == 400) {
-            message = response.data.details.errors.phone[0]
+          var message = "";
+          if (response.status == 400) {
+            message = response.data.details.errors.phone[0];
           } else {
-            message = response.data.message
+            message = response.data.message;
           }
           Alert.alert(
-            'Info',
-            message, [
-              {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
+            "Info",
+            message,
+            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
             { cancelable: false }
-          )
+          );
         }
-      }).catch((err) => {
+      })
+      .catch(err => {
         console.log(err);
       });
   };
@@ -70,10 +70,11 @@ export default class PhoneVerification extends Component {
             label={I18n.t(`Labels.PHONENUMBER`)}
             keyboardType="phone-pad"
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
+            returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
-            onChangeText={phone => this.setState({phone: phone})}
+            onChangeText={phone => this.setState({ phone: phone })}
             maxLength={11}
             ref={this.phoneFieldRef}
           />
