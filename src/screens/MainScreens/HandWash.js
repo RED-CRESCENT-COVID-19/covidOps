@@ -4,11 +4,13 @@ import {
   Text,
   Dimensions,
   Image,
-  ImageBackground,
-  StyleSheet
+  StyleSheet,
+  Alert,
+  Easing
 } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
+import ImageZoom from "react-native-image-pan-zoom";
 
 // plugins
 import I18n from "../../plugins/I18n";
@@ -34,10 +36,13 @@ export default class HandWash extends Component {
   onNextButton() {
     this.props.navigation.navigate("SMSService");
   }
-  onBackButton() {}
+  onBackButton() {
+    this.props.navigation.navigate("Advisory");
+  }
 
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
     return (
       <View style={[Styles.container, { backgroundColor: "white" }]}>
         <Heading headerText={I18n.t(`Paragarphs.INFORMATIONCARE.TTITLE`)} />
@@ -46,7 +51,22 @@ export default class HandWash extends Component {
         </Text>
         <View style={Styles.Spacer20} />
         <View style={screenStyles.imageView}>
-          <Image style={screenStyles.handWashImage} source={Handwash} />
+          <ImageZoom
+            cropWidth={Dimensions.get("window").width}
+            cropHeight={Dimensions.get("window").height - 400}
+            imageWidth={350}
+            imageHeight={500}
+            onClick={() => alert("working!")}
+            maxScale={10}
+            panToMove
+            pinchToZoom
+            onDragLeft={() => alert("on drag left")}
+            onMove={position => {
+              console.log("on move", position);
+            }}
+          >
+            <Image style={screenStyles.handWashImage} source={Handwash} />
+          </ImageZoom>
         </View>
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
