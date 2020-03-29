@@ -12,12 +12,12 @@ import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
-import Loader from "../../components/Loader";
+
 // plugins
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { Heading, CardView } from "../../components";
+import { Heading, CardView, Loader } from "../../components";
 
 // Service
 import Http from "../../services/HttpService";
