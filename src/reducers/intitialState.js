@@ -1,7 +1,11 @@
 const initialState = {
+    message:'',
+    error:'',
+    loading:'',
+    data:{},
     house:{
+        address:'',
         houseId:'',
-        houseAddress:'',
         is_contacted:false,
         lat:'',
         lan:''

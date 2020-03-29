@@ -6,8 +6,8 @@ import memeberReducer from './memeberReducer'
 
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-      homeReducer,
-     memeberReducer,
+      home:homeReducer,
+     memeber:memeberReducer,
     ...injectedReducers
   });
 

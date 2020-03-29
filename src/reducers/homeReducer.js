@@ -3,9 +3,10 @@ import {
     CREATE_HOUSE,
     CREATE_HOUSE_SUCCESS,
     CREATE_HOUSE_FAIL 
-} from '../actions/types'
-export default (state = initialState, action) => {
-    console.log(action.type)
+} from '../actions/index'
+
+export default homeReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case CREATE_HOUSE:
             return { 

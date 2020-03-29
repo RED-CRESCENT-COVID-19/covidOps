@@ -2,19 +2,17 @@ import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import {createStore,applyMiddleware} from 'redux'
 import thunkMiddleware from "redux-thunk";
-import logger from 'redux-logger';
 import * as Font from "expo-font";
 import I18n from "./src/plugins/I18n";
 import * as Localization from "expo-localization";
 
 import AppNavigator from "./src/navigation/AppNavigator";
-import thunk from "redux-thunk";
-import rootReducer from './src/reducers'
+import rootReducer from './src/reducers/index'
 
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(logger,thunkMiddleware)
+  applyMiddleware(thunkMiddleware)
 );
 export const LocalizationContext = React.createContext();
 
@@ -35,10 +33,10 @@ export default function App() {
     });
   });
   return (
+    <Provider store={store}>
     <LocalizationContext.Provider value={localizationContext}>
-      <Provider store={store}>
         <AppNavigator />
-      </Provider>
     </LocalizationContext.Provider>
+     </Provider>
   );
 }

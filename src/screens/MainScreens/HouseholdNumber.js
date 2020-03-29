@@ -34,13 +34,11 @@ const WRITING_STYLE = I18n.locale;
       lng:this.state.lng,
       is_contacted:0
     };
-    
+    console.log(this.props)
     const token = this.state.token;
-    this.props.createHome(home,token)
-    console.log(this.state)
-    // actionCreators.createHome({},'asfsdfasdfdasfasd')
-    // this.props.createHome({},'asfsdfasdfdasfasd')
-    this.props.navigation.navigate("HouseHoldDetails");
+    this.props.createHome({home,token})
+   
+    // this.props.navigation.navigate("HouseHoldDetails");
   };
   handleBack = () => {
     this.props.navigation.goBack();
@@ -172,14 +170,16 @@ const screenStyles = StyleSheet.create({
     margin: 35
   }
 });
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    ...actionCreators
+    createHome:(home,token) => dispatch(actionCreators.createHome(home,token))
   }
 }
 
-const mapStateToProps = (state) => {
-  return {...state}
+const mapStateToProps = state => {
+ return {...state}
+    
 }
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(HouseholdNumber)
