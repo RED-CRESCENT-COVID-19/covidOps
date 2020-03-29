@@ -1,15 +1,19 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Keyboard, AsyncStorage } from "react-native";
+import { Text, StyleSheet, View, Keyboard, AsyncStorage, Alert } from "react-native";
 import {connect} from 'react-redux'
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
+import Loader from "../../components/Loader";
 // plugins
 import I18n from "../../plugins/I18n";
 
 //Custom Components
 import { Heading, CardView } from "../../components";
+
+// Service
+import Http from "../../services/HttpService";
 
 //Theme
 import { Styles, Colors } from "../../../theme";
@@ -23,23 +27,63 @@ const WRITING_STYLE = I18n.locale;
   
   constructor(props) {
     super(props);
-    this.state = { address: "", loader: false,is_contacted:false,id:'',lat:'',lng:'',token:'' };
+    this.state = { address: "", isLoading: false,is_contacted:false,id:'',lat:'',lng:'',token:'' };
   }
   fieldRef = React.createRef();
-  handleContinue = () => {  
+  
+  
+ handleContinue =   async () => {  
+    this._getsetID();
+    if(!this.state.address) {
+      this.fieldRef.focus();
+      return false;
+    }
     const home = {
       address:this.state.address,
       id:this.state.id,
       lat:this.state.lat,
       lng:this.state.lng,
-      is_contacted:0
+      is_contacted: 1
     };
-    console.log(this.props)
+
     const token = this.state.token;
-    this.props.createHome(home,token)
+    this.newHouseCreate(token, home, 1);
+    // this.props.createHome(home,token)
    
-    this.props.navigation.navigate("HouseHoldDetails");
+    // this.props.navigation.navigate("HouseHoldDetails");
   };
+
+  newHouseCreate = (token, data, isContacted) => {
+    this.setState({isLoading: true});
+    Http.post("house", data, { headers: { "access-token": token } })
+      .then(response => {
+        console.log(response);
+        this.setState({isLoading: false});
+
+        if (response.status == 201) {
+          if(isContacted) {
+            this.props.navigation.navigate("HouseHoldDetails", {houseID: data.id});
+          } else {
+            this.props.navigation.goBack();
+          }
+        } else {
+          this.setState({isLoading: false});
+          var message = response.data.message;
+          if(response.status == 400) {
+            message = response.data.details.errors.address[0];
+            
+          }
+          Alert.alert(
+            "Info",
+            message,
+            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            { cancelable: false }
+          );
+        }
+      })
+      .catch(err => {});
+  }
+
   handleBack = () => {
     this.props.navigation.goBack();
   };
@@ -98,6 +142,7 @@ const WRITING_STYLE = I18n.locale;
     let { current: field } = this.fieldRef;
     Keyboard.dismiss();
     this.setState({ address: field.value() });
+    console.log(field.value());
   };
   componentDidMount(){
     this._getsetID();
@@ -105,6 +150,13 @@ const WRITING_STYLE = I18n.locale;
     this.gettoken();
   }
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -123,8 +175,9 @@ const WRITING_STYLE = I18n.locale;
           returnKeyType={"done"}
           inputContainerStyle={screenStyles.inputContainerStyle}
           onSubmitEditing={this.onSubmit}
+          onChangeText={value => this.setState({address: value})}
           onBlur={() => this.onBlur()}
-          ref={this.fieldRef}
+          ref={(input) => { this.fieldRef = input; }}
         />
 
         <Text style={screenStyles.centerText}>
@@ -149,6 +202,7 @@ const WRITING_STYLE = I18n.locale;
             onPress={this.handleContinue}
           />
         </View>
+        {loader}
       </View>
     );
   }

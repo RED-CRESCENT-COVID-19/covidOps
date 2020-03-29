@@ -26,7 +26,7 @@ export default class PhoneVerification extends Component {
   }
 
   onSubmit = () => {
-    // this.props.navigation.navigate("SMSVerify", {phone: '03065555700'});
+    this.props.navigation.navigate("SMSVerify", {phone: '03065555700'});
     var phone = this.state.phone;
     this.setState({ isLoading: true });
     Http.post("auth/phone", { phone: phone })
