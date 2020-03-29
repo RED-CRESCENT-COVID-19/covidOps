@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Keyboard, AsyncStorage } from "react-native";
-import {connect} from 'react-redux'
+import {
+  Text,
+  StyleSheet,
+  View,
+  Keyboard,
+  AsyncStorage,
+  Alert
+} from "react-native";
+import { connect } from "react-redux";
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 import * as Location from "expo-location";
@@ -14,30 +21,37 @@ import { Heading, CardView } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
-//Actions 
-import * as actionCreators from '../../actions'
-import MakeId from '../../utils/Makeid'
+//Actions
+import * as actionCreators from "../../actions";
+import MakeId from "../../utils/Makeid";
 
 const WRITING_STYLE = I18n.locale;
- class HouseholdNumber extends Component {
-  
+class HouseholdNumber extends Component {
   constructor(props) {
     super(props);
-    this.state = { address: "", loader: false,is_contacted:false,id:'',lat:'',lng:'',token:'' };
+    this.state = {
+      address: "",
+      loader: false,
+      is_contacted: false,
+      id: "",
+      lat: "",
+      lng: "",
+      token: ""
+    };
   }
   fieldRef = React.createRef();
-  handleContinue = () => {  
+  handleContinue = () => {
     const home = {
-      address:this.state.address,
-      id:this.state.id,
-      lat:this.state.lat,
-      lng:this.state.lng,
-      is_contacted:0
+      address: this.state.address,
+      id: this.state.id,
+      lat: this.state.lat,
+      lng: this.state.lng,
+      is_contacted: 0
     };
-    console.log(this.props)
+    console.log(this.props);
     const token = this.state.token;
-    this.props.createHome(home,token)
-   
+    this.props.createHome(home, token);
+
     this.props.navigation.navigate("HouseHoldDetails");
   };
   handleBack = () => {
@@ -47,23 +61,23 @@ const WRITING_STYLE = I18n.locale;
   onBlur() {
     Keyboard.dismiss();
   }
-  _getsetID = async () =>{
-    // let hid = await AsyncStorage.getItem('HouseID'); 
+  _getsetID = async () => {
+    // let hid = await AsyncStorage.getItem('HouseID');
     // if (hid !== null) {
-      // this.setState({ id: hid });
+    // this.setState({ id: hid });
     // }else {
-      let newHouseId = await MakeId();
-      await AsyncStorage.setItem('HouseID',newHouseId);
-      this.setState({ id: newHouseId });
+    let newHouseId = await MakeId();
+    await AsyncStorage.setItem("HouseID", newHouseId);
+    this.setState({ id: newHouseId });
     // }
-  }
-   gettoken = async () =>{
-    let token = await AsyncStorage.getItem('AuthToken'); 
+  };
+  gettoken = async () => {
+    let token = await AsyncStorage.getItem("AuthToken");
     if (token !== null) {
       this.setState({ token: token });
     }
-  } 
- 
+  };
+
   _getLocationAsync = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -99,7 +113,7 @@ const WRITING_STYLE = I18n.locale;
     Keyboard.dismiss();
     this.setState({ address: field.value() });
   };
-  componentDidMount(){
+  componentDidMount() {
     this._getsetID();
     this._getLocationAsync();
     this.gettoken();
@@ -170,16 +184,15 @@ const screenStyles = StyleSheet.create({
     margin: 35
   }
 });
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    createHome:(home,token) => dispatch(actionCreators.createHome(home,token))
-  }
-}
+    createHome: (home, token) =>
+      dispatch(actionCreators.createHome(home, token))
+  };
+};
 
 const mapStateToProps = state => {
- return {...state}
-    
-}
+  return { ...state };
+};
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(HouseholdNumber)
+export default connect(mapStateToProps, mapDispatchToProps)(HouseholdNumber);
