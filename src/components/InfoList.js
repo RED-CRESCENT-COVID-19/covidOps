@@ -37,22 +37,30 @@ class InfoList extends Component {
       lng,
       lat,
       id,
+      cnic,
       UserId
     } = this.props.data;
+    const { HouseHoldDetails } = this.props;
     console.log("info list data is: ", this.props.data);
     const ts = new Date(createdAt);
     const date = ts.toLocaleDateString();
     const time = ts.toLocaleTimeString();
+    console.log("HouseHoldDetails is: ", HouseHoldDetails);
     // console.log("ts is: ", ts.toLocaleTimeString());
     return (
       <View style={Styles.InfoListContainer}>
-        <Text style={Styles.InfoListHeader}>
-          {user_id} {time} - {date}
-        </Text>
-        <View style={Styles.memberContainer}>
-          <Text style={Styles.InfoListTitle}>
-            {address || `${lat}, ${lng}` || user_id}
+        {HouseHoldDetails === "" && (
+          <Text style={Styles.InfoListHeader}>
+            {user_id} {time} - {date}
           </Text>
+        )}
+        {HouseHoldDetails !== "" && (
+          <Text style={Styles.InfoListHeader}>
+            {HouseHoldDetails} {user_id}
+          </Text>
+        )}
+        <View style={Styles.memberContainer}>
+          <Text style={Styles.InfoListTitle}>{"N/A"}</Text>
           {/* edit button */}
           <Button
             flat

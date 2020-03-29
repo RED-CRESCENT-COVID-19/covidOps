@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  AsyncStorage,
-  Alert
-} from "react-native";
+import { StyleSheet, View, ScrollView, AsyncStorage } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -68,7 +62,6 @@ export default class HouseholdHistory extends Component {
       });
   }
   render() {
-    console.log("house hold history state is: ", this.state);
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOUSEHOLDHISTORY`)} />
@@ -76,7 +69,12 @@ export default class HouseholdHistory extends Component {
         {this.state.data.length > 0 && (
           <ScrollView style={Styles.ScrollView}>
             {this.state.data.map(d => (
-              <InfoList data={d} key={d.id} {...this.props} />
+              <InfoList
+                data={d}
+                key={d.id}
+                {...this.props}
+                HouseHoldDetails={""}
+              />
             ))}
           </ScrollView>
         )}

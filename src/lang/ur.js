@@ -96,6 +96,7 @@ export default {
     SCANNINGSUMMARY: "اسکیننگ کا خلاصہ",
     CNICNUMBER: "شناختی کارڈ نمبر",
     PHONENUMBER: "فون نمبر",
+    MEMBER: "فرد",
     CONFIRMENTERY: {
       LABEL: "18:00 - 22/03/2020",
       EAMPLE: "گھرانہ 1"

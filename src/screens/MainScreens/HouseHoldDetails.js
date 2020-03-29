@@ -21,18 +21,15 @@ import { Heading, InfoList, CardView, ExtendedButton } from "../../components";
 import { Strings, Styles, Colors } from "../../../theme";
 // Service
 import Http from "../../services/HttpService";
-// Height and Width of Current Device Screen
-const { height, width } = Dimensions.get("window");
+
 const WRITING_STYLE = I18n.locale;
-
-
 
 const homeIcon = require("../../../assets/images/home.png");
 
 export default class HouseHoldDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {data:[] };
+    this.state = { apiData: [] };
   }
   handleAddHouseHold = () => {
     this.props.navigation.navigate("MemberDetails");
@@ -44,18 +41,19 @@ export default class HouseHoldDetails extends Component {
   async componentDidMount() {
     const token = await AsyncStorage.getItem("AuthToken");
     const houseId = await AsyncStorage.getItem("HouseID");
-    // const houseId = 'xURVK0TxfsWldV5HvPtFPlKeEkT9YXOsNqopUnMqBFh8LKMRDVsCKi9y45NgA4eXzfROKJFPHE9sn82XrfBhFO9zO9BkETfl6fhIaWVelYIj5KGpOBjS3oz6dXsSUPzP';
-    const url = 'persons/'+houseId
-    Http.get(url,{},{ headers: { "access-token": token } })
+
+    const url = "persons/" + houseId;
+    Http.get(url, {}, { headers: { "access-token": token } })
       .then(response => {
         if (response.status == 201) {
           // console.log(response.data)
-          if(response.data.length >= 1){
-            this.setState({data:response.data})
-          }else {
+
+          if (response.data.length > 0) {
+            this.setState({ apiData: response.data });
+          } else {
             // console.log(this.response.data)
           }
-          this.response.data
+          // this.response.data;
           // this.setState({
           //   persons: response.data.person_count,
           //   houses: response.data.house_count
@@ -63,6 +61,7 @@ export default class HouseHoldDetails extends Component {
         } else {
           // TOOD:: error handling
         }
+        consoe.log("this. state data is: ", this.state.apiData);
       })
       .catch(err => {});
   }
@@ -78,21 +77,23 @@ export default class HouseHoldDetails extends Component {
         },
         {
           text: I18n.t(`ButtonTitles.YES`),
-          onPress: async ()  => {
-            await AsyncStorage.removeItem('HouseID');
-            this.props.navigation.navigate("HealthScan"
-            )}
+          onPress: async () => {
+            await AsyncStorage.removeItem("HouseID");
+            this.props.navigation.navigate("HealthScan");
+          }
         }
       ],
       { cancelable: false }
     );
   };
   render() {
+    const { apiData } = this.state;
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOMEHOLD`)} />
-        {this.state.data.length === 0 && (
+        {apiData.length === 0 && (
           <Text style={[Styles.topParagraph, style]}>
             {I18n.t(`Paragarphs.HOME`)}
           </Text>
@@ -100,8 +101,13 @@ export default class HouseHoldDetails extends Component {
         <CardView Styles={Styles.Spacer50} />
 
         <ScrollView style={Styles.ScrollView}>
-          {this.state.data.map(d => (
-            <InfoList data={d} key={d.unique_id} {...this.props} />
+          {apiData.map(d => (
+            <InfoList
+              data={d}
+              key={d.unique_id}
+              {...this.props}
+              HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
+            />
           ))}
         </ScrollView>
         <View style={Styles.largebuttonsContainer}>
