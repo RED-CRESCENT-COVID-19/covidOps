@@ -38,9 +38,11 @@ export default class Temperature extends Component {
   onBlur() {
     Keyboard.dismiss();
   }
-  formatText = text => {
-    return text.replace(/[^+\d]/g, "");
-  };
+
+  // formatText = text => {
+  //   return text.replace(/[^+\d]/g, "");
+  // };
+
   onSubmit = () => {
     let { current: field } = this.fieldRef;
     this.setState({ temperature: field.value() });
@@ -71,7 +73,7 @@ export default class Temperature extends Component {
             placeholder={"XX"}
             returnKeyType={"done"}
             tintColor={Colors.primaryColor}
-            formatText={this.formatText}
+            // formatText={this.formatText}
             onChangeText={e => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
             onBlur={() => this.onBlur()}

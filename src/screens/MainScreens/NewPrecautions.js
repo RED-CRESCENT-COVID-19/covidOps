@@ -35,7 +35,7 @@ export default class NewPrecautions extends Component {
       this.setState({ activeQuestion: activeQuestion - 1 });
     else {
       //  this.props.navigation.goBack();
-      this.props.navigation.navigate("Temperature");
+      this.props.navigation.navigate("HouseHoldDetails");
     }
   }
   render() {
