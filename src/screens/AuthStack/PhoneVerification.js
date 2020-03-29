@@ -8,14 +8,12 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { Heading, CardView } from "../../components";
-
-import Loader from "../../components/Loader";
-//Theme
+import { Heading, CardView, Loader } from "../../components";
 
 // Service
 import Http from "../../services/HttpService";
 
+//Theme
 import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
@@ -26,7 +24,7 @@ export default class PhoneVerification extends Component {
   }
 
   onSubmit = () => {
-    this.props.navigation.navigate("SMSVerify", {phone: '03065555700'});
+    this.props.navigation.navigate("SMSVerify", { phone: "03065555700" });
     var phone = this.state.phone;
     this.setState({ isLoading: true });
     Http.post("auth/phone", { phone: phone })

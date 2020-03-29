@@ -4,12 +4,13 @@ import {
   Text,
   Dimensions,
   Image,
-  ImageBackground,
-  StyleSheet
+  StyleSheet,
+  Alert,
+  Easing
 } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
+import ImageZoom from "react-native-image-pan-zoom";
 
 // plugins
 import I18n from "../../plugins/I18n";
@@ -19,6 +20,10 @@ import { Heading } from "../../components";
 
 //Theme
 import { Styles, Colors } from "../../../theme";
+
+// images
+
+import Handwash from "../../../assets/images/handwash.png";
 
 const { height, width } = Dimensions.get("window");
 
@@ -31,25 +36,37 @@ export default class HandWash extends Component {
   onNextButton() {
     this.props.navigation.navigate("SMSService");
   }
-  onBackButton() {}
+  onBackButton() {
+    this.props.navigation.navigate("Advisory");
+  }
 
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
     return (
-      <View style={Styles.container}>
+      <View style={[Styles.container, { backgroundColor: "white" }]}>
         <Heading headerText={I18n.t(`Paragarphs.INFORMATIONCARE.TTITLE`)} />
         <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.INFORMATIONCARE.HANDWASH`)}
         </Text>
         <View style={Styles.Spacer20} />
         <View style={screenStyles.imageView}>
-          <Image
-            style={screenStyles.handWashImage}
-            source={{
-              uri:
-                "https://s3-alpha-sig.figma.com/img/a9c7/d81c/8852662f777ccd2a7a1c165e0f5e00bc?Expires=1586131200&Signature=bnnjuryfP54VY6U-U1ahCOTpM05e~pqixBgzb5fhAsWUtdeWTfOArQpgOnAJS6YvH7aKh2dloWOuL5RsBnUOv5AcgMDbxNxr6k8kehBPpd9Pzjbuskh~R3vm5FwRUPbgSZxbN8Kk1-bqecgwTT5eoVFdpojH640sdO9Nc3tEaw53mvabkNPB6uZ2vF2sHQO8Ez~yaeNBrIma9VHaZ9Ws~~pr992~5ZpjZohy4AIogJeEQ3VfspILhUyroxy1hPzNIF-JECvoN09tOUBhD2Ms0b-yuWsu1kNeWZUnnVJp7c7ucC4-LxHjaTqKaF2GYZUWY7quXK6~aziu8ZH~4PWNvw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          <ImageZoom
+            cropWidth={Dimensions.get("window").width}
+            cropHeight={Dimensions.get("window").height - 400}
+            imageWidth={350}
+            imageHeight={500}
+            onClick={() => alert("working!")}
+            maxScale={10}
+            panToMove
+            pinchToZoom
+            onDragLeft={() => alert("on drag left")}
+            onMove={position => {
+              console.log("on move", position);
             }}
-          />
+          >
+            <Image style={screenStyles.handWashImage} source={Handwash} />
+          </ImageZoom>
         </View>
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
