@@ -52,19 +52,19 @@ export default class HouseholdHistory extends Component {
         }
       })
       .catch(err => {
-        Alert.alert(
-          `${err}`,
-          "Keep your app up to date to enjoy the latest features",
-          [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-              style: "cancel"
-            },
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-        );
+        // Alert.alert(
+        //   `${err}`,
+        //   "Keep your app up to date to enjoy the latest features",
+        //   [
+        //     {
+        //       text: "Cancel",
+        //       onPress: () => console.log("Cancel Pressed"),
+        //       style: "cancel"
+        //     },
+        //     { text: "OK", onPress: () => console.log("OK Pressed") }
+        //   ],
+        //   { cancelable: false }
+        // );
       });
   }
   render() {
@@ -73,11 +73,13 @@ export default class HouseholdHistory extends Component {
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOUSEHOLDHISTORY`)} />
         <CardView Styles={Styles.Spacer50} />
-        <ScrollView style={Styles.ScrollView}>
-          {this.state.data.map(d => (
-            <InfoList data={d} key={d.id} {...this.props} />
-          ))}
-        </ScrollView>
+        {this.state.data.length > 0 && (
+          <ScrollView style={Styles.ScrollView}>
+            {this.state.data.map(d => (
+              <InfoList data={d} key={d.id} {...this.props} />
+            ))}
+          </ScrollView>
+        )}
 
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
