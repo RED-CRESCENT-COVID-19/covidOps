@@ -1,32 +1,44 @@
-import axios from 'axios'
-import {AsyncStorage} from 'react-native'
-import UUIDGenerator from 'react-native-uuid-generator';
-export function createHome(home){
-    console.log(home)
-    let newUIID = UUIDGenerator.getRandomUUID((uuid)=>{
-        return uuid
-    });
-    (async (houseUID) => await AsyncStorage.setItem('houseUID',houseUID))(newUIID)
-    return (dispatch)=>{
-        retrun (axios.post('http://54.224.84.138:3000/v1/house',home)
-            .then((response) => {
-                console.log(response)
+
+// Service
+import Http from "../services/HttpService";
+import { CREATE_HOUSE,CREATE_HOUSE_SUCCESS,
+    CREATE_HOUSE_FAIL } from './types';
+
+
+
+export const createHome = (params,token) => {
+    return function (dispatch){
+        dispatch({type:CREATE_HOUSE})
+        Http.post("house", params ,{ headers: { 'access-token': token }})
+        .then(response=>{
+                dispatch({type:CREATE_HOUSE_SUCCESS,payload:response})
+        })
+            .catch(err=>{
+                dispatch({type:CREATE_HOUSE_FAIL})
             })
-            
-        )
     }
 }
-export function createHome(memeber){
-    console.log(memeber)
-    let newUIID = UUIDGenerator.getRandomUUID((uuid)=>{
-        return uuid
-    });
-    return (dispatch)=>{
-        retrun (axios.post('http://54.224.84.138:3000/v1/person',memeber)
-            .then((response) => {
-                console.log(response)
-            })
-            
-        )
-    }
-}
+      
+
+// export const createMemeber = (params,token) => {
+  
+//     return (dispatch) => {
+//         Http.post("house/", params,{ headers: { 'access-token': token }})
+//             .then(response => {
+//                 if (response.status == 'ok') {
+//                     console.log(response)
+//                     // dispatch({ type: CREATE_MEMEBER, response });
+//                 } else {
+//                     var message = "";
+//                     if (response.status == 401) {
+//                        console.log(response)
+//                     } else {
+                       
+//                     }  
+//                 }
+//             })
+//             .catch(err => {
+                
+//             });
+//     }
+// }

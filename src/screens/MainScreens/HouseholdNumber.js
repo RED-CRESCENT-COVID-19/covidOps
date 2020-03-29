@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Keyboard } from "react-native";
-
+import { Text, StyleSheet, View, Keyboard, AsyncStorage } from "react-native";
+import {connect} from 'react-redux'
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
-
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -13,10 +14,32 @@ import { Heading, CardView } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
+//Actions 
+import * as actionCreators from '../../actions'
+import MakeId from '../../utils/Makeid'
+
 const WRITING_STYLE = I18n.locale;
-export default class HouseholdNumber extends Component {
+ class HouseholdNumber extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { address: "", loader: false,is_contacted:false,id:'',lat:'',lng:'',token:'' };
+  }
   fieldRef = React.createRef();
-  handleContinue = () => {
+  handleContinue = () => {  
+    const home = {
+      address:this.state.address,
+      id:this.state.id,
+      lat:this.state.lat,
+      lng:this.state.lng,
+      is_contacted:0
+    };
+    
+    const token = this.state.token;
+    this.props.createHome(home,token)
+    console.log(this.state)
+    // actionCreators.createHome({},'asfsdfasdfdasfasd')
+    // this.props.createHome({},'asfsdfasdfdasfasd')
     this.props.navigation.navigate("HouseHoldDetails");
   };
   handleBack = () => {
@@ -26,13 +49,63 @@ export default class HouseholdNumber extends Component {
   onBlur() {
     Keyboard.dismiss();
   }
-
+  _getsetID = async () =>{
+    let hid = await AsyncStorage.getItem('HouseID'); 
+    if (hid !== null) {
+      this.setState({ id: hid });
+    }else {
+      let newHouseId = await MakeId();
+      await AsyncStorage.setItem('HouseID',newHouseId);
+      this.setState({ id: newHouseId });
+    }
+  }
+   gettoken = async () =>{
+    let token = await AsyncStorage.getItem('AuthToken'); 
+    if (token !== null) {
+      this.setState({ token: token });
+    }
+  } 
+ 
+  _getLocationAsync = async () => {
+    try {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      await AsyncStorage.setItem("LocationStatus", status);
+      if (status !== "granted") {
+        this.setState({
+          errorMessage: "Permission to access location was denied"
+        });
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      this.setState({
+        lat: location.coords.latitude,
+        lng: location.coords.longitude
+      });
+    } catch (error) {
+      Alert.alert(
+        `${error}`,
+        "Please head over to setting & enable the location",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ],
+        { cancelable: false }
+      );
+    }
+  };
   onSubmit = () => {
     let { current: field } = this.fieldRef;
     Keyboard.dismiss();
-    this.setState({ temperature: field.value() });
+    this.setState({ address: field.value() });
   };
-
+  componentDidMount(){
+    this._getsetID();
+    this._getLocationAsync();
+    this.gettoken();
+  }
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
@@ -43,7 +116,6 @@ export default class HouseholdNumber extends Component {
         </Text>
 
         <CardView Styles={Styles.Spacer50} />
-
         <OutlinedTextField
           label={I18n.t(`Paragarphs.HOUSEHOLDNUMBERADDRESS`)}
           placeholder={" "}
@@ -100,3 +172,14 @@ const screenStyles = StyleSheet.create({
     margin: 35
   }
 });
+const mapDispatchToProps = () => {
+  return {
+    ...actionCreators
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {...state}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(HouseholdNumber)

@@ -39,8 +39,8 @@ export default class LocationData extends Component {
   _getLocationAsync = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
-      await AsyncStorage.setItem("LocationStatus", status);
       if (status !== "granted") {
+        await AsyncStorage.setItem("LocationStatus", status);
         this.setState({
           errorMessage: "Permission to access location was denied"
         });
