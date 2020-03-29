@@ -10,6 +10,7 @@ import I18n from "../../plugins/I18n";
 import { CardView, Heading } from "../../components";
 import InfoList from "../../components/InfoList";
 
+
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 

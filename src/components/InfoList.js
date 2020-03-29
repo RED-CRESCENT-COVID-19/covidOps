@@ -11,7 +11,7 @@ class InfoList extends Component {
     super(props);
   }
   onEdit() {
-    this.props.navigation.navigate("MemberDetails");
+    this.props.navigation.navigate("MemberDetails",{...this.props});
   }
   onDelete(id) {
     Alert.alert(
@@ -29,11 +29,11 @@ class InfoList extends Component {
     );
   }
   render() {
-    const { cnic, name } = this.props.data;
+    const { cnic, user_id } = this.props.data;
 
     return (
       <View style={Styles.InfoListContainer}>
-        <Text style={Styles.InfoListHeader}>{name}</Text>
+        <Text style={Styles.InfoListHeader}>{user_id}</Text>
         <View style={Styles.memberContainer}>
           <Text style={Styles.InfoListTitle}>{cnic}</Text>
           {/* edit button */}

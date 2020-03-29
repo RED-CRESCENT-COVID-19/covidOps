@@ -98,6 +98,7 @@ const WRITING_STYLE = I18n.locale;
     // }else {
       let newHouseId = await MakeId();
       await AsyncStorage.setItem('HouseID',newHouseId);
+      // await AsyncStorage.removeItem('HouseID');
       this.setState({ id: newHouseId });
     // }
   }

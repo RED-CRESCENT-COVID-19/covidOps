@@ -5,7 +5,8 @@ import {
   View,
   ScrollView,
   Dimensions,
-  Alert
+  Alert,
+  AsyncStorage
 } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
@@ -18,47 +19,21 @@ import I18n from "../../plugins/I18n";
 import { Heading, InfoList, CardView, ExtendedButton } from "../../components";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
-
+// Service
+import Http from "../../services/HttpService";
 // Height and Width of Current Device Screen
 const { height, width } = Dimensions.get("window");
 const WRITING_STYLE = I18n.locale;
 
-const DATA = [
-  // {
-  //   name: "Rizwan",
-  //   cnic: "4352345245",
-  //   id: "435224434565"
-  // },
-  // {
-  //   name: "Zaheer",
-  //   cnic: "4352256745",
-  //   id: "43522ds45"
-  // },
-  // {
-  //   name: "Ahmed",
-  //   cnic: "435wer2245",
-  //   id: "435223424522"
-  // },
-  // {
-  //   name: "faysal",
-  //   cnic: "4352342245",
-  //   id: "435223424542"
-  // },
-  // {
-  //   name: "fazlo",
-  //   cnic: "4352342245",
-  //   id: "435223424512"
-  // },
-  // {
-  //   name: "adfadf",
-  //   cnic: "435224234325",
-  //   id: "4352223445"
-  // }
-];
+
 
 const homeIcon = require("../../../assets/images/home.png");
 
 export default class HouseHoldDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {data:[] };
+  }
   handleAddHouseHold = () => {
     this.props.navigation.navigate("MemberDetails");
   };
@@ -66,6 +41,31 @@ export default class HouseHoldDetails extends Component {
     this.props.navigation.navigate("PrecautionsInit");
   };
 
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem("AuthToken");
+    const houseId = await AsyncStorage.getItem("HouseID");
+    // const houseId = 'xURVK0TxfsWldV5HvPtFPlKeEkT9YXOsNqopUnMqBFh8LKMRDVsCKi9y45NgA4eXzfROKJFPHE9sn82XrfBhFO9zO9BkETfl6fhIaWVelYIj5KGpOBjS3oz6dXsSUPzP';
+    const url = 'persons/'+houseId
+    Http.get(url,{},{ headers: { "access-token": token } })
+      .then(response => {
+        if (response.status == 201) {
+          // console.log(response.data)
+          if(response.data.length >= 1){
+            this.setState({data:response.data})
+          }else {
+            // console.log(this.response.data)
+          }
+          this.response.data
+          // this.setState({
+          //   persons: response.data.person_count,
+          //   houses: response.data.house_count
+          // });
+        } else {
+          // TOOD:: error handling
+        }
+      })
+      .catch(err => {});
+  }
   onCancle = () => {
     Alert.alert(
       I18n.t(`Alert.HOUSEHOLDDETAIL.TITLE`),
@@ -78,7 +78,10 @@ export default class HouseHoldDetails extends Component {
         },
         {
           text: I18n.t(`ButtonTitles.YES`),
-          onPress: () => this.props.navigation.navigate("HealthScan")
+          onPress: async ()  => {
+            await AsyncStorage.removeItem('HouseID');
+            this.props.navigation.navigate("HealthScan"
+            )}
         }
       ],
       { cancelable: false }
@@ -89,7 +92,7 @@ export default class HouseHoldDetails extends Component {
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOMEHOLD`)} />
-        {DATA.length === 0 && (
+        {this.state.data.length === 0 && (
           <Text style={[Styles.topParagraph, style]}>
             {I18n.t(`Paragarphs.HOME`)}
           </Text>
@@ -97,8 +100,8 @@ export default class HouseHoldDetails extends Component {
         <CardView Styles={Styles.Spacer50} />
 
         <ScrollView style={Styles.ScrollView}>
-          {DATA.map(d => (
-            <InfoList data={d} key={d.id} {...this.props} />
+          {this.state.data.map(d => (
+            <InfoList data={d} key={d.unique_id} {...this.props} />
           ))}
         </ScrollView>
         <View style={Styles.largebuttonsContainer}>
