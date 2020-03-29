@@ -9,7 +9,7 @@ import {
   AsyncStorage
 } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
+
 import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins

@@ -46,7 +46,7 @@ class HouseholdNumber extends Component {
   fieldRef = React.createRef();
 
   handleContinue = async () => {
-    this._getsetID();
+    
     if (!this.state.address) {
       this.fieldRef.focus();
       return false;
@@ -67,13 +67,17 @@ class HouseholdNumber extends Component {
   };
 
   newHouseCreate = (token, data, isContacted) => {
+    this._getsetID();
     this.setState({ isLoading: true });
     Http.post("house", data, { headers: { "access-token": token } })
       .then(response => {
         console.log(response);
         this.setState({ isLoading: false });
-
         if (response.status == 201) {
+           (async (HouseId) =>{
+            await AsyncStorage.setItem('HouseID',HouseId); 
+           })(response.data.id)
+          
           if (isContacted) {
             this.props.navigation.navigate("HouseHoldDetails", {
               houseID: data.id
@@ -106,15 +110,8 @@ class HouseholdNumber extends Component {
     Keyboard.dismiss();
   }
   _getsetID = async () => {
-    // let hid = await AsyncStorage.getItem('HouseID');
-    // if (hid !== null) {
-    // this.setState({ id: hid });
-    // }else {
       let newHouseId = await MakeId();
-      await AsyncStorage.setItem('HouseID',newHouseId);
-      // await AsyncStorage.removeItem('HouseID');
       this.setState({ id: newHouseId });
-    // }
   };
   gettoken = async () => {
     let token = await AsyncStorage.getItem("AuthToken");

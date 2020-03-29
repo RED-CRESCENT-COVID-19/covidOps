@@ -16,38 +16,6 @@ import Http from "../../services/HttpService";
 //Theme
 import { Strings, Styles, Colors } from "../../../theme";
 
-const DATA = [
-  // {
-  //   name: "Rizwan",
-  //   cnic: "4352345245",
-  //   id: "435224434565"
-  // },
-  // {
-  //   name: "Zaheer",
-  //   cnic: "4352256745",
-  //   id: "43522ds45"
-  // },
-  // {
-  //   name: "Ahmed",
-  //   cnic: "435wer2245",
-  //   id: "435223424522"
-  // },
-  // {
-  //   name: "faysal",
-  //   cnic: "4352342245",
-  //   id: "435223424542"
-  // },
-  // {
-  //   name: "fazlo",
-  //   cnic: "4352342245",
-  //   id: "435223424512"
-  // },
-  // {
-  //   name: "adfadf",
-  //   cnic: "435224234325",
-  //   id: "4352223445"
-  // }
-];
 export default class HouseholdHistory extends Component {
 
   constructor(props) {
@@ -70,7 +38,6 @@ export default class HouseholdHistory extends Component {
           }else {
             // console.log(this.response.data)
           }
-          this.response.data
           // this.setState({
           //   persons: response.data.person_count,
           //   houses: response.data.house_count
@@ -89,7 +56,7 @@ export default class HouseholdHistory extends Component {
         <CardView Styles={Styles.Spacer50} />
         <ScrollView style={Styles.ScrollView}>
           {this.state.data.map(d => (
-            <InfoList data={d} key={d.id} {...this.props} />
+            <InfoList data={d} key={d.user_id} {...this.props} />
           ))}
         </ScrollView>
 

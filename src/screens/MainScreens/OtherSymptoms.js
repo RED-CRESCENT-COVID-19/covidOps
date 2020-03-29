@@ -14,8 +14,15 @@ import { Heading, TextA, CardView } from "../../components";
 import { Strings, Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
 export default class OtherSymptoms extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { otherSymptoms: ""};
+  }
   onNextButton() {
-    this.props.navigation.navigate("Temperature");
+    const otherSymptoms = {otherSymptoms:this.state.otherSymptoms} 
+    const params = {...otherSymptoms,...this.props.route.params}
+    this.props.navigation.navigate("Temperature",params);
   }
   onBackButtonClick() {
     this.props.navigation.navigate("Symptoms");
@@ -45,8 +52,8 @@ export default class OtherSymptoms extends Component {
             formatText={this.formatText}
             multiline
             returnKeyType={"done"}
-            // inputContainerStyle={screenStyles.inputContainerStyle}
             onSubmitEditing={this.onSubmit}
+            onChangeText={otherSymptoms => this.setState({ otherSymptoms: otherSymptoms })}
             onBlur={() => this.onBlur()}
           />
         </View>
