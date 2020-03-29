@@ -110,11 +110,11 @@ export default class HealthScan extends Component {
         </Text>
 
         <CalculationLabel
-          value={this.state.persons}
+          value={this.state.houses}
           secondaryText={I18n.t(`Labels.HOUSEHOLDSCANNED`)}
         />
         <CalculationLabel
-          value={this.state.houses}
+          value={this.state.persons}
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
         <View style={Styles.changeLanguagebuttonsContainer}>
