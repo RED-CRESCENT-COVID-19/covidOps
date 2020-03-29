@@ -16,7 +16,7 @@ export const CREATE_MEMEBER_FAIL ='CREATE_MEMEBER_FAIL';
 const createHouseSuccess = (dispatch,response) =>{
     console.log(response)
     dispatch({type:CREATE_HOUSE_SUCCESS, payload: response })
-    dispatch(NavigationActions.navigate({ routeName: 'HouseHoldDetails' }))
+    // dispatch(NavigationActions.navigate({ routeName: 'HouseHoldDetails' }))
 }
 const createHouseFail = (dispatch,err) =>{
     console.log(err)
@@ -26,11 +26,11 @@ const createHouseFail = (dispatch,err) =>{
    
 }
 
-export const createHome = ({params,token}) => {
-    console.log(params,token)
+export const createHome = (params,token) => {
+    console.log(params)
     return function (dispatch){
         dispatch({type:CREATE_HOUSE})
-        Http.post("house/", params ,{ headers: { 'access-token': token }})
+        Http.post("house", params ,{ headers: { 'access-token': token }})
         .then(response=>createHouseSuccess(dispatch,response))
         .catch(err=>createHouseFail(dispatch,err))
     }

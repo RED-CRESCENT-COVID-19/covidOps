@@ -36,9 +36,9 @@ const WRITING_STYLE = I18n.locale;
     };
     console.log(this.props)
     const token = this.state.token;
-    this.props.createHome({home,token})
+    this.props.createHome(home,token)
    
-    // this.props.navigation.navigate("HouseHoldDetails");
+    this.props.navigation.navigate("HouseHoldDetails");
   };
   handleBack = () => {
     this.props.navigation.goBack();
@@ -48,14 +48,14 @@ const WRITING_STYLE = I18n.locale;
     Keyboard.dismiss();
   }
   _getsetID = async () =>{
-    let hid = await AsyncStorage.getItem('HouseID'); 
-    if (hid !== null) {
-      this.setState({ id: hid });
-    }else {
+    // let hid = await AsyncStorage.getItem('HouseID'); 
+    // if (hid !== null) {
+      // this.setState({ id: hid });
+    // }else {
       let newHouseId = await MakeId();
       await AsyncStorage.setItem('HouseID',newHouseId);
       this.setState({ id: newHouseId });
-    }
+    // }
   }
    gettoken = async () =>{
     let token = await AsyncStorage.getItem('AuthToken'); 

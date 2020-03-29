@@ -91,7 +91,9 @@ const SYMPTOMS_LIST = [
 
 export default class Symptoms extends Component {
   handleNext() {
-    this.props.navigation.navigate("OtherSymptoms");
+    // console.log(this.props.route.params)
+    console.log(this.props.SYMPTOMS_LIST)
+    // this.props.navigation.navigate("OtherSymptoms");
   }
   handleBack = () => {
     this.props.navigation.goBack();

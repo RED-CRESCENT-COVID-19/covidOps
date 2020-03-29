@@ -29,7 +29,12 @@ export default class MemberDetails extends Component {
     console.log("e is: ", e);
   }
   onNextButton() {
-    this.props.navigation.navigate("Symptoms");
+    this.props.navigation.navigate("Symptoms",{
+      selectedGenderType:this.state.selectedGenderType,
+      cnic:this.state.cnic,
+      phone:this.state.phone,
+      age:this.state.age
+    });
   }
   onBackButton() {
     this.props.navigation.navigate("HouseHoldDetails");
