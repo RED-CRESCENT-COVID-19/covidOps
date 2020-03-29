@@ -71,7 +71,6 @@ class HouseholdNumber extends Component {
     this.setState({ isLoading: true });
     Http.post("house", data, { headers: { "access-token": token } })
       .then(response => {
-        console.log(response);
         this.setState({ isLoading: false });
         if (response.status == 201) {
            (async (HouseId) =>{
@@ -154,7 +153,6 @@ class HouseholdNumber extends Component {
     let { current: field } = this.fieldRef;
     Keyboard.dismiss();
     this.setState({ address: field.value() });
-    console.log(field.value());
   };
   componentDidMount() {
     this._getsetID();

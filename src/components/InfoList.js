@@ -11,7 +11,7 @@ class InfoList extends Component {
     super(props);
   }
   onEdit() {
-    this.props.navigation.navigate("MemberDetails",{...this.props});
+    this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
   onDelete(id) {
     Alert.alert(
@@ -29,13 +29,38 @@ class InfoList extends Component {
     );
   }
   render() {
-    const { cnic, user_id } = this.props.data;
-
+    const {
+      user_id,
+      createdAt,
+      address,
+      owner_phone,
+      lng,
+      lat,
+      id,
+      cnic,
+      UserId
+    } = this.props.data;
+    const { HouseHoldDetails } = this.props;
+    console.log("info list data is: ", this.props.data);
+    const ts = new Date(createdAt);
+    const date = ts.toLocaleDateString();
+    const time = ts.toLocaleTimeString();
+    console.log("HouseHoldDetails is: ", HouseHoldDetails);
+    // console.log("ts is: ", ts.toLocaleTimeString());
     return (
       <View style={Styles.InfoListContainer}>
-        <Text style={Styles.InfoListHeader}>{user_id}</Text>
+        {HouseHoldDetails === "" && (
+          <Text style={Styles.InfoListHeader}>
+            {user_id} {time} - {date}
+          </Text>
+        )}
+        {HouseHoldDetails !== "" && (
+          <Text style={Styles.InfoListHeader}>
+            {HouseHoldDetails} {user_id}
+          </Text>
+        )}
         <View style={Styles.memberContainer}>
-          <Text style={Styles.InfoListTitle}>{cnic}</Text>
+          <Text style={Styles.InfoListTitle}>{"N/A"}</Text>
           {/* edit button */}
           <Button
             flat
@@ -47,7 +72,7 @@ class InfoList extends Component {
           <Button
             flat
             text=""
-            onPress={() => this.onDelete(cnic)}
+            onPress={() => this.onDelete(id)}
             icon={<Icon name="trash" size={20} color={Colors.primaryColor} />}
           />
         </View>
