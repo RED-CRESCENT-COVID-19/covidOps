@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Keyboard,AsyncStorage,Alert } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Keyboard,
+  AsyncStorage,
+  Alert
+} from "react-native";
 
 import { TextField } from "react-native-material-textfield";
 import { RaisedTextButton, TextButton } from "react-native-material-buttons";
@@ -8,13 +15,15 @@ import { RaisedTextButton, TextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading, CardView } from "../../components";
+
 //Theme
 import { Styles, Colors } from "../../../theme";
 import MakeId from "../../utils/Makeid";
+
 // Service
 import Http from "../../services/HttpService";
+
 const WRITING_STYLE = I18n.locale;
 export default class Temperature extends Component {
   constructor(props) {
@@ -22,7 +31,7 @@ export default class Temperature extends Component {
     this.state = {
       temperature: "",
       isButtonActive: false,
-      selectedTemperatureButton: "c",
+      selectedTemperatureButton: "c"
     };
   }
   fieldRef = React.createRef();
@@ -32,10 +41,12 @@ export default class Temperature extends Component {
   };
 
   handleNext = () => {
-    const temperature = {selectedTemperatureButton:this.state.selectedTemperatureButton,temperature:this.state.temperature} 
-    const data = {...temperature,...this.props.route.params}
-    this.handleAddMemeber(data)
-    
+    const temperature = {
+      selectedTemperatureButton: this.state.selectedTemperatureButton,
+      temperature: this.state.temperature
+    };
+    const data = { ...temperature, ...this.props.route.params };
+    this.handleAddMemeber(data);
   };
   onChangeText(e) {
     this.setState({ temperature: e });
@@ -63,42 +74,41 @@ export default class Temperature extends Component {
     }
   }
 
-  handleAddMemeber = async (data) => {
+  handleAddMemeber = async data => {
     this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
     const houseID = await AsyncStorage.getItem("HouseID");
     let id = await MakeId();
     let uniqueID = await MakeId();
     const params = {
-      id:id,
-      houseID:houseID,
-      age:data.age,
-      temperature:data.temperature,
+      id: id,
+      houseID: houseID,
+      age: data.age,
+      temperature: data.temperature,
       unit: data.selectedTemperatureButton,
-      fever:data.fever,
-      cough:data.dryCough,
-      sputum:data.sputumProduction,
-      fatigue:data.fatigue,
-      sob:data.shortnessOfBreath,
-      headache:data.headache,
-      congestion:data.nasalCongestion,
-      meralgia:data.bodyPain,
-      hemoptysis:data.bloodInCough,
-      conjuctivitis:data.rednessOfEyes,
-      notes:data.otherSymptoms,
-      cnic:data.cnic,
-      phone:data.phone,
-      gender:data.selectedGenderType,
-      uniqueID:uniqueID
-
-    }
-    console.log(params)
+      fever: data.fever || 0,
+      cough: data.dryCough || 0,
+      sputum: data.sputumProduction || 0,
+      fatigue: data.fatigue || 0,
+      sob: data.shortnessOfBreath || 0,
+      headache: data.headache || 0,
+      congestion: data.nasalCongestion || 0,
+      meralgia: data.bodyPain || 0,
+      hemoptysis: data.bloodInCough || 0,
+      conjuctivitis: data.rednessOfEyes || 0,
+      notes: data.otherSymptoms || "",
+      cnic: data.cnic,
+      phone: data.phone,
+      gender: data.selectedGenderType,
+      uniqueID: uniqueID
+    };
+    console.log(params);
     Http.post("person", params, { headers: { "access-token": token } })
       .then(response => {
         console.log(response);
         this.setState({ isLoading: false });
         if (response.status == 201) {
-           this.props.navigation.navigate("NewPrecautions");
+          this.props.navigation.navigate("NewPrecautions");
         } else {
           this.setState({ isLoading: false });
           var message = response.data.message;
@@ -116,6 +126,7 @@ export default class Temperature extends Component {
       .catch(err => {});
   };
   render() {
+    console.log("temperature this.props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     const { isButtonActive } = this.state;
     return (

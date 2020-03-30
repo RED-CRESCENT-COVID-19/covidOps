@@ -102,22 +102,45 @@ const SYMPTOMS_LIST = [
 ];
 
 export default class Symptoms extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedSymptomsCheckBoxList: []
+    };
+    this.handleCheckboxSymptomsList = this.handleCheckboxSymptomsList.bind(
+      this
+    );
+  }
   createSymptoms = () => {
-      var newObject = SYMPTOMS_LIST.reduce(
-      (obj, item) => Object.assign(obj, { [item.normalisedValue]: item.isChecked }), {}); 
-      return newObject
+    var newObject = this.state.selectedSymptomsCheckBoxList.reduce(
+      (obj, item) =>
+        Object.assign(obj, { [item.normalisedValue]: item.isChecked ? 1 : 0 }),
+      {}
+    );
+    return newObject;
+  };
+  handleCheckboxSymptomsList(symptom) {
+    console.log("handleCheckboxSymptomsList is: ", symptom);
+    const newSymptoms = [...this.state.selectedSymptomsCheckBoxList, symptom];
+    this.setState({ selectedSymptomsCheckBoxList: newSymptoms }, () => {
+      console.log(
+        " selectedSymptomsCheckBoxList is: ",
+        this.state.selectedSymptomsCheckBoxList
+      );
+      const val = this.createSymptoms();
+      console.log("create symptoms val is: ", val);
+    });
   }
   handleNext() {
-   var symptoms = this.createSymptoms();
-   const params = {...this.props.route.params,...symptoms};
-    this.props.navigation.navigate("OtherSymptoms",params);
+    var symptoms = this.createSymptoms();
+    const params = { ...this.props.route.params, ...symptoms };
+    this.props.navigation.navigate("OtherSymptoms", params);
   }
   handleBack = () => {
     this.props.navigation.goBack();
   };
-  componentDidMount(){
-    console.log(this.props.route.params)
+  componentDidMount() {
+    console.log(this.props.route.params);
   }
 
   render() {
@@ -141,6 +164,8 @@ export default class Symptoms extends Component {
                 symptomName={d.symptomName}
                 value={d.value}
                 checked={d.isChecked}
+                normalisedValue={d.normalisedValue}
+                handleCheckboxSymptomsList={this.handleCheckboxSymptomsList}
               />
             ))}
           </ScrollView>

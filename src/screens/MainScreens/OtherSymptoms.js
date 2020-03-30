@@ -14,15 +14,14 @@ import { Heading, TextA, CardView } from "../../components";
 import { Strings, Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
 export default class OtherSymptoms extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { otherSymptoms: ""};
+    this.state = { otherSymptoms: "" };
   }
   onNextButton() {
-    const otherSymptoms = {otherSymptoms:this.state.otherSymptoms} 
-    const params = {...otherSymptoms,...this.props.route.params}
-    this.props.navigation.navigate("Temperature",params);
+    const otherSymptoms = { otherSymptoms: this.state.otherSymptoms };
+    const params = { ...otherSymptoms, ...this.props.route.params };
+    this.props.navigation.navigate("Temperature", params);
   }
   onBackButtonClick() {
     this.props.navigation.navigate("Symptoms");
@@ -35,6 +34,7 @@ export default class OtherSymptoms extends Component {
   }
 
   render() {
+    console.log("other Symptoms props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -53,7 +53,9 @@ export default class OtherSymptoms extends Component {
             multiline
             returnKeyType={"done"}
             onSubmitEditing={this.onSubmit}
-            onChangeText={otherSymptoms => this.setState({ otherSymptoms: otherSymptoms })}
+            onChangeText={otherSymptoms =>
+              this.setState({ otherSymptoms: otherSymptoms })
+            }
             onBlur={() => this.onBlur()}
           />
         </View>

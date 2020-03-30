@@ -13,7 +13,14 @@ class CheckBox extends Component {
     };
   }
   render() {
-    const { value, checked, symptomNumber, symptomName } = this.props;
+    const {
+      value,
+      checked,
+      symptomNumber,
+      symptomName,
+      handleCheckboxSymptomsList,
+      normalisedValue
+    } = this.props;
     const { isChecked } = this.state;
 
     return (
@@ -27,7 +34,13 @@ class CheckBox extends Component {
             checked={isChecked}
             uncheckedIcon={"check-box-outline-blank"}
             onCheck={() => {
-              this.setState({ isChecked: !isChecked });
+              this.setState({ isChecked: !isChecked }, () => {
+                handleCheckboxSymptomsList({
+                  value: this.state.isChecked ? 1 : 0,
+                  isChecked: this.state.isChecked,
+                  normalisedValue
+                });
+              });
             }}
             style={{ icon: Styles.checkBoxStyle }}
           />
