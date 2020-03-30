@@ -79,7 +79,7 @@ export default class MemberDetails extends Component {
     }
   }
   onBackButton() {
-    this.props.navigation.navigate("HouseHoldDetails");
+    this.props.navigation.navigate("HouseHoldDetails", { update: true });
   }
 
   onChangeCNIC(val) {
@@ -117,59 +117,59 @@ export default class MemberDetails extends Component {
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.MEMEBERDETAILS`)} />
         <View style={screenStyles.textInput}>
-          <KeyboardAvoidingView behavior="padding" enabled>
-            <TextField
-              label={I18n.t(`Labels.AGE`)}
-              keyboardType="phone-pad"
-              tintColor={Colors.primaryColor}
-              formatText={this.formatText}
-              returnKeyType={"next"}
-              ref={input => {
-                this.firstTextInput = input;
-              }}
-              onChangeText={e => this.onChangeAge(e)}
-              // onSubmitEditing={this.onSubmit}
-              onSubmitEditing={() => {
-                isUnderAge
-                  ? this.thirdTextInput.focus()
-                  : this.secondTextInput.focus();
-              }}
-              // onBlur={() => this.onBlur()}
-            />
+          {/* <KeyboardAvoidingView behavior="padding" enabled> */}
+          <TextField
+            label={I18n.t(`Labels.AGE`)}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            returnKeyType={"next"}
+            ref={input => {
+              this.firstTextInput = input;
+            }}
+            onChangeText={e => this.onChangeAge(e)}
+            // onSubmitEditing={this.onSubmit}
+            onSubmitEditing={() => {
+              isUnderAge
+                ? this.thirdTextInput.focus()
+                : this.secondTextInput.focus();
+            }}
+            // onBlur={() => this.onBlur()}
+          />
 
-            <TextField
-              label={I18n.t(`Labels.CNICNUMBER`)}
-              keyboardType="phone-pad"
-              tintColor={Colors.primaryColor}
-              formatText={this.formatText}
-              returnKeyType={"next"}
-              disabled={isUnderAge}
-              onChangeText={e => this.onChangeCNIC(e)}
-              // onSubmitEditing={this.onSubmit}
-              onSubmitEditing={() => {
-                this.thirdTextInput.focus();
-              }}
-              // onBlur={() => this.onBlur()}
-              ref={input => {
-                this.secondTextInput = input;
-              }}
-            />
+          <TextField
+            label={I18n.t(`Labels.CNICNUMBER`)}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            returnKeyType={"next"}
+            disabled={isUnderAge}
+            onChangeText={e => this.onChangeCNIC(e)}
+            // onSubmitEditing={this.onSubmit}
+            onSubmitEditing={() => {
+              this.thirdTextInput.focus();
+            }}
+            // onBlur={() => this.onBlur()}
+            ref={input => {
+              this.secondTextInput = input;
+            }}
+          />
 
-            <TextField
-              label={I18n.t(`Labels.PHONENUMBER`)}
-              keyboardType="phone-pad"
-              tintColor={Colors.primaryColor}
-              formatText={this.formatText}
-              onChangeText={e => this.onChangePhone(e)}
-              returnKeyType={"done"}
-              // onSubmitEditing={this.onSubmit}
-              onSubmitEditing={() => this.onNextButton()}
-              onBlur={() => this.onBlur()}
-              ref={input => {
-                this.thirdTextInput = input;
-              }}
-            />
-          </KeyboardAvoidingView>
+          <TextField
+            label={I18n.t(`Labels.PHONENUMBER`)}
+            keyboardType="phone-pad"
+            tintColor={Colors.primaryColor}
+            formatText={this.formatText}
+            onChangeText={e => this.onChangePhone(e)}
+            returnKeyType={"done"}
+            // onSubmitEditing={this.onSubmit}
+            onSubmitEditing={() => this.onNextButton()}
+            onBlur={() => this.onBlur()}
+            ref={input => {
+              this.thirdTextInput = input;
+            }}
+          />
+          {/* </KeyboardAvoidingView> */}
         </View>
         <Text style={Styles.genderText}>{I18n.t(`Labels.GENDER`)}</Text>
         <View style={Styles.genderButtonsContainer}>

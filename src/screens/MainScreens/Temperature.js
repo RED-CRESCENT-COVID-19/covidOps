@@ -15,7 +15,7 @@ import { RaisedTextButton, TextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { Heading, CardView } from "../../components";
+import { Heading, CardView, Loader } from "../../components";
 
 //Theme
 import { Styles, Colors } from "../../../theme";
@@ -31,7 +31,8 @@ export default class Temperature extends Component {
     this.state = {
       temperature: "",
       isButtonActive: false,
-      selectedTemperatureButton: "c"
+      selectedTemperatureButton: "c",
+      isLoading: false
     };
   }
   fieldRef = React.createRef();
@@ -41,6 +42,7 @@ export default class Temperature extends Component {
   };
 
   handleNext = () => {
+    this.setState({ isLoading: true });
     const temperature = {
       selectedTemperatureButton: this.state.selectedTemperatureButton,
       temperature: this.state.temperature
@@ -102,7 +104,7 @@ export default class Temperature extends Component {
       gender: data.selectedGenderType,
       uniqueID: uniqueID
     };
-    console.log(params);
+
     Http.post("person", params, { headers: { "access-token": token } })
       .then(response => {
         console.log(response);
@@ -128,7 +130,14 @@ export default class Temperature extends Component {
   render() {
     console.log("temperature this.props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
-    const { isButtonActive } = this.state;
+    const { isButtonActive, isLoading } = this.state;
+
+    let loader;
+    if (isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.TEMPERATURE`)} />
@@ -197,6 +206,7 @@ export default class Temperature extends Component {
             onPress={this.handleNext}
           />
         </View>
+        {loader}
       </View>
     );
   }
