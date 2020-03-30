@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Keyboard ,Alert} from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Keyboard,
+  Alert,
+  KeyboardAvoidingView
+} from "react-native";
 
 import { TextField } from "react-native-material-textfield";
 import { TextButton, RaisedTextButton } from "react-native-material-buttons";
@@ -30,30 +37,33 @@ export default class MemberDetails extends Component {
   }
 
   onNextButton() {
-   const cnic = this.state.cnic
-   const phone = this.state.phone
-   const age = this.state.age
-   const validate = (cnic.length === 13) && (phone.length === 11) && (age.length ==2)
-    if (validate){
-      this.props.navigation.navigate("Symptoms",{
-        selectedGenderType:this.state.selectedGenderType,
-        cnic:cnic,
-        phone:phone,
-        age:age
+    const cnic = this.state.cnic;
+    const phone = this.state.phone;
+    const age = this.state.age;
+    const validate =
+      cnic.length === 13 && phone.length === 11 && age.length == 2;
+    if (validate) {
+      this.props.navigation.navigate("Symptoms", {
+        selectedGenderType: this.state.selectedGenderType,
+        cnic: cnic,
+        phone: phone,
+        age: age
       });
     } else {
       Alert.alert(
-        'Validation Error',
-        'Please Enter a Valid Phone number,Valid CNIC and Age to Continue',
+        "Validation Error",
+        "Please Enter a Valid Phone number,Valid CNIC and Age to Continue",
         [
-          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
         ],
         { cancelable: false }
-      )
+      );
     }
-    
-   
   }
   onBackButton() {
     this.props.navigation.navigate("HouseHoldDetails");
@@ -94,37 +104,56 @@ export default class MemberDetails extends Component {
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.MEMEBERDETAILS`)} />
         <View style={screenStyles.textInput}>
-          <TextField
-            label={I18n.t(`Labels.CNICNUMBER`)}
-            keyboardType="phone-pad"
-            tintColor={Colors.primaryColor}
-            formatText={this.formatText}
-            returnKeyType={"done"}
-            onChangeText={e => this.onChangeCNIC(e)}
-            onSubmitEditing={this.onSubmit}
-            onBlur={() => this.onBlur()}
-          />
-          <TextField
-            label={I18n.t(`Labels.PHONENUMBER`)}
-            keyboardType="phone-pad"
-            tintColor={Colors.primaryColor}
-            formatText={this.formatText}
-            onChangeText={e => this.onChangePhone(e)}
-            returnKeyType={"done"}
-            onSubmitEditing={this.onSubmit}
-            onBlur={() => this.onBlur()}
-          />
-          <TextField
-            label={I18n.t(`Labels.AGE`)}
-            keyboardType="phone-pad"
-            tintColor={Colors.primaryColor}
-            formatText={this.formatText}
-            returnKeyType={"done"}
-            ref={this.fieldRef}
-            onChangeText={e => this.onChangeAge(e)}
-            onSubmitEditing={this.onSubmit}
-            onBlur={() => this.onBlur()}
-          />
+          <KeyboardAvoidingView behavior="padding" enabled>
+            <TextField
+              label={I18n.t(`Labels.AGE`)}
+              keyboardType="phone-pad"
+              tintColor={Colors.primaryColor}
+              formatText={this.formatText}
+              returnKeyType={"next"}
+              ref={input => {
+                this.firstTextInput = input;
+              }}
+              onChangeText={e => this.onChangeAge(e)}
+              // onSubmitEditing={this.onSubmit}
+              onSubmitEditing={() => {
+                this.secondTextInput.focus();
+              }}
+              // onBlur={() => this.onBlur()}
+            />
+
+            <TextField
+              label={I18n.t(`Labels.CNICNUMBER`)}
+              keyboardType="phone-pad"
+              tintColor={Colors.primaryColor}
+              formatText={this.formatText}
+              returnKeyType={"next"}
+              onChangeText={e => this.onChangeCNIC(e)}
+              // onSubmitEditing={this.onSubmit}
+              onSubmitEditing={() => {
+                this.thirdTextInput.focus();
+              }}
+              // onBlur={() => this.onBlur()}
+              ref={input => {
+                this.secondTextInput = input;
+              }}
+            />
+
+            <TextField
+              label={I18n.t(`Labels.PHONENUMBER`)}
+              keyboardType="phone-pad"
+              tintColor={Colors.primaryColor}
+              formatText={this.formatText}
+              onChangeText={e => this.onChangePhone(e)}
+              returnKeyType={"done"}
+              // onSubmitEditing={this.onSubmit}
+              onSubmitEditing={() => this.onNextButton()}
+              onBlur={() => this.onBlur()}
+              ref={input => {
+                this.thirdTextInput = input;
+              }}
+            />
+          </KeyboardAvoidingView>
         </View>
         <Text style={Styles.genderText}>{I18n.t(`Labels.GENDER`)}</Text>
         <View style={Styles.genderButtonsContainer}>
