@@ -19,7 +19,7 @@ import { Heading, CardView } from "../../components";
 
 //Theme
 import { Styles, Colors } from "../../../theme";
-import MakeId from "../../utils/Makeid";
+import { MakeId } from "../../utils/Makeid";
 
 // Service
 import Http from "../../services/HttpService";

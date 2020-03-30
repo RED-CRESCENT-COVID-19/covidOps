@@ -3,6 +3,7 @@ import {
   Text,
   StyleSheet,
   View,
+  AsyncStorage,
   Keyboard,
   Alert,
   KeyboardAvoidingView
@@ -20,6 +21,9 @@ import { Heading, CardView } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 
+// Utils
+import { getRandomInt } from "../../utils/Makeid";
+
 export default class MemberDetails extends Component {
   constructor(props) {
     super(props);
@@ -29,10 +33,17 @@ export default class MemberDetails extends Component {
       cnic: "",
       phone: "",
       age: "",
-      isUnderAge: false
+      isUnderAge: false,
+      uniqueID: "",
+      houseId: ""
     };
   }
   fieldRef = React.createRef();
+
+  async componentDidMount() {
+    const houseId = await AsyncStorage.getItem("HouseID");
+    this.setState({ houseId: houseId + "-" + getRandomInt(9999) });
+  }
   onChangeText(e) {
     console.log("e is: ", e);
   }
@@ -50,7 +61,8 @@ export default class MemberDetails extends Component {
         selectedGenderType: this.state.selectedGenderType,
         cnic: cnic,
         phone: phone,
-        age: age
+        age: age,
+        uniqueID: houseId
       });
     } else {
       Alert.alert(

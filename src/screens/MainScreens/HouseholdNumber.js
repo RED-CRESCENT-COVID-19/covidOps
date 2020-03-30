@@ -27,7 +27,7 @@ import { Styles, Colors } from "../../../theme";
 
 //Actions
 import * as actionCreators from "../../actions";
-import MakeId from "../../utils/Makeid";
+import { MakeId } from "../../utils/Makeid";
 
 const WRITING_STYLE = I18n.locale;
 class HouseholdNumber extends Component {
