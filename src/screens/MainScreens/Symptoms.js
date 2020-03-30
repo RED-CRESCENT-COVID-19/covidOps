@@ -120,15 +120,9 @@ export default class Symptoms extends Component {
     return newObject;
   };
   handleCheckboxSymptomsList(symptom) {
-    console.log("handleCheckboxSymptomsList is: ", symptom);
     const newSymptoms = [...this.state.selectedSymptomsCheckBoxList, symptom];
     this.setState({ selectedSymptomsCheckBoxList: newSymptoms }, () => {
-      console.log(
-        " selectedSymptomsCheckBoxList is: ",
-        this.state.selectedSymptomsCheckBoxList
-      );
       const val = this.createSymptoms();
-      console.log("create symptoms val is: ", val);
     });
   }
   handleNext() {
