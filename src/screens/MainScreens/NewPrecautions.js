@@ -26,7 +26,7 @@ export default class NewPrecautions extends Component {
     if (activeQuestion < QUESTIONS_LIST.length - 1)
       this.setState({ activeQuestion: activeQuestion + 1 });
     else {
-      this.props.navigation.navigate("HouseHoldDetails");
+      this.props.navigation.navigate("HouseHoldDetails", { update: true });
     }
   }
   onBackButton() {

@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  ScrollView,
-  Dimensions,
-  Alert,
-  AsyncStorage
-} from "react-native";
-
+import { Text, View, ScrollView, Alert, AsyncStorage } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -18,7 +9,7 @@ import I18n from "../../plugins/I18n";
 //Custom Components
 import { Heading, InfoList, CardView, ExtendedButton } from "../../components";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 // Service
 import Http from "../../services/HttpService";
 
@@ -26,31 +17,31 @@ const WRITING_STYLE = I18n.locale;
 
 const homeIcon = require("../../../assets/images/home.png");
 
-export default class HouseHoldDetails extends Component {
+class HouseHoldDetails extends Component {
   constructor(props) {
     super(props);
     this.state = { apiData: [] };
+    this.getPersons = this.getPersons.bind(this);
   }
-  handleAddHouseHold = () => {
-    this.props.navigation.navigate("MemberDetails");
-  };
-  handleDone = () => {
-    this.props.navigation.navigate("PrecautionsInit");
-  };
 
-   componentDidMount() {
-    (async()=>{  const token = await AsyncStorage.getItem("AuthToken");
+  async componentDidMount() {
+    await this.getPersons();
+  }
+  static getDerivedStateFromProps(props, state) {
+    state;
+  }
+
+  async getPersons() {
+    const token = await AsyncStorage.getItem("AuthToken");
     const houseId = await AsyncStorage.getItem("HouseID");
-    console.log(houseId)
 
     const url = "persons/" + houseId;
     Http.get(url, {}, { headers: { "access-token": token } })
       .then(response => {
-        if (response.status == 201) {
-          console.log(response)
-
+        if (response.status == 200) {
           if (response.data.length > 0) {
             this.setState({ apiData: response.data });
+            delete this.props.route.params.update;
           } else {
             // console.log(this.response.data)
           }
@@ -65,8 +56,14 @@ export default class HouseHoldDetails extends Component {
         consoe.log("this. state data is: ", this.state.apiData);
       })
       .catch(err => {});
-    })()
   }
+  handleAddHouseHold = () => {
+    this.props.navigation.navigate("MemberDetails");
+  };
+  handleDone = () => {
+    this.props.navigation.navigate("PrecautionsInit");
+  };
+
   onCancle = () => {
     Alert.alert(
       I18n.t(`Alert.HOUSEHOLDDETAIL.TITLE`),
@@ -89,9 +86,9 @@ export default class HouseHoldDetails extends Component {
     );
   };
   render() {
+    this.props.route.params.update && this.getPersons();
     const { apiData } = this.state;
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
-
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOMEHOLD`)} />
@@ -145,3 +142,4 @@ export default class HouseHoldDetails extends Component {
     );
   }
 }
+export default HouseHoldDetails;
