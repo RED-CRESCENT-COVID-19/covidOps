@@ -44,6 +44,7 @@ class InfoList extends Component {
       lat,
       id,
       cnic,
+      phone,
       UserId
     } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
@@ -91,7 +92,7 @@ class InfoList extends Component {
 
           {HouseHoldDetails !== "" && (
             <Text style={[Styles.InfoListTitle, style]}>
-              {cnic || user_id || "N/A"}
+              {cnic || phone || user_id || "N/A"}
             </Text>
           )}
 
@@ -116,6 +117,7 @@ class InfoList extends Component {
       lat,
       id,
       cnic,
+      phone,
       UserId
     } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
@@ -139,7 +141,9 @@ class InfoList extends Component {
 
         <View style={Styles.memberContainer}>
           {HouseHoldDetails !== "" && (
-            <Text style={Styles.InfoListTitle}>{cnic || user_id || "N/A"}</Text>
+            <Text style={Styles.InfoListTitle}>
+              {cnic || phone || user_id || "N/A"}
+            </Text>
           )}
 
           {HouseHoldDetails === "" && (

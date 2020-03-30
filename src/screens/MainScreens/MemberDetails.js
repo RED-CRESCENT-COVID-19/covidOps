@@ -49,9 +49,7 @@ export default class MemberDetails extends Component {
   }
 
   onNextButton() {
-    const cnic = this.state.cnic;
-    const phone = this.state.phone;
-    const age = this.state.age;
+    const { houseId, cnic, phone, age } = this.state;
     const validate =
       age < 18
         ? phone.length === 11 && age.length == 2
