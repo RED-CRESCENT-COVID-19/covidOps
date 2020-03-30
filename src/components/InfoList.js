@@ -60,7 +60,9 @@ class InfoList extends Component {
           </Text>
         )}
         <View style={Styles.memberContainer}>
-          <Text style={Styles.InfoListTitle}>{"N/A"}</Text>
+          <Text style={Styles.InfoListTitle}>
+            {address || `${lat}, ${lng}` || user_id || "N/A"}
+          </Text>
           {/* edit button */}
           <Button
             flat
