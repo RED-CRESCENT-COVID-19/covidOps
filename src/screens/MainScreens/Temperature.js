@@ -79,7 +79,7 @@ export default class Temperature extends Component {
     const token = await AsyncStorage.getItem("AuthToken");
     const houseID = await AsyncStorage.getItem("HouseID");
     let id = await MakeId();
-    let uniqueID = await MakeId();
+    let uniqueID = data.uniqueID || (await MakeId());
     const params = {
       id: id,
       houseID: houseID,
