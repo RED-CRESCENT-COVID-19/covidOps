@@ -38,15 +38,16 @@ export default class HouseHoldDetails extends Component {
     this.props.navigation.navigate("PrecautionsInit");
   };
 
-  async componentDidMount() {
-    const token = await AsyncStorage.getItem("AuthToken");
+   componentDidMount() {
+    (async()=>{  const token = await AsyncStorage.getItem("AuthToken");
     const houseId = await AsyncStorage.getItem("HouseID");
+    console.log(houseId)
 
     const url = "persons/" + houseId;
     Http.get(url, {}, { headers: { "access-token": token } })
       .then(response => {
         if (response.status == 201) {
-          // console.log(response.data)
+          console.log(response)
 
           if (response.data.length > 0) {
             this.setState({ apiData: response.data });
@@ -64,6 +65,7 @@ export default class HouseHoldDetails extends Component {
         consoe.log("this. state data is: ", this.state.apiData);
       })
       .catch(err => {});
+    })()
   }
   onCancle = () => {
     Alert.alert(
@@ -104,7 +106,7 @@ export default class HouseHoldDetails extends Component {
           {apiData.map(d => (
             <InfoList
               data={d}
-              key={d.unique_id}
+              key={d.createdAt}
               {...this.props}
               HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
             />

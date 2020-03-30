@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Keyboard } from "react-native";
+import { Text, StyleSheet, View, Keyboard ,Alert} from "react-native";
 
 import { TextField } from "react-native-material-textfield";
 import { TextButton, RaisedTextButton } from "react-native-material-buttons";
@@ -28,13 +28,32 @@ export default class MemberDetails extends Component {
   onChangeText(e) {
     console.log("e is: ", e);
   }
+
   onNextButton() {
-    this.props.navigation.navigate("Symptoms",{
-      selectedGenderType:this.state.selectedGenderType,
-      cnic:this.state.cnic,
-      phone:this.state.phone,
-      age:this.state.age
-    });
+   const cnic = this.state.cnic
+   const phone = this.state.phone
+   const age = this.state.age
+   const validate = (cnic.length === 13) && (phone.length === 11) && (age.length ==2)
+    if (validate){
+      this.props.navigation.navigate("Symptoms",{
+        selectedGenderType:this.state.selectedGenderType,
+        cnic:cnic,
+        phone:phone,
+        age:age
+      });
+    } else {
+      Alert.alert(
+        'Validation Error',
+        'Please Enter a Valid Phone number,Valid CNIC and Age to Continue',
+        [
+          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
+    }
+    
+   
   }
   onBackButton() {
     this.props.navigation.navigate("HouseHoldDetails");
