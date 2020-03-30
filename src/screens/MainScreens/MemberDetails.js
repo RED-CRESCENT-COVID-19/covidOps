@@ -28,7 +28,8 @@ export default class MemberDetails extends Component {
       selectedGenderType: "m",
       cnic: "",
       phone: "",
-      age: ""
+      age: "",
+      isUnderAge: false
     };
   }
   fieldRef = React.createRef();
@@ -41,7 +42,9 @@ export default class MemberDetails extends Component {
     const phone = this.state.phone;
     const age = this.state.age;
     const validate =
-      cnic.length === 13 && phone.length === 11 && age.length == 2;
+      age < 18
+        ? phone.length === 11 && age.length == 2
+        : cnic.length === 13 && phone.length === 11 && age.length == 2;
     if (validate) {
       this.props.navigation.navigate("Symptoms", {
         selectedGenderType: this.state.selectedGenderType,
@@ -76,7 +79,7 @@ export default class MemberDetails extends Component {
     this.setState({ phone: val });
   }
   onChangeAge(val) {
-    this.setState({ age: val });
+    this.setState({ age: val, isUnderAge: val < 18 ? true : false });
   }
   genderButtonClick(type) {
     const { selectedGenderType, isButtonActive } = this.state;
@@ -99,7 +102,7 @@ export default class MemberDetails extends Component {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
-    const { selectedGenderType } = this.state;
+    const { selectedGenderType, isUnderAge } = this.state;
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.MEMEBERDETAILS`)} />
@@ -117,7 +120,9 @@ export default class MemberDetails extends Component {
               onChangeText={e => this.onChangeAge(e)}
               // onSubmitEditing={this.onSubmit}
               onSubmitEditing={() => {
-                this.secondTextInput.focus();
+                isUnderAge
+                  ? this.thirdTextInput.focus()
+                  : this.secondTextInput.focus();
               }}
               // onBlur={() => this.onBlur()}
             />
@@ -128,6 +133,7 @@ export default class MemberDetails extends Component {
               tintColor={Colors.primaryColor}
               formatText={this.formatText}
               returnKeyType={"next"}
+              disabled={isUnderAge}
               onChangeText={e => this.onChangeCNIC(e)}
               // onSubmitEditing={this.onSubmit}
               onSubmitEditing={() => {
