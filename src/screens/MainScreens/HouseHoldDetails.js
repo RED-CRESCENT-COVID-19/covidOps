@@ -100,10 +100,11 @@ class HouseHoldDetails extends Component {
         <CardView Styles={Styles.Spacer50} />
 
         <ScrollView style={Styles.ScrollView}>
-          {apiData.map(d => (
+          {apiData.map((d, i) => (
             <InfoList
               data={d}
               key={d.createdAt}
+              indicator={i + 1}
               {...this.props}
               HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
             />
