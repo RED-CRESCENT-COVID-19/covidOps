@@ -34,7 +34,7 @@ export default class HouseholdHistory extends Component {
         if (response.status == 200) {
           // console.log(response.data)
           if (response.data.length > 0) {
-            this.setState({ data: response.data });
+            this.setState({ data: response.data.reverse() });
           } else {
             // console.log(this.response.data)
           }

@@ -48,7 +48,7 @@ class HouseHoldDetails extends Component {
         this.setState({ isLoading: false });
         if (response.status == 200) {
           if (response.data.length > 0) {
-            this.setState({ apiData: response.data });
+            this.setState({ apiData: response.data.reverse() });
             delete this.props.route.params.update;
           } else {
             // console.log(this.response.data)
