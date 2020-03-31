@@ -5,8 +5,7 @@ import {
   Dimensions,
   Image,
   StyleSheet,
-  Alert,
-  Easing
+  TouchableOpacity
 } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -31,6 +30,9 @@ const WRITING_STYLE = I18n.locale;
 export default class HandWash extends Component {
   constructor(props) {
     super(props);
+    this.state = { isZoomed: false };
+    this.zoomedRenderView = this.zoomedRenderView.bind(this);
+    this.renderView = this.renderView.bind(this);
   }
 
   onNextButton() {
@@ -40,12 +42,12 @@ export default class HandWash extends Component {
     this.props.navigation.navigate("Advisory");
   }
 
-  render() {
+  renderView() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
-
     return (
-      <View style={[Styles.container, { backgroundColor: "white" }]}>
+      <>
         <Heading headerText={I18n.t(`Paragarphs.INFORMATIONCARE.TTITLE`)} />
+
         <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.INFORMATIONCARE.HANDWASH`)}
         </Text>
@@ -56,11 +58,16 @@ export default class HandWash extends Component {
             cropHeight={height - 300}
             imageWidth={350}
             imageHeight={500}
-            onClick={() => alert("working!")}
+            onClick={() => {
+              console.log("hand wash image clic is working!");
+              this.setState({ isZoomed: true });
+            }}
             maxScale={10}
             panToMove
             pinchToZoom
-            onDragLeft={() => alert("on drag left")}
+            onDragLeft={() => {
+              alert("on drag left");
+            }}
             onMove={position => {
               console.log("on move", position);
             }}
@@ -68,6 +75,7 @@ export default class HandWash extends Component {
             <Image style={screenStyles.handWashImage} source={Handwash} />
           </ImageZoom>
         </View>
+
         <View style={Styles.buttonsContainer}>
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.BACK`)}
@@ -86,6 +94,66 @@ export default class HandWash extends Component {
             onPress={() => this.onNextButton()}
           />
         </View>
+      </>
+    );
+  }
+
+  zoomedRenderView() {
+    return (
+      <>
+        <Image
+          style={screenStyles.zoomedHandWashImage}
+          source={Handwash}
+          // onPress={() => this.setState({ isZoomed: !this.state.isZoomed })}
+        />
+      </>
+    );
+  }
+  render() {
+    const { isZoomed } = this.state;
+    const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
+    return (
+      <View style={[Styles.container, { backgroundColor: "white" }]}>
+        {/* {isZoomed && ( */}
+        {/* <View
+          style={{
+            marginTop: 50,
+            paddingTop: 50,
+            width: 50,
+            height: 50,
+            position: "absolute",
+            top: 20,
+            zIndex: 1000
+          }}
+        >
+          <Button
+            title="x"
+            onPress={() => console.log("Simple Button pressed")}
+          />
+        </View> */}
+
+        {/* )} */}
+        {isZoomed && (
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({ isZoomed: !this.state.isZoomed });
+              console.log("cross clicked!");
+            }}
+            style={{ zIndex: 1000 }}
+          >
+            <Text
+              style={[
+                Styles.topParagraph,
+                { textAlign: "center", marginTop: 30, fontSize: 30 }
+              ]}
+            >
+              {"X"}
+            </Text>
+          </TouchableOpacity>
+        )}
+
+        {isZoomed ? this.zoomedRenderView() : this.renderView()}
       </View>
     );
   }
@@ -104,5 +172,13 @@ const screenStyles = StyleSheet.create({
     height: "100%",
     resizeMode: "cover",
     backgroundColor: Colors.transparent
+  },
+
+  zoomedHandWashImage: {
+    width: width,
+    height: height,
+    position: "absolute",
+    resizeMode: "contain",
+    bottom: 0
   }
 });
