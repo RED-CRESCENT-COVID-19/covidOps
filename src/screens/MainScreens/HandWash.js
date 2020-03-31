@@ -52,8 +52,8 @@ export default class HandWash extends Component {
         <View style={Styles.Spacer20} />
         <View style={screenStyles.imageView}>
           <ImageZoom
-            cropWidth={Dimensions.get("window").width}
-            cropHeight={Dimensions.get("window").height - 400}
+            cropWidth={width}
+            cropHeight={height - 300}
             imageWidth={350}
             imageHeight={500}
             onClick={() => alert("working!")}
@@ -95,13 +95,13 @@ const screenStyles = StyleSheet.create({
   imageView: {
     paddingLeft: 35,
     paddingRight: 35,
-    height: height - 280,
+    height: height,
     alignItems: "center",
     alignContent: "center"
   },
   handWashImage: {
-    width: 350,
-    height: 500,
+    width: "100%",
+    height: "100%",
     resizeMode: "cover",
     backgroundColor: Colors.transparent
   }
