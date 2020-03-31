@@ -9,14 +9,6 @@ const { Types, Creators } = createActions({
 })
 
 
-/* ------------- Initial State ------------- */
-export const INITIAL_STATE = Immutable({
-  fetching: true,
-  errorMessage: '',
-  error: false,
-  getCodeSuccess:''
-})
-
 
 export const VerifyPhoneTypes = Types
 export default Creators
@@ -26,7 +18,6 @@ export default Creators
 // Get Phone Code
 export const getCodeRequest = (state, action) => {
         
-    const phoneval  = '03132111334'
     return state.merge({ fetching: true, error: false, errorMessage: '', phone:phoneval })
 }
 
