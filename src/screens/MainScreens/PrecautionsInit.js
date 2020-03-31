@@ -24,7 +24,7 @@ export default class Precautions extends Component {
   }
 
   onNextButton() {
-    this.props.navigation.navigate("Precautions");
+    this.props.navigation.navigate("Information");
   }
   onBackButton() {
     this.props.navigation.goBack();

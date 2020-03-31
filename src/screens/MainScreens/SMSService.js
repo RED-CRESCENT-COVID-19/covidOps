@@ -50,7 +50,7 @@ export default class SMSService extends Component {
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SMSSERVICE`)} />
         <Text style={[Styles.topParagraph, style]}>
-          {I18n.t(`Paragarphs.SMSVERIFICATION`)}
+          {I18n.t(`Paragarphs.SMSSERVICE`)}
         </Text>
         <View style={Styles.Spacer50} />
         <View style={screenStyles.textInput}>
