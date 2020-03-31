@@ -7,7 +7,7 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { CardView, InfoList, Heading } from "../../components";
+import { CardView, InfoList, Heading, Loader } from "../../components";
 
 // Service
 import Http from "../../services/HttpService";
@@ -18,20 +18,22 @@ import { Styles, Colors } from "../../../theme";
 export default class HouseholdHistory extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    this.state = { data: [], isLoading: false };
   }
   handleDone = () => {
     this.props.navigation.goBack();
   };
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
     const url = "house";
     Http.get(url, {}, { headers: { "access-token": token } })
       .then(response => {
+        this.setState({ isLoading: false });
         console.log("house hold history response is: ", response);
         if (response.status == 200) {
           // console.log(response.data)
-          if (response.data.length >= 1) {
+          if (response.data.length > 0) {
             this.setState({ data: response.data });
           } else {
             // console.log(this.response.data)
@@ -45,6 +47,7 @@ export default class HouseholdHistory extends Component {
         }
       })
       .catch(err => {
+        this.setState({ isLoading: false });
         // Alert.alert(
         //   `${err}`,
         //   "Keep your app up to date to enjoy the latest features",
@@ -61,6 +64,13 @@ export default class HouseholdHistory extends Component {
       });
   }
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOUSEHOLDHISTORY`)} />
@@ -79,7 +89,6 @@ export default class HouseholdHistory extends Component {
           </ScrollView>
         )}
 
-
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.DONE`)}
@@ -90,6 +99,7 @@ export default class HouseholdHistory extends Component {
             onPress={this.handleDone}
           />
         </View>
+        {loader}
       </View>
     );
   }
