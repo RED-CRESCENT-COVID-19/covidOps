@@ -163,7 +163,7 @@ export default class MemberDetails extends Component {
             onChangeText={e => this.onChangePhone(e)}
             returnKeyType={"done"}
             // onSubmitEditing={this.onSubmit}
-            onSubmitEditing={() => this.onNextButton()}
+            onSubmitEditing={() => Keyboard.dismiss()}
             onBlur={() => this.onBlur()}
             ref={input => {
               this.thirdTextInput = input;

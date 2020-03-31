@@ -38,6 +38,7 @@ class HouseHoldDetails extends Component {
   }
 
   async getPersons() {
+    delete this.props.route.params.update;
     this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
     const houseId = await AsyncStorage.getItem("HouseID");
@@ -49,7 +50,6 @@ class HouseHoldDetails extends Component {
         if (response.status == 200) {
           if (response.data.length > 0) {
             this.setState({ apiData: response.data.reverse() });
-            delete this.props.route.params.update;
           } else {
             // console.log(this.response.data)
           }
@@ -61,7 +61,7 @@ class HouseHoldDetails extends Component {
         } else {
           // TOOD:: error handling
         }
-        consoe.log("this. state data is: ", this.state.apiData);
+        // console.log("this. state data is: ", this.state.apiData);
       })
       .catch(err => {
         this.setState({ isLoading: false });
