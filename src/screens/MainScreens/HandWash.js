@@ -101,11 +101,7 @@ export default class HandWash extends Component {
   zoomedRenderView() {
     return (
       <>
-        <Image
-          style={screenStyles.zoomedHandWashImage}
-          source={Handwash}
-          // onPress={() => this.setState({ isZoomed: !this.state.isZoomed })}
-        />
+        <Image style={screenStyles.zoomedHandWashImage} source={Handwash} />
       </>
     );
   }
@@ -115,25 +111,6 @@ export default class HandWash extends Component {
 
     return (
       <View style={[Styles.container, { backgroundColor: "white" }]}>
-        {/* {isZoomed && ( */}
-        {/* <View
-          style={{
-            marginTop: 50,
-            paddingTop: 50,
-            width: 50,
-            height: 50,
-            position: "absolute",
-            top: 20,
-            zIndex: 1000
-          }}
-        >
-          <Button
-            title="x"
-            onPress={() => console.log("Simple Button pressed")}
-          />
-        </View> */}
-
-        {/* )} */}
         {isZoomed && (
           <TouchableOpacity
             onPress={() => {
