@@ -136,7 +136,7 @@ export default class SMSVerification extends Component {
           }}
           digitTxtStyle={{ color: Colors.primaryColor }}
           onFinish={() => this.onTimerFinish()}
-          onPress={() => alert("hello, why are you doing this? :p")}
+          // onPress={() => alert("hello, why are you doing this? :p")}
           timeToShow={["M", "S"]}
           showSeparator
           separatorStyle={{ color: Colors.primaryColor }}
