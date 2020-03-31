@@ -7,7 +7,13 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { Heading, InfoList, CardView, ExtendedButton } from "../../components";
+import {
+  Heading,
+  InfoList,
+  CardView,
+  ExtendedButton,
+  Loader
+} from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 // Service
@@ -20,7 +26,7 @@ const homeIcon = require("../../../assets/images/home.png");
 class HouseHoldDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiData: [] };
+    this.state = { apiData: [], isLoading: false };
     this.getPersons = this.getPersons.bind(this);
   }
 
@@ -32,12 +38,14 @@ class HouseHoldDetails extends Component {
   }
 
   async getPersons() {
+    this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
     const houseId = await AsyncStorage.getItem("HouseID");
 
     const url = "persons/" + houseId;
     Http.get(url, {}, { headers: { "access-token": token } })
       .then(response => {
+        this.setState({ isLoading: false });
         if (response.status == 200) {
           if (response.data.length > 0) {
             this.setState({ apiData: response.data });
@@ -55,7 +63,10 @@ class HouseHoldDetails extends Component {
         }
         consoe.log("this. state data is: ", this.state.apiData);
       })
-      .catch(err => {});
+      .catch(err => {
+        this.setState({ isLoading: false });
+        console.log("house hold details error is: ", err);
+      });
   }
   handleAddHouseHold = () => {
     this.props.navigation.navigate("MemberDetails");
@@ -86,9 +97,18 @@ class HouseHoldDetails extends Component {
     );
   };
   render() {
-    this.props.route.params.update && this.getPersons();
     const { apiData } = this.state;
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
+    // call the api to get the data when enter in this screen
+    this.props.route.params.update && this.getPersons();
+
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOMEHOLD`)} />
@@ -139,6 +159,7 @@ class HouseHoldDetails extends Component {
             onPress={this.handleDone}
           />
         </View>
+        {loader}
       </View>
     );
   }
