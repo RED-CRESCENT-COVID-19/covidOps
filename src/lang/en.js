@@ -43,7 +43,7 @@ export default {
   },
   Paragarphs: {
     SMSSERVICE:
-      "Do you want to recieve infocare SMS on your mobile number? Please enter your mobile phone number",
+      "We can send you the information we discussed via SMS, please provide a phone no.",
     PHONEVERIFICATION:
       "We need to verify your device via SMS code. A text message will be sent to your phone number. Please enter your phone number to continue:",
     SMSVERIFICATION:
