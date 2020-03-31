@@ -1,16 +1,9 @@
 import { createReducer, createActions } from 'reduxsauce'
-import Immutable from 'seamless-immutable'
-
-/* ------------- Types and Action Creators ------------- */
-const { Types, Creators } = createActions({
-    getCodeRequest: null,
-    getCodeSuccess: ['codeSuccess'],
-    getCodeFailure: ['error']
-})
 
 
 
-export const VerifyPhoneTypes = Types
+
+export const  = Types
 export default Creators
 
 
