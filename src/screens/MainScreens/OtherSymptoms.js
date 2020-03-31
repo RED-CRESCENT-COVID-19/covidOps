@@ -50,9 +50,9 @@ export default class OtherSymptoms extends Component {
             placeholder={" "}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            multiline
+            // multiline
             returnKeyType={"done"}
-            onSubmitEditing={this.onSubmit}
+            onSubmitEditing={() => this.onSubmit()}
             onChangeText={otherSymptoms =>
               this.setState({ otherSymptoms: otherSymptoms })
             }

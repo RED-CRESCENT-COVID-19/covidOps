@@ -149,11 +149,11 @@ class HouseholdNumber extends Component {
       );
     }
   };
-  onSubmit = () => {
-    let { current: field } = this.fieldRef;
+  onSubmit() {
+    // let { current: field } = this.fieldRef;
     Keyboard.dismiss();
-    this.setState({ address: field.value() });
-  };
+    // this.setState({ address: field.value() });
+  }
   componentDidMount() {
     this._getsetID();
     this._getLocationAsync();
@@ -181,10 +181,10 @@ class HouseholdNumber extends Component {
           placeholder={" "}
           tintColor={Colors.primaryColor}
           formatText={this.formatText}
-          multiline
+          // multiline
           returnKeyType={"done"}
           inputContainerStyle={screenStyles.inputContainerStyle}
-          onSubmitEditing={this.onSubmit}
+          // onSubmitEditing={() => this.onSubmit()}
           onChangeText={value => this.setState({ address: value })}
           onBlur={() => this.onBlur()}
           ref={input => {
