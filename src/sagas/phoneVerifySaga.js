@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects'
-import VerifyPhoneActions from '../reducers/verifyReducer'
+import VerifyPhoneActions from '../actions'
 
 export function* verifyPhoneNumber(verifyPhoneApi, action) {
     try {
