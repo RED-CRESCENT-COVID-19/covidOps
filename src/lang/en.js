@@ -83,8 +83,8 @@ export default {
         URL: "http://www.covid.gov.pk"
       },
       MESSAGE: {
-        TITLE: "Who whatsapp info",
-        PHONE: "Message 'hi' to +41798931892"
+        TITLE: "COVID-19 Whatsapp Helpline",
+        PHONE: "Message 'hi' to +923001111166"
       }
     }
   },
