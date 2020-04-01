@@ -38,7 +38,7 @@ const MainNavigation = prop => {
         {props => <HouseholdNumber {...props} setAuth={prop.setAuth} />}
       </MainStack.Screen>
 
-      {/* Send button click route  */}
+      {/* to view house hold history on health scan screen  */}
       {/* 1a screen */}
       <MainStack.Screen
         name="HouseholdHistory"
