@@ -5,11 +5,13 @@ import HouseholdHistory from "./HouseholdHistory";
 import HouseholdNumber from "./HouseholdNumber";
 import LocationData from "./LocationData";
 import Precautions from "./Precautions";
+import PrecautionsInit from "./PrecautionsInit";
+import NewPrecautions from "./NewPrecautions";
 import Response from "./Response";
 import Symptoms from "./Symptoms";
 import OtherSymptoms from "./OtherSymptoms";
 import Temperature from "./Temperature";
-import MemeberDetails from "./MemeberDetails";
+import MemberDetails from "./MemberDetails";
 import Information from "./Information";
 import HandWash from "./HandWash";
 import SMSService from "./SMSService";
@@ -25,10 +27,12 @@ export {
   HouseholdNumber,
   LocationData,
   Precautions,
+  PrecautionsInit,
+  NewPrecautions,
   Response,
   Symptoms,
   Temperature,
-  MemeberDetails,
+  MemberDetails,
   Information,
   HandWash,
   OtherSymptoms,

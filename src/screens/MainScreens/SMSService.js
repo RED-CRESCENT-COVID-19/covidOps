@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Alert } from "react-native";
+import { Text, StyleSheet, View, Alert, Keyboard } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -18,8 +18,14 @@ const WRITING_STYLE = I18n.locale;
 export default class SMSService extends Component {
   handleContinue = () => {
     //store Aysc value isAuthenticated == true
-    this.props.navigation.navigate("HealthScan");
+    this.props.navigation.navigate("ConfirmEntry");
   };
+  onSubmit() {
+    Keyboard.dismiss();
+  }
+  onBlur() {
+    Keyboard.dismiss();
+  }
   onTimerFinish() {
     Alert.alert(
       `Time is finish to verify the code!`,
@@ -35,13 +41,16 @@ export default class SMSService extends Component {
       { cancelable: false }
     );
   }
+  formatText = text => {
+    return text.replace(/[^+\d]/g, "");
+  };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SMSSERVICE`)} />
         <Text style={[Styles.topParagraph, style]}>
-          {I18n.t(`Paragarphs.SMSVERIFICATION`)}
+          {I18n.t(`Paragarphs.SMSSERVICE`)}
         </Text>
         <View style={Styles.Spacer50} />
         <View style={screenStyles.textInput}>
@@ -50,9 +59,11 @@ export default class SMSService extends Component {
             keyboardType="phone-pad"
             // activeLineWidth={20}
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
+            returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
+            onBlur={() => this.onBlur()}
           />
         </View>
         <View style={Styles.Spacer50} />

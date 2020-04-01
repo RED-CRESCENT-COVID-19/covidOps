@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, StyleSheet, View, ScrollView, Keyboard } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -14,17 +14,32 @@ import { Heading, TextA, CardView } from "../../components";
 import { Strings, Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
 export default class OtherSymptoms extends Component {
-  onNextButton() {
-    this.props.navigation.navigate("Temperature");
+  constructor(props) {
+    super(props);
+    this.state = { otherSymptoms: "" };
   }
+  onNextButton() {
+    const otherSymptoms = { otherSymptoms: this.state.otherSymptoms };
+    const params = { ...otherSymptoms, ...this.props.route.params };
+    this.props.navigation.navigate("Temperature", params);
+  }
+  onBackButtonClick() {
+    this.props.navigation.navigate("Symptoms");
+  }
+  onSubmit() {
+    Keyboard.dismiss();
+  }
+  onBlur() {
+    Keyboard.dismiss();
+  }
+
   render() {
+    console.log("other Symptoms props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SYMPTOMS`)} />
-        <Text style={[Styles.topParagraph, style]}>
-          {I18n.t(`Paragarphs.SYMPTOMS`)}
-        </Text>
+
         <CardView Styles={Styles.Spacer50} />
         {/* Other Symptoms text area */}
 
@@ -32,12 +47,16 @@ export default class OtherSymptoms extends Component {
           <OutlinedTextField
             label={I18n.t(`Labels.SYMPTOMLIST.OTHERSYMPTOMS`)}
             // activeLineWidth={20}
-            placeholder={I18n.t(`Labels.SYMPTOMLIST.OTHERSYMPTOMSEAMPLE`)}
+            placeholder={" "}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            multiline
-            inputContainerStyle={screenStyles.inputContainerStyle}
-            onSubmitEditing={this.onSubmit}
+            // multiline
+            returnKeyType={"done"}
+            onSubmitEditing={() => this.onSubmit()}
+            onChangeText={otherSymptoms =>
+              this.setState({ otherSymptoms: otherSymptoms })
+            }
+            onBlur={() => this.onBlur()}
           />
         </View>
         <CardView Styles={Styles.Spacer50} />
@@ -48,6 +67,7 @@ export default class OtherSymptoms extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
+            onPress={() => this.onBackButtonClick()}
           />
           <RaisedTextButton
             title={I18n.t(`ButtonTitles.NEXT`)}
@@ -68,9 +88,5 @@ const screenStyles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 35,
     paddingRight: 35
-  },
-  inputContainerStyle: {
-    height: 200,
-    paddingBottom: 160
   }
 });

@@ -81,6 +81,16 @@ const Styles = StyleSheet.create({
     bottom: 20,
     width: "100%"
   },
+  changeLanguagebuttonsContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    padding: 20,
+    paddingTop: 40,
+    position: "relative",
+    bottom: 20,
+    width: "100%"
+  },
   largebuttonsContainer: {
     padding: 10,
     paddingLeft: 45,
@@ -123,6 +133,24 @@ const Styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 35,
     paddingRight: 35
+  },
+  temperatureButtonsContainer: {
+    flex: 1,
+    flexDirection: "row",
+    // justifyContent: "space-between",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 35,
+    paddingRight: 35
+  },
+  smallTemperatureButton: {
+    width: 86,
+    height: 36,
+    overflow: "hidden",
+    marginRight: 10,
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: Colors.primaryColor
   },
   infoItemContainer: {
     paddingTop: 10,

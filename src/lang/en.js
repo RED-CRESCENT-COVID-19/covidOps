@@ -14,7 +14,14 @@ export default {
     HOME: "MS-XXXXX-XX",
     HOMEHOLD: "Household Details",
     SMSSERVICE: "SMS Notifications",
-    CONFIRMENTERY: "Confirm Entry"
+    CONFIRMENTERY: "Confirm Entry",
+    NEWPRECAUTIONS: "Miscellaneous"
+  },
+  Alert: {
+    HOUSEHOLDDETAIL: {
+      TITLE: `Are you sure you want to delete this?`,
+      DETAIL: ""
+    }
   },
   ButtonTitles: {
     CONTINUE: "Continue",
@@ -30,11 +37,13 @@ export default {
     ADDMEMEBERS: "Add Memebers",
     RESEND: "Resend",
     DONE: "DONE",
-    CANCEL: "CANCEL"
+    CANCEL: "CANCEL",
+    TRANSLATION: "اردو",
+    LOGOUT: "LOG OUT"
   },
   Paragarphs: {
     SMSSERVICE:
-      "Do you want to recieve infocare SMS on your mobile number? Please enter your mobile phone number",
+      "We can send you the information we discussed via SMS, please provide a phone no.",
     PHONEVERIFICATION:
       "We need to verify your device via SMS code. A text message will be sent to your phone number. Please enter your phone number to continue:",
     SMSVERIFICATION:
@@ -88,8 +97,13 @@ export default {
     HOUSEHOLDSCANNED: "HOUSEHOLD SCANNED",
     PEOPLESCANNED: "PEOPLE SCANNED",
     SCANNINGSUMMARY: "SCANNING SUMMARY",
+    MEMBER: "MEMBER",
     CNICNUMBER: "CNIC NUMBER",
     PHONENUMBER: "PHONE NUMBER",
+    TEMPERATURE: {
+      CELSIUS: "°C",
+      FAHRENHEIT: "°F"
+    },
     CONFIRMENTERY: {
       LABEL: "18:00 - 22/03/2020",
       EAMPLE: "MS-XXXXX-XX"
@@ -127,30 +141,35 @@ export default {
     symptomLable: "fever"
   },
   QUESTIONS_LIST: {
+    PrecautionsInit: [
+      {
+        Answer: `Greet people from a distance`,
+        Question: `Don’t shake hands or hug people`
+      },
+      {
+        Answer: `Ask questions before giving out any information`,
+        Question: `Only give out scientific information provided in the infocare section`
+      },
+      {
+        Answer: `Let people express their feelings and concerns`,
+        Question: ``
+      }
+    ],
     Precautions: [
       {
-        Question: "",
-        Answer: `Greet people from a distance
-
-    Don’t shake hands or hug people
-
-    Ask questions before giving out any information
-
-    Only give out scientific information provided in the infocare section
-
-    Let people express their feelings and concerns
-`
-      },
-
+        Question:
+          "Have you contacted anyone that might have the coronavirus infection?",
+        Answer: ``
+      }
+    ],
+    NewPrecautions: [
       {
         Question:
           "Have you travelled to a coronavirus infected area in the past month?",
         Answer: ``
       },
-
       {
-        Question:
-          "Have you contacted anyone that might have the coronavirus infection?",
+        Question: `Have you been in contact with someone who has been diagnosed with COVID-19?`,
         Answer: ``
       }
     ],

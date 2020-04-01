@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Alert } from "react-native";
+import { Text, StyleSheet, View, Alert, AsyncStorage } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -9,14 +9,70 @@ import CountDown from "react-native-countdown-component";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
+import { Heading, Loader } from "../../components";
+
+// Service
+import Http from "../../services/HttpService";
 
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class SMSVerification extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { pin: "", hogiya: "", isLoading: false };
+  }
+
   handleContinue = () => {
+    const { params } = this.props.route;
+    var phone = params.phone;
+    var pin = this.state.pin;
+
+    this.setState({ isLoading: true });
+
+    Http.post("auth/pin-validation", { phone: phone, pin: pin })
+      .then(response => {
+        this.setState({ isLoading: false });
+
+        if (response.status == 200) {
+          (async token => await AsyncStorage.setItem("AuthToken", token))(
+            response.data.auth_token
+          );
+          //  const {setAuth} = React.useContext(MyContext)
+          this.props.setAuth(true);
+        } else {
+          var message = "";
+          if (response.status == 400) {
+            message = response.data.details.errors.pin[0];
+          } else {
+            message = response.data.message;
+          }
+          Alert.alert(
+            "Info",
+            message,
+            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            { cancelable: false }
+          );
+        }
+      })
+      .catch(err => {
+        this.setState({ isLoading: false });
+
+        Alert.alert(
+          "error!",
+          `${err}`,
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ],
+          { cancelable: false }
+        );
+      });
     //store Aysc value isAuthenticated == true
     // this.props.navigation.navigate("LocationData");
   };
@@ -36,6 +92,13 @@ export default class SMSVerification extends Component {
     );
   }
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -48,10 +111,13 @@ export default class SMSVerification extends Component {
           <OutlinedTextField
             label={I18n.t(`Labels.VERIFICATIONCODE`)}
             keyboardType="phone-pad"
+            returnKeyType={"done"}
             // activeLineWidth={20}
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
+            onChangeText={pin => this.setState({ pin: pin })}
+            maxLength={11}
             onSubmitEditing={this.onSubmit}
           />
         </View>
@@ -70,7 +136,7 @@ export default class SMSVerification extends Component {
           }}
           digitTxtStyle={{ color: Colors.primaryColor }}
           onFinish={() => this.onTimerFinish()}
-          onPress={() => alert("hello, why are you doing this? :p")}
+          // onPress={() => alert("hello, why are you doing this? :p")}
           timeToShow={["M", "S"]}
           showSeparator
           separatorStyle={{ color: Colors.primaryColor }}
@@ -89,6 +155,7 @@ export default class SMSVerification extends Component {
             onPress={this.handleContinue}
           />
         </View>
+        {loader}
       </View>
     );
   }

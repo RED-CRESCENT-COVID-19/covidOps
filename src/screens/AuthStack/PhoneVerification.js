@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -8,8 +8,11 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
-import CardView from "../../components/CardView";
+import { Heading, CardView, Loader } from "../../components";
+
+// Service
+import Http from "../../services/HttpService";
+
 //Theme
 import { Styles, Colors } from "../../../theme";
 
@@ -17,10 +20,51 @@ const WRITING_STYLE = I18n.locale;
 export default class PhoneVerification extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { phone: "", loader: false };
   }
+
   onSubmit = () => {
-    // () => navigation.navigate('SMSVerify')
+    this.props.navigation.navigate("SMSVerify", { phone: "03065555700" });
+    var phone = this.state.phone;
+    this.setState({ isLoading: true });
+    Http.post("auth/phone", { phone: phone })
+      .then(response => {
+        this.setState({ isLoading: false });
+
+        if (response.status == 204) {
+          this.props.navigation.navigate("SMSVerify", { phone: phone });
+        } else {
+          var message = "";
+          if (response.status == 400) {
+            message = response.data.details.errors.phone[0];
+          } else {
+            message = response.data.message;
+          }
+          Alert.alert(
+            "Info",
+            message,
+            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            { cancelable: false }
+          );
+        }
+      })
+      .catch(err => {
+        this.setState({ isLoading: false });
+
+        Alert.alert(
+          `error!`,
+          `${err}`,
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ],
+          { cancelable: false }
+        );
+      });
   };
   handleContinue = () => {
     this.props.navigation.navigate("SMSVerify");
@@ -29,6 +73,13 @@ export default class PhoneVerification extends Component {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -42,9 +93,13 @@ export default class PhoneVerification extends Component {
             label={I18n.t(`Labels.PHONENUMBER`)}
             keyboardType="phone-pad"
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
+            returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
+            onChangeText={phone => this.setState({ phone: phone })}
+            maxLength={11}
+            ref={this.phoneFieldRef}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />
@@ -55,9 +110,10 @@ export default class PhoneVerification extends Component {
             titleColor={Colors.buttonTextColor}
             shadeBorderRadius={1.5}
             style={Styles.smallButton}
-            onPress={this.handleContinue}
+            onPress={this.onSubmit}
           />
         </View>
+        {loader}
       </View>
     );
   }

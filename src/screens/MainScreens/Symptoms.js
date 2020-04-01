@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -16,56 +16,126 @@ const WRITING_STYLE = I18n.locale;
 
 const SYMPTOMS_LIST = [
   {
-    symptomNumber: "علامت ",
-    symptomName: "بخار",
-    value: "fever",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FEVER`),
+    value: "Fever",
+    normalisedValue: "fever",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
-    symptomName: "چھینکنے",
-    value: "dry cough",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DRYCOUGH`),
+    value: "Dry Cough",
+    normalisedValue: "dryCough",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
-    symptomName: "کھانسنے",
-    value: "dry cough",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SPUTUMPRODUCTION`),
+    value: "Sputum production",
+    normalisedValue: "sputumProduction",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
-    symptomName: "سانس لینے میں دقت",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.BLOODINCOUGH`),
+    value: "Blood in cough",
+    normalisedValue: "bloodInCough",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FATIGUE`),
+    value: "Fatigue",
+    normalisedValue: "fatigue",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
+    value: "Headache",
+    normalisedValue: "headache",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.BODYPAIN`),
+    value: "Body pain",
+    normalisedValue: "bodyPain",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SORETHROAT`),
+    value: "Sore throat",
+    normalisedValue: "soreThroat",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.NASALCONGESTION`),
+    value: "Nasal congestion",
+    normalisedValue: "nasalCongestion",
+    isChecked: false
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.SHORTNESSOFBREATH`),
     value: "Shortness of breath",
+    normalisedValue: "shortnessOfBreath",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
-    symptomName: "تھکاوٹ",
-    value: "body pain",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.REDNESSOFEYES`),
+    value: "Redness of eyes",
+    normalisedValue: "rednessOfEyes",
     isChecked: false
   },
   {
-    symptomNumber: "علامت ",
-    symptomName: "نزلہ",
-    value: "flu",
-    isChecked: false
-  },
-  {
-    symptomNumber: "علامت ",
-    symptomName: "تھکاوٹ",
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DIARRHEA`),
     value: "diarrhea",
+    normalisedValue: "diarrhea",
     isChecked: false
   }
 ];
 
 export default class Symptoms extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedSymptomsCheckBoxList: []
+    };
+    this.handleCheckboxSymptomsList = this.handleCheckboxSymptomsList.bind(
+      this
+    );
+  }
+  createSymptoms = () => {
+    var newObject = this.state.selectedSymptomsCheckBoxList.reduce(
+      (obj, item) =>
+        Object.assign(obj, { [item.normalisedValue]: item.isChecked ? 1 : 0 }),
+      {}
+    );
+    return newObject;
+  };
+  handleCheckboxSymptomsList(symptom) {
+    const newSymptoms = [...this.state.selectedSymptomsCheckBoxList, symptom];
+    this.setState({ selectedSymptomsCheckBoxList: newSymptoms }, () => {
+      const val = this.createSymptoms();
+    });
+  }
   handleNext() {
-    this.props.navigation.navigate("OtherSymptoms");
+    var symptoms = this.createSymptoms();
+    const params = { ...this.props.route.params, ...symptoms };
+    this.props.navigation.navigate("OtherSymptoms", params);
   }
   handleBack = () => {
     this.props.navigation.goBack();
   };
+  componentDidMount() {
+    console.log(this.props.route.params);
+  }
 
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
@@ -88,6 +158,8 @@ export default class Symptoms extends Component {
                 symptomName={d.symptomName}
                 value={d.value}
                 checked={d.isChecked}
+                normalisedValue={d.normalisedValue}
+                handleCheckboxSymptomsList={this.handleCheckboxSymptomsList}
               />
             ))}
           </ScrollView>

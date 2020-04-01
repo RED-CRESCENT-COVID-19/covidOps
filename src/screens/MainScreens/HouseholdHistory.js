@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, AsyncStorage } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -7,59 +7,87 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { CardView, Heading } from "../../components";
-import InfoList from "../../components/InfoList";
+import { CardView, InfoList, Heading, Loader } from "../../components";
+
+// Service
+import Http from "../../services/HttpService";
 
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 
-const DATA = [
-  {
-    name: "Rizwan",
-    cnic: "4352345245",
-    id: "435224434565"
-  },
-  {
-    name: "Zaheer",
-    cnic: "4352256745",
-    id: "43522ds45"
-  },
-  {
-    name: "Ahmed",
-    cnic: "435wer2245",
-    id: "435223424522"
-  },
-  {
-    name: "faysal",
-    cnic: "4352342245",
-    id: "435223424542"
-  },
-  {
-    name: "fazlo",
-    cnic: "4352342245",
-    id: "435223424512"
-  },
-  {
-    name: "adfadf",
-    cnic: "435224234325",
-    id: "4352223445"
-  }
-];
 export default class HouseholdHistory extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [], isLoading: false };
+  }
   handleDone = () => {
     this.props.navigation.goBack();
   };
+  async componentDidMount() {
+    this.setState({ isLoading: true });
+    const token = await AsyncStorage.getItem("AuthToken");
+    const url = "house";
+    Http.get(url, {}, { headers: { "access-token": token } })
+      .then(response => {
+        this.setState({ isLoading: false });
+        console.log("house hold history response is: ", response);
+        if (response.status == 200) {
+          // console.log(response.data)
+          if (response.data.length > 0) {
+            this.setState({ data: response.data.reverse() });
+          } else {
+            // console.log(this.response.data)
+          }
+          // this.setState({
+          //   persons: response.data.person_count,
+          //   houses: response.data.house_count
+          // });
+        } else {
+          // TOOD:: error handling
+        }
+      })
+      .catch(err => {
+        this.setState({ isLoading: false });
+        // Alert.alert(
+        //   `${err}`,
+        //   "Keep your app up to date to enjoy the latest features",
+        //   [
+        //     {
+        //       text: "Cancel",
+        //       onPress: () => console.log("Cancel Pressed"),
+        //       style: "cancel"
+        //     },
+        //     { text: "OK", onPress: () => console.log("OK Pressed") }
+        //   ],
+        //   { cancelable: false }
+        // );
+      });
+  }
   render() {
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOUSEHOLDHISTORY`)} />
-        {/* <CardView Styles={Styles.Spacer300} /> */}
         <CardView Styles={Styles.Spacer50} />
-        <ScrollView style={Styles.ScrollView}>
-          {DATA.map(d => (
-            <InfoList data={d} key={d.id} {...this.props} />
-          ))}
-        </ScrollView>
+
+        {this.state.data.length > 0 && (
+          <ScrollView style={Styles.ScrollView}>
+            {this.state.data.map(d => (
+              <InfoList
+                data={d}
+                key={d.id}
+                {...this.props}
+                HouseHoldDetails={""}
+              />
+            ))}
+          </ScrollView>
+        )}
 
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
@@ -71,6 +99,7 @@ export default class HouseholdHistory extends Component {
             onPress={this.handleDone}
           />
         </View>
+        {loader}
       </View>
     );
   }

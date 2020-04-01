@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, AsyncStorage } from "react-native";
+
+import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins
 import I18n from "../../plugins/I18n";
@@ -12,26 +14,73 @@ import {
   CalculationLabel
 } from "../../components";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
+
+import Http from "../../services/HttpService";
 
 const WRITING_STYLE = I18n.locale;
+
 export default class HealthScan extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: true,
+      persons: 0,
+      houses: 0
+    };
+  }
+
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem("AuthToken");
+    Http.get("stats", {}, { headers: { "access-token": token } })
+      .then(response => {
+        if (response.status == 200) {
+          this.setState({
+            persons: response.data.person_count,
+            houses: response.data.house_count
+          });
+        } else {
+          //TODO:: Redirect Back to login screen
+        }
+      })
+      .catch(err => {});
+  }
+
   handleAddHouseHold = () => {
     this.props.navigation.navigate("HouseholdNumber");
   };
   handleHouseHoldHistory = () => {
     this.props.navigation.navigate("HouseholdHistory");
   };
+  onChangeLanguage() {
+    I18n.locale = "en";
+  }
+  async onHandleChange() {
+    const token = await AsyncStorage.getItem("AuthToken");
+    await AsyncStorage.removeItem("AuthToken");
+    await AsyncStorage.removeItem("HouseID");
+    Http.delete("auth/logout", {}, { headers: { "access-token": token } })
+      .then(response => {
+        this.props.setAuth(false);
+        //TODO:: Redirect back to login, clear token
+      })
+      .catch(err => {});
+
+    this.setState({
+      isAuthenticated: !this.state.isAuthenticated
+    });
+  }
   render() {
+    const { isAuthenticated } = this.state;
     const homeIcon = require("../../../assets/images/home.png");
     const historyIcon = require("../../../assets/images/history.png");
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HEALTHSCAN`)} />
         <Text style={[Styles.topParagraph, style]}>
           {I18n.t(`Paragarphs.HEALTHSCAN`)}
-          {/* {I18n.t(`Paragarphs.HEALTHSCAN`)} */}
         </Text>
         <CardView Styles={Styles.Spacer50} />
         <View style={Styles.largebuttonsContainer}>
@@ -56,18 +105,37 @@ export default class HealthScan extends Component {
             onPress={this.handleHouseHoldHistory}
           />
         </View>
-        <Text style={[screenStyles.titleLabel, style]}>
+        <Text style={[screenStyles.titleLabel, style, { paddingRight: 35 }]}>
           {I18n.t(`Labels.SCANNINGSUMMARY`)}
         </Text>
 
         <CalculationLabel
-          value={15}
+          value={this.state.houses}
           secondaryText={I18n.t(`Labels.HOUSEHOLDSCANNED`)}
         />
         <CalculationLabel
-          value={73}
+          value={this.state.persons}
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
+        <View style={Styles.changeLanguagebuttonsContainer}>
+          <RaisedTextButton
+            title={I18n.t(`ButtonTitles.LOGOUT`)}
+            color={Colors.buttonTextColor}
+            titleColor={Colors.secondaryColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.onHandleChange()}
+          />
+
+          <RaisedTextButton
+            title={I18n.t(`ButtonTitles.TRANSLATION`)}
+            color={Colors.secondaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.onChangeLanguage()}
+          />
+        </View>
       </View>
     );
   }
