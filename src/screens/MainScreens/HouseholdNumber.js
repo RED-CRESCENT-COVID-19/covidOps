@@ -5,7 +5,7 @@ import {
   View,
   Keyboard,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 import { connect } from "react-redux";
 import { OutlinedTextField } from "react-native-material-textfield";
@@ -40,7 +40,7 @@ class HouseholdNumber extends Component {
       id: "",
       lat: "",
       lng: "",
-      token: ""
+      token: "",
     };
   }
   fieldRef = React.createRef();
@@ -55,7 +55,7 @@ class HouseholdNumber extends Component {
       id: this.state.id,
       lat: this.state.lat,
       lng: this.state.lng,
-      is_contacted: 1
+      is_contacted: 1,
     };
 
     const token = this.state.token;
@@ -69,17 +69,17 @@ class HouseholdNumber extends Component {
     this._getsetID();
     this.setState({ isLoading: true });
     Http.post("house", data, { headers: { "access-token": token } })
-      .then(response => {
+      .then((response) => {
         this.setState({ isLoading: false });
         console.log("house hold response is: ", response);
         if (response.status == 201) {
-          (async HouseId => {
+          (async (HouseId) => {
             await AsyncStorage.setItem("HouseID", HouseId);
           })(response.data.id);
 
           if (isContacted) {
             this.props.navigation.navigate("HouseHoldDetails", {
-              houseID: data.id
+              houseID: data.id,
             });
           } else {
             this.props.navigation.goBack();
@@ -98,7 +98,7 @@ class HouseholdNumber extends Component {
           );
         }
       })
-      .catch(err => {});
+      .catch((err) => {});
   };
 
   handleBack = () => {
@@ -125,25 +125,27 @@ class HouseholdNumber extends Component {
       await AsyncStorage.setItem("LocationStatus", status);
       if (status !== "granted") {
         this.setState({
-          errorMessage: "Permission to access location was denied"
+          errorMessage: "Permission to access location was denied",
         });
       }
       let location = await Location.getCurrentPositionAsync({});
       this.setState({
         lat: location.coords.latitude,
-        lng: location.coords.longitude
+        lng: location.coords.longitude,
       });
     } catch (error) {
+      console.log("get locatioin ${error} is: ", error);
+
       Alert.alert(
-        `${error}`,
+        `Info!`,
         "Please head over to setting & enable the location",
         [
           {
             text: "Cancel",
             onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
+            style: "cancel",
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: "OK", onPress: () => console.log("OK Pressed") },
         ],
         { cancelable: false }
       );
@@ -185,9 +187,9 @@ class HouseholdNumber extends Component {
           returnKeyType={"done"}
           inputContainerStyle={screenStyles.inputContainerStyle}
           // onSubmitEditing={() => this.onSubmit()}
-          onChangeText={value => this.setState({ address: value })}
+          onChangeText={(value) => this.setState({ address: value })}
           onBlur={() => this.onBlur()}
-          ref={input => {
+          ref={(input) => {
             this.fieldRef = input;
           }}
         />
@@ -224,26 +226,26 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   centerText: {
     paddingTop: 20,
     paddingLeft: 35,
     paddingRight: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   inputContainerStyle: {
-    margin: 35
-  }
+    margin: 35,
+  },
 });
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     createHome: (home, token) =>
-      dispatch(actionCreators.createHome(home, token))
+      dispatch(actionCreators.createHome(home, token)),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { ...state };
 };
 
