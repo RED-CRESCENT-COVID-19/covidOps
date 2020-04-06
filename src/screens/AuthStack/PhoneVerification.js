@@ -24,52 +24,69 @@ export default class PhoneVerification extends Component {
   }
 
   onSubmit = () => {
-    this.props.navigation.navigate("SMSVerify", { phone: "03065555700" });
-    var phone = this.state.phone;
+    const phone = this.state.phone;
     this.setState({ isLoading: true });
-    Http.post("auth/phone", { phone: phone })
-      .then(response => {
-        this.setState({ isLoading: false });
-
-        if (response.status == 204) {
-          this.props.navigation.navigate("SMSVerify", { phone: phone });
-        } else {
-          var message = "";
-          if (response.status == 400) {
-            message = response.data.details.errors.phone[0];
+    if (phone.length < 10) {
+      this.setState({ isLoading: false });
+      Alert.alert(
+        `Info!`,
+        `Please enter valid phone number`,
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      Http.post("auth/phone", { phone: phone })
+        .then((response) => {
+          this.setState({ isLoading: false });
+          if (response.status === 204) {
+            console.log("response.status is: ", response.status);
+            this.props.navigation.navigate("SMSVerify", { phone: phone });
           } else {
-            message = response.data.message;
+            console.log("else response.status is: ", response.status);
+            var message = "";
+            if (response.status == 400) {
+              message = response.data.details.errors.phone[0];
+            } else {
+              message = response.data.message;
+            }
+            Alert.alert(
+              "Info",
+              message,
+              [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+              { cancelable: false }
+            );
           }
+        })
+        .catch((err) => {
+          console.log("error is:, ", err);
+          this.setState({ isLoading: false });
           Alert.alert(
-            "Info",
-            message,
-            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            `Info`,
+            `Please try Again`,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel",
+              },
+              { text: "OK", onPress: () => console.log("OK Pressed") },
+            ],
             { cancelable: false }
           );
-        }
-      })
-      .catch(err => {
-        this.setState({ isLoading: false });
-
-        Alert.alert(
-          `error!`,
-          `${err}`,
-          [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-              style: "cancel"
-            },
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-        );
-      });
+        });
+    }
   };
   handleContinue = () => {
     this.props.navigation.navigate("SMSVerify");
   };
-  formatText = text => {
+  formatText = (text) => {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
@@ -97,7 +114,7 @@ export default class PhoneVerification extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
-            onChangeText={phone => this.setState({ phone: phone })}
+            onChangeText={(phone) => this.setState({ phone: phone })}
             maxLength={11}
             ref={this.phoneFieldRef}
           />
@@ -123,6 +140,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });
