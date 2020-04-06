@@ -26,49 +26,50 @@ export default class SMSVerification extends Component {
 
   handleContinue = () => {
     const { params } = this.props.route;
-    var phone = params.phone;
-    var pin = this.state.pin;
+    let phone = params.phone;
+    let pin = this.state.pin;
 
     this.setState({ isLoading: true });
 
-    Http.post("auth/pin-validation", { phone: phone, pin: pin })
-      .then(response => {
+    Http.post("auth/pin-validation", { phone, pin })
+      .then((response) => {
         this.setState({ isLoading: false });
 
-        if (response.status == 200) {
-          (async token => await AsyncStorage.setItem("AuthToken", token))(
+        if (response.status === 200) {
+          (async (token) => await AsyncStorage.setItem("AuthToken", token))(
             response.data.auth_token
           );
           //  const {setAuth} = React.useContext(MyContext)
           this.props.setAuth(true);
         } else {
           var message = "";
-          if (response.status == 400) {
+          if (response.status === 400) {
             message = response.data.details.errors.pin[0];
           } else {
             message = response.data.message;
           }
           Alert.alert(
             "Info",
-            message,
+            `${message} Please enter valid verification code!`,
             [{ text: "OK", onPress: () => console.log("OK Pressed") }],
             { cancelable: false }
           );
         }
       })
-      .catch(err => {
+      .catch((err) => {
+        console.log("catch error is: ", err);
         this.setState({ isLoading: false });
 
         Alert.alert(
-          "error!",
+          "Error!",
           `${err}`,
           [
             {
               text: "Cancel",
               onPress: () => console.log("Cancel Pressed"),
-              style: "cancel"
+              style: "cancel",
             },
-            { text: "OK", onPress: () => console.log("OK Pressed") }
+            { text: "OK", onPress: () => console.log("OK Pressed") },
           ],
           { cancelable: false }
         );
@@ -84,9 +85,9 @@ export default class SMSVerification extends Component {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        { text: "OK", onPress: () => console.log("OK Pressed") },
       ],
       { cancelable: false }
     );
@@ -116,8 +117,8 @@ export default class SMSVerification extends Component {
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={pin => this.setState({ pin: pin })}
-            maxLength={11}
+            onChangeText={(pin) => this.setState({ pin: pin })}
+            maxLength={4}
             onSubmitEditing={this.onSubmit}
           />
         </View>
@@ -132,7 +133,7 @@ export default class SMSVerification extends Component {
           until={300} // for five minutes
           // until={10} // for 10 sec for verification the code
           digitStyle={{
-            backgroundColor: Colors.transparent
+            backgroundColor: Colors.transparent,
           }}
           digitTxtStyle={{ color: Colors.primaryColor }}
           onFinish={() => this.onTimerFinish()}
@@ -165,9 +166,9 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   didNotReceivedCode: {
-    alignSelf: "center"
-  }
+    alignSelf: "center",
+  },
 });
