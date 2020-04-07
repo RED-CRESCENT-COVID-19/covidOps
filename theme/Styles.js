@@ -3,74 +3,73 @@ import Colors from "./Colors";
 const { height, width } = Dimensions.get("window");
 const Styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   containerHeader: {
     paddingTop: 70,
     paddingLeft: 32,
     paddingRight: 32,
     fontFamily: "noto-nastaliq",
-    writingDirection: "rtl"
+    writingDirection: "rtl",
   },
   textHeader: {
     fontSize: 34,
     color: Colors.primaryColor,
-    paddingTop: 24
+    paddingTop: 24,
     // fontFamily: "noto-nastaliq",
   },
   lineHeader: {
     height: 2,
     backgroundColor: Colors.primaryColor,
-    alignSelf: "stretch"
+    alignSelf: "stretch",
   },
   lineDivider: {
     height: 2,
     backgroundColor: Colors.dividerColor,
     alignSelf: "stretch",
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   topParagraph: {
     paddingTop: 20,
     paddingLeft: 36,
     paddingRight: 36,
     fontSize: 16,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
   },
   rtlWritingStyle: {
-    writingDirection: "rtl"
+    writingDirection: "rtl",
   },
   ScrollView: {
     height: height - 350,
-    marginBottom: 100
+    marginBottom: 100,
   },
   Spacer300: {
-    paddingTop: 300
+    paddingTop: 300,
   },
   Spacer100: {
-    paddingTop: 100
+    paddingTop: 100,
   },
   Spacer50: {
-    paddingTop: 50
+    paddingTop: 50,
   },
   Spacer20: {
-    paddingTop: 20
+    paddingTop: 20,
   },
   leftButtonContainer: {
     paddingRight: 220,
-    paddingLeft: 20
+    paddingLeft: 20,
   },
   rightButtonContainer: {
-    paddingLeft: 220,
-    paddingRight: 20,
     position: "absolute",
-    bottom: "10%"
+    bottom: "8%",
+    right: "8%",
   },
   smallButton: {
     width: 140,
     height: 44,
     overflow: "hidden",
-    borderRadius: 40
+    borderRadius: 40,
   },
   buttonsContainer: {
     flex: 1,
@@ -79,7 +78,7 @@ const Styles = StyleSheet.create({
     padding: 20,
     position: "absolute",
     bottom: 20,
-    width: "100%"
+    width: "100%",
   },
   changeLanguagebuttonsContainer: {
     flex: 1,
@@ -89,33 +88,33 @@ const Styles = StyleSheet.create({
     paddingTop: 40,
     position: "relative",
     bottom: 20,
-    width: "100%"
+    width: "100%",
   },
   largebuttonsContainer: {
     padding: 10,
     paddingLeft: 45,
     paddingRight: 45,
-    alignContent: "center"
+    alignContent: "center",
   },
   largeButton: {
     width: 320,
     height: 44,
     overflow: "hidden",
-    borderRadius: 40
+    borderRadius: 40,
   },
   Spacer200: {
-    paddingTop: 200
+    paddingTop: 200,
   },
   genderText: {
     paddingTop: 20,
     paddingLeft: 36,
     paddingRight: 36,
     fontSize: 16,
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
 
   Spacer250: {
-    paddingTop: 250
+    paddingTop: 250,
   },
   smallGenderButton: {
     width: 106,
@@ -123,7 +122,7 @@ const Styles = StyleSheet.create({
     overflow: "hidden",
     borderRadius: 40,
     borderWidth: 2,
-    borderColor: Colors.primaryColor
+    borderColor: Colors.primaryColor,
   },
   genderButtonsContainer: {
     flex: 1,
@@ -132,7 +131,7 @@ const Styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   temperatureButtonsContainer: {
     flex: 1,
@@ -141,7 +140,7 @@ const Styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   smallTemperatureButton: {
     width: 86,
@@ -150,79 +149,79 @@ const Styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 40,
     borderWidth: 2,
-    borderColor: Colors.primaryColor
+    borderColor: Colors.primaryColor,
   },
   infoItemContainer: {
     paddingTop: 10,
     paddingLeft: 35,
     paddingRight: 35,
-    textAlign: "right"
+    textAlign: "right",
   },
   infoItemHeader: {
     fontSize: 14,
     textTransform: "uppercase",
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
   infoItemTitle: {
     fontSize: 20,
     paddingTop: 10,
     height: 50,
     width: 300,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
   },
   infoContainer: {
     flexDirection: "row",
-    paddingRight: 0
+    paddingRight: 0,
   },
   checkBoxContainer: {
     paddingTop: 10,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   checkBoxHeader: {
     fontSize: 14,
     textTransform: "uppercase",
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
   checkBoxTitle: {
     fontSize: 20,
     paddingTop: 10,
     height: 50,
     width: 300,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
   },
   symptomsContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   checkBoxStyle: {
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
   InfoListContainer: {
     paddingTop: 10,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   InfoListHeader: {
     fontSize: 14,
     // paddingBottom: 15,
     textTransform: "uppercase",
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
   InfoListTitle: {
     fontSize: 20,
     paddingTop: 10,
     height: 50,
     width: 240,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
   },
   memberContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   InfoListStyle: {
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
   ScrollViewStyle: {
-    height: 100
+    height: 100,
   },
   topQuestion: {
     paddingTop: 20,
@@ -231,7 +230,7 @@ const Styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     textAlign: "right", // right for urdu use left for english
-    color: Colors.primaryColor
+    color: Colors.primaryColor,
   },
   answer: {
     paddingTop: 20,
@@ -240,8 +239,8 @@ const Styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     textAlign: "right", // right for urdu use left for english
-    color: Colors.paragraphTextColor
-  }
+    color: Colors.paragraphTextColor,
+  },
 });
 
 export default Styles;
