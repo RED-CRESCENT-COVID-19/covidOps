@@ -91,9 +91,14 @@ const Styles = StyleSheet.create({
     width: "100%",
   },
   largebuttonsContainer: {
+    display: "flex",
+    // justifyContent: "center",
+    // alignItems: "center",
+    alignSelf: "center",
+    // width: width,
     padding: 10,
-    paddingLeft: 45,
-    paddingRight: 45,
+    // paddingLeft: 45,
+    // paddingRight: 45,
     alignContent: "center",
   },
   largeButton: {
