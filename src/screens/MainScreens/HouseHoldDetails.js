@@ -1,23 +1,17 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, Alert, AsyncStorage } from "react-native";
-
 import { RaisedTextButton } from "react-native-material-buttons";
-
-// plugins
 import I18n from "../../plugins/I18n";
-
-//Custom Components
 import {
   Heading,
   InfoList,
   CardView,
   ExtendedButton,
-  Loader
+  Loader,
 } from "../../components";
-//Theme
 import { Styles, Colors } from "../../../theme";
-// Service
-import Http from "../../services/HttpService";
+import { getHouseHoldDetail, setResponse } from "../../actions";
+import { connect } from "react-redux";
 
 const WRITING_STYLE = I18n.locale;
 
@@ -26,47 +20,23 @@ const homeIcon = require("../../../assets/images/home.png");
 class HouseHoldDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiData: [], isLoading: false };
     this.getPersons = this.getPersons.bind(this);
   }
 
-  async componentDidMount() {
-    await this.getPersons();
+  componentWillMount() {
+    this._unsubscribe = this.props.navigation.addListener("focus", async () => {
+      await this.getPersons();
+    });
   }
-  static getDerivedStateFromProps(props, state) {
-    state;
+  componentWillUnmount() {
+    this._unsubscribe();
   }
-
   async getPersons() {
     delete this.props.route.params.update;
     this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
     const houseId = await AsyncStorage.getItem("HouseID");
-
-    const url = "persons/" + houseId;
-    Http.get(url, {}, { headers: { "access-token": token } })
-      .then(response => {
-        this.setState({ isLoading: false });
-        if (response.status == 200) {
-          if (response.data.length > 0) {
-            this.setState({ apiData: response.data.reverse() });
-          } else {
-            // console.log(this.response.data)
-          }
-          // this.response.data;
-          // this.setState({
-          //   persons: response.data.person_count,
-          //   houses: response.data.house_count
-          // });
-        } else {
-          // TOOD:: error handling
-        }
-        // console.log("this. state data is: ", this.state.apiData);
-      })
-      .catch(err => {
-        this.setState({ isLoading: false });
-        console.log("house hold details error is: ", err);
-      });
+    this.props.getHouseHoldDetails(token, houseId);
   }
   handleAddHouseHold = () => {
     this.props.navigation.navigate("MemberDetails");
@@ -83,28 +53,27 @@ class HouseHoldDetails extends Component {
         {
           text: I18n.t(`ButtonTitles.CANCEL`),
           onPress: () => console.log("cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: I18n.t(`ButtonTitles.YES`),
           onPress: async () => {
             await AsyncStorage.removeItem("HouseID");
             this.props.navigation.navigate("HealthScan");
-          }
-        }
+          },
+        },
       ],
       { cancelable: false }
     );
   };
   render() {
-    const { apiData } = this.state;
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
 
     // call the api to get the data when enter in this screen
     this.props.route.params.update && this.getPersons();
 
     let loader;
-    if (this.state.isLoading) {
+    if (this.props.loading) {
       loader = <Loader />;
     } else {
       loader = <View />;
@@ -112,24 +81,30 @@ class HouseHoldDetails extends Component {
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOMEHOLD`)} />
-        {apiData.length === 0 && (
-          <Text style={[Styles.topParagraph, style]}>
-            {I18n.t(`Paragarphs.HOME`)}
-          </Text>
-        )}
+        {this.props.response
+          ? this.props.data.length === 0 && (
+              <Text style={[Styles.topParagraph, style]}>
+                {I18n.t(`Paragarphs.HOME`)}
+              </Text>
+            )
+          : null}
         <CardView Styles={Styles.Spacer50} />
 
-        <ScrollView style={Styles.ScrollView}>
-          {apiData.map((d, i) => (
-            <InfoList
-              data={d}
-              key={d.createdAt}
-              indicator={i + 1}
-              {...this.props}
-              HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
-            />
-          ))}
-        </ScrollView>
+        {this.props.response
+          ? this.props.data.length > 0 && (
+              <ScrollView style={Styles.ScrollView}>
+                {this.props.data.map((d, i) => (
+                  <InfoList
+                    itemData={d}
+                    key={d.createdAt}
+                    indicator={i + 1}
+                    {...this.props}
+                    HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
+                  />
+                ))}
+              </ScrollView>
+            )
+          : null}
         <View style={Styles.largebuttonsContainer}>
           <ExtendedButton
             IconSource={homeIcon}
@@ -164,4 +139,15 @@ class HouseHoldDetails extends Component {
     );
   }
 }
-export default HouseHoldDetails;
+const mapStateToProps = (state) => ({
+  loading: state.home.loading,
+  response: state.home.response,
+  data: state.home.data,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getHouseHoldDetails: (token, houseId) => {
+    return dispatch(getHouseHoldDetail(token, houseId));
+  },
+  toggleResponse: () => dispatch(setResponse()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(HouseHoldDetails);

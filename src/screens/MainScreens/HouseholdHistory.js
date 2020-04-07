@@ -1,71 +1,31 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, AsyncStorage } from "react-native";
-
+import { View, ScrollView, AsyncStorage } from "react-native";
 import { RaisedTextButton } from "react-native-material-buttons";
-
-// plugins
 import I18n from "../../plugins/I18n";
-
-//Custom Components
 import { CardView, InfoList, Heading, Loader } from "../../components";
-
-// Service
-import Http from "../../services/HttpService";
-
-//Theme
 import { Styles, Colors } from "../../../theme";
+import { getAllHouses, setResponse } from "../../actions";
+import { connect } from "react-redux";
 
-export default class HouseholdHistory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: [], isLoading: false };
-  }
+class HouseholdHistory extends Component {
   handleDone = () => {
     this.props.navigation.goBack();
   };
+  componentWillMount() {
+    this._unsubscribe = this.props.navigation.addListener("focus", () => {
+      this.props.toggleResponse();
+    });
+  }
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
   async componentDidMount() {
-    this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
-    const url = "house";
-    Http.get(url, {}, { headers: { "access-token": token } })
-      .then(response => {
-        this.setState({ isLoading: false });
-        console.log("house hold history response is: ", response);
-        if (response.status == 200) {
-          // console.log(response.data)
-          if (response.data.length > 0) {
-            this.setState({ data: response.data.reverse() });
-          } else {
-            // console.log(this.response.data)
-          }
-          // this.setState({
-          //   persons: response.data.person_count,
-          //   houses: response.data.house_count
-          // });
-        } else {
-          // TOOD:: error handling
-        }
-      })
-      .catch(err => {
-        this.setState({ isLoading: false });
-        // Alert.alert(
-        //   `${err}`,
-        //   "Keep your app up to date to enjoy the latest features",
-        //   [
-        //     {
-        //       text: "Cancel",
-        //       onPress: () => console.log("Cancel Pressed"),
-        //       style: "cancel"
-        //     },
-        //     { text: "OK", onPress: () => console.log("OK Pressed") }
-        //   ],
-        //   { cancelable: false }
-        // );
-      });
+    this.props.getAllHomes(token);
   }
   render() {
     let loader;
-    if (this.state.isLoading) {
+    if (this.props.loading) {
       loader = <Loader />;
     } else {
       loader = <View />;
@@ -76,18 +36,22 @@ export default class HouseholdHistory extends Component {
         <Heading headerText={I18n.t(`headings.HOUSEHOLDHISTORY`)} />
         <CardView Styles={Styles.Spacer50} />
 
-        {this.state.data.length > 0 && (
-          <ScrollView style={Styles.ScrollView}>
-            {this.state.data.map(d => (
-              <InfoList
-                data={d}
-                key={d.id}
-                {...this.props}
-                HouseHoldDetails={""}
-              />
-            ))}
-          </ScrollView>
-        )}
+        {this.props.response
+          ? this.props.data.length > 0 && (
+              <ScrollView style={Styles.ScrollView}>
+                {this.props.data.map((d) => {
+                  return (
+                    <InfoList
+                      itemData={d}
+                      key={d.id}
+                      {...this.props}
+                      HouseHoldDetails={""}
+                    />
+                  );
+                })}
+              </ScrollView>
+            )
+          : null}
 
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
@@ -105,4 +69,15 @@ export default class HouseholdHistory extends Component {
   }
 }
 
-const styles = StyleSheet.create({});
+const mapStateToProps = (state) => ({
+  loading: state.home.loading,
+  response: state.home.response,
+  data: state.home.data,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getAllHomes: (token) => {
+    return dispatch(getAllHouses(token));
+  },
+  toggleResponse: () => dispatch(setResponse()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(HouseholdHistory);

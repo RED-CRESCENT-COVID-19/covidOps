@@ -26,9 +26,9 @@ class InfoList extends Component {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        { text: "OK", onPress: () => console.log("OK Pressed") },
       ],
       { cancelable: false }
     );
@@ -45,8 +45,8 @@ class InfoList extends Component {
       id,
       cnic,
       phone,
-      UserId
-    } = this.props.data;
+      UserId,
+    } = this.props.itemData;
     const { HouseHoldDetails, indicator } = this.props;
     console.log("info list props is: ", this.props);
     const ts = new Date(createdAt);
@@ -58,8 +58,8 @@ class InfoList extends Component {
         style={[
           Styles.InfoListContainer,
           {
-            alignSelf: "flex-end"
-          }
+            alignSelf: "flex-end",
+          },
         ]}
       >
         {HouseHoldDetails === "" && (
@@ -118,8 +118,8 @@ class InfoList extends Component {
       id,
       cnic,
       phone,
-      UserId
-    } = this.props.data;
+      UserId,
+    } = this.props.itemData;
     const { HouseHoldDetails, indicator } = this.props;
 
     const ts = new Date(createdAt);

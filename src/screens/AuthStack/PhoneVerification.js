@@ -24,11 +24,11 @@ export default class PhoneVerification extends Component {
   }
 
   onSubmit = () => {
-    this.props.navigation.navigate("SMSVerify", { phone: "03065555700" });
+    this.props.navigation.navigate("SMSVerify", { phone: "03006263173" });
     var phone = this.state.phone;
     this.setState({ isLoading: true });
     Http.post("auth/phone", { phone: phone })
-      .then(response => {
+      .then((response) => {
         this.setState({ isLoading: false });
 
         if (response.status == 204) {
@@ -48,7 +48,7 @@ export default class PhoneVerification extends Component {
           );
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ isLoading: false });
 
         Alert.alert(
@@ -58,9 +58,9 @@ export default class PhoneVerification extends Component {
             {
               text: "Cancel",
               onPress: () => console.log("Cancel Pressed"),
-              style: "cancel"
+              style: "cancel",
             },
-            { text: "OK", onPress: () => console.log("OK Pressed") }
+            { text: "OK", onPress: () => console.log("OK Pressed") },
           ],
           { cancelable: false }
         );
@@ -69,7 +69,7 @@ export default class PhoneVerification extends Component {
   handleContinue = () => {
     this.props.navigation.navigate("SMSVerify");
   };
-  formatText = text => {
+  formatText = (text) => {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
@@ -97,7 +97,7 @@ export default class PhoneVerification extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
-            onChangeText={phone => this.setState({ phone: phone })}
+            onChangeText={(phone) => this.setState({ phone: phone })}
             maxLength={11}
             ref={this.phoneFieldRef}
           />
@@ -123,6 +123,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });

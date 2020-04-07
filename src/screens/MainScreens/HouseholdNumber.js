@@ -5,7 +5,7 @@ import {
   View,
   Keyboard,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 import { connect } from "react-redux";
 import { OutlinedTextField } from "react-native-material-textfield";
@@ -29,6 +29,9 @@ import { Styles, Colors } from "../../../theme";
 import * as actionCreators from "../../actions";
 import { MakeId } from "../../utils/Makeid";
 
+//importing actionscretors
+import { createHome, setResponse } from "../../actions";
+
 const WRITING_STYLE = I18n.locale;
 class HouseholdNumber extends Component {
   constructor(props) {
@@ -40,7 +43,7 @@ class HouseholdNumber extends Component {
       id: "",
       lat: "",
       lng: "",
-      token: ""
+      token: "",
     };
   }
   fieldRef = React.createRef();
@@ -55,50 +58,11 @@ class HouseholdNumber extends Component {
       id: this.state.id,
       lat: this.state.lat,
       lng: this.state.lng,
-      is_contacted: 1
+      is_contacted: 1,
     };
 
     const token = this.state.token;
-    this.newHouseCreate(token, home, 1);
-    // this.props.createHome(home,token)
-
-    // this.props.navigation.navigate("HouseHoldDetails");
-  };
-
-  newHouseCreate = (token, data, isContacted) => {
-    this._getsetID();
-    this.setState({ isLoading: true });
-    Http.post("house", data, { headers: { "access-token": token } })
-      .then(response => {
-        this.setState({ isLoading: false });
-        console.log("house hold response is: ", response);
-        if (response.status == 201) {
-          (async HouseId => {
-            await AsyncStorage.setItem("HouseID", HouseId);
-          })(response.data.id);
-
-          if (isContacted) {
-            this.props.navigation.navigate("HouseHoldDetails", {
-              houseID: data.id
-            });
-          } else {
-            this.props.navigation.goBack();
-          }
-        } else {
-          this.setState({ isLoading: false });
-          var message = response.data.message;
-          if (response.status == 400) {
-            message = response.data.details.errors.address[0];
-          }
-          Alert.alert(
-            "Info",
-            message,
-            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
-            { cancelable: false }
-          );
-        }
-      })
-      .catch(err => {});
+    this.props.createHomeDispatcher(home, token);
   };
 
   handleBack = () => {
@@ -125,13 +89,13 @@ class HouseholdNumber extends Component {
       await AsyncStorage.setItem("LocationStatus", status);
       if (status !== "granted") {
         this.setState({
-          errorMessage: "Permission to access location was denied"
+          errorMessage: "Permission to access location was denied",
         });
       }
       let location = await Location.getCurrentPositionAsync({});
       this.setState({
         lat: location.coords.latitude,
-        lng: location.coords.longitude
+        lng: location.coords.longitude,
       });
     } catch (error) {
       Alert.alert(
@@ -141,9 +105,9 @@ class HouseholdNumber extends Component {
           {
             text: "Cancel",
             onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
+            style: "cancel",
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: "OK", onPress: () => console.log("OK Pressed") },
         ],
         { cancelable: false }
       );
@@ -154,21 +118,39 @@ class HouseholdNumber extends Component {
     Keyboard.dismiss();
     // this.setState({ address: field.value() });
   }
+  componentWillMount() {
+    this._unsubscribe = this.props.navigation.addListener("focus", () => {
+      this.props.toggleResponse();
+    });
+  }
   componentDidMount() {
     this._getsetID();
     this._getLocationAsync();
     this.gettoken();
   }
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
   render() {
     let loader;
-    if (this.state.isLoading) {
-      loader = <Loader />;
-    } else {
-      loader = <View />;
+    if (this.props.response) {
+      if (!this.props.error) {
+        this.props.navigation.navigate("HouseHoldDetails", {
+          houseID: this.props.data.id,
+        });
+      } else {
+        Alert.alert(
+          "Info",
+          this.props.message,
+          [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+          { cancelable: false }
+        );
+      }
     }
-
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
-    return (
+    return this.props.loading ? (
+      <Loader />
+    ) : (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOUSEHOLDNUMBER`)} />
         <Text style={[Styles.topParagraph, style]}>
@@ -185,9 +167,9 @@ class HouseholdNumber extends Component {
           returnKeyType={"done"}
           inputContainerStyle={screenStyles.inputContainerStyle}
           // onSubmitEditing={() => this.onSubmit()}
-          onChangeText={value => this.setState({ address: value })}
+          onChangeText={(value) => this.setState({ address: value })}
           onBlur={() => this.onBlur()}
-          ref={input => {
+          ref={(input) => {
             this.fieldRef = input;
           }}
         />
@@ -214,7 +196,6 @@ class HouseholdNumber extends Component {
             onPress={this.handleContinue}
           />
         </View>
-        {loader}
       </View>
     );
   }
@@ -224,27 +205,30 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   centerText: {
     paddingTop: 20,
     paddingLeft: 35,
     paddingRight: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   inputContainerStyle: {
-    margin: 35
-  }
+    margin: 35,
+  },
 });
-const mapDispatchToProps = dispatch => {
-  return {
-    createHome: (home, token) =>
-      dispatch(actionCreators.createHome(home, token))
-  };
-};
 
-const mapStateToProps = state => {
-  return { ...state };
-};
-
+const mapStateToProps = (state) => ({
+  loading: state.home.loading,
+  error: state.home.error,
+  message: state.home.message,
+  response: state.home.response,
+  data: state.home.data,
+});
+const mapDispatchToProps = (dispatch) => ({
+  createHomeDispatcher: (params, token) => {
+    return dispatch(createHome(params, token));
+  },
+  toggleResponse: () => dispatch(setResponse()),
+});
 export default connect(mapStateToProps, mapDispatchToProps)(HouseholdNumber);

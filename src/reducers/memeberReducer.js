@@ -1,36 +1,45 @@
-import initialState from './intitialState'
+import initialState from "./intitialState";
 import {
-    CREATE_MEMEBER,
-    CREATE_MEMEBER_SUCCESS,
-    CREATE_MEMEBER_FAIL 
-} from '../actions/index'
+  START_LOADING,
+  CREATE_MEMEBER_SUCCESS,
+  CREATE_MEMEBER_FAIL,
+  TOGGLE_RESPONSE,
+  STOP_LOADING,
+} from "../actions/index";
 
 export default memeberReducer = (state = initialState, action) => {
-    
-    switch (action.type) {
-        case CREATE_MEMEBER:
-            return { 
-                ...state,
-                loading:true,
-                error:'' 
-            };
-        case CREATE_MEMEBER_SUCCESS:
-            return { 
-                ...state,
-                message:'success',
-                loading:false,
-                error:'',
-                data:action.payload
-         };
-        case  CREATE_MEMEBER_FAIL:
-            return {
-                ...state,
-                message:'fail',
-                loading:false,
-                error:'House creation Failed'
-        }
-        
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case START_LOADING:
+      return {
+        ...state,
+        loading: true,
+        response: false,
+      };
+    case STOP_LOADING:
+      return {
+        ...state,
+        loading: false,
+      };
+    case TOGGLE_RESPONSE:
+      return {
+        ...state,
+        response: false,
+      };
+    case CREATE_MEMEBER_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        response: true,
+      };
+    case CREATE_MEMEBER_FAIL:
+      return {
+        ...state,
+        message: "fail",
+        error: true,
+        response: true,
+      };
+
+    default:
+      return state;
+  }
+};

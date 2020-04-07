@@ -18,7 +18,7 @@ export default class NewPrecautions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeQuestion: 0
+      activeQuestion: 0,
     };
   }
   onNextButton() {
@@ -35,7 +35,7 @@ export default class NewPrecautions extends Component {
       this.setState({ activeQuestion: activeQuestion - 1 });
     else {
       //  this.props.navigation.goBack();
-      this.props.navigation.navigate("HouseHoldDetails");
+      this.props.navigation.navigate("HouseHoldDetails", { update: false });
     }
   }
   render() {

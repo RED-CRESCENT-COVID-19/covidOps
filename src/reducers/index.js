@@ -1,15 +1,12 @@
 import { combineReducers } from "redux";
 
 // Import Reducers
-import homeReducer from './homeReducer' 
-import memeberReducer from './memeberReducer' 
+import homeReducer from "./homeReducer";
+import memeberReducer from "./memeberReducer";
+import dashboardReducer from "./dashboardReducer";
 
-export default function createReducer(injectedReducers = {}) {
-  const rootReducer = combineReducers({
-      home:homeReducer,
-     memeber:memeberReducer,
-    ...injectedReducers
-  });
-
-  return rootReducer;
-}
+export default combineReducers({
+  home: homeReducer,
+  member: memeberReducer,
+  dashboard: dashboardReducer,
+});

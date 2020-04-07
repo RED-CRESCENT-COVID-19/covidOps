@@ -5,7 +5,7 @@ import {
   View,
   Keyboard,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
@@ -24,16 +24,22 @@ import { MakeId } from "../../utils/Makeid";
 // Service
 import Http from "../../services/HttpService";
 
+//react-redux
+import { connect } from "react-redux";
+
+//importing action creators
+import { createMemeber, setResponse } from "../../actions";
+
 const WRITING_STYLE = I18n.locale;
-export default class Temperature extends Component {
+class Temperature extends Component {
   constructor(props) {
     super(props);
     this.state = {
       temperature: "",
       isButtonActive: false,
       selectedTemperatureButton: "c",
-      isLoading: false
     };
+    this.props.toggleResponse();
   }
   fieldRef = React.createRef();
 
@@ -45,7 +51,7 @@ export default class Temperature extends Component {
     this.setState({ isLoading: true });
     const temperature = {
       selectedTemperatureButton: this.state.selectedTemperatureButton,
-      temperature: this.state.temperature
+      temperature: this.state.temperature,
     };
     const data = { ...temperature, ...this.props.route.params };
     this.handleAddMemeber(data);
@@ -71,13 +77,12 @@ export default class Temperature extends Component {
     if (type !== selectedTemperatureButton) {
       this.setState({
         selectedTemperatureButton: type,
-        isButtonActive: !isButtonActive
+        isButtonActive: !isButtonActive,
       });
     }
   }
 
-  handleAddMemeber = async data => {
-    this.setState({ isLoading: true });
+  handleAddMemeber = async (data) => {
     const token = await AsyncStorage.getItem("AuthToken");
     const houseID = await AsyncStorage.getItem("HouseID");
     let id = await MakeId();
@@ -102,11 +107,12 @@ export default class Temperature extends Component {
       cnic: data.cnic,
       phone: data.phone,
       gender: data.selectedGenderType,
-      uniqueID: uniqueID
+      uniqueID: uniqueID,
     };
+    this.props.createMemberDispatcher(params, token);
 
-    Http.post("person", params, { headers: { "access-token": token } })
-      .then(response => {
+    /* Http.post("person", params, { headers: { "access-token": token } })
+      .then((response) => {
         console.log(response);
         this.setState({ isLoading: false });
         if (response.status == 201) {
@@ -125,15 +131,27 @@ export default class Temperature extends Component {
           );
         }
       })
-      .catch(err => {});
+      .catch((err) => {}); */
   };
+
   render() {
     console.log("temperature this.props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
-    const { isButtonActive, isLoading } = this.state;
-
+    const { isButtonActive } = this.state;
+    if (this.props.response) {
+      if (!this.props.error) {
+        this.props.navigation.navigate("NewPrecautions");
+      } else {
+        Alert.alert(
+          "Info",
+          this.props.message,
+          [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+          { cancelable: false }
+        );
+      }
+    }
     let loader;
-    if (isLoading) {
+    if (this.props.loading) {
       loader = <Loader />;
     } else {
       loader = <View />;
@@ -152,7 +170,7 @@ export default class Temperature extends Component {
             returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             // formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            onChangeText={(e) => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
             onBlur={() => this.onBlur()}
             ref={this.fieldRef}
@@ -167,10 +185,10 @@ export default class Temperature extends Component {
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallTemperatureButton
+              Styles.smallTemperatureButton,
               // true && Styles.smallGenderButtonActive
             ]}
-            onPress={e => this.temperatureButtonClick("c")}
+            onPress={(e) => this.temperatureButtonClick("c")}
           />
           <TextButton
             title={I18n.t(`Labels.TEMPERATURE.FAHRENHEIT`)}
@@ -180,10 +198,10 @@ export default class Temperature extends Component {
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallTemperatureButton
+              Styles.smallTemperatureButton,
               // true && Styles.smallGenderButtonActive
             ]}
-            onPress={e => this.temperatureButtonClick("f")}
+            onPress={(e) => this.temperatureButtonClick("f")}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />
@@ -212,10 +230,25 @@ export default class Temperature extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  loading: state.member.loading,
+  error: state.member.error,
+  message: state.member.message,
+  response: state.member.response,
+});
+const mapDispatchToProps = (dispatch) => ({
+  createMemberDispatcher: (params, token) => {
+    console.log("dispathcer is clicked", params);
+    return dispatch(createMemeber(params, token));
+  },
+  toggleResponse: () => dispatch(setResponse()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Temperature);
+
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });

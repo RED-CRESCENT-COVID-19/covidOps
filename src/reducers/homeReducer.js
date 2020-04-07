@@ -1,36 +1,63 @@
-import initialState from './intitialState'
+import initialState from "./intitialState";
 import {
-    CREATE_HOUSE,
-    CREATE_HOUSE_SUCCESS,
-    CREATE_HOUSE_FAIL 
-} from '../actions/index'
+  CREATE_HOUSE_SUCCESS,
+  CREATE_HOUSE_FAIL,
+  START_LOADING,
+  TOGGLE_RESPONSE,
+  SET_HOUSES,
+  SET_HOUSEHOLD_DETAIL,
+  STOP_LOADING,
+} from "../actions/index";
 
 export default homeReducer = (state = initialState, action) => {
-    console.log(action)
-    switch (action.type) {
-        case CREATE_HOUSE:
-            return { 
-                ...state,
-                loading:true,
-                error:'' 
-            };
-        case CREATE_HOUSE_SUCCESS:
-            return { 
-                ...state,
-                message:'success',
-                loading:false,
-                error:'',
-                data:action.payload
-         };
-        case  CREATE_HOUSE_FAIL:
-            return {
-                ...state,
-                message:'fail',
-                loading:false,
-                error:'House creation Failed'
-        }
-        
-        default:
-            return state;
-    }
-}
+  console.log(action);
+  switch (action.type) {
+    case START_LOADING:
+      return {
+        ...state,
+        loading: true,
+        response: false,
+      };
+    case STOP_LOADING:
+      return {
+        ...state,
+        loading: false,
+      };
+    case TOGGLE_RESPONSE:
+      return {
+        ...state,
+        response: false,
+      };
+    case SET_HOUSES:
+      return {
+        ...state,
+        error: false,
+        response: true,
+        data: action.payload.data.reverse(),
+      };
+    case SET_HOUSEHOLD_DETAIL:
+      return {
+        ...state,
+        error: false,
+        response: true,
+        data: action.payload.data.reverse(),
+      };
+    case CREATE_HOUSE_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        response: true,
+        data: action.payload,
+      };
+    case CREATE_HOUSE_FAIL:
+      return {
+        ...state,
+        message: "fail",
+        error: true,
+        response: true,
+      };
+
+    default:
+      return state;
+  }
+};

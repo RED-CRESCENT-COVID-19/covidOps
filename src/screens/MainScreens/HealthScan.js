@@ -1,49 +1,37 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, AsyncStorage } from "react-native";
-
 import { RaisedTextButton } from "react-native-material-buttons";
-
-// plugins
 import I18n from "../../plugins/I18n";
-
-//Custom Components
 import {
   CardView,
   ExtendedButton,
   Heading,
-  CalculationLabel
+  CalculationLabel,
 } from "../../components";
-//Theme
 import { Styles, Colors } from "../../../theme";
-
 import Http from "../../services/HttpService";
-
 const WRITING_STYLE = I18n.locale;
+import { connect } from "react-redux";
+import { getStats, setResponse } from "../../actions";
 
-export default class HealthScan extends Component {
+class HealthScan extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isAuthenticated: true,
       persons: 0,
-      houses: 0
+      houses: 0,
     };
   }
-
-  async componentDidMount() {
-    const token = await AsyncStorage.getItem("AuthToken");
-    Http.get("stats", {}, { headers: { "access-token": token } })
-      .then(response => {
-        if (response.status == 200) {
-          this.setState({
-            persons: response.data.person_count,
-            houses: response.data.house_count
-          });
-        } else {
-          //TODO:: Redirect Back to login screen
-        }
-      })
-      .catch(err => {});
+  componentWillMount() {
+    this._unsubscribe = this.props.navigation.addListener("focus", async () => {
+      const token = await AsyncStorage.getItem("AuthToken");
+      this.props.toggleResponse();
+      this.props.getStatsDispatcher(token);
+    });
+  }
+  componentWillUnmount() {
+    this._unsubscribe();
   }
 
   handleAddHouseHold = () => {
@@ -60,14 +48,14 @@ export default class HealthScan extends Component {
     await AsyncStorage.removeItem("AuthToken");
     await AsyncStorage.removeItem("HouseID");
     Http.delete("auth/logout", {}, { headers: { "access-token": token } })
-      .then(response => {
+      .then(() => {
         this.props.setAuth(false);
         //TODO:: Redirect back to login, clear token
       })
-      .catch(err => {});
+      .catch((err) => {});
 
     this.setState({
-      isAuthenticated: !this.state.isAuthenticated
+      isAuthenticated: !this.state.isAuthenticated,
     });
   }
   render() {
@@ -110,11 +98,11 @@ export default class HealthScan extends Component {
         </Text>
 
         <CalculationLabel
-          value={this.state.houses}
+          value={this.props.houseScanned}
           secondaryText={I18n.t(`Labels.HOUSEHOLDSCANNED`)}
         />
         <CalculationLabel
-          value={this.state.persons}
+          value={this.props.personScanned}
           secondaryText={I18n.t(`Labels.PEOPLESCANNED`)}
         />
         <View style={Styles.changeLanguagebuttonsContainer}>
@@ -140,18 +128,32 @@ export default class HealthScan extends Component {
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  loading: state.dashboard.loading,
+  error: state.dashboard.error,
+  message: state.dashboard.message,
+  response: state.dashboard.response,
+  houseScanned: state.dashboard.houseScanned,
+  personScanned: state.dashboard.personScanned,
+});
+const mapDispatchToProps = (dispatch) => ({
+  getStatsDispatcher: (token) => {
+    return dispatch(getStats(token));
+  },
+  toggleResponse: () => dispatch(setResponse()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(HealthScan);
 const screenStyles = StyleSheet.create({
   titleLabel: {
     fontSize: 16,
     padding: 20,
     paddingLeft: 35,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
   },
 
   Number: {
     fontSize: 16,
     padding: 20,
-    color: Colors.paragraphTextColor
-  }
+    color: Colors.paragraphTextColor,
+  },
 });
