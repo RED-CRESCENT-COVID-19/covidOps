@@ -42,6 +42,7 @@ const Styles = StyleSheet.create({
   },
   ScrollView: {
     height: height - 350,
+    // width: width - 100,
     marginBottom: 100,
   },
   Spacer300: {
@@ -179,9 +180,14 @@ const Styles = StyleSheet.create({
     paddingRight: 0,
   },
   checkBoxContainer: {
+    display: "flex",
+    alignSelf: "center",
+
+    // alignContent: "center",
+    // alignItems: "flex-end",
     paddingTop: 10,
-    paddingLeft: 35,
-    paddingRight: 35,
+    // paddingLeft: 35,
+    // paddingRight: 35,
   },
   checkBoxHeader: {
     fontSize: 14,
@@ -192,11 +198,16 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 10,
     height: 50,
-    width: 300,
+    width: "90%",
     color: Colors.paragraphTextColor,
   },
   symptomsContainer: {
+    display: "flex",
     flexDirection: "row",
+    // justifyContent: "space-between",
+    // alignContent: "flex-start",
+    // alignSelf: "flex-end",
+    alignItems: "flex-end",
   },
   checkBoxStyle: {
     color: Colors.primaryColor,

@@ -20,92 +20,92 @@ const SYMPTOMS_LIST = [
     symptomName: I18n.t(`Labels.SYMPTOMLIST.FEVER`),
     value: "Fever",
     normalisedValue: "fever",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.DRYCOUGH`),
     value: "Dry Cough",
     normalisedValue: "dryCough",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.SPUTUMPRODUCTION`),
     value: "Sputum production",
     normalisedValue: "sputumProduction",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.BLOODINCOUGH`),
     value: "Blood in cough",
     normalisedValue: "bloodInCough",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.FATIGUE`),
     value: "Fatigue",
     normalisedValue: "fatigue",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
     value: "Headache",
     normalisedValue: "headache",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.BODYPAIN`),
     value: "Body pain",
     normalisedValue: "bodyPain",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.SORETHROAT`),
     value: "Sore throat",
     normalisedValue: "soreThroat",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.NASALCONGESTION`),
     value: "Nasal congestion",
     normalisedValue: "nasalCongestion",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.SHORTNESSOFBREATH`),
     value: "Shortness of breath",
     normalisedValue: "shortnessOfBreath",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.REDNESSOFEYES`),
     value: "Redness of eyes",
     normalisedValue: "rednessOfEyes",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.DIARRHEA`),
     value: "diarrhea",
     normalisedValue: "diarrhea",
-    isChecked: false
-  }
+    isChecked: false,
+  },
 ];
 
 export default class Symptoms extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSymptomsCheckBoxList: []
+      selectedSymptomsCheckBoxList: [],
     };
     this.handleCheckboxSymptomsList = this.handleCheckboxSymptomsList.bind(
       this
@@ -150,7 +150,18 @@ export default class Symptoms extends Component {
 
         {/* Symptoms list view */}
         {SYMPTOMS_LIST.length > 0 && (
-          <ScrollView style={Styles.ScrollView}>
+          <ScrollView
+            style={[
+              Styles.ScrollView,
+              {
+                display: "flex",
+                paddingLeft: 20,
+                paddingRight: 20,
+                //flexDirection: "column"
+                // alignSelf: "flex-start",
+              },
+            ]}
+          >
             {SYMPTOMS_LIST.map((d, i) => (
               <CheckBox
                 key={`${d.symptomNumber} ${i + 1}`}
