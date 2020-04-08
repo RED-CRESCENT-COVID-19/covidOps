@@ -19,6 +19,7 @@ export default class HouseholdHistory extends Component {
   constructor(props) {
     super(props);
     this.state = { data: [], isLoading: false };
+    this.onDeleteHouse = this.onDeleteHouse.bind(this);
   }
   handleDone = () => {
     this.props.navigation.goBack();
@@ -28,7 +29,7 @@ export default class HouseholdHistory extends Component {
     const token = await AsyncStorage.getItem("AuthToken");
     const url = "house";
     Http.get(url, {}, { headers: { "access-token": token } })
-      .then(response => {
+      .then((response) => {
         this.setState({ isLoading: false });
         console.log("house hold history response is: ", response);
         if (response.status == 200) {
@@ -46,7 +47,7 @@ export default class HouseholdHistory extends Component {
           // TOOD:: error handling
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ isLoading: false });
         // Alert.alert(
         //   `${err}`,
@@ -63,6 +64,10 @@ export default class HouseholdHistory extends Component {
         // );
       });
   }
+
+  onDeleteHouse(id) {
+    console.log("onDeleteHouse id is: ", id);
+  }
   render() {
     let loader;
     if (this.state.isLoading) {
@@ -78,10 +83,11 @@ export default class HouseholdHistory extends Component {
 
         {this.state.data.length > 0 && (
           <ScrollView style={Styles.ScrollView}>
-            {this.state.data.map(d => (
+            {this.state.data.map((d) => (
               <InfoList
                 data={d}
                 key={d.id}
+                onDeletePerson={this.onDeleteHouse}
                 {...this.props}
                 HouseHoldDetails={""}
               />

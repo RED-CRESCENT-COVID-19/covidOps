@@ -69,13 +69,15 @@ class HouseholdNumber extends Component {
     this._getsetID();
     this.setState({ isLoading: true });
     Http.post("house", data, { headers: { "access-token": token } })
-      .then((response) => {
+      .then(async (response) => {
         this.setState({ isLoading: false });
         console.log("house hold response is: ", response);
         if (response.status == 201) {
-          (async (HouseId) => {
-            await AsyncStorage.setItem("HouseID", HouseId);
-          })(response.data.id);
+          (async (data) => {
+            console.log("houses data is: ", data);
+            await AsyncStorage.setItem("HouseID", data.id);
+            await AsyncStorage.setItem("HouseIDDetail", JSON.stringify(data));
+          })(response.data);
 
           if (isContacted) {
             this.props.navigation.navigate("HouseHoldDetails", {
@@ -249,4 +251,7 @@ const mapStateToProps = (state) => {
   return { ...state };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HouseholdNumber);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HouseholdNumber);

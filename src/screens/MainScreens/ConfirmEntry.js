@@ -17,6 +17,13 @@ const WRITING_STYLE = I18n.locale;
 export default class ConfirmEntry extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      address: "",
+      createdAt: "",
+    };
+  }
+  componentDidMount() {
+    this.getHouseId();
   }
   handleBack = () => {
     this.props.navigation.goBack();
@@ -24,7 +31,13 @@ export default class ConfirmEntry extends Component {
 
   async getHouseId() {
     const houseId = await AsyncStorage.getItem("HouseID");
+    const HouseIDDetail = await AsyncStorage.getItem("HouseIDDetail");
+    this.setState({
+      address: JSON.parse(HouseIDDetail).address,
+      createdAt: JSON.parse(HouseIDDetail).createdAt,
+    });
     console.log("houseId is: ", houseId);
+    console.log("HouseIDDetail is: ", JSON.parse(HouseIDDetail));
   }
   handleNext = () => {
     this.props.navigation.navigate("HealthScan");
@@ -35,8 +48,12 @@ export default class ConfirmEntry extends Component {
 
   render() {
     console.log("Confirm this.props is: ", this.props);
-    this.getHouseId();
+
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+    const { address, createdAt } = this.state;
+    const ts = new Date(createdAt);
+    const date = ts.toLocaleDateString();
+    const time = ts.toLocaleTimeString();
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.CONFIRMENTERY`)} />
@@ -45,9 +62,9 @@ export default class ConfirmEntry extends Component {
         </Text>
         <View style={screenStyles.textInput}>
           <TextField
-            label={I18n.t(`Labels.CONFIRMENTERY.LABEL`)}
+            label={`${time} - ${date} ` || I18n.t(`Labels.CONFIRMENTERY.LABEL`)}
             keyboardType="phone-pad"
-            placeholder={I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
+            placeholder={address || I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             onChangeText={(e) => this.onChangeText(e)}
