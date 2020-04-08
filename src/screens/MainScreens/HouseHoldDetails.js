@@ -12,7 +12,7 @@ import {
   InfoList,
   CardView,
   ExtendedButton,
-  Loader
+  Loader,
 } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
@@ -28,6 +28,7 @@ class HouseHoldDetails extends Component {
     super(props);
     this.state = { apiData: [], isLoading: false };
     this.getPersons = this.getPersons.bind(this);
+    this.onDeletePerson = this.onDeletePerson.bind(this);
   }
 
   async componentDidMount() {
@@ -45,7 +46,7 @@ class HouseHoldDetails extends Component {
 
     const url = "persons/" + houseId;
     Http.get(url, {}, { headers: { "access-token": token } })
-      .then(response => {
+      .then((response) => {
         this.setState({ isLoading: false });
         if (response.status == 200) {
           if (response.data.length > 0) {
@@ -63,11 +64,107 @@ class HouseHoldDetails extends Component {
         }
         // console.log("this. state data is: ", this.state.apiData);
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ isLoading: false });
         console.log("house hold details error is: ", err);
       });
   }
+
+  // person delete
+  async onDeletePerson(id) {
+    // console.log("onDeletePerson id is: ", id);
+    this.setState({ isLoading: true });
+    const token = await AsyncStorage.getItem("AuthToken");
+
+    Http.delete(`person/${id}`, {}, { headers: { "access-token": token } })
+      .then((res) => {
+        // console.log("onDeletePerson res is: ", res);
+        // console.log("this.state in then is: ", this.state);
+        this.setState({ isLoading: false });
+        const index = this.state.apiData
+          .map(function(item) {
+            return item.id;
+          })
+          .indexOf(id);
+        // console.log("index is: ", index);
+        if (index > -1) {
+          this.state.apiData.splice(index, 1);
+        }
+        // console.log("Again this.state is: ", this.state);
+
+        if (res.status === 400) {
+          Alert.alert(
+            "Information!",
+            `${res.data.message}`,
+            [
+              {
+                text: "Cancel",
+                onPress: () => {
+                  console.log("Cancel Pressed");
+                },
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: () => {
+                  console.log("OK Pressed");
+                },
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+        if (res.status === 204) {
+          this.setState({ apiData: this.state.apiData });
+
+          Alert.alert(
+            "Information!",
+            "Successfully deleted the person",
+            [
+              {
+                text: "Cancel",
+                onPress: () => {
+                  console.log("Cancel Pressed");
+                },
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: () => {
+                  console.log("OK Pressed");
+                },
+              },
+            ],
+            { cancelable: false }
+          );
+        }
+        // console.log("this. state data is: ", this.state.apiData);
+      })
+      .catch((err) => {
+        this.setState({ isLoading: false });
+        Alert.alert(
+          "Information!",
+          "Please try Again!",
+          [
+            {
+              text: "Cancel",
+              onPress: () => {
+                console.log("Cancel Pressed");
+              },
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                console.log("OK Pressed");
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      });
+  }
+
   handleAddHouseHold = () => {
     this.props.navigation.navigate("MemberDetails");
   };
@@ -83,15 +180,15 @@ class HouseHoldDetails extends Component {
         {
           text: I18n.t(`ButtonTitles.CANCEL`),
           onPress: () => console.log("cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: I18n.t(`ButtonTitles.YES`),
           onPress: async () => {
             await AsyncStorage.removeItem("HouseID");
             this.props.navigation.navigate("HealthScan");
-          }
-        }
+          },
+        },
       ],
       { cancelable: false }
     );
@@ -126,6 +223,7 @@ class HouseHoldDetails extends Component {
               key={d.createdAt}
               indicator={i + 1}
               {...this.props}
+              onDeletePerson={this.onDeletePerson}
               HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
             />
           ))}

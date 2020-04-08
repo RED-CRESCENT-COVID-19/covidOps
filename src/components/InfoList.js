@@ -8,6 +8,9 @@ import Line from "./Line";
 // plugins
 import I18n from "../plugins/I18n";
 
+// Service
+import Http from "../services/HttpService";
+
 import { Styles, Colors } from "../../theme";
 
 const WRITING_STYLE = I18n.locale;
@@ -18,17 +21,31 @@ class InfoList extends Component {
   onEdit() {
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
-  onDelete(id) {
+  onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
+    // const { HouseHoldDetails } = this.props;
+    // const { cnic, phone } = this.props.data;
+
+    // const deleteIdentifier = HouseHoldDetails !== "" ? phone : cnic;
+    const deleteIdentifier = HouseHoldDetails !== "" ? cnic || phone : address;
+
     Alert.alert(
-      `Are you sure you want to delete this ${id}`,
-      "Keep your app up to date to enjoy the latest features",
+      "Approval!",
+      `Are you sure you want to delete ${deleteIdentifier}`,
       [
         {
           text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          onPress: () => {
+            console.log("Cancel Pressed");
+          },
+          style: "cancel",
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        {
+          text: "OK",
+          onPress: () => {
+            console.log("OK Pressed");
+            this.props.onDeletePerson(id);
+          },
+        },
       ],
       { cancelable: false }
     );
@@ -45,7 +62,7 @@ class InfoList extends Component {
       id,
       cnic,
       phone,
-      UserId
+      UserId,
     } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
     console.log("info list props is: ", this.props);
@@ -58,8 +75,8 @@ class InfoList extends Component {
         style={[
           Styles.InfoListContainer,
           {
-            alignSelf: "flex-end"
-          }
+            alignSelf: "flex-end",
+          },
         ]}
       >
         {HouseHoldDetails === "" && (
@@ -78,7 +95,9 @@ class InfoList extends Component {
           <Button
             flat
             text=""
-            onPress={() => this.onDelete(id)}
+            onPress={() =>
+              this.onDelete({ id, phone, cnic, HouseHoldDetails, address })
+            }
             icon={<Icon name="trash" size={20} color={Colors.primaryColor} />}
           />
 
@@ -118,7 +137,7 @@ class InfoList extends Component {
       id,
       cnic,
       phone,
-      UserId
+      UserId,
     } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
 
