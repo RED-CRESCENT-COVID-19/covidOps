@@ -22,9 +22,6 @@ class InfoList extends Component {
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
   onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
-    // const { HouseHoldDetails } = this.props;
-    // const { cnic, phone } = this.props.data;
-
     // const deleteIdentifier = HouseHoldDetails !== "" ? phone : cnic;
     const deleteIdentifier = HouseHoldDetails !== "" ? cnic || phone : address;
 
