@@ -5,7 +5,8 @@ import {
   Dimensions,
   Image,
   StyleSheet,
-  TouchableOpacity
+  Platform,
+  TouchableOpacity,
 } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -57,7 +58,7 @@ export default class HandWash extends Component {
             cropWidth={width}
             cropHeight={height - 300}
             imageWidth={350}
-            imageHeight={500}
+            imageHeight={height - 300}
             onClick={() => {
               console.log("hand wash image clic is working!");
               this.setState({ isZoomed: true });
@@ -68,7 +69,7 @@ export default class HandWash extends Component {
             onDragLeft={() => {
               alert("on drag left");
             }}
-            onMove={position => {
+            onMove={(position) => {
               console.log("on move", position);
             }}
           >
@@ -119,12 +120,7 @@ export default class HandWash extends Component {
             }}
             style={{ zIndex: 1000 }}
           >
-            <Text
-              style={[
-                Styles.topParagraph,
-                { textAlign: "center", marginTop: 30, fontSize: 30 }
-              ]}
-            >
+            <Text style={[Styles.topParagraph, screenStyles.crossButton]}>
               {"X"}
             </Text>
           </TouchableOpacity>
@@ -142,13 +138,18 @@ const screenStyles = StyleSheet.create({
     paddingRight: 35,
     height: height,
     alignItems: "center",
-    alignContent: "center"
+    alignContent: "center",
+  },
+  crossButton: {
+    textAlign: "center",
+    marginTop: Platform.OS === "ios" ? 20 : 0,
+    fontSize: 30,
   },
   handWashImage: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
-    backgroundColor: Colors.transparent
+    resizeMode: "contain",
+    backgroundColor: Colors.transparent,
   },
 
   zoomedHandWashImage: {
@@ -156,6 +157,6 @@ const screenStyles = StyleSheet.create({
     height: height,
     position: "absolute",
     resizeMode: "contain",
-    bottom: 0
-  }
+    bottom: 0,
+  },
 });

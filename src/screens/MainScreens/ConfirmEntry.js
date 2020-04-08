@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, AsyncStorage } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -15,14 +15,27 @@ import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class ConfirmEntry extends Component {
+  constructor(props) {
+    super(props);
+  }
   handleBack = () => {
     this.props.navigation.goBack();
   };
 
+  async getHouseId() {
+    const houseId = await AsyncStorage.getItem("HouseID");
+    console.log("houseId is: ", houseId);
+  }
   handleNext = () => {
     this.props.navigation.navigate("HealthScan");
   };
+  onChangeText(e) {
+    console.log("e is: ", e);
+  }
+
   render() {
+    console.log("Confirm this.props is: ", this.props);
+    this.getHouseId();
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -37,7 +50,8 @@ export default class ConfirmEntry extends Component {
             placeholder={I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            onChangeText={(e) => this.onChangeText(e)}
+            disabled
             onSubmitEditing={this.onSubmit}
           />
         </View>
@@ -70,6 +84,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });
