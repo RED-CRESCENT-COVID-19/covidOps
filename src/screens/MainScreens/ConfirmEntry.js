@@ -30,14 +30,11 @@ export default class ConfirmEntry extends Component {
   };
 
   async getHouseId() {
-    const houseId = await AsyncStorage.getItem("HouseID");
     const HouseIDDetail = await AsyncStorage.getItem("HouseIDDetail");
     this.setState({
       address: JSON.parse(HouseIDDetail).address,
       createdAt: JSON.parse(HouseIDDetail).createdAt,
     });
-    console.log("houseId is: ", houseId);
-    console.log("HouseIDDetail is: ", JSON.parse(HouseIDDetail));
   }
   handleNext = () => {
     this.props.navigation.navigate("HealthScan");
@@ -47,8 +44,6 @@ export default class ConfirmEntry extends Component {
   }
 
   render() {
-    console.log("Confirm this.props is: ", this.props);
-
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     const { address, createdAt } = this.state;
     const ts = new Date(createdAt);

@@ -133,9 +133,6 @@ export default class Symptoms extends Component {
   handleBack = () => {
     this.props.navigation.goBack();
   };
-  componentDidMount() {
-    console.log(this.props.route.params);
-  }
 
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};

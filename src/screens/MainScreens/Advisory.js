@@ -21,25 +21,8 @@ export default class Advisory extends Component {
     this.state = {
       helpline: "",
       website: "",
-      number: ""
+      number: "",
     };
-  }
-  async componentDidMount() {
-    // const token = await AsyncStorage.getItem("AuthToken");
-    // Http.get("stats", {}, { headers: { "access-token": token } })
-    //   .then(response => {
-    //     console.log("response is: ", response);
-    //     if (response.status == 200) {
-    //       this.setState({
-    //         helpline: response.data.helpline,
-    //         website: response.data.website,
-    //         number: response.data.who_number
-    //       });
-    //     } else {
-    //       //TODO:: Redirect Back to login screen
-    //     }
-    //   })
-    //   .catch(err => {});
   }
   handleCancel = () => {
     this.props.navigation.goBack();
@@ -99,6 +82,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 20,
-    paddingRight: 20
-  }
+    paddingRight: 20,
+  },
 });

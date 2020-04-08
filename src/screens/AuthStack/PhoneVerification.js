@@ -46,10 +46,8 @@ export default class PhoneVerification extends Component {
         .then((response) => {
           this.setState({ isLoading: false });
           if (response.status === 204) {
-            console.log("response.status is: ", response.status);
             this.props.navigation.navigate("SMSVerify", { phone: phone });
           } else {
-            console.log("else response.status is: ", response.status);
             var message = "";
             if (response.status == 400) {
               message = response.data.details.errors.phone[0];
@@ -65,7 +63,6 @@ export default class PhoneVerification extends Component {
           }
         })
         .catch((err) => {
-          console.log("error is:, ", err);
           this.setState({ isLoading: false });
           Alert.alert(
             `Info`,

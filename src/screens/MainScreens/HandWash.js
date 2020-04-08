@@ -60,17 +60,16 @@ export default class HandWash extends Component {
             imageWidth={350}
             imageHeight={height - 300}
             onClick={() => {
-              console.log("hand wash image clic is working!");
               this.setState({ isZoomed: true });
             }}
             maxScale={10}
             panToMove
             pinchToZoom
             onDragLeft={() => {
-              alert("on drag left");
+              // alert("on drag left");
             }}
             onMove={(position) => {
-              console.log("on move", position);
+              // console.log("on move", position);
             }}
           >
             <Image style={screenStyles.handWashImage} source={Handwash} />
@@ -116,7 +115,6 @@ export default class HandWash extends Component {
           <TouchableOpacity
             onPress={() => {
               this.setState({ isZoomed: !this.state.isZoomed });
-              console.log("cross clicked!");
             }}
             style={{ zIndex: 1000 }}
           >

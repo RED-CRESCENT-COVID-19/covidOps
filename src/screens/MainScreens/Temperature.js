@@ -5,7 +5,7 @@ import {
   View,
   Keyboard,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
@@ -32,7 +32,7 @@ export default class Temperature extends Component {
       temperature: "",
       isButtonActive: false,
       selectedTemperatureButton: "c",
-      isLoading: false
+      isLoading: false,
     };
   }
   fieldRef = React.createRef();
@@ -45,7 +45,7 @@ export default class Temperature extends Component {
     this.setState({ isLoading: true });
     const temperature = {
       selectedTemperatureButton: this.state.selectedTemperatureButton,
-      temperature: this.state.temperature
+      temperature: this.state.temperature,
     };
     const data = { ...temperature, ...this.props.route.params };
     this.handleAddMemeber(data);
@@ -71,12 +71,12 @@ export default class Temperature extends Component {
     if (type !== selectedTemperatureButton) {
       this.setState({
         selectedTemperatureButton: type,
-        isButtonActive: !isButtonActive
+        isButtonActive: !isButtonActive,
       });
     }
   }
 
-  handleAddMemeber = async data => {
+  handleAddMemeber = async (data) => {
     this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
     const houseID = await AsyncStorage.getItem("HouseID");
@@ -102,12 +102,11 @@ export default class Temperature extends Component {
       cnic: data.cnic,
       phone: data.phone,
       gender: data.selectedGenderType,
-      uniqueID: uniqueID
+      uniqueID: uniqueID,
     };
 
     Http.post("person", params, { headers: { "access-token": token } })
-      .then(response => {
-        console.log(response);
+      .then((response) => {
         this.setState({ isLoading: false });
         if (response.status == 201) {
           this.props.navigation.navigate("NewPrecautions");
@@ -125,10 +124,9 @@ export default class Temperature extends Component {
           );
         }
       })
-      .catch(err => {});
+      .catch((err) => {});
   };
   render() {
-    console.log("temperature this.props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     const { isButtonActive, isLoading } = this.state;
 
@@ -152,7 +150,7 @@ export default class Temperature extends Component {
             returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             // formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            onChangeText={(e) => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
             onBlur={() => this.onBlur()}
             ref={this.fieldRef}
@@ -167,10 +165,10 @@ export default class Temperature extends Component {
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallTemperatureButton
+              Styles.smallTemperatureButton,
               // true && Styles.smallGenderButtonActive
             ]}
-            onPress={e => this.temperatureButtonClick("c")}
+            onPress={(e) => this.temperatureButtonClick("c")}
           />
           <TextButton
             title={I18n.t(`Labels.TEMPERATURE.FAHRENHEIT`)}
@@ -180,10 +178,10 @@ export default class Temperature extends Component {
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallTemperatureButton
+              Styles.smallTemperatureButton,
               // true && Styles.smallGenderButtonActive
             ]}
-            onPress={e => this.temperatureButtonClick("f")}
+            onPress={(e) => this.temperatureButtonClick("f")}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />
@@ -216,6 +214,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });

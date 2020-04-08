@@ -39,7 +39,6 @@ class InfoList extends Component {
         {
           text: "OK",
           onPress: () => {
-            console.log("OK Pressed");
             this.props.onDeletePerson(id);
           },
         },
@@ -53,16 +52,13 @@ class InfoList extends Component {
       user_id,
       createdAt,
       address,
-      owner_phone,
       lng,
       lat,
       id,
       cnic,
       phone,
-      UserId,
     } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
-    console.log("info list props is: ", this.props);
     const ts = new Date(createdAt);
     const date = ts.toLocaleDateString();
     const time = ts.toLocaleTimeString();

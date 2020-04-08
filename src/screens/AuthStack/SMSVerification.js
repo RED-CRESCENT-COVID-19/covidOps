@@ -57,7 +57,6 @@ export default class SMSVerification extends Component {
         }
       })
       .catch((err) => {
-        console.log("catch error is: ", err);
         this.setState({ isLoading: false });
 
         Alert.alert(

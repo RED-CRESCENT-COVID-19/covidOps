@@ -71,10 +71,8 @@ class HouseholdNumber extends Component {
     Http.post("house", data, { headers: { "access-token": token } })
       .then(async (response) => {
         this.setState({ isLoading: false });
-        console.log("house hold response is: ", response);
         if (response.status == 201) {
           (async (data) => {
-            console.log("houses data is: ", data);
             await AsyncStorage.setItem("HouseID", data.id);
             await AsyncStorage.setItem("HouseIDDetail", JSON.stringify(data));
           })(response.data);
@@ -136,8 +134,6 @@ class HouseholdNumber extends Component {
         lng: location.coords.longitude,
       });
     } catch (error) {
-      console.log("get locatioin ${error} is: ", error);
-
       Alert.alert(
         `Info!`,
         "Please head over to setting & enable the location",

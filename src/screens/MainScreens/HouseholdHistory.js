@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, AsyncStorage } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  AsyncStorage,
+  Alert,
+} from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -31,42 +37,110 @@ export default class HouseholdHistory extends Component {
     Http.get(url, {}, { headers: { "access-token": token } })
       .then((response) => {
         this.setState({ isLoading: false });
-        console.log("house hold history response is: ", response);
         if (response.status == 200) {
-          // console.log(response.data)
           if (response.data.length > 0) {
             this.setState({ data: response.data.reverse() });
-          } else {
-            // console.log(this.response.data)
           }
-          // this.setState({
-          //   persons: response.data.person_count,
-          //   houses: response.data.house_count
-          // });
-        } else {
-          // TOOD:: error handling
         }
       })
       .catch((err) => {
         this.setState({ isLoading: false });
-        // Alert.alert(
-        //   `${err}`,
-        //   "Keep your app up to date to enjoy the latest features",
-        //   [
-        //     {
-        //       text: "Cancel",
-        //       onPress: () => console.log("Cancel Pressed"),
-        //       style: "cancel"
-        //     },
-        //     { text: "OK", onPress: () => console.log("OK Pressed") }
-        //   ],
-        //   { cancelable: false }
-        // );
       });
   }
 
-  onDeleteHouse(id) {
+  async onDeleteHouse(id) {
     console.log("onDeleteHouse id is: ", id);
+    // console.log("onDeletePerson id is: ", id);
+    // this.setState({ isLoading: true });
+    // const token = await AsyncStorage.getItem("AuthToken");
+
+    // Http.delete(`person/${id}`, {}, { headers: { "access-token": token } })
+    //   .then((res) => {
+    //     // console.log("onDeletePerson res is: ", res);
+    //     // console.log("this.state in then is: ", this.state);
+    //     this.setState({ isLoading: false });
+    //     const index = this.state.data
+    //       .map(function(item) {
+    //         return item.id;
+    //       })
+    //       .indexOf(id);
+    //     // console.log("index is: ", index);
+    //     if (index > -1) {
+    //       this.state.data.splice(index, 1);
+    //     }
+    //     // console.log("Again this.state is: ", this.state);
+
+    //     if (res.status === 400) {
+    //       Alert.alert(
+    //         "Information!",
+    //         `${res.data.message}`,
+    //         [
+    //           {
+    //             text: "Cancel",
+    //             onPress: () => {
+    //               console.log("Cancel Pressed");
+    //             },
+    //             style: "cancel",
+    //           },
+    //           {
+    //             text: "OK",
+    //             onPress: () => {
+    //               console.log("OK Pressed");
+    //             },
+    //           },
+    //         ],
+    //         { cancelable: false }
+    //       );
+    //     }
+    //     if (res.status === 204) {
+    //       this.setState({ data: this.state.data });
+
+    //       Alert.alert(
+    //         "Information!",
+    //         "Successfully deleted the house",
+    //         [
+    //           {
+    //             text: "Cancel",
+    //             onPress: () => {
+    //               console.log("Cancel Pressed");
+    //             },
+    //             style: "cancel",
+    //           },
+    //           {
+    //             text: "OK",
+    //             onPress: () => {
+    //               console.log("OK Pressed");
+    //             },
+    //           },
+    //         ],
+    //         { cancelable: false }
+    //       );
+    //     }
+    //     // console.log("this. state data is: ", this.state.apiData);
+    //   })
+    //   .catch((err) => {
+    //     this.setState({ isLoading: false });
+    //     Alert.alert(
+    //       "Information!",
+    //       "Please try Again!",
+    //       [
+    //         {
+    //           text: "Cancel",
+    //           onPress: () => {
+    //             console.log("Cancel Pressed");
+    //           },
+    //           style: "cancel",
+    //         },
+    //         {
+    //           text: "OK",
+    //           onPress: () => {
+    //             console.log("OK Pressed");
+    //           },
+    //         },
+    //       ],
+    //       { cancelable: false }
+    //     );
+    //   });
   }
   render() {
     let loader;

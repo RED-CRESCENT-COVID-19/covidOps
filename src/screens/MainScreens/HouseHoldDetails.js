@@ -51,8 +51,6 @@ class HouseHoldDetails extends Component {
         if (response.status == 200) {
           if (response.data.length > 0) {
             this.setState({ apiData: response.data.reverse() });
-          } else {
-            // console.log(this.response.data)
           }
           // this.response.data;
           // this.setState({
@@ -62,36 +60,28 @@ class HouseHoldDetails extends Component {
         } else {
           // TOOD:: error handling
         }
-        // console.log("this. state data is: ", this.state.apiData);
       })
       .catch((err) => {
         this.setState({ isLoading: false });
-        console.log("house hold details error is: ", err);
       });
   }
 
   // person delete
   async onDeletePerson(id) {
-    // console.log("onDeletePerson id is: ", id);
     this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
 
     Http.delete(`person/${id}`, {}, { headers: { "access-token": token } })
       .then((res) => {
-        // console.log("onDeletePerson res is: ", res);
-        // console.log("this.state in then is: ", this.state);
         this.setState({ isLoading: false });
         const index = this.state.apiData
           .map(function(item) {
             return item.id;
           })
           .indexOf(id);
-        // console.log("index is: ", index);
         if (index > -1) {
           this.state.apiData.splice(index, 1);
         }
-        // console.log("Again this.state is: ", this.state);
-
         if (res.status === 400) {
           Alert.alert(
             "Information!",
@@ -138,7 +128,6 @@ class HouseHoldDetails extends Component {
             { cancelable: false }
           );
         }
-        // console.log("this. state data is: ", this.state.apiData);
       })
       .catch((err) => {
         this.setState({ isLoading: false });
