@@ -6,7 +6,7 @@ import {
   AsyncStorage,
   Keyboard,
   Alert,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
@@ -35,7 +35,7 @@ export default class MemberDetails extends Component {
       age: "",
       isUnderAge: false,
       uniqueID: "",
-      houseId: ""
+      houseId: "",
     };
   }
   fieldRef = React.createRef();
@@ -50,32 +50,111 @@ export default class MemberDetails extends Component {
 
   onNextButton() {
     const { houseId, cnic, phone, age } = this.state;
-    const validate =
-      age < 18
-        ? phone.length === 11 && age.length == 2
-        : cnic.length === 13 && phone.length === 11 && age.length == 2;
-    if (validate) {
-      this.props.navigation.navigate("Symptoms", {
-        selectedGenderType: this.state.selectedGenderType,
-        cnic: cnic,
-        phone: phone,
-        age: age,
-        uniqueID: houseId
-      });
-    } else {
+
+    const _isCnicTouch = cnic.length > 0 && cnic.length < 13 ? true : false;
+    const _isPhoneTouch = phone.length > 0 && phone.length < 11 ? true : false;
+
+    if (_isCnicTouch) {
       Alert.alert(
         "Validation Error",
-        "Please Enter a Valid Phone number,Valid CNIC and Age to Continue",
+        "Please enter a valid CNIC continue",
+        [
+          {
+            text: "Cancel",
+            onPress: () => {
+              console.log("Cancel Pressed");
+              return;
+            },
+            style: "cancel",
+          },
+          {
+            text: "OK",
+            onPress: () => console.log("OK Pressed"),
+          },
+        ],
+        { cancelable: false }
+      );
+      return;
+    } else if (_isPhoneTouch) {
+      Alert.alert(
+        "Validation Error",
+        "Please enter a valid Phone continue",
+        [
+          {
+            text: "Cancel",
+            onPress: () => {
+              console.log("Cancel Pressed");
+              return;
+            },
+            style: "cancel",
+          },
+          {
+            text: "OK",
+            onPress: () => console.log("OK Pressed"),
+          },
+        ],
+        { cancelable: false }
+      );
+      return;
+    } else if (age == 0) {
+      Alert.alert(
+        "Validation Error",
+        "Please enter a valid age",
         [
           {
             text: "Cancel",
             onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
+            style: "cancel",
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          {
+            text: "OK",
+            onPress: () => console.log("OK Pressed"),
+          },
         ],
         { cancelable: false }
       );
+      return;
+    } else if (!_isCnicTouch || !_isPhoneTouch) {
+      const validate =
+        age < 18
+          ? phone.length === 11 && age.length == 2
+          : cnic.length === 13 && phone.length === 11 && age.length == 2;
+
+      if (validate) {
+        this.props.navigation.navigate("Symptoms", {
+          selectedGenderType: this.state.selectedGenderType,
+          cnic: cnic,
+          phone: phone,
+          age: age,
+          uniqueID: houseId,
+        });
+      } else {
+        Alert.alert(
+          "Information",
+          "You want to continue without CNIC or phone",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel",
+            },
+            {
+              text: "OK",
+              onPress: () => {
+                console.log("OK Pressed _isCnicTouch || _isPhoneTouch ");
+                this.props.navigation.navigate("Symptoms", {
+                  selectedGenderType: this.state.selectedGenderType,
+                  cnic: cnic,
+                  phone: phone,
+                  age: age,
+                  uniqueID: houseId,
+                });
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      }
     }
   }
   onBackButton() {
@@ -96,7 +175,7 @@ export default class MemberDetails extends Component {
     if (type !== selectedGenderType) {
       this.setState({
         selectedGenderType: type,
-        isButtonActive: !isButtonActive
+        isButtonActive: !isButtonActive,
       });
     }
   }
@@ -108,7 +187,7 @@ export default class MemberDetails extends Component {
   onBlur() {
     Keyboard.dismiss();
   }
-  formatText = text => {
+  formatText = (text) => {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
@@ -124,10 +203,10 @@ export default class MemberDetails extends Component {
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
             returnKeyType={"next"}
-            ref={input => {
+            ref={(input) => {
               this.firstTextInput = input;
             }}
-            onChangeText={e => this.onChangeAge(e)}
+            onChangeText={(e) => this.onChangeAge(e)}
             // onSubmitEditing={this.onSubmit}
             onSubmitEditing={() => {
               isUnderAge
@@ -144,13 +223,13 @@ export default class MemberDetails extends Component {
             formatText={this.formatText}
             returnKeyType={"next"}
             disabled={isUnderAge}
-            onChangeText={e => this.onChangeCNIC(e)}
+            onChangeText={(e) => this.onChangeCNIC(e)}
             // onSubmitEditing={this.onSubmit}
             onSubmitEditing={() => {
               this.thirdTextInput.focus();
             }}
             // onBlur={() => this.onBlur()}
-            ref={input => {
+            ref={(input) => {
               this.secondTextInput = input;
             }}
           />
@@ -160,12 +239,12 @@ export default class MemberDetails extends Component {
             keyboardType="phone-pad"
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={e => this.onChangePhone(e)}
+            onChangeText={(e) => this.onChangePhone(e)}
             returnKeyType={"done"}
             // onSubmitEditing={this.onSubmit}
             onSubmitEditing={() => Keyboard.dismiss()}
             onBlur={() => this.onBlur()}
-            ref={input => {
+            ref={(input) => {
               this.thirdTextInput = input;
             }}
           />
@@ -188,9 +267,9 @@ export default class MemberDetails extends Component {
             shadeBorderRadius={1.5}
             style={[
               Styles.smallGenderButton,
-              selectedGenderType === "m" && Styles.smallGenderButtonActive
+              selectedGenderType === "m" && Styles.smallGenderButtonActive,
             ]}
-            onPress={e => this.genderButtonClick("m")}
+            onPress={(e) => this.genderButtonClick("m")}
           />
           <TextButton
             title={I18n.t(`Labels.GENDEROPTIONS.FEMALE`)}
@@ -207,9 +286,9 @@ export default class MemberDetails extends Component {
             shadeBorderRadius={1.5}
             style={[
               Styles.smallGenderButton,
-              selectedGenderType === "f" && Styles.smallGenderButtonActive
+              selectedGenderType === "f" && Styles.smallGenderButtonActive,
             ]}
-            onPress={e => this.genderButtonClick("f")}
+            onPress={(e) => this.genderButtonClick("f")}
           />
           <TextButton
             title={I18n.t(`Labels.GENDEROPTIONS.OTHER`)}
@@ -226,9 +305,9 @@ export default class MemberDetails extends Component {
             shadeBorderRadius={1.5}
             style={[
               Styles.smallGenderButton,
-              selectedGenderType === "o" && Styles.smallGenderButtonActive
+              selectedGenderType === "o" && Styles.smallGenderButtonActive,
             ]}
-            onPress={e => this.genderButtonClick("o")}
+            onPress={(e) => this.genderButtonClick("o")}
           />
         </View>
         <CardView Styles={Styles.Spacer100} />
@@ -259,6 +338,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 36,
-    paddingRight: 36
-  }
+    paddingRight: 36,
+  },
 });
