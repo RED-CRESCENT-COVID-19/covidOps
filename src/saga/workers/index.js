@@ -9,6 +9,7 @@ import {
   setHouseHoldDetail,
   stopLoading,
   setStats,
+  wipeData,
 } from "../../actions";
 
 import { getStatsHelper } from "./helpers/getStats";
@@ -17,6 +18,7 @@ import { getAllHouses } from "./helpers/getAllHouses";
 import { createMember } from "./helpers/createMember";
 import { createHome } from "./helpers/createHome";
 import { syncData } from "./helpers/syncData";
+import { wipeDatabase, initializeDatabase } from "./helpers/dbQueries";
 export function* getStatusWorker(action) {
   yield put(startLoading());
   const result = yield call(getStatsHelper, action);
@@ -79,5 +81,11 @@ export function* createMemberWorker(action) {
 export function* syncDataWorker() {
   yield put(startLoading());
   yield call(syncData);
+  yield put(wipeData());
+}
+
+export function* wipeDataWorker() {
+  yield call(wipeDatabase);
+  yield call(initializeDatabase);
   yield put(stopLoading());
 }

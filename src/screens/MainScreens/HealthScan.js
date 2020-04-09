@@ -5,6 +5,7 @@ import {
   View,
   AsyncStorage,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
@@ -50,8 +51,13 @@ class HealthScan extends Component {
   onChangeLanguage() {
     I18n.locale = "en";
   }
-  handleSyncAction = () => {
-    this.props.syncDataDispatcher();
+  handleSyncAction = async () => {
+    const status = await AsyncStorage.getItem("InternetStatus");
+    if (+status === 1) {
+      this.props.syncDataDispatcher();
+    } else {
+      Alert.alert("Please Connect to Active Internet Connection for Data Sync");
+    }
   };
   async onHandleChange() {
     const token = await AsyncStorage.getItem("AuthToken");

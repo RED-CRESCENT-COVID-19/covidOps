@@ -32,8 +32,8 @@ export default dashboardReducer = (state = initialState, action) => {
         ...state,
         error: false,
         response: true,
-        houseScanned: action.payload.data.person_count,
-        personScanned: action.payload.data.house_count,
+        houseScanned: action.payload.data.house_count,
+        personScanned: action.payload.data.person_count,
       };
     case TOGGLE_RESPONSE:
       return {

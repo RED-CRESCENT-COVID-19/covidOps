@@ -8,6 +8,7 @@ import {
   GET_HOUSEHOLD_DETAIL,
   GET_STATS,
   SYNC_DATA,
+  WIPE_DATABASE,
 } from "../../actions";
 
 //import saga workers
@@ -18,7 +19,12 @@ import {
   getHouseHoldDetailWorker,
   getStatusWorker,
   syncDataWorker,
+  wipeDataWorker,
 } from "../workers";
+
+export function* wipeDataWatcher() {
+  yield takeLatest(WIPE_DATABASE, wipeDataWorker);
+}
 
 export function* syncDataWatcher() {
   yield takeLatest(SYNC_DATA, syncDataWorker);

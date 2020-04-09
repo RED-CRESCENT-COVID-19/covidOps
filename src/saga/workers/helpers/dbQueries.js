@@ -24,8 +24,13 @@ export const getUser = () => {
   return new Promise(
     (resolve, reject) => {
       db.transaction((tx) => {
-        tx.executeSql(`select * from user;`, null, (_, { rows: { _array } }) =>
-          resolve(_array)
+        tx.executeSql(
+          `select * from user;`,
+          null,
+          (_, { rows: { _array } }) => {
+            console.log("user array is ", _array);
+            resolve(_array);
+          }
         );
       });
     },
@@ -51,14 +56,18 @@ export const addHouse = (params, token) => {
 };
 
 export const getUsersForHouseId = (houseId) => {
+  console.log("house id is ", houseId);
   return new Promise((resolve) => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        `select * from user where house_id = '${houseId}'`,
-        null,
-        (_, { rows: { _array } }) => resolve(_array)
-      );
-    });
+    db.transaction(
+      (tx) => {
+        tx.executeSql(
+          `select * from user where house_id = '${houseId}'`,
+          null,
+          (_, { rows: { _array } }) => resolve(_array)
+        );
+      },
+      (error) => console.log("erro is ", error)
+    );
   });
 };
 
@@ -115,24 +124,18 @@ export const wipeDatabase = () => {
     db.transaction((tx) => {
       tx.executeSql(
         `DROP TABLE house;
-      `,
-        [],
-        (a) => console.log("a", a),
-        (b) => console.log("b", b)
+      `
       );
     });
     db.transaction(
       (tx) => {
         tx.executeSql(
           `DROP table user;
-      `,
-          [],
-          (a) => {},
-          (b) => resolve()
+      `
         );
       },
       null,
-      null
+      () => resolve()
     );
   });
 };
