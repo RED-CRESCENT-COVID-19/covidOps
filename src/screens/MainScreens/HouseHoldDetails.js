@@ -168,15 +168,12 @@ class HouseHoldDetails extends Component {
 				{this.props.response ? this.props.data.length === 0 && <Text style={[Styles.topParagraph, style]}>{I18n.t(`Paragarphs.HOME`)}</Text> : null}
 				<CardView Styles={Styles.Spacer50} />
 
-				{this.props.response
-					? this.props.data.length > 0 && (
-							<ScrollView style={Styles.ScrollView}>
-								{this.props.data.map((d, i) => (
-									<InfoList itemData={d} key={d.createdAt} indicator={i + 1} {...this.props} HouseHoldDetails={I18n.t(`Labels.MEMBER`)} />
-								))}
-							</ScrollView>
-					  )
-					: null}
+				<ScrollView style={Styles.ScrollView}>
+					{this.props.response
+						? this.props.data.length > 0 &&
+						  this.props.data.map((d, i) => <InfoList itemData={d} key={d.createdAt} indicator={i + 1} {...this.props} HouseHoldDetails={I18n.t(`Labels.MEMBER`)} />)
+						: null}
+				</ScrollView>
 				<View style={Styles.largebuttonsContainer}>
 					<ExtendedButton
 						IconSource={homeIcon}
