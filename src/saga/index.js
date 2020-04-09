@@ -7,10 +7,12 @@ import {
   getHomesWatcher,
   getHouseHoldDetailWatcher,
   getStatsWatcher,
+  syncDataWatcher,
 } from "./watchers";
 
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
+  yield fork(syncDataWatcher);
   yield fork(getStatsWatcher);
   yield fork(createHomeWatcher);
   yield fork(getHomesWatcher);

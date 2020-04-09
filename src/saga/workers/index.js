@@ -10,14 +10,13 @@ import {
   stopLoading,
   setStats,
 } from "../../actions";
-import {
-  createHome,
-  createMember,
-  getAllHouses,
-  getHouseHoldDetails,
-  getStatsHelper,
-} from "./helpers";
 
+import { getStatsHelper } from "./helpers/getStats";
+import { getHouseHoldDetails } from "./helpers/getHouseHoldDetails";
+import { getAllHouses } from "./helpers/getAllHouses";
+import { createMember } from "./helpers/createMember";
+import { createHome } from "./helpers/createHome";
+import { syncData } from "./helpers/syncData";
 export function* getStatusWorker(action) {
   yield put(startLoading());
   const result = yield call(getStatsHelper, action);
@@ -75,4 +74,10 @@ export function* createMemberWorker(action) {
     yield put(createMemeberFail(result));
     yield put(stopLoading());
   }
+}
+
+export function* syncDataWorker() {
+  yield put(startLoading());
+  yield call(syncData);
+  yield put(stopLoading());
 }

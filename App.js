@@ -11,6 +11,8 @@ import rootReducer from "./src/reducers/index";
 import NetInfo from "@react-native-community/netinfo";
 import configureStore from "./src/store";
 export const LocalizationContext = React.createContext();
+import { SQLite } from "expo-sqlite";
+const db = SQLite.openDatabase("db.db");
 
 const { store } = configureStore();
 if (__DEV__) {
@@ -37,6 +39,16 @@ export default function App() {
   useEffect(() => {
     Font.loadAsync({
       "noto-nastaliq": require("./assets/fonts/NotoNastaliqUrdu-Regular.ttf"),
+    });
+    /* */
+    db.transaction((tx) => {
+      tx.executeSql(`create table if not exists house
+      (id text primary key not null,token text, address text not null, lat float, lng float, is_contacted integer,createdAt);
+      
+      `);
+      tx.executeSql(`create table if not exists user
+      (id text primary key not null, token text, house_id, unique_id,cnic, gender, phone, age, temprature, unit, fever,
+      cough, sputum, fatigue, sob, headache, congestion, meralgia, hemoptysis, conjuctivitis, notes,created_at, updated_at);`);
     });
   }, []);
   return (

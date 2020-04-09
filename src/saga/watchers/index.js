@@ -7,6 +7,7 @@ import {
   GET_ALL_HOUSES,
   GET_HOUSEHOLD_DETAIL,
   GET_STATS,
+  SYNC_DATA,
 } from "../../actions";
 
 //import saga workers
@@ -16,7 +17,12 @@ import {
   getHousesWorkers,
   getHouseHoldDetailWorker,
   getStatusWorker,
+  syncDataWorker,
 } from "../workers";
+
+export function* syncDataWatcher() {
+  yield takeLatest(SYNC_DATA, syncDataWorker);
+}
 
 export function* getStatsWatcher() {
   yield takeLatest(GET_STATS, getStatusWorker);

@@ -20,9 +20,13 @@ export const START_LOADING = "START_LOADING";
 //DashBoard Types
 export const GET_STATS = "GET_STATS";
 export const SET_STATS = "SET_STATS";
+export const SYNC_DATA = "SYNC_DATA";
 
 export const TOGGLE_RESPONSE = "TOGGLE_RESPONSE";
 
+export const syncData = () => ({
+  type: SYNC_DATA,
+});
 export const startLoading = () => ({
   type: START_LOADING,
 });

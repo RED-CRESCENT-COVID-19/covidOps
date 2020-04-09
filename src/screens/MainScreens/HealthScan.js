@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, AsyncStorage } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  AsyncStorage,
+  ActivityIndicator,
+} from "react-native";
 import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 import {
@@ -12,7 +18,7 @@ import { Styles, Colors } from "../../../theme";
 import Http from "../../services/HttpService";
 const WRITING_STYLE = I18n.locale;
 import { connect } from "react-redux";
-import { getStats, setResponse } from "../../actions";
+import { getStats, setResponse, syncData } from "../../actions";
 
 class HealthScan extends Component {
   constructor(props) {
@@ -21,6 +27,7 @@ class HealthScan extends Component {
       isAuthenticated: true,
       persons: 0,
       houses: 0,
+      loading: false,
     };
   }
   componentWillMount() {
@@ -43,6 +50,9 @@ class HealthScan extends Component {
   onChangeLanguage() {
     I18n.locale = "en";
   }
+  handleSyncAction = () => {
+    this.props.syncDataDispatcher();
+  };
   async onHandleChange() {
     const token = await AsyncStorage.getItem("AuthToken");
     await AsyncStorage.removeItem("AuthToken");
@@ -64,7 +74,17 @@ class HealthScan extends Component {
     const historyIcon = require("../../../assets/images/history.png");
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
 
-    return (
+    return this.props.loading ? (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ActivityIndicator size="large" color={Colors.secondaryColor} />
+      </View>
+    ) : (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HEALTHSCAN`)} />
         <Text style={[Styles.topParagraph, style]}>
@@ -124,6 +144,22 @@ class HealthScan extends Component {
             onPress={() => this.onChangeLanguage()}
           />
         </View>
+        <View
+          style={{
+            position: "absolute",
+            top: 50,
+            left: 10,
+          }}
+        >
+          <RaisedTextButton
+            title={"Sync"}
+            color={Colors.secondaryColor}
+            titleColor={Colors.buttonTextColor}
+            shadeBorderRadius={1.5}
+            style={Styles.smallButton}
+            onPress={() => this.handleSyncAction()}
+          />
+        </View>
       </View>
     );
   }
@@ -141,6 +177,7 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(getStats(token));
   },
   toggleResponse: () => dispatch(setResponse()),
+  syncDataDispatcher: () => dispatch(syncData()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HealthScan);
 const screenStyles = StyleSheet.create({
