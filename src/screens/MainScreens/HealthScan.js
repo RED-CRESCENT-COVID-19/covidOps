@@ -11,7 +11,7 @@ import {
   CardView,
   ExtendedButton,
   Heading,
-  CalculationLabel
+  CalculationLabel,
 } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
@@ -26,24 +26,25 @@ export default class HealthScan extends Component {
     this.state = {
       isAuthenticated: true,
       persons: 0,
-      houses: 0
+      houses: 0,
+      lang: "",
     };
   }
 
   async componentDidMount() {
     const token = await AsyncStorage.getItem("AuthToken");
     Http.get("stats", {}, { headers: { "access-token": token } })
-      .then(response => {
+      .then((response) => {
         if (response.status == 200) {
           this.setState({
             persons: response.data.person_count,
-            houses: response.data.house_count
+            houses: response.data.house_count,
           });
         } else {
           //TODO:: Redirect Back to login screen
         }
       })
-      .catch(err => {});
+      .catch((err) => {});
   }
 
   handleAddHouseHold = () => {
@@ -53,21 +54,23 @@ export default class HealthScan extends Component {
     this.props.navigation.navigate("HouseholdHistory");
   };
   onChangeLanguage() {
-    I18n.locale = "en";
+    const { lang } = this.state;
+    I18n.locale = I18n.locale === "ur" ? "en" : "ur";
+    this.setState({ lang: lang === "ur" ? "en" : "ur" });
   }
   async onHandleChange() {
     const token = await AsyncStorage.getItem("AuthToken");
     await AsyncStorage.removeItem("AuthToken");
     await AsyncStorage.removeItem("HouseID");
     Http.delete("auth/logout", {}, { headers: { "access-token": token } })
-      .then(response => {
+      .then((response) => {
         this.props.setAuth(false);
         //TODO:: Redirect back to login, clear token
       })
-      .catch(err => {});
+      .catch((err) => {});
 
     this.setState({
-      isAuthenticated: !this.state.isAuthenticated
+      isAuthenticated: !this.state.isAuthenticated,
     });
   }
   render() {
@@ -146,12 +149,12 @@ const screenStyles = StyleSheet.create({
     fontSize: 16,
     padding: 20,
     paddingLeft: 35,
-    color: Colors.paragraphTextColor
+    color: Colors.paragraphTextColor,
   },
 
   Number: {
     fontSize: 16,
     padding: 20,
-    color: Colors.paragraphTextColor
-  }
+    color: Colors.paragraphTextColor,
+  },
 });
