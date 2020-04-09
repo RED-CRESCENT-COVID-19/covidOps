@@ -7,7 +7,7 @@ import { Styles, Colors } from '../../../theme';
 import { getAllHouses, setResponse } from '../../actions';
 import { connect } from 'react-redux';
 
-export default class HouseholdHistory extends Component {
+class HouseholdHistory extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { data: [], isLoading: false };
