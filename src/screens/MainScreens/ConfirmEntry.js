@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, AsyncStorage } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -15,15 +15,40 @@ import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class ConfirmEntry extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: "",
+      createdAt: "",
+    };
+  }
+  componentDidMount() {
+    this.getHouseId();
+  }
   handleBack = () => {
     this.props.navigation.goBack();
   };
 
+  async getHouseId() {
+    const HouseIDDetail = await AsyncStorage.getItem("HouseIDDetail");
+    this.setState({
+      address: JSON.parse(HouseIDDetail).address,
+      createdAt: JSON.parse(HouseIDDetail).createdAt,
+    });
+  }
   handleNext = () => {
     this.props.navigation.navigate("HealthScan");
   };
+  onChangeText(e) {
+    console.log("e is: ", e);
+  }
+
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+    const { address, createdAt } = this.state;
+    const ts = new Date(createdAt);
+    const date = ts.toLocaleDateString();
+    const time = ts.toLocaleTimeString();
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.CONFIRMENTERY`)} />
@@ -32,12 +57,13 @@ export default class ConfirmEntry extends Component {
         </Text>
         <View style={screenStyles.textInput}>
           <TextField
-            label={I18n.t(`Labels.CONFIRMENTERY.LABEL`)}
+            label={`${time} - ${date} ` || I18n.t(`Labels.CONFIRMENTERY.LABEL`)}
             keyboardType="phone-pad"
-            placeholder={I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
+            placeholder={address || I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            onChangeText={(e) => this.onChangeText(e)}
+            disabled
             onSubmitEditing={this.onSubmit}
           />
         </View>
@@ -70,6 +96,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });

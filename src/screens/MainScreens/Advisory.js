@@ -3,6 +3,8 @@ import { Text, StyleSheet, View } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
+import Http from "../../services/HttpService";
+
 // plugins
 import I18n from "../../plugins/I18n";
 
@@ -14,14 +16,23 @@ import { Styles, Colors } from "../../../theme";
 
 const WRITING_STYLE = I18n.locale;
 export default class Advisory extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      helpline: "",
+      website: "",
+      number: "",
+    };
+  }
   handleCancel = () => {
     this.props.navigation.goBack();
   };
   handleDone = () => {
-    this.props.navigation.navigate("HandWash");
+    this.props.navigation.navigate("HandWash", this.props);
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+    // const { helpline, number, website } = this.state;
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.ADVISORY`)} />
@@ -71,6 +82,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 20,
-    paddingRight: 20
-  }
+    paddingRight: 20,
+  },
 });

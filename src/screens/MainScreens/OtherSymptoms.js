@@ -34,7 +34,6 @@ export default class OtherSymptoms extends Component {
   }
 
   render() {
-    console.log("other Symptoms props is: ", this.props);
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>
@@ -53,7 +52,7 @@ export default class OtherSymptoms extends Component {
             // multiline
             returnKeyType={"done"}
             onSubmitEditing={() => this.onSubmit()}
-            onChangeText={otherSymptoms =>
+            onChangeText={(otherSymptoms) =>
               this.setState({ otherSymptoms: otherSymptoms })
             }
             onBlur={() => this.onBlur()}
@@ -87,6 +86,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });

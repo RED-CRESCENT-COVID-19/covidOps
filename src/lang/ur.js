@@ -80,8 +80,8 @@ export default {
         URL: "http://www.covid.gov.pk"
       },
       MESSAGE: {
-        TITLE: "Who یو ۔این۔ واٹس ایپ نمبر",
-        PHONE: "892 931 798 14+  پے 'hi' میسج کریں۔"
+        TITLE: "کورونا یو ۔این۔ واٹس ایپ نمبر",
+        PHONE: "923001111166+ پے 'hi' میسج کریں۔"
       }
     }
   },
