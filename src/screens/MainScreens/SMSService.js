@@ -67,6 +67,7 @@ class SMSService extends Component {
         ],
         { cancelable: false }
       );
+      return;
     } else {
       Http.post(
         `infosms`,
@@ -77,18 +78,7 @@ class SMSService extends Component {
       )
         .then((res) => {
           console.log("onDeletePerson res is: ", res);
-          console.log("this.state in then is: ", this.state);
           this.setState({ isLoading: false });
-          const index = this.state.data
-            .map(function(item) {
-              return item.id;
-            })
-            .indexOf(id);
-          // console.log("index is: ", index);
-          if (index > -1) {
-            this.state.data.splice(index, 1);
-          }
-          // console.log("Again this.state is: ", this.state);
 
           if (res.status === 400) {
             Alert.alert(
@@ -113,7 +103,7 @@ class SMSService extends Component {
             );
           }
           if (res.status === 204) {
-            this.setState({ data: this.state.data });
+            // this.setState({ data: this.state.data });
 
             Alert.alert(
               "Information!",
