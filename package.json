@@ -19,7 +19,7 @@
     "ex-react-native-i18n": "^0.0.6",
     "expo": "~36.0.0",
     "expo-cli": "^3.17.18",
-    "expo-sqlite": "~5.0.1",
+    "expo-sqlite": "~8.0.0",
     "global": "^4.4.0",
     "i18n-js": "^3.5.1",
     "lodash": "^4.17.15",

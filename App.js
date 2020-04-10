@@ -11,7 +11,7 @@ import rootReducer from './src/reducers/index';
 import NetInfo from '@react-native-community/netinfo';
 import configureStore from './src/store';
 export const LocalizationContext = React.createContext();
-import { SQLite } from 'expo-sqlite';
+import * as SQLite from 'expo-sqlite';
 const db = SQLite.openDatabase('db.db');
 
 const { store } = configureStore();
