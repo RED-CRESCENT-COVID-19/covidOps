@@ -1,3 +1,4 @@
-export default configKeys = {
-  ROOT_URL: "http://54.224.84.138:3000/v1/" // ROOT API's URL
-};
+export default (configKeys = {
+  ROOT_URL:
+    "http://muhafizapi-env.eba-svzyqh3n.us-east-1.elasticbeanstalk.com/v1/", // ROOT API's URL
+});
