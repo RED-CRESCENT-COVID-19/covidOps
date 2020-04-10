@@ -42,16 +42,11 @@ export default class MemberDetails extends Component {
 
 	onNextButton() {
 		const { houseId, cnic, phone, age } = this.state;
-		const validate = age < 18 ? phone.length === 11 && age.length == 2 : cnic.length === 13 && phone.length === 11 && age.length == 2;
-		if (validate) {
-			this.props.navigation.navigate('Symptoms', {
-				selectedGenderType: this.state.selectedGenderType,
-				cnic: cnic,
-				phone: phone,
-				age: age,
-				uniqueID: houseId,
-			});
-		} else {
+
+		const _isCnicTouch = cnic.length > 0 && cnic.length < 13 ? true : false;
+		const _isPhoneTouch = phone.length > 0 && phone.length < 11 ? true : false;
+
+		if (_isCnicTouch) {
 			Alert.alert(
 				'Validation Error',
 				'Please enter a valid CNIC continue',
@@ -72,8 +67,7 @@ export default class MemberDetails extends Component {
 				{ cancelable: false }
 			);
 			return;
-		}
-		if (_isPhoneTouch) {
+		} else if (_isPhoneTouch) {
 			Alert.alert(
 				'Validation Error',
 				'Please enter a valid Phone continue',
@@ -104,7 +98,10 @@ export default class MemberDetails extends Component {
 						onPress: () => console.log('Cancel Pressed'),
 						style: 'cancel',
 					},
-					{ text: 'OK', onPress: () => console.log('OK Pressed') },
+					{
+						text: 'OK',
+						onPress: () => console.log('OK Pressed'),
+					},
 				],
 				{ cancelable: false }
 			);
