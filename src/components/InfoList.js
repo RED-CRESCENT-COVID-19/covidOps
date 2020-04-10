@@ -105,13 +105,13 @@ class InfoList extends Component {
 
           {HouseHoldDetails !== "" && (
             <Text style={[Styles.InfoListTitle, style]}>
-              {cnic || phone || user_id || "N/A"}
+              {cnic || phone || id || user_id || "N/A"}
             </Text>
           )}
 
           {HouseHoldDetails === "" && (
             <Text style={[Styles.InfoListTitle, style]}>
-              {address || `${lat}, ${lng}` || user_id || "N/A"}
+              {address || `${lat}, ${lng}` || id || user_id || "N/A"}
             </Text>
           )}
         </View>
