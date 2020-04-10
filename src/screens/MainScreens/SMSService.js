@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, Alert, Keyboard } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Alert,
+  Keyboard,
+  AsyncStorage,
+} from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -8,24 +15,164 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import Heading from "../../components/Heading";
+import { Heading, Loader } from "../../components";
 
 //Theme
 import { Styles, Colors } from "../../../theme";
 
+// services
+import Http from "../../services/HttpService";
+
 const WRITING_STYLE = I18n.locale;
 
-export default class SMSService extends Component {
-  handleContinue = () => {
-    //store Aysc value isAuthenticated == true
-    this.props.navigation.navigate("ConfirmEntry");
-  };
-  onSubmit() {
-    Keyboard.dismiss();
+class SMSService extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isLoading: false, phone: "" };
+    this.onSendMessage = this.onSendMessage.bind(this);
+    // this.onChangeText = this.onChangeText.bind(this);
   }
+  onChangeText(e) {
+    console.log("e is: ", e.targe.value);
+    // this.setState({ phone: e.target.value });
+  }
+  handleContinue = async () => {
+    //store Aysc value isAuthenticated == true
+    // this.props.navigation.navigate("ConfirmEntry");
+    this.setState({ isLoading: true });
+    const token = await AsyncStorage.getItem("AuthToken");
+
+    console.log("before state is: ", this.state);
+    const { phone } = this.state;
+    const isValid = phone.length < 11 && phone.length >= 0;
+    if (isValid) {
+      this.setState({ isLoading: false });
+      Alert.alert(
+        "Information!",
+        `Please enter valid phone number...!`,
+        [
+          {
+            text: "Cancel",
+            onPress: () => {
+              console.log("Cancel Pressed");
+            },
+            style: "cancel",
+          },
+          {
+            text: "OK",
+            onPress: () => {
+              console.log("OK Pressed");
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      Http.post(
+        `infosms`,
+        {
+          phone,
+        },
+        { headers: { "access-token": token } }
+      )
+        .then((res) => {
+          console.log("onDeletePerson res is: ", res);
+          console.log("this.state in then is: ", this.state);
+          this.setState({ isLoading: false });
+          const index = this.state.data
+            .map(function(item) {
+              return item.id;
+            })
+            .indexOf(id);
+          // console.log("index is: ", index);
+          if (index > -1) {
+            this.state.data.splice(index, 1);
+          }
+          // console.log("Again this.state is: ", this.state);
+
+          if (res.status === 400) {
+            Alert.alert(
+              "Information!",
+              `${res.data.message}`,
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {
+                    console.log("Cancel Pressed");
+                  },
+                  style: "cancel",
+                },
+                {
+                  text: "OK",
+                  onPress: () => {
+                    console.log("OK Pressed");
+                  },
+                },
+              ],
+              { cancelable: false }
+            );
+          }
+          if (res.status === 204) {
+            this.setState({ data: this.state.data });
+
+            Alert.alert(
+              "Information!",
+              "Successfully Send Message!",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {
+                    console.log("Cancel Pressed");
+                    this.props.navigation.navigate("ConfirmEntry");
+                  },
+                  style: "cancel",
+                },
+                {
+                  text: "OK",
+                  onPress: () => {
+                    console.log("OK Pressed");
+                    this.props.navigation.navigate("ConfirmEntry");
+                  },
+                },
+              ],
+              { cancelable: false }
+            );
+          }
+          // console.log("this. state data is: ", this.state.apiData);
+        })
+        .catch((err) => {
+          this.setState({ isLoading: false });
+          Alert.alert(
+            "Information!",
+            "Something went wrong, Please try Again!",
+            [
+              {
+                text: "Cancel",
+                onPress: () => {
+                  console.log("Cancel Pressed");
+                },
+                style: "cancel",
+              },
+              {
+                text: "OK",
+                onPress: () => {
+                  console.log("OK Pressed");
+                },
+              },
+            ],
+            { cancelable: false }
+          );
+        });
+    }
+  };
+  onSubmit = () => {
+    console.log("submit state is: ", this.state);
+    Keyboard.dismiss();
+  };
   onBlur() {
     Keyboard.dismiss();
   }
+  async onSendMessage() {}
   onTimerFinish() {
     Alert.alert(
       `Time is finish to verify the code!`,
@@ -34,18 +181,26 @@ export default class SMSService extends Component {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        { text: "OK", onPress: () => console.log("OK Pressed") },
       ],
       { cancelable: false }
     );
   }
-  formatText = text => {
+  formatText = (text) => {
     return text.replace(/[^+\d]/g, "");
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
+
+    let loader;
+    if (this.state.isLoading) {
+      loader = <Loader />;
+    } else {
+      loader = <View />;
+    }
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.SMSSERVICE`)} />
@@ -61,6 +216,8 @@ export default class SMSService extends Component {
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             returnKeyType={"done"}
             tintColor={Colors.primaryColor}
+            onChangeText={(phone) => this.setState({ phone })}
+            maxLength={11}
             formatText={this.formatText}
             onSubmitEditing={this.onSubmit}
             onBlur={() => this.onBlur()}
@@ -80,18 +237,19 @@ export default class SMSService extends Component {
             onPress={this.handleContinue}
           />
         </View>
+        {loader}
       </View>
     );
   }
 }
-
+export default SMSService;
 const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   didNotReceivedCode: {
-    alignSelf: "center"
-  }
+    alignSelf: "center",
+  },
 });

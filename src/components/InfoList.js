@@ -58,6 +58,7 @@ class InfoList extends Component {
       cnic,
       phone,
     } = this.props.data;
+    console.log("id is: ", id);
     const { HouseHoldDetails, indicator } = this.props;
     const ts = new Date(createdAt);
     const date = ts.toLocaleDateString();
