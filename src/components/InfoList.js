@@ -18,30 +18,21 @@ class InfoList extends Component {
   constructor(props) {
     super(props);
   }
-  onEdit() {
+  async onEdit() {
+    await AsyncStorage.setItem("HouseID", this.props.itemData.id);
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
-  onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
-    // const deleteIdentifier = HouseHoldDetails !== "" ? phone : cnic;
-    const deleteIdentifier = HouseHoldDetails !== "" ? cnic || phone : address;
-
+  onDelete(id) {
     Alert.alert(
-      "Approval!",
-      `Are you sure you want to delete ${deleteIdentifier}`,
+      `Are you sure you want to delete this ${id}`,
+      "Keep your app up to date to enjoy the latest features",
       [
         {
           text: "Cancel",
-          onPress: () => {
-            console.log("Cancel Pressed");
-          },
+          onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        {
-          text: "OK",
-          onPress: () => {
-            this.props.onDeletePerson(id);
-          }
-        }
+        { text: "OK", onPress: () => console.log("OK Pressed") }
       ],
       { cancelable: false }
     );
@@ -52,14 +43,16 @@ class InfoList extends Component {
       user_id,
       createdAt,
       address,
+      owner_phone,
       lng,
       lat,
       id,
       cnic,
-      phone
-    } = this.props.data;
-    console.log("id is: ", id);
+      phone,
+      UserId
+    } = this.props.itemData;
     const { HouseHoldDetails, indicator } = this.props;
+    console.log("info list props is: ", this.props);
     const ts = new Date(createdAt);
     const date = ts.toLocaleDateString();
     const time = ts.toLocaleTimeString();
@@ -89,9 +82,7 @@ class InfoList extends Component {
           <Button
             flat
             text=""
-            onPress={() =>
-              this.onDelete({ id, phone, cnic, HouseHoldDetails, address })
-            }
+            onPress={() => this.onDelete(id)}
             icon={<Icon name="trash" size={20} color={Colors.primaryColor} />}
           />
 
@@ -111,7 +102,7 @@ class InfoList extends Component {
 
           {HouseHoldDetails === "" && (
             <Text style={[Styles.InfoListTitle, style]}>
-              {address || `${lat}, ${lng}` || id || user_id || "N/A"}
+              {address || id || `${lat}, ${lng}` || user_id || "N/A"}
             </Text>
           )}
         </View>
@@ -132,7 +123,7 @@ class InfoList extends Component {
       cnic,
       phone,
       UserId
-    } = this.props.data;
+    } = this.props.itemData;
     const { HouseHoldDetails, indicator } = this.props;
 
     const ts = new Date(createdAt);
@@ -155,13 +146,13 @@ class InfoList extends Component {
         <View style={Styles.memberContainer}>
           {HouseHoldDetails !== "" && (
             <Text style={Styles.InfoListTitle}>
-              {cnic || phone || user_id || "N/A"}
+              {cnic || phone || id || user_id || "N/A"}
             </Text>
           )}
 
           {HouseHoldDetails === "" && (
             <Text style={Styles.InfoListTitle}>
-              {address || `${lat}, ${lng}` || user_id || "N/A"}
+              {address || id || `${lat}, ${lng}` || user_id || "N/A"}
             </Text>
           )}
 
