@@ -20,11 +20,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "pk.org.prcs.muhafiz",
-      "buildNumber": "3.0.0"
+      "buildNumber": "4.0.0"
     },
     "android": {
       "package": "pk.org.prcs.muhafiz",
-      "versionCode": 3
+      "versionCode": 4
     },
     "description": "PRC Covid App for data Collection",
     "githubUrl": "https://github.com/RED-CRESCENT-COVID-19/covidOps"
