@@ -66,6 +66,7 @@ class SMSService extends Component {
         ],
         { cancelable: false }
       );
+      return;
     } else {
       try {
         const { isConnected } = await NetInfo.fetch();
