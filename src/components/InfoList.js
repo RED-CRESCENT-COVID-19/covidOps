@@ -19,7 +19,7 @@ class InfoList extends Component {
     super(props);
   }
   async onEdit() {
-    await AsyncStorage.setItem("HouseID", this.props.data.id);
+    await AsyncStorage.setItem("HouseID", this.props.itemData.id);
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
   onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
@@ -60,7 +60,7 @@ class InfoList extends Component {
       cnic,
       phone,
       UserId
-    } = this.props.data;
+    } = this.props.itemData;
     const { HouseHoldDetails, indicator } = this.props;
 
     const ts = new Date(createdAt);
@@ -108,13 +108,17 @@ class InfoList extends Component {
 
           {HouseHoldDetails !== "" && (
             <Text style={[Styles.InfoListTitle, style]}>
-              {cnic || phone || id || user_id || "N/A"}
+              {cnic || phone || id.slice(0, 13) || user_id || "N/A"}
             </Text>
           )}
 
           {HouseHoldDetails === "" && (
             <Text style={[Styles.InfoListTitle, style]}>
-              {address || id || `${lat}, ${lng}` || user_id || "N/A"}
+              {address ||
+                id.slice(0, 13) ||
+                `${lat}, ${lng}` ||
+                user_id ||
+                "N/A"}
             </Text>
           )}
         </View>
@@ -135,7 +139,7 @@ class InfoList extends Component {
       cnic,
       phone,
       UserId
-    } = this.props.data;
+    } = this.props.itemData;
     const { HouseHoldDetails, indicator } = this.props;
 
     const ts = new Date(createdAt);
@@ -158,13 +162,17 @@ class InfoList extends Component {
         <View style={Styles.memberContainer}>
           {HouseHoldDetails !== "" && (
             <Text style={Styles.InfoListTitle}>
-              {cnic || phone || id || user_id || "N/A"}
+              {cnic || phone || id.slice(0, 13) || user_id || "N/A"}
             </Text>
           )}
 
           {HouseHoldDetails === "" && (
             <Text style={Styles.InfoListTitle}>
-              {address || id || `${lat}, ${lng}` || user_id || "N/A"}
+              {address ||
+                id.slice(0, 13) ||
+                `${lat}, ${lng}` ||
+                user_id ||
+                "N/A"}
             </Text>
           )}
 
@@ -189,7 +197,7 @@ class InfoList extends Component {
   }
 
   render() {
-    console.log("info list props is: ", this.props.data);
+    console.log("info list props is: ", this.props.itemData);
     const renderView =
       WRITING_STYLE === "ur" ? this.urduList() : this.englisList();
     return renderView;

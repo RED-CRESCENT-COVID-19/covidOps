@@ -96,61 +96,64 @@ class SMSService extends Component {
           );
           this.setState({ isLoading: false });
           return;
-        }
-        const res = await SendSMS({ phone }, token);
-        console.log("onDeletePerson res is: ", res);
-        console.log("this.state in then is: ", this.state);
-        this.setState({ isLoading: false });
+        } else if (phone.length === 0) {
+          this.props.navigation.navigate("ConfirmEntry");
+        } else {
+          const res = await SendSMS({ phone }, token);
+          console.log("onDeletePerson res is: ", res);
+          console.log("this.state in then is: ", this.state);
+          this.setState({ isLoading: false });
 
-        // console.log("Again this.state is: ", this.state);
+          // console.log("Again this.state is: ", this.state);
 
-        if (res.status === 400) {
-          Alert.alert(
-            "Information!",
-            `${res.data.message}`,
-            [
-              {
-                text: "Cancel",
-                onPress: () => {
-                  console.log("Cancel Pressed");
+          if (res.status === 400) {
+            Alert.alert(
+              "Information!",
+              `${res.data.message}`,
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {
+                    console.log("Cancel Pressed");
+                  },
+                  style: "cancel"
                 },
-                style: "cancel"
-              },
-              {
-                text: "OK",
-                onPress: () => {
-                  console.log("OK Pressed");
+                {
+                  text: "OK",
+                  onPress: () => {
+                    console.log("OK Pressed");
+                  }
                 }
-              }
-            ],
-            { cancelable: false }
-          );
-        }
-        if (res.status === 204) {
-          this.setState({ data: this.state.data });
+              ],
+              { cancelable: false }
+            );
+          }
+          if (res.status === 204) {
+            this.setState({ data: this.state.data });
 
-          Alert.alert(
-            "Information!",
-            "Successfully Send Message!",
-            [
-              {
-                text: "Cancel",
-                onPress: () => {
-                  console.log("Cancel Pressed");
-                  this.props.navigation.navigate("ConfirmEntry");
+            Alert.alert(
+              "Information!",
+              "Successfully Send Message!",
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => {
+                    console.log("Cancel Pressed");
+                    this.props.navigation.navigate("ConfirmEntry");
+                  },
+                  style: "cancel"
                 },
-                style: "cancel"
-              },
-              {
-                text: "OK",
-                onPress: () => {
-                  console.log("OK Pressed");
-                  this.props.navigation.navigate("ConfirmEntry");
+                {
+                  text: "OK",
+                  onPress: () => {
+                    console.log("OK Pressed");
+                    this.props.navigation.navigate("ConfirmEntry");
+                  }
                 }
-              }
-            ],
-            { cancelable: false }
-          );
+              ],
+              { cancelable: false }
+            );
+          }
         }
         // console.log("this. state data is: ", this.state.apiData);
       } catch (e) {

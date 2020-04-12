@@ -165,7 +165,7 @@ export default class HouseholdHistory extends Component {
           <ScrollView style={Styles.ScrollView}>
             {this.state.data.map((d, i) => (
               <InfoList
-                data={d}
+                itemData={d}
                 key={d.id}
                 indicator={i + 1}
                 onDeletePerson={this.onDeleteHouse}
