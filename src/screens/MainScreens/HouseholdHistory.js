@@ -1,13 +1,27 @@
 import React, { Component } from "react";
-import { View, ScrollView, AsyncStorage } from "react-native";
-import { RaisedTextButton } from "react-native-material-buttons";
-import I18n from "../../plugins/I18n";
-import { CardView, InfoList, Heading, Loader } from "../../components";
-import { Styles, Colors } from "../../../theme";
-import { getAllHouses, setResponse } from "../../actions";
-import { connect } from "react-redux";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  AsyncStorage,
+  Alert
+} from "react-native";
 
-class HouseholdHistory extends Component {
+import { RaisedTextButton } from "react-native-material-buttons";
+
+// plugins
+import I18n from "../../plugins/I18n";
+
+//Custom Components
+import { CardView, InfoList, Heading, Loader } from "../../components";
+
+// Service
+import Http from "../../services/HttpService";
+
+//Theme
+import { Styles, Colors } from "../../../theme";
+
+export default class HouseholdHistory extends Component {
   constructor(props) {
     super(props);
     this.state = { data: [], isLoading: false };
@@ -16,17 +30,22 @@ class HouseholdHistory extends Component {
   handleDone = () => {
     this.props.navigation.goBack();
   };
-  componentWillMount() {
-    this._unsubscribe = this.props.navigation.addListener("focus", () => {
-      this.props.toggleResponse();
-    });
-  }
-  componentWillUnmount() {
-    this._unsubscribe();
-  }
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
-    this.props.getAllHomes(token);
+    const url = "house";
+    Http.get(url, {}, { headers: { "access-token": token } })
+      .then(response => {
+        this.setState({ isLoading: false });
+        if (response.status == 200) {
+          if (response.data.length > 0) {
+            this.setState({ data: response.data.reverse() });
+          }
+        }
+      })
+      .catch(err => {
+        this.setState({ isLoading: false });
+      });
   }
 
   async onDeleteHouse(id) {
@@ -128,37 +147,34 @@ class HouseholdHistory extends Component {
         );
       });
   }
-
   render() {
     let loader;
-    if (this.props.loading) {
+    if (this.state.isLoading) {
       loader = <Loader />;
     } else {
       loader = <View />;
     }
 
+    console.log("this.state.data is: ", this.state.data);
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.HOUSEHOLDHISTORY`)} />
         <CardView Styles={Styles.Spacer50} />
 
-        {this.props.response
-          ? this.props.data.length > 0 && (
-              <ScrollView style={Styles.ScrollView}>
-                {this.props.data.map(d => {
-                  return (
-                    <InfoList
-                      data={d}
-                      key={d.id}
-                      onDeletePerson={this.onDeleteHouse}
-                      {...this.props}
-                      HouseHoldDetails={""}
-                    />
-                  );
-                })}
-              </ScrollView>
-            )
-          : null}
+        {this.state.data.length > 0 && (
+          <ScrollView style={Styles.ScrollView}>
+            {this.state.data.map((d, i) => (
+              <InfoList
+                data={d}
+                key={d.id}
+                indicator={i + 1}
+                onDeletePerson={this.onDeleteHouse}
+                {...this.props}
+                HouseHoldDetails={""}
+              />
+            ))}
+          </ScrollView>
+        )}
 
         <View style={Styles.rightButtonContainer}>
           <RaisedTextButton
@@ -176,18 +192,4 @@ class HouseholdHistory extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loading: state.home.loading,
-  response: state.home.response,
-  data: state.home.data
-});
-const mapDispatchToProps = dispatch => ({
-  getAllHomes: token => {
-    return dispatch(getAllHouses(token));
-  },
-  toggleResponse: () => dispatch(setResponse())
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HouseholdHistory);
+const styles = StyleSheet.create({});
