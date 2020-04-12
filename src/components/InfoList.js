@@ -19,7 +19,7 @@ class InfoList extends Component {
     super(props);
   }
   async onEdit() {
-    await AsyncStorage.setItem("HouseID", this.props.itemData.id);
+    await AsyncStorage.setItem("HouseID", this.props.data.id);
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
   onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
@@ -60,9 +60,9 @@ class InfoList extends Component {
       cnic,
       phone,
       UserId
-    } = this.props.itemData;
+    } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
-    console.log("info list props is: ", this.props);
+
     const ts = new Date(createdAt);
     const date = ts.toLocaleDateString();
     const time = ts.toLocaleTimeString();
@@ -99,12 +99,12 @@ class InfoList extends Component {
           />
 
           {/* edit button */}
-          {/* <Button
+          <Button
             flat
             text=""
             onPress={() => this.onEdit()}
-            icon={<Icon name="pencil" size={20} color={Colors.primaryColor} />}
-          /> */}
+            // icon={<Icon name="pencil" size={20} color={Colors.primaryColor} />}
+          />
 
           {HouseHoldDetails !== "" && (
             <Text style={[Styles.InfoListTitle, style]}>
@@ -135,7 +135,7 @@ class InfoList extends Component {
       cnic,
       phone,
       UserId
-    } = this.props.itemData;
+    } = this.props.data;
     const { HouseHoldDetails, indicator } = this.props;
 
     const ts = new Date(createdAt);
@@ -189,6 +189,7 @@ class InfoList extends Component {
   }
 
   render() {
+    console.log("info list props is: ", this.props.data);
     const renderView =
       WRITING_STYLE === "ur" ? this.urduList() : this.englisList();
     return renderView;
