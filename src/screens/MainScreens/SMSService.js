@@ -43,7 +43,7 @@ class SMSService extends Component {
     console.log("before state is: ", this.state);
     console.log("token ", token);
     const { phone } = this.state;
-    const isValid = phone.length < 11 && phone.length >= 0;
+    const isValid = phone.length < 11 && phone.length > 0;
     if (isValid) {
       this.setState({ isLoading: false });
       Alert.alert(
