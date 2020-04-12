@@ -22,17 +22,27 @@ class InfoList extends Component {
     await AsyncStorage.setItem("HouseID", this.props.itemData.id);
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
-  onDelete(id) {
+  onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
+    // const deleteIdentifier = HouseHoldDetails !== "" ? phone : cnic;
+    const deleteIdentifier = HouseHoldDetails !== "" ? cnic || phone : address;
+
     Alert.alert(
-      `Are you sure you want to delete this ${id}`,
-      "Keep your app up to date to enjoy the latest features",
+      "Approval!",
+      `Are you sure you want to delete ${deleteIdentifier}`,
       [
         {
           text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
+          onPress: () => {
+            console.log("Cancel Pressed");
+          },
           style: "cancel"
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+        {
+          text: "OK",
+          onPress: () => {
+            this.props.onDeletePerson(id);
+          }
+        }
       ],
       { cancelable: false }
     );
@@ -82,17 +92,19 @@ class InfoList extends Component {
           <Button
             flat
             text=""
-            onPress={() => this.onDelete(id)}
+            onPress={() =>
+              this.onDelete({ id, phone, cnic, HouseHoldDetails, address })
+            }
             icon={<Icon name="trash" size={20} color={Colors.primaryColor} />}
           />
 
           {/* edit button */}
-          <Button
+          {/* <Button
             flat
             text=""
             onPress={() => this.onEdit()}
             icon={<Icon name="pencil" size={20} color={Colors.primaryColor} />}
-          />
+          /> */}
 
           {HouseHoldDetails !== "" && (
             <Text style={[Styles.InfoListTitle, style]}>
