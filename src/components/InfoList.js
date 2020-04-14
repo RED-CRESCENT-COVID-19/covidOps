@@ -8,9 +8,6 @@ import Line from "./Line";
 // plugins
 import I18n from "../plugins/I18n";
 
-// Service
-import Http from "../services/HttpService";
-
 import { Styles, Colors } from "../../theme";
 
 const WRITING_STYLE = I18n.locale;

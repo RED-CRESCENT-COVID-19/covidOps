@@ -15,6 +15,8 @@ import { connect } from "react-redux";
 
 const WRITING_STYLE = I18n.locale;
 
+import Http from "../../services/HttpService";
+
 const homeIcon = require("../../../assets/images/home.png");
 
 class HouseHoldDetails extends Component {
@@ -150,12 +152,8 @@ class HouseHoldDetails extends Component {
           onPress: async () => {
             const token = await AsyncStorage.getItem("AuthToken");
             const houseId = await AsyncStorage.getItem("HouseID");
-            this.props.deleteHomes(token, houseId).then(res => {
-              // await AsyncStorage.removeItem("HouseID");
-              // here also delete house from local/server db
-              this.props.navigation.navigate("HealthScan");
-              console.log("delete homes then res is: ", res);
-            });
+            this.props.deleteHomes(token, houseId);
+            this.props.navigation.navigate("HealthScan");
           }
         }
       ],
@@ -195,6 +193,7 @@ class HouseHoldDetails extends Component {
                   key={d.createdAt}
                   indicator={i + 1}
                   {...this.props}
+                  onDeletePerson={this.onDeletePerson}
                   HouseHoldDetails={I18n.t(`Labels.MEMBER`)}
                 />
               ))

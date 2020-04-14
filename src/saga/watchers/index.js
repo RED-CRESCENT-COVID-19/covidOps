@@ -1,4 +1,4 @@
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest, takeEvery } from "redux-saga/effects";
 
 //import house actions
 import {
@@ -41,7 +41,7 @@ export function* createHomeWatcher() {
 }
 
 export function* deleteHomeWatcher() {
-  yield takeLatest(DELETE_HOUSE, deleteHomeWorker);
+  yield takeEvery(DELETE_HOUSE, deleteHomeWorker);
 }
 
 export function* getHomesWatcher() {

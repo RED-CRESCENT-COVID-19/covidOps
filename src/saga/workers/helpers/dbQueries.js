@@ -1,5 +1,4 @@
 import * as SQLite from "expo-sqlite";
-import { isConnected } from "@react-native-community/netinfo";
 const db = SQLite.openDatabase("db.db");
 
 export const getHouse = () => {
@@ -62,8 +61,13 @@ export const deleteHouse = (houseId, token) => {
   return new Promise(resolve => {
     db.transaction(
       tx => {
+        // const query = `begin;
+        // 	DELETE FROM house where id = '${houseId}';
+        // 	DELETE FROM user where house_id = '${houseId}';
+        // 	commit;
+        // 	`;
         tx.executeSql(
-          `DELETE FROM house where house_id = '${houseId}'`,
+          `DELETE FROM house where id = '${houseId}'`,
           null,
           (_, { rows: { _array } }) => resolve(_array)
         );

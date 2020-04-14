@@ -47,10 +47,11 @@ export function* createHomeWorker(action) {
 }
 
 export function* deleteHomeWorker(action) {
+  console.log("deleteHomeWorker action is: ", action);
   yield put(startLoading());
   const result = yield call(deleteHome, action);
   if (result.ok) {
-    yield put(deleteHouseSuccess(result));
+    yield put(deleteHouseSuccess(action.params));
     yield put(stopLoading());
   } else {
     yield put(deleteHouseFail(result));

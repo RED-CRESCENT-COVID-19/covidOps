@@ -60,11 +60,23 @@ export default (homeReducer = (state = initialState, action) => {
         response: true
       };
     case DELETE_HOUSE_SUCCESS:
+      console.log("DELETE_HOUSE_SUCCESS action.payload is: ", action.payload);
+      console.log("state is: ", state);
+      const index = state.data
+        .map(function(item) {
+          return item.id;
+        })
+        .indexOf(action.payload);
+      // console.log("index is: ", index);
+      if (index > -1) {
+        state.data.splice(index, 1);
+      }
+
       return {
         ...state,
         error: false,
         response: true,
-        data: action.payload
+        data: state.data
       };
     case DELETE_HOUSE_FAIL:
       return {
