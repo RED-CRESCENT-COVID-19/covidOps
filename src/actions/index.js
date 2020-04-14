@@ -5,6 +5,11 @@ import { NavigationActions } from "react-navigation";
 export const CREATE_HOUSE = "CREATE_HOUSE";
 export const CREATE_HOUSE_SUCCESS = "CREATE_HOUSE_SUCCESS";
 export const CREATE_HOUSE_FAIL = "CREATE_HOUSE_FAIL";
+
+export const DELETE_HOUSE = "DELETE_HOUSE";
+export const DELETE_HOUSE_SUCCESS = "DELETE_HOUSE_SUCCESS";
+export const DELETE_HOUSE_FAIL = "DELETE_HOUSE_FAIL";
+
 export const GET_ALL_HOUSES = "GET_ALL_HOUSES";
 export const SET_HOUSES = "SET_HOUSES";
 export const GET_HOUSEHOLD_DETAIL = "GET_HOUSEHOLD_DETAIL";
@@ -26,73 +31,94 @@ export const WIPE_DATABASE = "WIPE_DATABASE";
 export const TOGGLE_RESPONSE = "TOGGLE_RESPONSE";
 
 export const wipeData = () => ({
-  type: "WIPE_DATABASE",
+  type: "WIPE_DATABASE"
 });
 
 export const syncData = () => ({
-  type: SYNC_DATA,
+  type: SYNC_DATA
 });
 export const startLoading = () => ({
-  type: START_LOADING,
+  type: START_LOADING
 });
 export const stopLoading = () => ({
-  type: STOP_LOADING,
+  type: STOP_LOADING
 });
-export const getStats = (token) => ({
+export const getStats = token => ({
   type: GET_STATS,
-  token,
+  token
 });
-export const setStats = (payload) => ({
+export const setStats = payload => ({
   type: SET_STATS,
-  payload,
+  payload
 });
 export const setResponse = () => ({
-  type: TOGGLE_RESPONSE,
+  type: TOGGLE_RESPONSE
 });
 export const createHome = (params, token) => ({
   type: CREATE_HOUSE,
   params,
-  token,
+  token
 });
-export const getAllHouses = (token) => ({
+
+export const deleteHome = (params, token) => ({
+  type: DELETE_HOUSE,
+  params,
+  token
+});
+
+export const getAllHouses = token => ({
   type: GET_ALL_HOUSES,
-  token,
+  token
 });
-export const setHouses = (response) => ({
+export const setHouses = response => ({
   type: SET_HOUSES,
-  payload: response,
+  payload: response
 });
 export const getHouseHoldDetail = (token, houseId) => ({
   type: GET_HOUSEHOLD_DETAIL,
   token,
-  houseId,
+  houseId
 });
-export const setHouseHoldDetail = (response) => ({
+export const setHouseHoldDetail = response => ({
   type: SET_HOUSEHOLD_DETAIL,
-  payload: response,
+  payload: response
 });
 export const createMemeber = (params, token) => ({
   type: CREATE_MEMEBER,
   params,
-  token,
+  token
 });
-export const createMemeberSuccess = (response) => {
+export const createMemeberSuccess = response => {
   console.log(response);
   return { type: CREATE_MEMEBER_SUCCESS, payload: response };
 };
-export const createMemeberFail = (err) => {
+export const createMemeberFail = err => {
   console.log(err);
   return { type: CREATE_MEMEBER_FAIL, error: err };
 };
 
-export const createHouseSuccess = (response) => {
+export const createHouseSuccess = response => {
   console.log(response);
   return { type: CREATE_HOUSE_SUCCESS, payload: response };
   // dispatch(NavigationActions.navigate({ routeName: 'HouseHoldDetails' }))
 };
-export const createHouseFail = (err) => {
+
+export const deleteHouseSuccess = response => {
+  console.log(" deleteHouseSuccess is: ", response);
+  return { type: DELETE_HOUSE_SUCCESS, payload: response };
+  // dispatch(NavigationActions.navigate({ routeName: 'HouseHoldDetails' }))
+};
+
+export const createHouseFail = err => {
   console.log(err);
   return { type: CREATE_HOUSE_FAIL, error: err };
   console.log(NavigationActions);
+  // .then(dispatch(NavigationActions.navigate({ routeName: 'HouseHoldDetails' })))
+};
+
+export const deleteHouseFail = err => {
+  console.log("deleteHouseFail err is: ", err);
+  console.log("delete house fail NavigationActions is: ", NavigationActions);
+  return { type: DELETE_HOUSE_FAIL, error: err };
   // .then(dispatch(NavigationActions.navigate({ routeName: 'HouseHoldDetails' })))
 };
