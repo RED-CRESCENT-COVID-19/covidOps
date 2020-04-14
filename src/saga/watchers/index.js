@@ -3,23 +3,25 @@ import { takeLatest } from "redux-saga/effects";
 //import house actions
 import {
   CREATE_HOUSE,
+  DELETE_HOUSE,
   CREATE_MEMEBER,
   GET_ALL_HOUSES,
   GET_HOUSEHOLD_DETAIL,
   GET_STATS,
   SYNC_DATA,
-  WIPE_DATABASE,
+  WIPE_DATABASE
 } from "../../actions";
 
 //import saga workers
 import {
   createHomeWorker,
+  deleteHomeWorker,
   createMemberWorker,
   getHousesWorkers,
   getHouseHoldDetailWorker,
   getStatusWorker,
   syncDataWorker,
-  wipeDataWorker,
+  wipeDataWorker
 } from "../workers";
 
 export function* wipeDataWatcher() {
@@ -36,6 +38,10 @@ export function* getStatsWatcher() {
 
 export function* createHomeWatcher() {
   yield takeLatest(CREATE_HOUSE, createHomeWorker);
+}
+
+export function* deleteHomeWatcher() {
+  yield takeLatest(DELETE_HOUSE, deleteHomeWorker);
 }
 
 export function* getHomesWatcher() {
