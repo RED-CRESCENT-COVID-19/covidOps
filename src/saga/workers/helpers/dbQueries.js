@@ -57,23 +57,19 @@ export const addHouse = (params, token) => {
   });
 };
 
-export const deleteHouse = (params, token) => {
-  console.log("delete house params is", params);
-  const { address, id, lat, lng, is_contacted } = params;
+export const deleteHouse = (houseId, token) => {
+  console.log("delete house houseId is", houseId);
   return new Promise(resolve => {
-    // db.transaction(
-    //   tx => {
-    //     tx.executeSql(
-    //       `select * from user where house_id = '${houseId}'`,
-    //       null,
-    //       (_, { rows: { _array } }) => resolve(_array)
-    //     );
-    //   },
-    //   error => console.log("erro is ", error)
-    // );
-    db.transaction(tx => {
-      tx.executeSql(`DELETE FROM house where house_id = '${houseId}'`);
-    });
+    db.transaction(
+      tx => {
+        tx.executeSql(
+          `DELETE FROM house where house_id = '${houseId}'`,
+          null,
+          (_, { rows: { _array } }) => resolve(_array)
+        );
+      },
+      error => console.log("erro is ", error)
+    );
   });
 };
 

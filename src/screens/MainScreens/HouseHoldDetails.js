@@ -150,11 +150,12 @@ class HouseHoldDetails extends Component {
           onPress: async () => {
             const token = await AsyncStorage.getItem("AuthToken");
             const houseId = await AsyncStorage.getItem("HouseID");
-            this.props.deleteHomes(token, houseId);
-
-            // await AsyncStorage.removeItem("HouseID");
-            // here also delete house from local/server db
-            this.props.navigation.navigate("HealthScan");
+            this.props.deleteHomes(token, houseId).then(res => {
+              // await AsyncStorage.removeItem("HouseID");
+              // here also delete house from local/server db
+              this.props.navigation.navigate("HealthScan");
+              console.log("delete homes then res is: ", res);
+            });
           }
         }
       ],
