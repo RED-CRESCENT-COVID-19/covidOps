@@ -32,11 +32,11 @@ export default class SMSVerification extends Component {
     this.setState({ isLoading: true });
 
     Http.post("auth/pin-validation", { phone, pin })
-      .then((response) => {
+      .then(response => {
         this.setState({ isLoading: false });
 
         if (response.status === 200) {
-          (async (token) => await AsyncStorage.setItem("AuthToken", token))(
+          (async token => await AsyncStorage.setItem("AuthToken", token))(
             response.data.auth_token
           );
           //  const {setAuth} = React.useContext(MyContext)
@@ -56,7 +56,7 @@ export default class SMSVerification extends Component {
           );
         }
       })
-      .catch((err) => {
+      .catch(err => {
         this.setState({ isLoading: false });
 
         Alert.alert(
@@ -66,9 +66,9 @@ export default class SMSVerification extends Component {
             {
               text: "Cancel",
               onPress: () => console.log("Cancel Pressed"),
-              style: "cancel",
+              style: "cancel"
             },
-            { text: "OK", onPress: () => console.log("OK Pressed") },
+            { text: "OK", onPress: () => console.log("OK Pressed") }
           ],
           { cancelable: false }
         );
@@ -77,19 +77,7 @@ export default class SMSVerification extends Component {
     // this.props.navigation.navigate("LocationData");
   };
   onTimerFinish() {
-    Alert.alert(
-      `Time is finish to verify the code!`,
-      "Keep your app up to date to enjoy the latest features",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ],
-      { cancelable: false }
-    );
+    Alert.alert("Time is finish to verify the code!");
   }
   render() {
     let loader;
@@ -116,7 +104,7 @@ export default class SMSVerification extends Component {
             placeholder={I18n.t(`Labels.VERIFICATION_CODE_EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={(pin) => this.setState({ pin: pin })}
+            onChangeText={pin => this.setState({ pin: pin })}
             maxLength={4}
             onSubmitEditing={this.onSubmit}
           />
@@ -132,7 +120,7 @@ export default class SMSVerification extends Component {
           until={300} // for five minutes
           // until={10} // for 10 sec for verification the code
           digitStyle={{
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.transparent
           }}
           digitTxtStyle={{ color: Colors.primaryColor }}
           onFinish={() => this.onTimerFinish()}
@@ -165,9 +153,9 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35,
+    paddingRight: 35
   },
   didNotReceivedCode: {
-    alignSelf: "center",
-  },
+    alignSelf: "center"
+  }
 });
