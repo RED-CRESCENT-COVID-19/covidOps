@@ -190,7 +190,7 @@ class HouseHoldDetails extends Component {
               this.props.data.map((d, i) => (
                 <InfoList
                   itemData={d}
-                  key={d.createdAt}
+                  key={d.id}
                   indicator={i + 1}
                   {...this.props}
                   onDeletePerson={this.onDeletePerson}
