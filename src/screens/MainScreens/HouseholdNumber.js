@@ -19,14 +19,10 @@ import I18n from "../../plugins/I18n";
 //Custom Components
 import { Heading, CardView, Loader } from "../../components";
 
-// Service
-import Http from "../../services/HttpService";
-
 //Theme
 import { Styles, Colors } from "../../../theme";
 
 //Actions
-import * as actionCreators from "../../actions";
 import { MakeId } from "../../utils/Makeid";
 
 //importing actionscretors
@@ -114,9 +110,7 @@ class HouseholdNumber extends Component {
     }
   };
   onSubmit() {
-    // let { current: field } = this.fieldRef;
     Keyboard.dismiss();
-    // this.setState({ address: field.value() });
   }
   componentWillMount() {
     this._unsubscribe = this.props.navigation.addListener("focus", () => {
@@ -139,7 +133,6 @@ class HouseholdNumber extends Component {
           houseID: this.props.data.id
         });
       } else {
-        console.log("error info message is: ", this.props.error);
         Alert.alert(
           "Info",
           this.props.message,

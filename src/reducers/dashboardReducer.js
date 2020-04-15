@@ -2,7 +2,7 @@ import {
   START_LOADING,
   STOP_LOADING,
   SET_STATS,
-  TOGGLE_RESPONSE,
+  TOGGLE_RESPONSE
 } from "../actions/index";
 
 const initialState = {
@@ -11,21 +11,20 @@ const initialState = {
   error: false,
   message: false,
   houseScanned: 0,
-  personScanned: 0,
+  personScanned: 0
 };
-export default dashboardReducer = (state = initialState, action) => {
-  console.log(action);
+export default (dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_LOADING:
       return {
         ...state,
         loading: true,
-        response: false,
+        response: false
       };
     case STOP_LOADING:
       return {
         ...state,
-        loading: false,
+        loading: false
       };
     case SET_STATS:
       return {
@@ -33,14 +32,14 @@ export default dashboardReducer = (state = initialState, action) => {
         error: false,
         response: true,
         houseScanned: action.payload.data.house_count,
-        personScanned: action.payload.data.person_count,
+        personScanned: action.payload.data.person_count
       };
     case TOGGLE_RESPONSE:
       return {
         ...state,
-        response: false,
+        response: false
       };
     default:
       return state;
   }
-};
+});

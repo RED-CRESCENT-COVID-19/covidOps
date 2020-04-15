@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, View } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins
@@ -30,7 +29,6 @@ export default class Precautions extends Component {
     this.props.navigation.goBack();
   }
   render() {
-    const { activeQuestion } = this.state;
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
     return (
       <View style={Styles.container}>

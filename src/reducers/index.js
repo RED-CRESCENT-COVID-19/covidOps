@@ -8,5 +8,5 @@ import dashboardReducer from "./dashboardReducer";
 export default combineReducers({
   home: homeReducer,
   member: memeberReducer,
-  dashboard: dashboardReducer,
+  dashboard: dashboardReducer
 });

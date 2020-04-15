@@ -9,7 +9,6 @@ export const getHouse = () => {
           `select * from house;`,
           null,
           (_, { rows: { _array } }) => {
-            console.log("database array is ", _array);
             resolve(_array);
           }
         );
@@ -27,7 +26,6 @@ export const getUser = () => {
           `select * from user;`,
           null,
           (_, { rows: { _array } }) => {
-            console.log("user array is ", _array);
             resolve(_array);
           }
         );
@@ -38,7 +36,6 @@ export const getUser = () => {
   );
 };
 export const addHouse = (params, token) => {
-  console.log("params is", params);
   const { address, id, lat, lng, is_contacted } = params;
   return new Promise(resolve => {
     db.transaction(
@@ -49,7 +46,7 @@ export const addHouse = (params, token) => {
         );
       },
       error => {
-        console.log("error", error);
+        console.log("db add house error", error);
       },
       () => resolve(id)
     );
@@ -57,7 +54,6 @@ export const addHouse = (params, token) => {
 };
 
 export const deleteHouse = (houseId, token) => {
-  console.log("delete house houseId is", houseId);
   return new Promise(resolve => {
     db.transaction(
       tx => {
@@ -72,13 +68,12 @@ export const deleteHouse = (houseId, token) => {
           (_, { rows: { _array } }) => resolve(_array)
         );
       },
-      error => console.log("erro is ", error)
+      error => console.log("delete house error is ", error)
     );
   });
 };
 
 export const getUsersForHouseId = houseId => {
-  console.log("house id is ", houseId);
   return new Promise(resolve => {
     db.transaction(
       tx => {
@@ -88,7 +83,7 @@ export const getUsersForHouseId = houseId => {
           (_, { rows: { _array } }) => resolve(_array)
         );
       },
-      error => console.log("erro is ", error)
+      error => console.log("getUsersForHouseId error is ", error)
     );
   });
 };

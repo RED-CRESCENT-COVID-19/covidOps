@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, Alert, AsyncStorage } from "react-native";
 import { RaisedTextButton } from "react-native-material-buttons";
+import { connect } from "react-redux";
+
 import I18n from "../../plugins/I18n";
 import {
   Heading,
@@ -10,14 +12,14 @@ import {
   Loader
 } from "../../components";
 import { Styles, Colors } from "../../../theme";
-import { getHouseHoldDetail, setResponse, deleteHome } from "../../actions";
-import { connect } from "react-redux";
 
-const WRITING_STYLE = I18n.locale;
+import { getHouseHoldDetail, setResponse, deleteHome } from "../../actions";
 
 import Http from "../../services/HttpService";
 
 const homeIcon = require("../../../assets/images/home.png");
+
+const WRITING_STYLE = I18n.locale;
 
 class HouseHoldDetails extends Component {
   constructor(props) {
@@ -243,8 +245,6 @@ const mapDispatchToProps = dispatch => ({
     return dispatch(getHouseHoldDetail(token, houseId));
   },
   deleteHomes: (token, houseId) => {
-    console.log("dispatch delete home token is: ", token);
-    console.log("dispatch delete home houseId is: ", houseId);
     return dispatch(deleteHome(houseId, token));
   },
   toggleResponse: () => dispatch(setResponse())

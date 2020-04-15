@@ -6,7 +6,7 @@ import {
   Image,
   StyleSheet,
   Platform,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -68,7 +68,7 @@ export default class HandWash extends Component {
             onDragLeft={() => {
               // alert("on drag left");
             }}
-            onMove={(position) => {
+            onMove={position => {
               // console.log("on move", position);
             }}
           >
@@ -136,18 +136,18 @@ const screenStyles = StyleSheet.create({
     paddingRight: 35,
     height: height,
     alignItems: "center",
-    alignContent: "center",
+    alignContent: "center"
   },
   crossButton: {
     textAlign: "center",
     marginTop: Platform.OS === "ios" ? 20 : 0,
-    fontSize: 30,
+    fontSize: 30
   },
   handWashImage: {
     width: "100%",
     height: "100%",
     resizeMode: "contain",
-    backgroundColor: Colors.transparent,
+    backgroundColor: Colors.transparent
   },
 
   zoomedHandWashImage: {
@@ -155,6 +155,6 @@ const screenStyles = StyleSheet.create({
     height: height,
     position: "absolute",
     resizeMode: "contain",
-    bottom: 0,
-  },
+    bottom: 0
+  }
 });

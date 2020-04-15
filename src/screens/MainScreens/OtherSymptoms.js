@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView, Keyboard } from "react-native";
+import { StyleSheet, View, Keyboard } from "react-native";
 
 import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
@@ -8,10 +8,11 @@ import { RaisedTextButton } from "react-native-material-buttons";
 import I18n from "../../plugins/I18n";
 
 //Custom Components
-import { Heading, TextA, CardView } from "../../components";
+import { Heading, CardView } from "../../components";
 
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
+
 const WRITING_STYLE = I18n.locale;
 export default class OtherSymptoms extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default class OtherSymptoms extends Component {
             // multiline
             returnKeyType={"done"}
             onSubmitEditing={() => this.onSubmit()}
-            onChangeText={(otherSymptoms) =>
+            onChangeText={otherSymptoms =>
               this.setState({ otherSymptoms: otherSymptoms })
             }
             onBlur={() => this.onBlur()}
@@ -86,6 +87,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35,
-  },
+    paddingRight: 35
+  }
 });

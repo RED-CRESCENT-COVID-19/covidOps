@@ -23,6 +23,7 @@ import { createHome } from "./helpers/createHome";
 import { deleteHome } from "./helpers/deleteHome";
 import { syncData } from "./helpers/syncData";
 import { wipeDatabase, initializeDatabase } from "./helpers/dbQueries";
+
 export function* getStatusWorker(action) {
   yield put(startLoading());
   const result = yield call(getStatsHelper, action);
@@ -47,7 +48,6 @@ export function* createHomeWorker(action) {
 }
 
 export function* deleteHomeWorker(action) {
-  console.log("deleteHomeWorker action is: ", action);
   yield put(startLoading());
   const result = yield call(deleteHome, action);
   if (result.ok) {

@@ -1,15 +1,6 @@
 import React, { Component } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import {
-  TextField,
-  FilledTextField,
-  OutlinedTextField
-} from "react-native-material-textfield";
-
-import Textarea from "react-native-textarea";
-
-//Theme
-import { Strings, Styles, Colors } from "../../theme";
+import { StyleSheet } from "react-native";
+import { OutlinedTextField } from "react-native-material-textfield";
 
 export default class TextA extends Component {
   constructor(props) {

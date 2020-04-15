@@ -1,6 +1,7 @@
 import Http from "../../../services/HttpService";
 import { getHouse } from "./dbQueries";
 import { getInternetStatus } from "./getInternetStatus";
+
 export const getAllHouses = async ({ token }) => {
   const status = await getInternetStatus();
   try {
@@ -15,7 +16,7 @@ export const getAllHouses = async ({ token }) => {
       const response = await getHouse();
       return {
         data: response,
-        ok: true,
+        ok: true
       };
     }
   } catch (error) {

@@ -19,7 +19,7 @@ export default class ConfirmEntry extends Component {
     super(props);
     this.state = {
       address: "",
-      createdAt: "",
+      createdAt: ""
     };
   }
   componentDidMount() {
@@ -33,7 +33,7 @@ export default class ConfirmEntry extends Component {
     const HouseIDDetail = await AsyncStorage.getItem("HouseIDDetail");
     this.setState({
       address: JSON.parse(HouseIDDetail).address,
-      createdAt: JSON.parse(HouseIDDetail).createdAt,
+      createdAt: JSON.parse(HouseIDDetail).createdAt
     });
   }
   handleNext = () => {
@@ -62,7 +62,7 @@ export default class ConfirmEntry extends Component {
             placeholder={address || I18n.t(`Labels.CONFIRMENTERY.EAMPLE`)}
             tintColor={Colors.primaryColor}
             formatText={this.formatText}
-            onChangeText={(e) => this.onChangeText(e)}
+            onChangeText={e => this.onChangeText(e)}
             disabled
             onSubmitEditing={this.onSubmit}
           />
@@ -96,6 +96,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35,
-  },
+    paddingRight: 35
+  }
 });

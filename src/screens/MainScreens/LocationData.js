@@ -16,6 +16,7 @@ import { Heading, CardView } from "../../components";
 //Theme
 import { Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
+
 export default class LocationData extends Component {
   constructor(props) {
     super(props);

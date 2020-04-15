@@ -30,18 +30,14 @@ class SMSService extends Component {
     super(props);
     this.state = { isLoading: false, phone: "" };
     this.onSendMessage = this.onSendMessage.bind(this);
-    // this.onChangeText = this.onChangeText.bind(this);
   }
   onChangeText(e) {
     console.log("e is: ", e.targe.value);
-    // this.setState({ phone: e.target.value });
   }
   handleContinue = async () => {
     this.setState({ isLoading: true });
     const token = await AsyncStorage.getItem("AuthToken");
 
-    console.log("before state is: ", this.state);
-    console.log("token ", token);
     const { phone } = this.state;
     const isValid = phone.length < 11 && phone.length > 0;
     if (isValid) {
@@ -70,9 +66,7 @@ class SMSService extends Component {
     } else {
       try {
         const { isConnected } = await NetInfo.fetch();
-        console.log("NetInfo.isConnected", isConnected);
         if (!isConnected) {
-          // Alert.alert('Can not send SMS in Offline Mode');
           Alert.alert(
             "Information!",
             `Can not send SMS in Offline Mode`,
@@ -100,11 +94,8 @@ class SMSService extends Component {
           this.props.navigation.navigate("ConfirmEntry");
         } else {
           const res = await SendSMS({ phone }, token);
-          console.log("onDeletePerson res is: ", res);
-          console.log("this.state in then is: ", this.state);
-          this.setState({ isLoading: false });
 
-          // console.log("Again this.state is: ", this.state);
+          this.setState({ isLoading: false });
 
           if (res.status === 400) {
             Alert.alert(
@@ -138,7 +129,6 @@ class SMSService extends Component {
                 {
                   text: "Cancel",
                   onPress: () => {
-                    console.log("Cancel Pressed");
                     this.props.navigation.navigate("ConfirmEntry");
                   },
                   style: "cancel"
@@ -146,7 +136,6 @@ class SMSService extends Component {
                 {
                   text: "OK",
                   onPress: () => {
-                    console.log("OK Pressed");
                     this.props.navigation.navigate("ConfirmEntry");
                   }
                 }
@@ -155,9 +144,7 @@ class SMSService extends Component {
             );
           }
         }
-        // console.log("this. state data is: ", this.state.apiData);
       } catch (e) {
-        console.log("errro is catch e", e);
         this.setState({ isLoading: false });
         Alert.alert(
           "Information!",
@@ -183,7 +170,6 @@ class SMSService extends Component {
     }
   };
   onSubmit = () => {
-    console.log("submit state is: ", this.state);
     Keyboard.dismiss();
   };
   onBlur() {

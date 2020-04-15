@@ -75,5 +75,3 @@ export default class Precautions extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({});

@@ -1,6 +1,7 @@
+import { create } from "apisauce";
+
 import config from "../config";
-import { create } from 'apisauce'
 // define the api
 export default create({
-  baseURL: config.ROOT_URL,
+  baseURL: config.ROOT_URL
 });

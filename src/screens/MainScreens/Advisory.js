@@ -21,7 +21,7 @@ export default class Advisory extends Component {
     this.state = {
       helpline: "",
       website: "",
-      number: "",
+      number: ""
     };
   }
   handleCancel = () => {
@@ -32,7 +32,7 @@ export default class Advisory extends Component {
   };
   render() {
     const style = WRITING_STYLE === "ur" ? { writingDirection: "rtl" } : {};
-    // const { helpline, number, website } = this.state;
+
     return (
       <View style={Styles.container}>
         <Heading headerText={I18n.t(`headings.ADVISORY`)} />
@@ -82,6 +82,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 20,
-    paddingRight: 20,
-  },
+    paddingRight: 20
+  }
 });

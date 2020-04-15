@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, View } from "react-native";
 
-import { OutlinedTextField } from "react-native-material-textfield";
 import { RaisedTextButton } from "react-native-material-buttons";
 
 // plugins
@@ -11,7 +10,7 @@ import I18n from "../../plugins/I18n";
 import Heading from "../../components/Heading";
 import CardView from "../../components/CardView";
 //Theme
-import { Strings, Styles, Colors } from "../../../theme";
+import { Styles, Colors } from "../../../theme";
 const WRITING_STYLE = I18n.locale;
 export default class Response extends Component {
   handleContinue = () => {
@@ -52,5 +51,3 @@ export default class Response extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({});

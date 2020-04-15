@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, StyleSheet, View, ScrollView } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 
 import { RaisedTextButton } from "react-native-material-buttons";
 
@@ -20,31 +20,6 @@ const DATA = [
   //   cnic: "4352345245",
   //   id: "435224434565"
   // },
-  // {
-  //   name: "Zaheer",
-  //   cnic: "4352256745",
-  //   id: "43522ds45"
-  // },
-  // {
-  //   name: "Ahmed",
-  //   cnic: "435wer2245",
-  //   id: "435223424522"
-  // },
-  // {
-  //   name: "faysal",
-  //   cnic: "4352342245",
-  //   id: "435223424542"
-  // },
-  // {
-  //   name: "fazlo",
-  //   cnic: "4352342245",
-  //   id: "435223424512"
-  // },
-  // {
-  //   name: "adfadf",
-  //   cnic: "435224234325",
-  //   id: "4352223445"
-  // }
 ];
 export default class Home extends Component {
   handleDone = () => {
@@ -89,5 +64,3 @@ export default class Home extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({});

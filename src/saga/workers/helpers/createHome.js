@@ -1,13 +1,15 @@
-import Http from "../../../services/HttpService";
 import { AsyncStorage } from "react-native";
+
+import Http from "../../../services/HttpService";
 import { getInternetStatus } from "./getInternetStatus";
 import { addHouse } from "./dbQueries";
+
 export const createHome = async ({ params, token }) => {
   const status = await getInternetStatus();
   try {
     if (+status === 1) {
       const response = await Http.post("house", params, {
-        headers: { "access-token": token },
+        headers: { "access-token": token }
       });
       if (response.ok) {
         await AsyncStorage.setItem("HouseID", response.data.id);
@@ -19,13 +21,13 @@ export const createHome = async ({ params, token }) => {
         await AsyncStorage.setItem("HouseID", response.toString());
         return {
           data: {
-            id: response,
+            id: response
           },
-          ok: true,
+          ok: true
         };
       } else {
         return {
-          ok: false,
+          ok: false
         };
       }
     }

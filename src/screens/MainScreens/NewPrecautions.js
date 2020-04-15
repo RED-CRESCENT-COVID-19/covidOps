@@ -18,7 +18,7 @@ export default class NewPrecautions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeQuestion: 0,
+      activeQuestion: 0
     };
   }
   onNextButton() {
@@ -75,5 +75,3 @@ export default class NewPrecautions extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({});

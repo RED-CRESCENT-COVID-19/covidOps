@@ -9,7 +9,7 @@ const initialState = {
     houseId: "",
     is_contacted: false,
     lat: "",
-    lan: "",
+    lan: ""
   },
   memeber: {
     id: "",
@@ -31,8 +31,8 @@ const initialState = {
     cnic: "",
     phone: "",
     gender: "",
-    uniqueID: "",
-  },
+    uniqueID: ""
+  }
 };
 
 export default initialState;

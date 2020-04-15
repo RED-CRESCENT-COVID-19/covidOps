@@ -39,7 +39,7 @@ export default class SMSVerification extends Component {
           (async token => await AsyncStorage.setItem("AuthToken", token))(
             response.data.auth_token
           );
-          //  const {setAuth} = React.useContext(MyContext)
+
           this.props.setAuth(true);
         } else {
           var message = "";
@@ -73,8 +73,6 @@ export default class SMSVerification extends Component {
           { cancelable: false }
         );
       });
-    //store Aysc value isAuthenticated == true
-    // this.props.navigation.navigate("LocationData");
   };
   onTimerFinish() {
     Alert.alert("Time is finish to verify the code!");

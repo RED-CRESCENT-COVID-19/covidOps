@@ -20,7 +20,6 @@ class InfoList extends Component {
     this.props.navigation.navigate("MemberDetails", { ...this.props });
   }
   onDelete({ id, phone, cnic, HouseHoldDetails, address }) {
-    // const deleteIdentifier = HouseHoldDetails !== "" ? phone : cnic;
     const deleteIdentifier = HouseHoldDetails !== "" ? cnic || phone : address;
 
     Alert.alert(
@@ -194,7 +193,6 @@ class InfoList extends Component {
   }
 
   render() {
-    console.log("info list props is: ", this.props.itemData);
     const renderView =
       WRITING_STYLE === "ur" ? this.urduList() : this.englisList();
     return renderView;

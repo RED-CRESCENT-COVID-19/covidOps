@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Checkbox } from "react-native-material-ui";
+
 // plugins
 import I18n from "../plugins/I18n";
 
