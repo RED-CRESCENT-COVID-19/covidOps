@@ -4,7 +4,7 @@ import {
   CREATE_MEMEBER_SUCCESS,
   CREATE_MEMEBER_FAIL,
   TOGGLE_RESPONSE,
-  STOP_LOADING
+  STOP_LOADING,
 } from "../actions/index";
 
 export default (memeberReducer = (state = initialState, action) => {
@@ -13,30 +13,30 @@ export default (memeberReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        response: false
+        response: false,
       };
     case STOP_LOADING:
       return {
         ...state,
-        loading: false
+        loading: false,
       };
     case TOGGLE_RESPONSE:
       return {
         ...state,
-        response: false
+        response: false,
       };
     case CREATE_MEMEBER_SUCCESS:
       return {
         ...state,
         error: false,
-        response: true
+        response: true,
       };
     case CREATE_MEMEBER_FAIL:
       return {
         ...state,
-        message: "fail",
+        message: "failed to create house member",
         error: true,
-        response: true
+        response: true,
       };
 
     default:
