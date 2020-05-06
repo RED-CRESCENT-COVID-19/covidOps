@@ -15,13 +15,13 @@ export default {
     HOMEHOLD: "گھرانے کی تفصیل",
     SMSSERVICE: "ایس۔ایم۔ایس سروس",
     CONFIRMENTERY: "اندراج کی تصدیق",
-    NEWPRECAUTIONS: "دیگر معلومات"
+    NEWPRECAUTIONS: "دیگر معلومات",
   },
   Alert: {
     HOUSEHOLDDETAIL: {
       TITLE: "کیا آپ واقعی اسے منسوخ کرنا چاہتے ہیں؟",
-      DETAIL: ""
-    }
+      DETAIL: "",
+    },
   },
   ButtonTitles: {
     CONTINUE: "آگے",
@@ -39,7 +39,7 @@ export default {
     DONE: "مکمل",
     CANCEL: "منسوخ",
     TRANSLATION: "ENGLISH",
-    LOGOUT: "لاگ آؤٹ"
+    LOGOUT: "لاگ آؤٹ",
   },
   Paragarphs: {
     SMSSERVICE:
@@ -57,7 +57,7 @@ export default {
     HOUSEHOLDNUMBERQUESTION: " کیا آپ اس گھر میں کسی سے بات کرپاۓ؟",
     RESPONSE: "کیا آپ گھر کے کسی ممبر سے رابطہ کرنے میں کامیاب رہے ہیں؟",
     MEMEBERS: "ابھی تک کوئی ممبر شامل نہیں ہوا",
-    SYMPTOMS: "براۓ مہربانی درج ذیل علامات کی  تفصیل لیجیے",
+    SYMPTOMS: `کیا آپ کو یا آپ کے گھر میں کسی کو یہ علامات ہو رہی  ہیں؟`,
     CONFIRMENTERY: "آپ نے گھرانے کا اندراج کرلیا ہے",
     ADVISORY:
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
@@ -68,22 +68,22 @@ export default {
     INFORMATIONCARE: {
       TTITLE: "احتیاطی تدابیر",
       GENERAL: "آپ کورونا وائرس کوویڈ 19 کے بارے میں کیا جانتے ہیں؟",
-      HANDWASH: `ہاتھ دھونے کا  درست طریقہ`
+      HANDWASH: `ہاتھ دھونے کا  درست طریقہ`,
     },
     Advisory: {
       HELPLINE: {
         TITLE: "حکومتی کورونا وائرس ہیلپ لاءین",
-        PHONE: "1030"
+        PHONE: "1030",
       },
       WEBSITE: {
         TITLE: "ویب ساءیٹ",
-        URL: "http://www.covid.gov.pk"
+        URL: "http://www.covid.gov.pk",
       },
       MESSAGE: {
         TITLE: "کورونا یو ۔این۔ واٹس ایپ نمبر",
-        PHONE: "923001111166+ پے 'hi' میسج کریں۔"
-      }
-    }
+        PHONE: "923001111166+ پے 'hi' میسج کریں۔",
+      },
+    },
   },
   Labels: {
     PHONENUMBER: "فون نمبر",
@@ -99,74 +99,100 @@ export default {
     MEMBER: "فرد",
     CONFIRMENTERY: {
       LABEL: "18:00 - 22/03/2020",
-      EAMPLE: "گھرانہ 1"
+      EAMPLE: "گھرانہ 1",
     },
     AGE: "عمر",
     GENDER: "جنس",
     GENDEROPTIONS: {
       MALE: "مرد",
       FEMALE: "عورت",
-      OTHER: "-"
+      OTHER: "-",
     },
     TEMPERATUREREADING: "درجہ حرارت",
     TEMPERATURE: {
       CELSIUS: "°C",
-      FAHRENHEIT: "°F"
+      FAHRENHEIT: "°F",
     },
     SYMPTOM: "علامت",
     SYMPTOMLIST: {
+      // FEVER: "بخار",
+      // DRYCOUGH: "سوکھی کھانسی ",
+      // SPUTUMPRODUCTION: "بلغم",
+      // BLOODINCOUGH: "کھانسی کے ساتھ خون",
+      // FATIGUE: "تھکاوٹ",
+      // HEADACHE: " سر کا درد ",
+      // BODYPAIN: "جسم میں درد ",
+      // SORETHROAT: "گلا خراب",
+      // NASALCONGESTION: "نزلہ",
+      // SHORTNESSOFBREATH: " سانس لینے میں دقت",
+      // REDNESSOFEYES: "پیچش",
+      // DIARRHEA: " آنکھوں کی لالی",
+      // OTHERSYMPTOMS: "اس کے علاوہ بیماری کی کوئی علامات",
+      // OTHERSYMPTOMSEAMPLE: "e.g جیسے دل کی کمزوری"
+
       FEVER: "بخار",
       DRYCOUGH: "سوکھی کھانسی ",
-      SPUTUMPRODUCTION: "بلغم",
-      BLOODINCOUGH: "کھانسی کے ساتھ خون",
-      FATIGUE: "تھکاوٹ",
-      HEADACHE: " سر کا درد ",
+
+      FEELINGSTRESSED: "ذہنی دباؤ",
+
       BODYPAIN: "جسم میں درد ",
       SORETHROAT: "گلا خراب",
-      NASALCONGESTION: "نزلہ",
-      SHORTNESSOFBREATH: " سانس لینے میں دقت",
-      REDNESSOFEYES: "پیچش",
-      DIARRHEA: " آنکھوں کی لالی",
+
+      DIARRHOEA: "پیچش",
+      DISTURBEDSLEEP: "نیند کی خرابی",
+
+      HEADACHE: " سر کا درد ",
+
+      LOSSOFTASTEORSMELL: "سونگھنے اور چکھنے میں دقت",
+      FEELINGANXIOUSORSCAREDPERSISTENTLY: "خوف یا پریشانی کی کیفیت",
+      ARASHONSKIN: "جلد پر دھبے",
+      DISCOLORATIONOFFINGERSORTOES: "انگلیوں یا انگلیوں کی رنگت",
+      FEELINGSADORLOWPERSISTENTLY: "غم یا اداسی کی کیفیت",
+
+      SHORTNESSOFBREATH: "سانس لینے میں دقت/ سانس پھولنا",
+
+      CHESTPAINORPRESSURE: "چھاتی میں درد یا دباؤ",
+
       OTHERSYMPTOMS: "اس کے علاوہ بیماری کی کوئی علامات",
-      OTHERSYMPTOMSEAMPLE: "e.g جیسے دل کی کمزوری"
-    }
+      OTHERSYMPTOMSEAMPLE: "e.g جیسے دل کی کمزوری",
+    },
   },
   Symptom: {
     symptomName: "بخار",
     symptomNumber: "علامت 1",
     symptomValue: "fever",
-    symptomLable: "بخار"
+    symptomLable: "بخار",
   },
   QUESTIONS_LIST: {
     PrecautionsInit: [
       {
         Answer: `دور سے لوگوں کو سلام کریں،`,
-        Question: ` ہاتھ مت ملائیں نہ لوگوں کو گلے لگائیں`
+        Question: ` ہاتھ مت ملائیں نہ لوگوں کو گلے لگائیں`,
       },
       {
         Answer: `معلومات فراہم کرنے سے پہلے سوال پوچھیں`,
-        Question: `صرف ذیل میں دی گئی سائنسی معلومات سے سوالات کے جوابات دیں`
+        Question: `صرف ذیل میں دی گئی سائنسی معلومات سے سوالات کے جوابات دیں`,
       },
       {
         Answer: `لوگوں کو اپنے خدشات کا اظہار کرنے کا موقع دیں`,
-        Question: ``
-      }
+        Question: ``,
+      },
     ],
     Precautions: [
       {
         Question: `کیا آپ کی کسی ایسے انسان سے ملاقات  ہوئی ہے جس کو کرونا وائرس کی  بیماری ہو؟`,
-        Answer: ``
-      }
+        Answer: ``,
+      },
     ],
     NewPrecautions: [
       {
         Question: `کیا آپ نے پچھلے ایک مہینے میں کسی  ایسی  جگہ پر سفر کیا ہے جہاں پر کرونا  وائرس کی بیماری  پھیلی ہوئی ہے؟`,
-        Answer: ``
+        Answer: ``,
       },
       {
         Question: `کیا آپ کی پچھلے ایک مہینے میں کسی ایسے انسان سے ملاقات ہوئی ہے جس کو کرونا وائرس کی بیماری ہو`,
-        Answer: ``
-      }
+        Answer: ``,
+      },
     ],
     Information: [
       {
@@ -189,7 +215,7 @@ export default {
 اس سے بچنے کا سب سے بہترین طریقہ
 ٹھیک سے ہاتھ دھونا ہے   
 
-    `
+    `,
       },
       {
         Question: `آپ کرونا وائرس کی بیماری کے بارے میں کیاجاننا چاہتے ہیں ؟`,
@@ -224,15 +250,15 @@ export default {
 روز مرہ زندگی کو برقرار رکھنے کی
 کوشش کریں اورروز ورزش کریں
       
-      `
+      `,
       },
       {
         Question: `آپ کو میری بات سے کیا سمجھ آیا ہے ؟`,
-        Answer: ``
+        Answer: ``,
       },
       {
         Question: `آپ کے ذہن میں مزید کوئی سوال ہیں ؟`,
-        Answer: ``
+        Answer: ``,
       },
       {
         Question: `بیماری کے بارے میں دیگر معلومات`,
@@ -258,8 +284,8 @@ export default {
 
 اگر آپ کو کسی بھی قسم کی کھانسی  ،زکام یا بخارہے تو دوسرے لوگوں سے ملنے سے گریز کریں 
  
-    `
-      }
-    ]
-  }
+    `,
+      },
+    ],
+  },
 };

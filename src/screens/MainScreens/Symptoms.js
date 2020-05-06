@@ -20,92 +20,116 @@ const SYMPTOMS_LIST = [
     symptomName: I18n.t(`Labels.SYMPTOMLIST.FEVER`),
     value: "Fever",
     normalisedValue: "fever",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.DRYCOUGH`),
     value: "Dry Cough",
     normalisedValue: "dryCough",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.SPUTUMPRODUCTION`),
-    value: "Sputum production",
-    normalisedValue: "sputumProduction",
-    isChecked: false
-  },
-  {
-    symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.BLOODINCOUGH`),
-    value: "Blood in cough",
-    normalisedValue: "bloodInCough",
-    isChecked: false
-  },
-  {
-    symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.FATIGUE`),
-    value: "Fatigue",
-    normalisedValue: "fatigue",
-    isChecked: false
-  },
-  {
-    symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
-    value: "Headache",
-    normalisedValue: "headache",
-    isChecked: false
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FEELINGSTRESSED`),
+    value: "Feeling stressed",
+    normalisedValue: "feelingStressed",
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.BODYPAIN`),
     value: "Body pain",
     normalisedValue: "bodyPain",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.SORETHROAT`),
     value: "Sore throat",
     normalisedValue: "soreThroat",
-    isChecked: false
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.NASALCONGESTION`),
-    value: "Nasal congestion",
-    normalisedValue: "nasalCongestion",
-    isChecked: false
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DIARRHOEA`),
+    value: "Diarrhoea",
+    normalisedValue: "diarrhoea",
+    isChecked: false,
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DISTURBEDSLEEP`),
+    value: "Disturbed sleep",
+    normalisedValue: "disturbedSleep",
+    isChecked: false,
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.HEADACHE`),
+    value: "Headache",
+    normalisedValue: "headache",
+    isChecked: false,
+  },
+
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.LOSSOFTASTEORSMELL`),
+    value: "Loss of taste or smell",
+    normalisedValue: "lossOfTasteOrSmell",
+    isChecked: false,
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(
+      `Labels.SYMPTOMLIST.FEELINGANXIOUSORSCAREDPERSISTENTLY`
+    ),
+    value: "Feeling anxious or scared persistently",
+    normalisedValue: "feelingAnxiousOrScaredPersistently",
+    isChecked: false,
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.ARASHONSKIN`),
+    value: "A rash on skin",
+    normalisedValue: "aRashOnSkin",
+    isChecked: false,
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.DISCOLORATIONOFFINGERSORTOES`),
+    value: "Discoloration of fingers or toes",
+    normalisedValue: "discolorationOfFingersOrToes",
+    isChecked: false,
+  },
+  {
+    symptomNumber: I18n.t(`Labels.SYMPTOM`),
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.FEELINGSADORLOWPERSISTENTLY`),
+    value: "Feeling sad or low persistently",
+    normalisedValue: "feelingSadOrLowPersistently",
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
     symptomName: I18n.t(`Labels.SYMPTOMLIST.SHORTNESSOFBREATH`),
-    value: "Shortness of breath",
-    normalisedValue: "shortnessOfBreath",
-    isChecked: false
+    value: "Difficulty breathing or shortness of breath",
+    normalisedValue: "difficultyBreathingOrShortnessOfBreath",
+    isChecked: false,
   },
   {
     symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.REDNESSOFEYES`),
-    value: "Redness of eyes",
-    normalisedValue: "rednessOfEyes",
-    isChecked: false
+    symptomName: I18n.t(`Labels.SYMPTOMLIST.CHESTPAINORPRESSURE`),
+    value: "Chest pain or pressure",
+    normalisedValue: "chestPainOrPressure",
+    isChecked: false,
   },
-  {
-    symptomNumber: I18n.t(`Labels.SYMPTOM`),
-    symptomName: I18n.t(`Labels.SYMPTOMLIST.DIARRHEA`),
-    value: "diarrhea",
-    normalisedValue: "diarrhea",
-    isChecked: false
-  }
 ];
 
 export default class Symptoms extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSymptomsCheckBoxList: []
+      selectedSymptomsCheckBoxList: [],
     };
     this.handleCheckboxSymptomsList = this.handleCheckboxSymptomsList.bind(
       this
@@ -153,10 +177,10 @@ export default class Symptoms extends Component {
               {
                 display: "flex",
                 paddingLeft: 20,
-                paddingRight: 20
+                paddingRight: 20,
                 //flexDirection: "column"
                 // alignSelf: "flex-start",
-              }
+              },
             ]}
           >
             {SYMPTOMS_LIST.map((d, i) => (

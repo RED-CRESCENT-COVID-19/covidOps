@@ -15,13 +15,13 @@ export default {
     HOMEHOLD: "Household Details",
     SMSSERVICE: "SMS Notifications",
     CONFIRMENTERY: "Confirm Entry",
-    NEWPRECAUTIONS: "Miscellaneous"
+    NEWPRECAUTIONS: "Miscellaneous",
   },
   Alert: {
     HOUSEHOLDDETAIL: {
       TITLE: `Are you sure you want to delete this?`,
-      DETAIL: ""
-    }
+      DETAIL: "",
+    },
   },
   ButtonTitles: {
     CONTINUE: "Continue",
@@ -39,7 +39,7 @@ export default {
     DONE: "DONE",
     CANCEL: "CANCEL",
     TRANSLATION: "اردو",
-    LOGOUT: "LOG OUT"
+    LOGOUT: "LOG OUT",
   },
   Paragarphs: {
     SMSSERVICE:
@@ -61,7 +61,8 @@ export default {
       " Have you been able to contact a member of the household?",
     RESPONSE: "Have you been able to contact a member of the household?",
     MEMEBERS: "No members added yet",
-    SYMPTOMS: "Please check all or any symptoms the members is experiencing",
+    SYMPTOMS:
+      "Are you or anyone in your household experiencing any of the following symptoms?",
     ADVISORY:
       "Please recommend the household to contact via helpine, whatsapp or website and not visit the hospital immedidately",
     HOME: "No memebers added yet",
@@ -71,22 +72,22 @@ export default {
     INFORMATIONCARE: {
       TTITLE: "Information Care",
       GENERAL: "What do you know about Coronavirus disease CoVID-19?",
-      HANDWASH: "The correct way of washing your hands"
+      HANDWASH: "The correct way of washing your hands",
     },
     Advisory: {
       HELPLINE: {
         TITLE: "COVID-19 HELPLINE",
-        PHONE: "1030"
+        PHONE: "1030",
       },
       WEBSITE: {
         TITLE: "dedicated website",
-        URL: "http://www.covid.gov.pk"
+        URL: "http://www.covid.gov.pk",
       },
       MESSAGE: {
         TITLE: "COVID-19 Whatsapp Helpline",
-        PHONE: "Message 'hi' to +923001111166"
-      }
-    }
+        PHONE: "Message 'hi' to +923001111166",
+      },
+    },
   },
   Labels: {
     PHONENUMBER: "Phone number",
@@ -102,76 +103,102 @@ export default {
     PHONENUMBER: "PHONE NUMBER",
     TEMPERATURE: {
       CELSIUS: "°C",
-      FAHRENHEIT: "°F"
+      FAHRENHEIT: "°F",
     },
     CONFIRMENTERY: {
       LABEL: "18:00 - 22/03/2020",
-      EAMPLE: "MS-XXXXX-XX"
+      EAMPLE: "MS-XXXXX-XX",
     },
     AGE: "AGE",
     GENDER: "GENDER",
     GENDEROPTIONS: {
       MALE: "MALE",
       FEMALE: "FEMALE",
-      OTHER: "OTHER"
+      OTHER: "OTHER",
     },
     TEMPERATUREREADING: "TEMPERATURE READING",
     SYMPTOM: "SYMPTOM",
     SYMPTOMLIST: {
+      // FEVER: "Fever",
+      // DRYCOUGH: "Dry Cough",
+      // SPUTUMPRODUCTION: "Sputum production",
+      // BLOODINCOUGH: "Blood in cough",
+      // FATIGUE: "Fatigue",
+      // HEADACHE: "Headache",
+      // BODYPAIN: "Body pain",
+      // SORETHROAT: "Sore throat",
+      // NASALCONGESTION: "Nasal congestion",
+      // SHORTNESSOFBREATH: "Shortness of breath",
+      // REDNESSOFEYES: "Redness of eyes",
+      // DIARRHEA: "Diarrhea",
+      // OTHERSYMPTOMS: "OTHER SYMPTOMS",
+      // OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
       FEVER: "Fever",
       DRYCOUGH: "Dry Cough",
-      SPUTUMPRODUCTION: "Sputum production",
-      BLOODINCOUGH: "Blood in cough",
-      FATIGUE: "Fatigue",
-      HEADACHE: "Headache",
-      BODYPAIN: "Body pain",
+
+      FEELINGSTRESSED: "Feeling stressed",
+
+      BODYPAIN: "Aches and Pains",
       SORETHROAT: "Sore throat",
-      NASALCONGESTION: "Nasal congestion",
-      SHORTNESSOFBREATH: "Shortness of breath",
-      REDNESSOFEYES: "Redness of eyes",
-      DIARRHEA: "Diarrhea",
+
+      DIARRHOEA: "Diarrhoea",
+      DISTURBEDSLEEP: "Disturbed sleep",
+
+      HEADACHE: "Headache",
+
+      LOSSOFTASTEORSMELL: "Loss of taste or smell",
+      FEELINGANXIOUSORSCAREDPERSISTENTLY:
+        "Feeling anxious or scared persistently",
+      ARASHONSKIN: "A rash on skin",
+      DISCOLORATIONOFFINGERSORTOES: "Discoloration of fingers or toes",
+      FEELINGSADORLOWPERSISTENTLY: "Feeling sad or low persistently",
+
+      SHORTNESSOFBREATH: "Difficulty breathing or shortness of breath",
+
+      CHESTPAINORPRESSURE: "Chest pain or pressure",
+
       OTHERSYMPTOMS: "OTHER SYMPTOMS",
-      OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
-    }
+      OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia",
+    },
   },
   Symptom: {
     symptomName: "Fever",
     symptomNumber: "Symptom 1",
     symptomValue: "fever",
-    symptomLable: "fever"
+    symptomLable: "fever",
   },
   QUESTIONS_LIST: {
     PrecautionsInit: [
       {
         Answer: `Greet people from a distance`,
-        Question: `Don’t shake hands or hug people`
+        Question: `Don’t shake hands or hug people`,
       },
       {
         Answer: `Ask questions before giving out any information`,
-        Question: `Only give out scientific information provided in the infocare section`
+        Question: `Only give out scientific information provided in the infocare section`,
       },
       {
         Answer: `Let people express their feelings and concerns`,
-        Question: ``
-      }
+        Question: ``,
+      },
     ],
     Precautions: [
       {
         Question:
           "Have you contacted anyone that might have the coronavirus infection?",
-        Answer: ``
-      }
+        Answer: ``,
+      },
     ],
     NewPrecautions: [
       {
         Question:
           "Have you travelled to a coronavirus infected area in the past month?",
-        Answer: ``
+        Answer: ``,
       },
       {
         Question: `Have you been in contact with someone who has been diagnosed with COVID-19?`,
-        Answer: ``
-      }
+        Answer: ``,
+      },
     ],
     Information: [
       {
@@ -189,7 +216,7 @@ Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash
 Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.
  
 Avoid touching eyes, nose and mouth.
-`
+`,
       },
       {
         Question: `What would you like to know about Coronavirus disease CoVID-19?`,
@@ -213,15 +240,15 @@ Stay in online contact with family and friends.
 Minimize watching, reading or listening to news that causes you to feel anxious or distressed; Seek information updates at specific times during the day, once or twice. 
 
 Explain the disease and how to do to deal with CoVid-19, in simple terms to children and the elderly, 
-`
+`,
       },
       {
         Question: `What have you understood?`,
-        Answer: ``
+        Answer: ``,
       },
       {
         Question: `Do you have any questions?`,
-        Answer: ``
+        Answer: ``,
       },
       {
         Question: `General information about Coronavirus`,
@@ -247,8 +274,8 @@ To protect yourself, such as when visiting live animal markets, avoid direct con
 To date, there is no vaccine and no specific antiviral medicine to prevent or treat COVID-2019. Antibiotics should not be used as a means of prevention or treatment of COVID-19. 
  
 If you have a fever, cough and difficulty breathing, seek medical attention and call in advance TO THE HELPLINE.
-`
-      }
-    ]
-  }
+`,
+      },
+    ],
+  },
 };
