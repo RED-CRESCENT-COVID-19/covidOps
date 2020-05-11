@@ -57,7 +57,7 @@ export default {
     HOUSEHOLDNUMBERQUESTION: " کیا آپ اس گھر میں کسی سے بات کرپاۓ؟",
     RESPONSE: "کیا آپ گھر کے کسی ممبر سے رابطہ کرنے میں کامیاب رہے ہیں؟",
     MEMEBERS: "ابھی تک کوئی ممبر شامل نہیں ہوا",
-    SYMPTOMS: "براۓ مہربانی درج ذیل علامات کی  تفصیل لیجیے",
+    SYMPTOMS: "کیا آپ کو یا آپ کے گھر میں کسی کو یہ علامات ہو رہی  ہیں؟",
     CONFIRMENTERY: "آپ نے گھرانے کا اندراج کرلیا ہے",
     ADVISORY:
       "آگر آپ کو بخار کھانسی اور سانس لینے  میں دقت ہورہی ہے تو اور لوگوں سے علیحدگی اختیارکرلیں اور ہیلپ لائن پر کال کریں ۔ یہ ایمرجنسی فون نمبر ہیں ۔",
@@ -117,16 +117,30 @@ export default {
     SYMPTOMLIST: {
       FEVER: "بخار",
       DRYCOUGH: "سوکھی کھانسی ",
-      SPUTUMPRODUCTION: "بلغم",
-      BLOODINCOUGH: "کھانسی کے ساتھ خون",
-      FATIGUE: "تھکاوٹ",
-      HEADACHE: " سر کا درد ",
+      //
+      FEELINGSTRESSED: "ذہنی دباؤ",
+
       BODYPAIN: "جسم میں درد ",
       SORETHROAT: "گلا خراب",
-      NASALCONGESTION: "نزلہ",
-      SHORTNESSOFBREATH: " سانس لینے میں دقت",
-      REDNESSOFEYES: "پیچش",
-      DIARRHEA: " آنکھوں کی لالی",
+
+      //
+      DIARRHOEA: "پیچش",
+      DISTURBEDSLEEP: "نیند کی خرابی",
+
+      HEADACHE: " سر کا درد ",
+      
+      //
+      LOSSOFTASTEORSMELL: "سونگھنے اور چکھنے میں دقت",
+      FEELINGANXIOUSORSCAREDPERSISTENTLY:
+        "خوف یا پریشانی کی کیفیت",
+      ARASHONSKIN: "جلد کی تکلیف ",
+      DISCOLORATIONOFFINGERSORTOES: `یا انگلیوں کی رنگت میں تبدیلی`,
+      FEELINGSADORLOWPERSISTENTLY: "غم یا اداسی کی کیفیت",
+      
+      SHORTNESSOFBREATH: " سانس لینے میں دقت/ سانس پھولنا",
+      //
+      CHESTPAINORPRESSURE: "چھاتی میں درد یا دباؤ",
+
       OTHERSYMPTOMS: "اس کے علاوہ بیماری کی کوئی علامات",
       OTHERSYMPTOMSEAMPLE: "e.g جیسے دل کی کمزوری"
     }

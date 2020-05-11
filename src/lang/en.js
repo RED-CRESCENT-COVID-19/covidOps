@@ -61,7 +61,7 @@ export default {
       " Have you been able to contact a member of the household?",
     RESPONSE: "Have you been able to contact a member of the household?",
     MEMEBERS: "No members added yet",
-    SYMPTOMS: "Please check all or any symptoms the members is experiencing",
+    SYMPTOMS: "Are you or anyone in your household experiencing any of the following symptoms?",
     ADVISORY:
       "Please recommend the household to contact via helpine, whatsapp or website and not visit the hospital immedidately",
     HOME: "No memebers added yet",
@@ -120,16 +120,21 @@ export default {
     SYMPTOMLIST: {
       FEVER: "Fever",
       DRYCOUGH: "Dry Cough",
-      SPUTUMPRODUCTION: "Sputum production",
-      BLOODINCOUGH: "Blood in cough",
-      FATIGUE: "Fatigue",
-      HEADACHE: "Headache",
-      BODYPAIN: "Body pain",
+      FEELINGSTRESSED: "Feeling stressed",
+      BODYPAIN: "Aches and pains",
       SORETHROAT: "Sore throat",
-      NASALCONGESTION: "Nasal congestion",
-      SHORTNESSOFBREATH: "Shortness of breath",
-      REDNESSOFEYES: "Redness of eyes",
-      DIARRHEA: "Diarrhea",
+      DIARRHOEA: "Diarrhoea",
+      DISTURBEDSLEEP: "Disturbed sleep",
+      HEADACHE: "Headache",
+      LOSSOFTASTEORSMELL: "Loss of taste or smell",
+      FEELINGANXIOUSORSCAREDPERSISTENTLY:
+        "Feeling anxious or scared persistently",
+      ARASHONSKIN: "A rash on skin",
+      DISCOLORATIONOFFINGERSORTOES: "Discoloration of fingers or toes",
+      FEELINGSADORLOWPERSISTENTLY: "Feeling sad or low persistently",
+      SHORTNESSOFBREATH: "Difficulty breathing or shortness of breath",
+      CHESTPAINORPRESSURE: "Chest pain or pressure",
+
       OTHERSYMPTOMS: "OTHER SYMPTOMS",
       OTHERSYMPTOMSEAMPLE: "e.g Arrhythmia"
     }
