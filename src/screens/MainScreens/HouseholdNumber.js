@@ -49,10 +49,9 @@ class HouseholdNumber extends Component {
       this.fieldRef.focus();
       return false;
     }
-    let newHouseId = await MakeId();
     const home = {
       address: this.state.address,
-      id: newHouseId,
+      id: this.state.id,
       lat: this.state.lat,
       lng: this.state.lng,
       is_contacted: 1,
@@ -60,9 +59,6 @@ class HouseholdNumber extends Component {
 
     const token = this.state.token;
     this.props.createHomeDispatcher(home, token);
-    this.setState({
-      id: newHouseId,
-    });
   };
 
   handleBack = () => {

@@ -5,7 +5,7 @@ import {
   View,
   Keyboard,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 
 import { TextField } from "react-native-material-textfield";
@@ -34,7 +34,7 @@ class Temperature extends Component {
     this.state = {
       temperature: "",
       isButtonActive: false,
-      selectedTemperatureButton: "c"
+      selectedTemperatureButton: "c",
     };
     this.props.toggleResponse();
   }
@@ -48,7 +48,7 @@ class Temperature extends Component {
     this.setState({ isLoading: true });
     const temperature = {
       selectedTemperatureButton: this.state.selectedTemperatureButton,
-      temperature: this.state.temperature
+      temperature: this.state.temperature,
     };
     const data = { ...temperature, ...this.props.route.params };
     this.handleAddMemeber(data);
@@ -70,12 +70,12 @@ class Temperature extends Component {
     if (type !== selectedTemperatureButton) {
       this.setState({
         selectedTemperatureButton: type,
-        isButtonActive: !isButtonActive
+        isButtonActive: !isButtonActive,
       });
     }
   }
 
-  handleAddMemeber = async data => {
+  handleAddMemeber = async (data) => {
     const token = await AsyncStorage.getItem("AuthToken");
     const houseID = await AsyncStorage.getItem("HouseID");
     let id = await MakeId();
@@ -93,17 +93,17 @@ class Temperature extends Component {
       sob: data.shortnessOfBreath || 0,
       headache: data.headache || 0,
       // congestion: data.nasalCongestion || 0,
-      meralgia: data.bodyPain || 0,
-      meralgia: data.soreThroat || 0,
-      meralgia: data.feeling_stressed || 0,
-      meralgia: data.diarrhoea || 0,
-      meralgia: data.disturbed_sleep || 0,
-      meralgia: data.loss_of_taste || 0,
-      meralgia: data.feeling_anxious || 0,
-      meralgia: data.rash_on_skin || 0,
-      meralgia: data.discoloration_of_fingers || 0,
-      meralgia: data.feeling_sad || 0,
-      meralgia: data.chest_pain || 0,
+      bodyPain: data.bodyPain || 0,
+      soreThroat: data.soreThroat || 0,
+      feeling_stressed: data.feeling_stressed || 0,
+      diarrhoea: data.diarrhoea || 0,
+      disturbed_sleep: data.disturbed_sleep || 0,
+      loss_of_taste: data.loss_of_taste || 0,
+      feeling_anxious: data.feeling_anxious || 0,
+      rash_on_skin: data.rash_on_skin || 0,
+      discoloration_of_fingers: data.discoloration_of_fingers || 0,
+      feeling_sad: data.feeling_sad || 0,
+      chest_pain: data.chest_pain || 0,
       // hemoptysis: data.bloodInCough || 0,
       // conjuctivitis: data.rednessOfEyes || 0,
 
@@ -111,7 +111,7 @@ class Temperature extends Component {
       cnic: data.cnic,
       phone: data.phone,
       gender: data.selectedGenderType,
-      uniqueID: uniqueID
+      uniqueID: uniqueID,
     };
 
     this.props.createMemberDispatcher(params, token);
@@ -152,7 +152,7 @@ class Temperature extends Component {
             returnKeyType={"done"}
             tintColor={Colors.primaryColor}
             // formatText={this.formatText}
-            onChangeText={e => this.onChangeText(e)}
+            onChangeText={(e) => this.onChangeText(e)}
             onSubmitEditing={this.onSubmit}
             onBlur={() => this.onBlur()}
             ref={this.fieldRef}
@@ -167,10 +167,10 @@ class Temperature extends Component {
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallTemperatureButton
+              Styles.smallTemperatureButton,
               // true && Styles.smallGenderButtonActive
             ]}
-            onPress={e => this.temperatureButtonClick("c")}
+            onPress={(e) => this.temperatureButtonClick("c")}
           />
           <TextButton
             title={I18n.t(`Labels.TEMPERATURE.FAHRENHEIT`)}
@@ -180,10 +180,10 @@ class Temperature extends Component {
             }
             shadeBorderRadius={1.5}
             style={[
-              Styles.smallTemperatureButton
+              Styles.smallTemperatureButton,
               // true && Styles.smallGenderButtonActive
             ]}
-            onPress={e => this.temperatureButtonClick("f")}
+            onPress={(e) => this.temperatureButtonClick("f")}
           />
         </View>
         <CardView Styles={Styles.Spacer300} />
@@ -212,18 +212,18 @@ class Temperature extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.member.loading,
   error: state.member.error,
   message: state.member.message,
-  response: state.member.response
+  response: state.member.response,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   createMemberDispatcher: (params, token) => {
     return dispatch(createMemeber(params, token));
   },
-  toggleResponse: () => dispatch(setResponse())
+  toggleResponse: () => dispatch(setResponse()),
 });
 
 export default connect(
@@ -235,6 +235,6 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
-  }
+    paddingRight: 35,
+  },
 });
