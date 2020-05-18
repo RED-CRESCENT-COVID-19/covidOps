@@ -34,6 +34,7 @@ export default (memeberReducer = (state = initialState, action) => {
     case CREATE_MEMEBER_FAIL:
       return {
         ...state,
+        // message: action.error.data.message,
         message: "failed to create house member",
         error: true,
         response: true,

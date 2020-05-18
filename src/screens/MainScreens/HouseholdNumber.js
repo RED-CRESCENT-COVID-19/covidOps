@@ -5,7 +5,7 @@ import {
   View,
   Keyboard,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 import { connect } from "react-redux";
 import { OutlinedTextField } from "react-native-material-textfield";
@@ -39,7 +39,7 @@ class HouseholdNumber extends Component {
       id: "",
       lat: "",
       lng: "",
-      token: ""
+      token: "",
     };
   }
   fieldRef = React.createRef();
@@ -49,16 +49,20 @@ class HouseholdNumber extends Component {
       this.fieldRef.focus();
       return false;
     }
+    let newHouseId = await MakeId();
     const home = {
       address: this.state.address,
-      id: this.state.id,
+      id: newHouseId,
       lat: this.state.lat,
       lng: this.state.lng,
-      is_contacted: 1
+      is_contacted: 1,
     };
 
     const token = this.state.token;
     this.props.createHomeDispatcher(home, token);
+    this.setState({
+      id: newHouseId,
+    });
   };
 
   handleBack = () => {
@@ -85,13 +89,13 @@ class HouseholdNumber extends Component {
       await AsyncStorage.setItem("LocationStatus", status);
       if (status !== "granted") {
         this.setState({
-          errorMessage: "Permission to access location was denied"
+          errorMessage: "Permission to access location was denied",
         });
       }
       let location = await Location.getCurrentPositionAsync({});
       this.setState({
         lat: location.coords.latitude,
-        lng: location.coords.longitude
+        lng: location.coords.longitude,
       });
     } catch (error) {
       Alert.alert(
@@ -101,9 +105,9 @@ class HouseholdNumber extends Component {
           {
             text: "Cancel",
             onPress: () => console.log("Cancel Pressed"),
-            style: "cancel"
+            style: "cancel",
           },
-          { text: "OK", onPress: () => console.log("OK Pressed") }
+          { text: "OK", onPress: () => console.log("OK Pressed") },
         ],
         { cancelable: false }
       );
@@ -130,13 +134,26 @@ class HouseholdNumber extends Component {
     if (this.props.response) {
       if (!this.props.error) {
         this.props.navigation.navigate("HouseHoldDetails", {
-          houseID: this.props.data.id
+          houseID: this.props.data.id,
         });
       } else {
         Alert.alert(
           "Info",
           this.props.message,
-          [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+          [
+            {
+              text: "OK",
+              onPress: () => {
+                console.log("OK Pressed");
+                let newHouseId = MakeId();
+                console.log("new houseID is: ", newHouseId);
+                console.log("state houseID is: ", this.state.id);
+                this.setState({ id: newHouseId }, () => {
+                  console.log("new state houseID is: ", this.state.id);
+                });
+              },
+            },
+          ],
           { cancelable: false }
         );
       }
@@ -161,9 +178,9 @@ class HouseholdNumber extends Component {
           returnKeyType={"done"}
           inputContainerStyle={screenStyles.inputContainerStyle}
           // onSubmitEditing={() => this.onSubmit()}
-          onChangeText={value => this.setState({ address: value })}
+          onChangeText={(value) => this.setState({ address: value })}
           onBlur={() => this.onBlur()}
-          ref={input => {
+          ref={(input) => {
             this.fieldRef = input;
           }}
         />
@@ -199,31 +216,31 @@ const screenStyles = StyleSheet.create({
   textInput: {
     paddingTop: 20,
     paddingLeft: 35,
-    paddingRight: 35
+    paddingRight: 35,
   },
   centerText: {
     paddingTop: 20,
     paddingLeft: 35,
     paddingRight: 35,
-    textAlign: "center"
+    textAlign: "center",
   },
   inputContainerStyle: {
-    margin: 35
-  }
+    margin: 35,
+  },
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   loading: state.home.loading,
   error: state.home.error,
   message: state.home.message,
   response: state.home.response,
-  data: state.home.data
+  data: state.home.data,
 });
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   createHomeDispatcher: (params, token) => {
     return dispatch(createHome(params, token));
   },
-  toggleResponse: () => dispatch(setResponse())
+  toggleResponse: () => dispatch(setResponse()),
 });
 export default connect(
   mapStateToProps,

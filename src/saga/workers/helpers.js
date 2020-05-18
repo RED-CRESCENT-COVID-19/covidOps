@@ -18,7 +18,7 @@ export const getStatsHelper = async ({ token }) => {
 export const createHome = async ({ params, token }) => {
   try {
     const repsonse = await Http.post("house", params, {
-      headers: { "access-token": token }
+      headers: { "access-token": token },
     });
     await AsyncStorage.setItem("HouseID", repsonse.data.id);
     return repsonse;
@@ -57,10 +57,11 @@ export const getHouseHoldDetails = async ({ token, houseId }) => {
 export const createMember = async ({ params, token }) => {
   try {
     const repsonse = await Http.post("person", params, {
-      headers: { "access-token": token }
+      headers: { "access-token": token },
     });
     return repsonse;
   } catch (error) {
+    console.log("createMember is: ", error);
     return error;
   }
 };
@@ -71,7 +72,7 @@ export const SendSMS = async ({ phone }, token) => {
       "infosms",
       { phone },
       {
-        headers: { "access-token": token }
+        headers: { "access-token": token },
       }
     );
     return repsonse;
